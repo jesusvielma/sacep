@@ -20,9 +20,7 @@ class CrearTablaEmpleado extends Migration
             $table->date('fecha_nacimiento');
             $table->enum('estado',['activo','inactivo']);
             $table->integer('id_usuario')->nullable();
-            $table->integer('id_departamento');
             $table->foreign('id_usuario')->references('id_usuario')->on('usuario');
-            $table->foreign('id_departamento')->references('id_departamento')->on('departamento');
         });
     }
 

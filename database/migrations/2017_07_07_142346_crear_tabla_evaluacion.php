@@ -19,8 +19,8 @@ class CrearTablaEvaluacion extends Migration
             $table->date('periodo_desde');
             $table->date('periodo_hasta');
             $table->enum('estado',['guardada','procesada']);
-            $table->string('motivo',100);
-            $table->enum('tipo',['mensual','trimestral','semestral','anual']);
+            $table->enum('motivo',['regular','periodica','renovacion','ascenso','traslado']);
+            $table->enum('tipo',['mensual','bimestral','trimestral','semestral','anual']);
         });
     }
 

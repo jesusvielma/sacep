@@ -18,7 +18,7 @@ class CrearTablaUsuario extends Migration
             $table->string('nombre');
             $table->string('correo')->unique();
             $table->string('clave');
-            $table->enum('nivel',['th','coordinador','gerente','supervisor','admin']);
+            $table->enum('nivel',['th','coordinador','gerente','supervisor','admin','jefe']);
             $table->rememberToken();
             $table->timestamps();
         });

@@ -16,7 +16,8 @@ class CrearTablaFactorDeEvaluacion extends Migration
         Schema::create('factor_de_evaluacion', function (Blueprint $table) {
             $table->increments('id_factor');
             $table->string('nombre',60);
-            $table->tinyInteger('porcentaje');
+            $table->tinyInteger('estado');
+            $table->tinyInteger('porcentaje')->nullable();
         });
     }
 

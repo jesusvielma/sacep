@@ -16,7 +16,7 @@ class CrearTablaEvaluacionEmpleado extends Migration
         Schema::create('evaluacion_empleado', function (Blueprint $table) {
             $table->integer('id_evaluacion');
             $table->integer('cedula_empleado');
-            $table->enum('tipo',['coordinador','supervisor','gerente','trabajador','evaluador']);
+            $table->enum('tipo',['coordinador','supervisor','jefe','gerente','trabajador','evaluador']);
             $table->foreign('id_evaluacion')->references('id_evaluacion')->on('evaluacion');
             $table->foreign('cedula_empleado')->references('cedula_empleado')->on('empleado');
         });
