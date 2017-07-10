@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use sacep\User;
+use sacep\Usuario;
 
 class SeederTablaUsuario extends Seeder
 {
@@ -19,6 +19,6 @@ class SeederTablaUsuario extends Seeder
             'clave'  => bcrypt('admin'),
             'nivel'  => 'admin',
         ];
-        User::create($data);
+        Usuario::create($data);
     }
 }

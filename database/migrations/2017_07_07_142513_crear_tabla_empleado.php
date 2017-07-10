@@ -21,7 +21,9 @@ class CrearTablaEmpleado extends Migration
             $table->enum('estado',['activo','inactivo']);
             $table->primary('cedula_empleado');
             $table->integer('id_usuario')->nullable()->unsigned();
-            $table->foreign('id_usuario')->references('id_usuario')->on('usuario');
+            $table->foreign('id_usuario')
+                  ->references('id_usuario')->on('usuario')
+                  ->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

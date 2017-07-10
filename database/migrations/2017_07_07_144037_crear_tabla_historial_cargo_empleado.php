@@ -15,11 +15,14 @@ class CrearTablaHistorialCargoEmpleado extends Migration
     {
         Schema::create('historial_cargo_empleado', function (Blueprint $table) {
             $table->integer('cedula_empleado');
-            $table->integer('id_cargo');
+            $table->integer('id_cargo')->unsigned();
             $table->date('desde');
             $table->date('hasta');
-            $table->foreign('cedula_empleado')->references('cedula_empleado')->on('empleado');
-            $table->foreign('id_cargo')->references('id_cargo')->on('cargo');
+            $table->primary(['cedula_empleado','id_cargo']);
+            $table->foreign('cedula_empleado')->references('cedula_empleado')->on('empleado')
+            ->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('id_cargo')->references('id_cargo')->on('cargo')
+            ->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

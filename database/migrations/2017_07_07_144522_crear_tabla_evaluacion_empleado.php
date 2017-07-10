@@ -14,11 +14,14 @@ class CrearTablaEvaluacionEmpleado extends Migration
     public function up()
     {
         Schema::create('evaluacion_empleado', function (Blueprint $table) {
-            $table->integer('id_evaluacion');
+            $table->integer('id_evaluacion')->unsigned();
             $table->integer('cedula_empleado');
+            $table->primary(['id_evaluacion','cedula_empleado']);
             $table->enum('tipo',['coordinador','supervisor','jefe','gerente','trabajador','evaluador']);
-            $table->foreign('id_evaluacion')->references('id_evaluacion')->on('evaluacion');
-            $table->foreign('cedula_empleado')->references('cedula_empleado')->on('empleado');
+            $table->foreign('id_evaluacion')->references('id_evaluacion')->on('evaluacion')
+            ->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('cedula_empleado')->references('cedula_empleado')->on('empleado')
+            ->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

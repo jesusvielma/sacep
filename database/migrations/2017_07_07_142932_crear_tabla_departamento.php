@@ -17,7 +17,8 @@ class CrearTablaDepartamento extends Migration
             $table->increments('id_departamento');
             $table->string('nombre',100);
             $table->integer('responsable');
-            $table->foreign('responsable')->references('cedula_empleado')->on('empleado');
+            $table->foreign('responsable')->references('cedula_empleado')->on('empleado')
+            ->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

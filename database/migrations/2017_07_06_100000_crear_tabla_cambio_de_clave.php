@@ -14,7 +14,7 @@ class CrearTablaCambioDeClave extends Migration
     public function up()
     {
         Schema::create('cambio_clave', function (Blueprint $table) {
-            $table->string('correo')->index();
+            $table->string('correo',100)->index();
             $table->string('token');
             $table->timestamp('created_at')->nullable();
         });

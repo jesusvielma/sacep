@@ -16,7 +16,7 @@ class CrearTablaUsuario extends Migration
         Schema::create('usuario', function (Blueprint $table) {
             $table->increments('id_usuario');
             $table->string('nombre');
-            $table->string('correo')->unique();
+            $table->string('correo',100)->unique();
             $table->string('clave');
             $table->enum('nivel',['th','coordinador','gerente','supervisor','admin','jefe']);
             $table->rememberToken();

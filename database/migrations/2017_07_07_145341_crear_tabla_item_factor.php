@@ -17,8 +17,9 @@ class CrearTablaItemFactor extends Migration
             $table->increments('id_item');
             $table->string('nombre');
             $table->enum('visivilidad',['trabajador','coordinador','ambos']);
-            $table->integer('id_factor');
-            $table->foreign('id_factor')->references('id_factor')->on('factor_de_evaluacion');
+            $table->integer('id_factor')->unsigned();
+            $table->foreign('id_factor')->references('id_factor')->on('factor_de_evaluacion')
+            ->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
