@@ -8,11 +8,11 @@
 
     <title>{{ env('APP_NAME') }} | @yield('title')</title>
 
-	<link href="{{ URL::asset('inspinia/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ URL::asset('inspinia/font-awesome/css/font-awesome.css')}}" rel="stylesheet">
+	<link href="{{ URL::asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ URL::asset('font-awesome/css/font-awesome.css')}}" rel="stylesheet">
 
-    <link href="{{ URL::asset('inspinia/css/animate.css') }}" rel="stylesheet">
-    <link href="{{ URL::asset('inspinia/css/style.css') }}" rel="stylesheet">
+    <link href="{{ URL::asset('css/animate.css') }}" rel="stylesheet">
+    <link href="{{ URL::asset('css/style.css') }}" rel="stylesheet">
 
     @yield('css')
 
