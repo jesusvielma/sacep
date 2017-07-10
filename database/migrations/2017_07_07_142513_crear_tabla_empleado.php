@@ -19,7 +19,8 @@ class CrearTablaEmpleado extends Migration
             $table->date('fecha_ingreso');
             $table->date('fecha_nacimiento');
             $table->enum('estado',['activo','inactivo']);
-            $table->integer('id_usuario')->nullable();
+            $table->primary('cedula_empleado');
+            $table->integer('id_usuario')->nullable()->unsigned();
             $table->foreign('id_usuario')->references('id_usuario')->on('usuario');
         });
     }

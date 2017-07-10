@@ -1,4 +1,5 @@
 <?php
+use sacep;
 
 return [
 
@@ -67,7 +68,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => sacep\User::class,
+            'model' => sacep\Usuario::class,
         ],
 
         // 'users' => [

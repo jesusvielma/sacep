@@ -16,7 +16,7 @@ class CrearTablaDepartamento extends Migration
         Schema::create('departamento', function (Blueprint $table) {
             $table->increments('id_departamento');
             $table->string('nombre',100);
-            $table->integer('responsable')->unsigned();
+            $table->integer('responsable');
             $table->foreign('responsable')->references('cedula_empleado')->on('empleado');
         });
     }
