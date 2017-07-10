@@ -17,26 +17,36 @@
 
             </div>
             <div class="col-md-6">
-                @if ($errors)
+
+                @if (count($errors)>0)
                     <div class="alert alert-danger">
-                        {{ dd($errors) }}
+                        @if ($errors->first())
+                            <h4>{{ $errors->first() }}</h4>
+                        @else
+                            <h4>Hay errores en el formulario</h4>
+                            {{-- <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{$error}}</li>
+                                @endforeach
+                            </ul> --}}
+                        @endif
                     </div>
                 @endif
                 <div class="ibox-content">
-                    <form class="m-t" role="form" action="{{ route('login') }}" method="post">
+                    <form class="m-t" role="form" action="{{ route('post_login') }}" method="post">
                         {{ csrf_field() }}
-                        <div class="form-group {{ $errors->has('email') ? ' has-error' : '' }}">
-                            <input type="correo" class="form-control" placeholder="Correo" required="" value="{{ old('correo') }}">
-                            @if ($errors->has('email'))
-                                <span class="help-block">
+                        <div class="form-group {{ $errors->has('correo') ? ' has-error' : '' }}">
+                            <input name="correo" type="correo" class="form-control" placeholder="Correo" required="" value="{{ old('correo') }}">
+                            @if ($errors->has('correo'))
+                                <span class="help-block m-b-none">
                                     <strong>{{ $errors->first('correo') }}</strong>
                                 </span>
                             @endif
                         </div>
-                        <div class="form-group {{ $errors->has('password') ? ' has-error' : '' }}">
-                            <input type="password" class="form-control" placeholder="Clave" required="">
+                        <div class="form-group {{ $errors->has('clave') ? ' has-error' : '' }}">
+                            <input name="clave" type="password" class="form-control" placeholder="Clave" required="">
                             @if ($errors->has('clave'))
-                                <span class="help-block">
+                                <span class="help-block m-b-none">
                                     <strong>{{ $errors->first('clave') }}</strong>
                                 </span>
                             @endif
@@ -55,6 +65,7 @@
                     <p class="m-t">
                         <small> {{ env('APP_NAME') }} - 2017</small>
                     </p>
+
                 </div>
             </div>
         </div>

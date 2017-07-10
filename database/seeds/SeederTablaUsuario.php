@@ -15,7 +15,7 @@ class SeederTablaUsuario extends Seeder
 
         $data = [
             'nombre' => 'admin',
-            'correo' => 'admin@sacep.stm',
+            'correo' => 'admin@sacep.app',
             'clave'  => bcrypt('admin'),
             'nivel'  => 'admin',
         ];

@@ -1,5 +1,6 @@
 <?php
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,8 +12,24 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/entrar',[
+    'uses' => 'LoginController@mostrarFormularioLogin',
+    'as'   => 'mostrar_login'
+]);
 
-Auth::routes();
+Route::post('/entrar',[
+    'uses' => 'LoginController@postLogin',
+    'as'   => 'post_login'
+]);
+
+Route::group(['middleware'=>'auth'], function (){
+
+    Route::get('/salir', [
+        'uses' => 'LoginController@salir',
+        'as'   => 'salir'
+    ]);
+
+    Route::get('/', function () {
+        return view('welcome');
+    });
+});
