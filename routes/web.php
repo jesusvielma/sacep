@@ -26,10 +26,11 @@ Route::group(['middleware'=>'auth'], function (){
 
     Route::get('/salir', [
         'uses' => 'LoginController@salir',
-        'as'   => 'salir'
+        'as'   => 'salir',
     ]);
 
-    Route::get('/', function () {
-        return view('home.index');
-    });
+    Route::get('/', [
+        'uses' => 'InicioController@index',
+        'as'   => 'pagina_inicio',
+    ]);
 });
