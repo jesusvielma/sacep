@@ -34,7 +34,9 @@
                             <img alt="image" class="img-circle" src="img/profile_small.jpg" />
                              </span>
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">{{ Auth::user()->nombre }} <b class="caret"></b></strong></a>
+                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">
+                                {{ count(Auth::user()->nombre) < count(Auth::user()->empleado->nombre_completo) ? Auth::user()->nombre : Auth::user()->empleado->nombre_completo }}
+                                <b class="caret"></b></strong></a>
                              {{-- </span> <span class="text-muted text-xs block">Art Director </span> </span> --}}
                         <ul class="dropdown-menu animated fadeInRight m-t-xs">
                             {{-- <li><a href="#">Profile</a></li>
