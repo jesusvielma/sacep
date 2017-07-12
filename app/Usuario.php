@@ -30,4 +30,13 @@ class Usuario extends Authenticatable
     protected $hidden = [
         'clave', 'remember_token',
     ];
+
+    /**
+     * Obtener la Información del usuario
+     */
+
+    public function empleado()
+    {
+        return $this->hasOne('sacep\Empleado','id_usuario');
+    }
 }
