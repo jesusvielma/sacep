@@ -48,4 +48,20 @@ class Empleado extends Model
     {
         return $this->belongsTo('sacep\Usuario','id_usuario');
     }
+
+	public function cargo_actual()
+	{
+		return $this->belongsToMany('sacep\Cargo','historial_cargo_empleado','cedula_empleado','id_cargo');
+	}
+
+	public function evaluaciones()
+	{
+		return $this->belongsToMany('sacep\Evaluacion','evaluacion_empleado','cedula_empleado','id_evaluacion');
+	}
+
+	public function departamento()
+	{
+		return $this->belongsToMany('sacep\departamento','departamento_tiene_empleado','cedula_empleado','id_departamento')
+        ->withPivot(['desde','hasta','estado']);
+	}
 }
