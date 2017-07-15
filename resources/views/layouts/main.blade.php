@@ -35,7 +35,11 @@
                              </span>
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">
-                                {{ count(Auth::user()->nombre) < count(Auth::user()->empleado->nombre_completo) ? Auth::user()->nombre : Auth::user()->empleado->nombre_completo }}
+                                @if (isset(Auth::user()->empleado->nombre_completo))
+                                    {{ count(Auth::user()->nombre) < count(Auth::user()->empleado->nombre_completo) ? Auth::user()->nombre : Auth::user()->empleado->nombre_completo }}
+                                @else
+                                    {{ Auth::user()->nombre }}
+                                @endif
                                 <b class="caret"></b></strong></a>
                              {{-- </span> <span class="text-muted text-xs block">Art Director </span> </span> --}}
                         <ul class="dropdown-menu animated fadeInRight m-t-xs">

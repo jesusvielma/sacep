@@ -10,16 +10,16 @@ class Departamento extends Model
 
 	protected $primaryKey = 'id_departamento';
 
-	protected $timestamps = false;
+	public $timestamps = false;
 
 	protected $fillable = [
 		'nombre',
-		'responsable',
+        'responsable',
 	];
 
-	public function resonsable()
+	public function encargado()
 	{
-		return $this->hasOne('sacep\Empleado','cedula_empleado');
+		return $this->hasOne('sacep\Empleado','cedula_empleado','responsable');
 	}
 
     public function empleados()

@@ -33,4 +33,5 @@ Route::group(['middleware'=>'auth'], function (){
         'uses' => 'InicioController@index',
         'as'   => 'pagina_inicio',
     ]);
+    Route::resource('departamento','DepartamentoController');
 });

@@ -61,7 +61,7 @@ class Empleado extends Model
 
 	public function departamento()
 	{
-		return $this->belongsToMany('sacep\departamento','departamento_tiene_empleado','cedula_empleado','id_departamento')
+		return $this->belongsToMany('sacep\Departamento','departamento_tiene_empleado','cedula_empleado','id_departamento')
         ->withPivot(['desde','hasta','estado']);
 	}
 }
