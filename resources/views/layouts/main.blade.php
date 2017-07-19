@@ -31,7 +31,7 @@
             <ul class="nav metismenu" id="side-menu">
                 <li class="nav-header">
                     <div class="dropdown profile-element"> <span>
-                            <img alt="image" class="img-circle" src="img/profile_small.jpg" />
+                            <img alt="image" class="img-circle" src="{{ URL::asset('img/profile_small.jpg')}}" />
                              </span>
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">
@@ -54,30 +54,14 @@
                         IN+
                     </div>
                 </li>
-                <li>
-                    <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboards</span> <span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level collapse">
-                        <li><a href="#">Dashboard v.1</a></li>
-                        <li><a href="#">Dashboard v.2</a></li>
-                        <li><a href="#">Dashboard v.3</a></li>
-                        <li><a href="#">Dashboard v.4</a></li>
-                        <li><a href="#">Dashboard v.5 </a></li>
-                    </ul>
-                </li>
-                <li>
+                {{-- <li>
                     <a href="#"><i class="fa fa-diamond"></i> <span class="nav-label">Layouts</span></a>
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-bar-chart-o"></i> <span class="nav-label">Graphs</span><span class="fa arrow"></span></a>
+                </li> --}}
+                <li class="{{ $current_route_name == 'departamento.index' || $current_route_name == 'departamento.create' || $current_route_name == 'departamento.edit' ? 'active' : NULL }}">
+                    <a href=""><i class="fa fa-bar-chart-o"></i> <span class="nav-label">Departamentos</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
-                        <li><a href="#">Flot Charts</a></li>
-                        <li><a href="#">Morris.js Charts</a></li>
-                        <li><a href="#">Rickshaw Charts</a></li>
-                        <li><a href="#">Chart.js</a></li>
-                        <li><a href="#">Chartist</a></li>
-                        <li><a href="#">c3 charts</a></li>
-                        <li><a href="#">Peity Charts</a></li>
-                        <li><a href="#">Sparkline Charts</a></li>
+                        <li><a href="{{ route('departamento.create') }}">Nuevo</a></li>
+                        <li><a href="{{ route('departamento.index') }}">Listado</a></li>
                     </ul>
                 </li>
                 <li>

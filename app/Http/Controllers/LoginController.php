@@ -29,7 +29,7 @@ class LoginController extends Controller
             ->withErrors('Las credenciasles no coinciden con las registradas en el sistema');
         }
 
-        return redirect('/');
+        return redirect()->intended('pagina_inicio');
     }
 
     public function salir()

@@ -18,6 +18,10 @@ class AppServiceProvider extends ServiceProvider
             'create' => 'crear',
             'edit' => 'editar',
         ]);
+        view()->composer('*', function ($view) {
+            $current_route_name = \Request::route()->getName();
+            $view->with('current_route_name', $current_route_name);
+        });
     }
 
     /**
