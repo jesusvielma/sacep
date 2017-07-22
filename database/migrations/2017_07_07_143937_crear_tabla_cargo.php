@@ -16,6 +16,7 @@ class CrearTablaCargo extends Migration
         Schema::create('cargo', function (Blueprint $table) {
             $table->increments('id_cargo');
             $table->string('nombre',60);
+            $table->boolean('estado');
         });
     }
 

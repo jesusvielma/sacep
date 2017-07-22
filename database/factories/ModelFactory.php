@@ -31,7 +31,7 @@ $factory->define(sacep\Empleado::class,function (Faker\Generator $faker)
         'nombre_completo' => $faker->name,
         'fecha_ingreso'   => $faker->dateTimeBetween('2005-01-01','now'),
         'fecha_nacimiento'=> $faker->dateTimeBetween('1930-01-01','1999-12-31'),
-        'estado'          => $faker->randomElement(['activo','inactivo']),
+        'estado'          => 'activo',
         'id_usuario'      => $id_usuario ?: $id_usuario = NULL
     ];
 });

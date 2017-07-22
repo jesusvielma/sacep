@@ -16,7 +16,7 @@ class CrearTablaDepartamento extends Migration
         Schema::create('departamento', function (Blueprint $table) {
             $table->increments('id_departamento');
             $table->string('nombre',100);
-            $table->integer('responsable');
+            $table->integer('responsable')->nullable();
             $table->foreign('responsable')->references('cedula_empleado')->on('empleado')
             ->onUpdate('cascade')->onDelete('cascade');
         });

@@ -22,8 +22,16 @@ class CrearTablaEmpleado extends Migration
             $table->primary('cedula_empleado');
             $table->integer('id_usuario')->nullable()->unsigned();
             $table->foreign('id_usuario')
-                  ->references('id_usuario')->on('usuario')
-                  ->onDelete('cascade')->onUpdate('cascade');
+                    ->references('id_usuario')->on('usuario')
+                    ->onDelete('cascade')->onUpdate('cascade');
+            $table->integer('id_cargo')->nullable()->unsigned();
+            $table->foreign('id_cargo')
+                    ->references('id_cargo')->on('cargo')
+                    ->onDelete('cascade')->onUpdate('cascade');
+            $table->integer('id_departamento')->nullable()->unsigned();
+            $table->foreign('id_departamento')
+                    ->references('id_departamento')->on('departamento')
+                    ->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
