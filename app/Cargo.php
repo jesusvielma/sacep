@@ -10,7 +10,7 @@ class Cargo extends Model
 
 	protected $primaryKey = 'id_cargo';
 
-	protected $timestamps = false;
+	public $timestamps = false;
 
 	protected $fillable = ['nombre'];
 }

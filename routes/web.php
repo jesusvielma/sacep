@@ -34,4 +34,22 @@ Route::group(['middleware'=>'auth'], function (){
         'as'   => 'pagina_inicio',
     ]);
     Route::resource('departamento','DepartamentoController');
+
+    Route::resource('empleado','EmpleadoController',[
+        'names' => [
+            'index' => 'empleados',
+            'create' => 'empleado_nuevo',
+            'store' => 'guardar_empelado',
+        ]
+    ]);
+
+    Route::resource('cargo','CargoController',[
+        'names' => [
+            'index' => 'cargos',
+            'create' => 'cargo_nuevo',
+            'store' => 'guardar_cargo',
+            'edit' => 'cargo_editar',
+            'update' => 'cargo_update',
+        ]
+    ]);
 });

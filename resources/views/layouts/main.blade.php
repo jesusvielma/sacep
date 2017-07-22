@@ -1,4 +1,4 @@
-<!#>
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -57,20 +57,30 @@
                 {{-- <li>
                     <a href="#"><i class="fa fa-diamond"></i> <span class="nav-label">Layouts</span></a>
                 </li> --}}
-                <li class="{{ $current_route_name == 'departamento.index' || $current_route_name == 'departamento.create' || $current_route_name == 'departamento.edit' ? 'active' : NULL }}">
-                    <a href=""><i class="fa fa-bar-chart-o"></i> <span class="nav-label">Departamentos</span><span class="fa arrow"></span></a>
+                <li class="{{ $current_route_name == 'departamento.index' || $current_route_name == 'departamento.create' || $current_route_name == 'departamento.edit' || $current_route_name == 'cargo.edit' || $current_route_name == 'cargos' || $current_route_name == 'cargo_nuevo' ? 'active' : NULL }}">
+                    <a href=""><i class="fa fa-bar-chart-o"></i> <span class="nav-label">Configuraciones</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
-                        <li><a href="{{ route('departamento.create') }}">Nuevo</a></li>
-                        <li><a href="{{ route('departamento.index') }}">Listado</a></li>
+                        <li class="{{ $current_route_name == 'departamento.index' || $current_route_name == 'departamento.create' || $current_route_name == 'departamento.edit' ? 'active' : NULL }}">
+                            <a href="#">Departamentos <span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+                                <li><a href="{{ route('departamento.create') }}">Nuevo</a></li>
+                                <li><a href="{{ route('departamento.index') }}">Listado</a></li>
+                            </ul>
+                        </li>
+                        <li class="{{ $current_route_name == 'cargos' || $current_route_name == 'cargo_nuevo' || $current_route_name == 'cargo.edit' ? 'active' : NULL }}">
+                            <a href="#">Cargos <span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+                                <li><a href="{{ route('cargo_nuevo') }}">Nuevo</a></li>
+                                <li><a href="{{ route('cargos') }}">Listado</a></li>
+                            </ul>
+                        </li>
                     </ul>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-envelope"></i> <span class="nav-label">Mailbox </span><span class="label label-warning pull-right">16/24</span></a>
+                    <a href="#"><i class="fa fa-envelope"></i> <span class="nav-label">Empleados </span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
-                        <li><a href="#">Inbox</a></li>
-                        <li><a href="#">Email view</a></li>
-                        <li><a href="#">Compose email</a></li>
-                        <li><a href="#">Email templates</a></li>
+                        <li><a href="{{ route('empleados') }}">Todos</a></li>
+                        <li><a href="{{ route('empleado_nuevo') }}">Nuevo</a></li>
                     </ul>
                 </li>
                 <li>
