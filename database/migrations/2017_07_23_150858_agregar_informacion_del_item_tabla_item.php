@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CrearTablaDepartamento extends Migration
+class AgregarInformacionDelItemTablaItem extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,8 @@ class CrearTablaDepartamento extends Migration
      */
     public function up()
     {
-        Schema::create('departamento', function (Blueprint $table) {
-            $table->increments('id_departamento');
-            $table->string('nombre',100);
-            $table->integer('responsable')->nullable();
+        Schema::table('item_factor', function (Blueprint $table) {
+            $table->text('informacion')->after('nombre');
         });
     }
 
@@ -27,6 +25,8 @@ class CrearTablaDepartamento extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('departamento');
+        Schema::table('item_factor', function (Blueprint $table) {
+            $table->dropColumn('informacion');
+        });
     }
 }

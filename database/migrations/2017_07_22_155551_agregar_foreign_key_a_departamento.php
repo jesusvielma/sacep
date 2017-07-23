@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CrearTablaDepartamento extends Migration
+class AgregarForeignKeyADepartamento extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CrearTablaDepartamento extends Migration
      */
     public function up()
     {
-        Schema::create('departamento', function (Blueprint $table) {
-            $table->increments('id_departamento');
-            $table->string('nombre',100);
-            $table->integer('responsable')->nullable();
+        Schema::table('departamento', function (Blueprint $table) {
+            $table->foreign('responsable')->references('cedula_empleado')->on('empleado')
+            ->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
@@ -27,6 +26,5 @@ class CrearTablaDepartamento extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('departamento');
     }
 }

@@ -21,12 +21,12 @@ class CrearTablaEvaluacion extends Migration
             $table->enum('estado',['guardada','procesada']);
             $table->enum('motivo',['regular','periodica','renovacion','ascenso','traslado']);
             $table->enum('tipo',['mensual','bimestral','trimestral','semestral','anual']);
-            $table->integer('departamento_trabajar_evaluado')->unsigned();
-            $table->integer('cargo_trabajardor_evaluado')->unsigned();
-            $table->foreign('departamento_trabajar_evaluado')
+            $table->integer('departamento_trabajador_evaluado')->unsigned();
+            $table->integer('cargo_trabajador_evaluado')->unsigned();
+            $table->foreign('departamento_trabajador_evaluado','dte_foreign')
                     ->references('id_departamento')->on('departamento')
                     ->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('cargo_trabajardor_evaluado')
+            $table->foreign('cargo_trabajador_evaluado','cte_foreign')
                     ->references('id_cargo')->on('cargo')
                     ->onDelete('cascade')->onUpdate('cascade');
         });

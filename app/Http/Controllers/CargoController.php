@@ -32,7 +32,12 @@ class CargoController extends Controller
             'nombre'    => 'required|unique:cargo,nombre'
         ]);
 
-        Cargo::create($request->only('nombre'));
+        $data = [
+            'nombre'=> $request->get('nombre'),
+            'estado'=> 1,
+        ];
+
+        Cargo::create($data);
 
         $msg = [
             'type' => 'success',
@@ -62,7 +67,11 @@ class CargoController extends Controller
      */
     public function edit(Cargo $cargo)
     {
-        return $cargo->nombre;
+        $data =[
+            'nombre' => $cargo->nombre,
+            'estado' => $cargo->estado
+        ];
+        return response()->json($data);
     }
 
     /**
@@ -75,6 +84,7 @@ class CargoController extends Controller
     public function update(Request $request, Cargo $cargo)
     {
         $cargo->nombre = $request->get('nombre');
+        $cargo->estado = $request->get('estado');
         $cargo->save();
 
         $msg = [

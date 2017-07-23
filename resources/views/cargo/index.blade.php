@@ -8,6 +8,8 @@
 		<!-- Toastr style -->
 	    <link href="{{ URL::asset('css/plugins/toastr/toastr.min.css') }}" rel="stylesheet">
 	@endif
+	<link href="{{ URL::asset('css/plugins/iCheck/custom.css')}}" rel="stylesheet">
+	<link href="{{ URL::asset('css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css')}}" rel="stylesheet">
 @endsection
 
 @section('js')
@@ -26,6 +28,8 @@
 			@endif
 		</script>
 	@endif
+	<!-- iCheck -->
+    <script src="{{ URL::asset('js/plugins/iCheck/icheck.min.js')}}"></script>
 	<script>
 		$(document).ready(function () {
 			$('.update-cargo').click(function () {
@@ -34,11 +38,21 @@
 				var url = '{{ route('cargo_editar',['id'=>':id']) }}';
 				url = url.replace(':id',id);
 				$.get(url,function (data) {
-					$('#editar_cargo').val(data);
+					$('#editar_cargo').val(data.nombre);
+					if(data.estado == 0 ){
+						$('#inactivo').attr('checked',true);
+					}
+					else{
+						$('#activo').attr('checked',true);
+					}
+					$('.i-checks').iCheck({
+						radioClass: 'iradio_square-green',
+					});
 					var form = $('#form_editar');
 					var url_update = form.attr('action');
 					var url_update = url_update.replace(':CARGO_ID',id);
 					form.attr('action',url_update);
+					$('#editar').modal('show');
 				});
 			});
 		})
@@ -73,6 +87,7 @@
 								<thead>
 									<tr>
 										<th>Nombre</th>
+										<th>Estado</th>
 										<th>Acciones</th>
 									</tr>
 								</thead>
@@ -80,8 +95,9 @@
 									@foreach ($cargos as $c)
 										<tr data-id="{{ $c->id_cargo }}">
 											<td>{{ $c->nombre }}</td>
+											<td>{{ $c->estado == 1 ? 'Activo' : 'Inactivo' }}</td>
 											<td>
-												<button data-toggle="modal" data-target="#editar" type="button" class="btn btn-xs btn-success update-cargo"> <i class="fa fa-pencil"></i>
+												<button  class="btn btn-xs btn-success update-cargo"> <i class="fa fa-pencil"></i>
 												</button>
 											</td>
 										</tr>
@@ -102,48 +118,58 @@
 				</div>
 			@endif
 		</div>
-	</div>
-	<div id="crear" class="modal fade" aria-hidden="true">
-		<div class="modal-dialog modal-sm">
-			<div class="modal-content">
-				<div class="modal-body">
-					<div class="row">
-						<div class="col-sm-12">
-							<h3 class="m-t-none m-b">Nuevo cargo</h3>
-							<form role="form" action="{{ route('guardar_cargo') }}" method="post">
-								{{ csrf_field() }}
-								<div class="form-group">
-									<label>Nombre del cargo</label>
-									<input type="text" name="nombre" placeholder="Ingrese el nombre del cargo" class="form-control">
-								</div>
-								<div>
-									<button class="btn btn-primary pull-right m-t-n-xs" type="submit">Guardar</button>
-								</div>
-							</form>
+		<div id="crear" class="modal inmodal fade" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-dialog modal-sm">
+				<div class="modal-content">
+					<div class="modal-body">
+						<div class="row">
+							<div class="col-sm-12">
+								<h3 class="m-t-none m-b">Nuevo cargo</h3>
+								<form role="form" action="{{ route('guardar_cargo') }}" method="post">
+									{{ csrf_field() }}
+									<div class="form-group">
+										<label>Nombre del cargo</label>
+										<input type="text" name="nombre" placeholder="Ingrese el nombre del cargo" class="form-control">
+									</div>
+									<div>
+										<button class="btn btn-primary pull-right m-t-n-xs" type="submit">Guardar</button>
+									</div>
+								</form>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	<div id="editar" class="modal fade" aria-hidden="true">
-		<div class="modal-dialog modal-sm">
-			<div class="modal-content">
-				<div class="modal-body">
-					<div class="row">
-						<div class="col-sm-12">
-							<h3 class="m-t-none m-b">Nuevo cargo</h3>
-							<form role="form" action="{{ route('cargo_update',['id'=>':CARGO_ID']) }}" method="post" id="form_editar">
-								{{ csrf_field() }}
-								{{ method_field('PUT')}}
-								<div class="form-group">
-									<label>Nombre del cargo</label>
-									<input type="text" id="editar_cargo" name="nombre" placeholder="Ingrese el nombre del cargo" class="form-control">
-								</div>
-								<div>
-									<button class="btn btn-primary pull-right m-t-n-xs" type="submit">Guardar</button>
-								</div>
-							</form>
+		<div id="editar" class="modal inmodal fade" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-dialog modal-sm">
+				<div class="modal-content">
+					<div class="modal-body">
+						<div class="row">
+							<div class="col-sm-12">
+								<h3 class="m-t-none m-b">Nuevo cargo</h3>
+								<form role="form" action="{{ route('cargo_update',['id'=>':CARGO_ID']) }}" method="post" id="form_editar">
+									{{ csrf_field() }}
+									{{ method_field('PUT')}}
+									<div class="form-group">
+										<label for="editar_cargo">Nombre del cargo</label>
+										<input type="text" id="editar_cargo" name="nombre" placeholder="Ingrese el nombre del cargo" class="form-control">
+									</div>
+									<div class="form-group">
+										<label for="estado">Estado del cargo</label>
+										<br>
+										<div class="radio-inline i-checks">
+											<label > <input type="radio" value="1" name="estado" id="activo"> <i></i> Activo </label>
+										</div>
+										<div class="radio-inline i-checks">
+											<label > <input type="radio" value="0" name="estado" id="inactivo"> <i></i> Inactivo </label>
+										</div>
+									</div>
+									<div>
+										<button class="btn btn-primary pull-right m-t-n-xs" type="submit">Guardar</button>
+									</div>
+								</form>
+							</div>
 						</div>
 					</div>
 				</div>

@@ -12,9 +12,11 @@ class SeederTablaDepartamento extends Seeder
      */
     public function run()
     {
+        $empleado = sacep\Empleado::first();
+
         $data = [
             'nombre' => 'Coordinación de Talento Humano',
-            'responsable' => rand(1,15),
+            'responsable' => $empleado->cedula_empleado,
         ];
 
         Departamento::create($data);

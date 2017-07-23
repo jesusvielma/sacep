@@ -32,5 +32,6 @@ class CrearTablaUsuario extends Migration
     public function down()
     {
         Schema::dropIfExists('usuario');
+        Schema::enableForeignKeyConstraints();
     }
 }

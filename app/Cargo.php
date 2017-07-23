@@ -12,5 +12,5 @@ class Cargo extends Model
 
 	public $timestamps = false;
 
-	protected $fillable = ['nombre'];
+	protected $fillable = ['nombre','estado'];
 }
