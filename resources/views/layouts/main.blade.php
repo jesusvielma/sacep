@@ -70,7 +70,6 @@
                         <li class="{{ $current_route_name == 'cargos' || $current_route_name == 'cargo_nuevo' || $current_route_name == 'cargo.edit' ? 'active' : NULL }}">
                             <a href="#">Cargos <span class="fa arrow"></span></a>
                             <ul class="nav nav-third-level">
-                                <li><a href="{{ route('cargo_nuevo') }}">Nuevo</a></li>
                                 <li><a href="{{ route('cargos') }}">Listado</a></li>
                             </ul>
                         </li>

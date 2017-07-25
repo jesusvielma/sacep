@@ -40,13 +40,14 @@ Route::group(['middleware'=>'auth'], function (){
             'index' => 'empleados',
             'create' => 'empleado_nuevo',
             'store' => 'guardar_empelado',
+            'edit' => 'editar_empleado',
+            'update' => 'update_empleado'
         ]
     ]);
 
     Route::resource('cargo','CargoController',[
         'names' => [
             'index' => 'cargos',
-            'create' => 'cargo_nuevo',
             'store' => 'guardar_cargo',
             'edit' => 'cargo_editar',
             'update' => 'cargo_update',
