@@ -10,7 +10,7 @@ class ItemFactor extends Model
 
 	protected $primaryKey = 'id_item';
 
-	protected $timestamps = false;
+	public $timestamps = false;
 
 	protected $fillable = [
 		'nombre',
@@ -20,6 +20,6 @@ class ItemFactor extends Model
 
 	public function factor()
 	{
-		return $this->belongsTo('sacep\FactorDeEvaluacion','id_factor');
+		return $this->belongsTo('sacep\FactorDeEvaluacion','id_factor','id_factor');
 	}
 }

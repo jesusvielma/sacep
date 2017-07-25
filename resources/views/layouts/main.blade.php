@@ -73,6 +73,12 @@
                                 <li><a href="{{ route('cargos') }}">Listado</a></li>
                             </ul>
                         </li>
+                        <li class="{{ $current_route_name == 'factores' || $current_route_name == 'factor_nuevo' || $current_route_name == 'editar_factor' ? 'active' : NULL }}">
+                            <a href="#">Evaluación <span class="fa arrow"></span></a>
+                            <ul class="nav nav-third-level">
+                                <li><a href="{{ route('factores') }}">Todos</a></li>
+                            </ul>
+                        </li>
                     </ul>
                 </li>
                 <li>

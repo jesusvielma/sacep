@@ -2,7 +2,7 @@
 <div class="form-group {{ $errors->has('cedula_empleado') ? 'has-error' : ''}}">
 	<label for="cedula_empleado">Cédula</label>
 	<div class="tooltip-demo">
-		<input id="cedula_empleado" type="text" name="cedula_empleado" value="{{ old('cedula_empleado',isset($empleado->cedula_empleado) ? $empleado->cedula_empleado : NULL) }}" class="form-control" data-toggle="tooltip" data-placement="top" title="" data-original-title="Escribe la cédula sin puntos">
+		<input id="cedula_empleado" type="text" name="cedula_empleado" value="{{ old('cedula_empleado',isset($empleado->cedula_empleado) ? $empleado->cedula_empleado : NULL) }}" class="form-control" data-toggle="tooltip" data-placement="top" title="" data-original-title="Escribe la cédula sin separadores">
 		@if ($errors->has('cedula_empleado'))
 			<span class="help-block m-b-none">{{ $errors->first('cedula_empleado') }}</span>
 		@endif

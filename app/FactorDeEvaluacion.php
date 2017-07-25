@@ -10,7 +10,7 @@ class FactorDeEvaluacion extends Model
 
 	protected $primaryKey = 'id_factor';
 
-	protected $timestamps = false;
+	public $timestamps = false;
 
 	protected $fillable = [
 		'nombre',
@@ -18,10 +18,13 @@ class FactorDeEvaluacion extends Model
 		'porcentaje'
 	];
 
+	/**
+	* obtener los item de un factor de evaluación
+	*/
 	public function items()
 	{
-		return $this->hasMany('sacep\Item','id_factor');
+		return $this->hasMany('sacep\ItemFactor','id_factor','id_factor');
 	}
 
-	
+
 }

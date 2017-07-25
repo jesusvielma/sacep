@@ -53,4 +53,13 @@ Route::group(['middleware'=>'auth'], function (){
             'update' => 'cargo_update',
         ]
     ]);
+
+    Route::resource('factor','FactorDeEvaluacionController',[
+        'names' => [
+            'index' => 'factores',
+            'store' => 'guardar_factor',
+            'edit' => 'editar_factor',
+            'update' => 'update_factor',
+        ]
+    ]);
 });
