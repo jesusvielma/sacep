@@ -73,4 +73,14 @@ Route::group(['middleware'=>'auth'], function (){
             'store' => 'guardar_item'
         ]
     ]);
+
+    Route::resource('usuario','UsuarioController',[
+        'names' => [
+            'index' => 'usuarios',
+            'create'=> 'crear_usuario',
+            'store' => 'guardar_usuario',
+            'edit'  => 'editar_usuario',
+            'update'=> 'update_usuario',
+        ]
+    ]);
 });

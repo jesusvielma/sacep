@@ -37,6 +37,6 @@ class Usuario extends Authenticatable
 
     public function empleado()
     {
-        return $this->hasOne('sacep\Empleado','id_usuario');
+        return $this->hasOne('sacep\Empleado','id_usuario','id_usuario');
     }
 }
