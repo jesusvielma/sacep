@@ -25,17 +25,7 @@
 	<script src="{{ URL::asset('js/plugins/iCheck/icheck.min.js')}}"></script>
 	<script>
          $(document).ready(function(){
-			$("#form").validate({
-				rules: {
-					nombre: {
-						required: true,
-						maxlength: 60
-					},
-					responsable: {
-						required: true,
-					}
-				}
-			});
+			$("#form").validate();
 			 $(".responsable").select2({
                  placeholder: "Selecciona un responsable",
                  allowClear: true
@@ -52,18 +42,18 @@
 						html+= '<div class="col-lg-4">';
 							html+= '<div class="form-group">';
 								html+= '<label for="nombre">Nombre</label>';
-								html+= '<input type="text" name="campos['+id_row+'][nombre]" class="form-control">';
+								html+= '<input type="text" name="campos['+id_row+'][nombre]" class="form-control" required>';
 							html+= '</div>';
 						html+= '</div>';
 						html+= '<div class="col-lg-5">';
 							html+= '<div class="form-group">';
 								html+= '<label for="nombre">Visibilidad</label><br>';
-								html+= '<div class="radio-inline i-checks"><label > <input type="radio" value="ambos" name="campos['+id_row+'][visibilidad]" id="activo"> <i></i> Ambos </label> </div>';
-								html+= '<div class="radio-inline i-checks"> <label > <input type="radio" value="coordinador" name="campos['+id_row+'][visibilidad]" id="inactivo"> <i></i> Coordinador </label></div>';
-								html+= '<div class="radio-inline i-checks"><label > <input type="radio" value="trabajador" name="campos['+id_row+'][visibilidad]" id="inactivo"> <i></i> Trabajador </label></div>';
+								html+= '<div class="radio-inline i-checks"><label > <input type="radio" value="ambos" name="campos['+id_row+'][visibilidad]" id="activo" required> <i></i> Ambos </label> </div>';
+								html+= '<div class="radio-inline i-checks"> <label > <input type="radio" value="coordinador" name="campos['+id_row+'][visibilidad]" id="inactivo" required> <i></i> Coordinador </label></div>';
+								html+= '<div class="radio-inline i-checks"><label > <input type="radio" value="trabajador" name="campos['+id_row+'][visibilidad]" id="inactivo" required> <i></i> Trabajador </label></div>';
 							html+= '</div>';
 						html+= '</div>';
-						html+= '<div class="col-lg-3"><div class="form-group"><label for="nombre">Nombre del departamento</label><textarea name="campos['+id_row+'][informacion]" class="form-control" ></textarea></div></div>';
+						html+= '<div class="col-lg-3"><div class="form-group"><label for="nombre">Nombre del departamento</label><textarea name="campos['+id_row+'][informacion]" class="form-control"  required ></textarea></div></div>';
 					html+= '</div>';
 
 					var row = $('.row').last();
@@ -109,7 +99,7 @@
 								<div class="col-lg-4">
 									<div class="form-group">
 										<label for="nombre">Nombre</label>
-										<input type="text" name="campos[0][nombre]" class="form-control">
+										<input type="text" name="campos[0][nombre]" class="form-control" required>
 									</div>
 								</div>
 								<div class="col-lg-5">
@@ -117,20 +107,20 @@
 										<label for="nombre">Visibilidad</label>
 										<br>
 										<div class="radio-inline i-checks">
-											<label > <input type="radio" value="ambos" name="campos[0][visibilidad]" id="activo"> <i></i> Ambos </label>
+											<label > <input type="radio" value="ambos" name="campos[0][visibilidad]" id="activo" required> <i></i> Ambos </label>
 										</div>
 										<div class="radio-inline i-checks">
-											<label > <input type="radio" value="coordinador" name="campos[0][visibilidad]" id="inactivo"> <i></i> Coordinador </label>
+											<label > <input type="radio" value="coordinador" name="campos[0][visibilidad]" id="inactivo" required> <i></i> Coordinador </label>
 										</div>
 										<div class="radio-inline i-checks">
-											<label > <input type="radio" value="trabajador" name="campos[0][visibilidad]" id="inactivo"> <i></i> Trabajador </label>
+											<label > <input type="radio" value="trabajador" name="campos[0][visibilidad]" id="inactivo" required> <i></i> Trabajador </label>
 										</div>
 									</div>
 								</div>
 								<div class="col-lg-3">
 									<div class="form-group">
 										<label for="nombre">Nombre del departamento</label>
-										<textarea name="campos[0][informacion]" class="form-control" ></textarea>
+										<textarea name="campos[0][informacion]" class="form-control"  required></textarea>
 									</div>
 								</div>
 							</div>
