@@ -25,6 +25,9 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('ver_menu', function ($usuario)
+        {
+            return $usuario->nivel == 'admin' || $usuario->nivel == 'th';
+        });
     }
 }

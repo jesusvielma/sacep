@@ -57,6 +57,7 @@
                 {{-- <li>
                     <a href="#"><i class="fa fa-diamond"></i> <span class="nav-label">Layouts</span></a>
                 </li> --}}
+                @can('ver_menu')
                 <li class="{{ $current_route_name == 'departamento.index' || $current_route_name == 'departamento.create' || $current_route_name == 'departamento.edit' || $current_route_name == 'cargo.edit' || $current_route_name == 'cargos' || $current_route_name == 'cargo_nuevo' ? 'active' : NULL }}">
                     <a href=""><i class="fa fa-bar-chart-o"></i> <span class="nav-label">Configuraciones</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
@@ -89,22 +90,18 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#"><i class="fa fa-pie-chart"></i> <span class="nav-label">Metrics</span>  </a>
+                    <a href="#"><i class="fa fa-user-o"></i> <span class="nav-label">Usuarios</span><span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="{{ route('usuarios') }}">Todos</a></li>
+                        <li><a href="{{ route('crear_usuario') }}">Nuevo</a></li>
+                    </ul>
+                </li>
+                @endcan
+                <li>
+                    <a href="#"><i class="fa fa-pie-chart"></i> <span class="nav-label">Evaluar</span>  </a>
                 </li>
                 <li>
                     <a href="#"><i class="fa fa-flask"></i> <span class="nav-label">Widgets</span></a>
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-edit"></i> <span class="nav-label">Forms</span><span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level collapse">
-                        <li><a href="#">Basic form</a></li>
-                        <li><a href="#">Advanced Plugins</a></li>
-                        <li><a href="#">Wizard</a></li>
-                        <li><a href="#">File Upload</a></li>
-                        <li><a href="#">Text Editor</a></li>
-                        <li><a href="#">Autocomplete</a></li>
-                        <li><a href="#">Markdown</a></li>
-                    </ul>
                 </li>
                 <li>
                     <a href="#"><i class="fa fa-desktop"></i> <span class="nav-label">App Views</span>  <span class="pull-right label label-primary">SPECIAL</span></a>
