@@ -62,4 +62,15 @@ Route::group(['middleware'=>'auth'], function (){
             'update' => 'update_factor',
         ]
     ]);
+
+    Route::get('item_factor/{factor}/crear',[
+        'uses' => 'ItemFactorController@crear',
+        'as'    => 'crear_item'
+    ]);
+
+    Route::resource('item_factor','ItemFactorController',[
+        'names' => [
+            'store' => 'guardar_item'
+        ]
+    ]);
 });

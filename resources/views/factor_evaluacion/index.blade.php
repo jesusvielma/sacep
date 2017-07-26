@@ -61,6 +61,9 @@
 					$('#editar').modal('show');
 				});
 			});
+			$('.scroll_content').slimscroll({
+	            height: '300px'
+	        })
 		});
 	</script>
 	@if (session('notif') || $errors->has('nombre') || $errors->has('porcentaje') )
@@ -107,9 +110,9 @@
 							<div class="ibox-title">
 								<h5>{{ $factor->nombre }}
 									@if ($factor->items()->count() && $factor->estado == 1)
-										<small class="text-primary"> En uso
+										<small class="text-success"> En uso
 									@elseif ($factor->items()->count() && $factor->estado == 0)
-										<small class="text-primary"> No se usa para nuevas evaluaciones
+										<small class="text-danger"> No se usa para nuevas evaluaciones
 									@elseif ($factor->estado == 1 )
 										<small> <span class="text-success">En uso</span> | <span class="text-danger">Sin items</span>
 									@else
@@ -123,36 +126,38 @@
 		                                <i class="fa fa-chevron-up"></i>
 		                            </a>
 									<a href="#" class="update" data-id="{{ $factor->id_factor }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Editar este factor"><i class="fa fa-pencil"></i></a>
-									<a href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Agrega items a este factor"><i class="fa fa-plus-square"></i></a>
+									<a href="{{ route('crear_item',['factor'=>$factor->id_factor]) }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Agrega items a este factor"><i class="fa fa-plus-square"></i></a>
 								</div>
 							</div>
 							<div class="ibox-content">
-								<h4>Información</h4>
-								@if ($factor->items()->count())
-									<table class="table table-striped">
-										<thead>
-											<tr>
-												<th>Nombre</th>
-												<th>Visible para</th>
-												<th>Información</th>
-											</tr>
-										</thead>
-										<tbody>
-											@foreach ($factor->items as $item)
+								<div class="scroll_content">
+									<h4>Información</h4>
+									@if ($factor->items()->count())
+										<table class="table table-striped">
+											<thead>
 												<tr>
-													<td>$item->nombre</td>
-													<td>$item->visibilidad</td>
-													<td>$item->informacion</td>
+													<th>Nombre</th>
+													<th>Visible para</th>
+													<th>Información</th>
 												</tr>
-											@endforeach
-										</tbody>
-									</table>
-								@else
-									<div class="alert alert-info">
-										<h4>Oops!</h4>
-										<p>No hemos encontrados los item de este factor, puede proceder a hacer clic en simbolo de mas en la parte superior izquierda de esta caja para agregar items de evaluación a este factor.</p>
-									</div>
-								@endif
+											</thead>
+											<tbody>
+												@foreach ($factor->items as $item)
+													<tr>
+														<td>{{ $item->nombre }}</td>
+														<td>{{ $item->visivilidad }}</td>
+														<td>{{ $item->informacion }}</td>
+													</tr>
+												@endforeach
+											</tbody>
+										</table>
+									@else
+										<div class="alert alert-info">
+											<h4>Oops!</h4>
+											<p>No hemos encontrados los item de este factor, puede proceder a hacer clic en simbolo de mas en la parte superior izquierda de esta caja para agregar items de evaluación a este factor.</p>
+										</div>
+									@endif
+								</div>
 							</div>
 						</div>
 					</div>
