@@ -10,7 +10,7 @@ class Evaluacion extends Model
 
 	protected $primaryKey = 'id_evaluacion';
 
-	protected $timestamps = false;
+	public $timestamps = false;
 
 	protected $fillable = [
 		'id_evaluacion',
@@ -19,7 +19,9 @@ class Evaluacion extends Model
 		'periodo_hasta',
 		'estado',
 		'motivo',
-		'tipo'
+		'tipo',
+        'departamento_trabajador_evaluado',
+        'cargo_trabajador_evaluado'
 	];
 
     public function empleado()
