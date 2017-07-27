@@ -1,54 +1,81 @@
 {{ csrf_field() }}
 <div class="form-group {{ $errors->has('trabajador') ? 'has-error' : ''}}">
 	<label for="trabajador">Trabajador</label>
-	<select class="trabajador form-control" name="cedula_empleado" id="trabajador" required>
-		<option></option>
-		@foreach ($empleados as $empleado)
-			@if (isset($usuario->responsable) && $usuario->id_usuarios == $empleado->cedula_empleado)
-				<option value="{{ $empleado->cedula_empleado }}" selected> {{ $empleado->nombre_completo }}</option>
+			@if (isset($usuario->id_usuario))
+				<input value="{{ $usuario->empleado->nombre_completo }}" type="text" readonly class="form-control">
 			@else
-				<option value="{{ $empleado->cedula_empleado }}"> {{ $empleado->nombre_completo }}</option>
+				<select class="trabajador form-control" name="cedula_empleado" id="trabajador" required>
+					<option></option>
+					@foreach ($empleados as $empleado)
+						<option value="{{ $empleado->cedula_empleado }}"> {{ $empleado->nombre_completo }}</option>
+					@endforeach
+				</select>
 			@endif
-		@endforeach
-	</select>
+	@if ($errors->has('trabajador'))
+		<span class="help-block m-b-none">
+			<strong>{{ $errors->first('trabajador') }}</strong>
+		</span>
+	@endif
 </div>
 <div class="form-group {{ $errors->has('nombre') ? 'has-error' : ''}}">
 	<label for="nombre">Nombre para esta usuario</label>
 	<div class="row">
-		<div class="tooltip-demo col-lg-11">
+		<div class="tooltip-demo {{ isset($usuario->nombre) ? 'col-lg-12' : 'col-lg-11'}}">
 			<input type="text" name="nombre" value="{{ old('nombre',isset($usuario->nombre) ? $usuario->nombre : NULL) }}" class="form-control" data-toggle="tooltip" data-placement="top" title="" data-original-title="Se recomiendo utilizar un nommbre compuesto por Primero Nombre y Primer Apellido" {{ isset($usuario->nombre) ? '': 'readonly' }}>
 		</div>
-		<div class="col-lg-1">
-			<button type="button" name="button" class="btn btn-default" id="editar_nombre"><i class="fa fa-edit"></i></button>
-		</div>
+		@if (!isset($usuario->nombre))
+			<div class="col-lg-1">
+				<button type="button" name="button" class="btn btn-default" id="editar_nombre"><i class="fa fa-edit"></i></button>
+			</div>
+		@endif
+		@if ($errors->has('nombre'))
+			<span class="help-block m-b-none">
+				<strong>{{ $errors->first('nombre') }}</strong>
+			</span>
+		@endif
 	</div>
 </div>
 <div class="form-group">
 	<label for="correo">Correo electrónico</label>
 	<input type="email" name="correo" class="form-control" required value="{{ old('correo',isset($usuario->correo) ? $usuario->correo : NULL ) }}">
+	@if ($errors->has('correo'))
+		<span class="help-block m-b-none">
+			<strong>{{ $errors->first('correo') }}</strong>
+		</span>
+	@endif
 </div>
 <div class="form-group">
 	<label for="clave">Clave</label>
-	<input type="password" name="clave" class="form-control" value="{{ old('clave') }}" required>
+	<input type="password" name="clave" class="form-control" value="{{ old('clave') }}" {{ $usuario ? NULL : 'required'}}>
+	@if ($errors->has('clave'))
+		<span class="help-block m-b-none">
+			<strong>{{ $errors->first('clave') }}</strong>
+		</span>
+	@endif
 </div>
 <div class="form-group">
 	<label for="estado">Permisos de </label>
 	<br>
 	<div class="radio-inline i-checks">
-		<label > <input type="radio" value="gerente" name="nivel" id="inactivo" required> <i></i> Gerente </label>
+		<label > <input type="radio" value="gerente" name="nivel" id="inactivo" required {{ $usuario->nivel =='gerente' ? 'checked' : NULL }}> <i></i> Gerente </label>
 	</div>
 	<div class="radio-inline i-checks">
-		<label > <input type="radio" value="th" name="nivel" id="inactivo" required> <i></i> Talento Humano </label>
+		<label > <input type="radio" value="th" name="nivel" id="inactivo" required {{ $usuario->nivel == 'th' ? 'checked' : NULL }}> <i></i> Talento Humano </label>
 	</div>
 	<div class="radio-inline i-checks">
-		<label > <input type="radio" value="coordinador" name="nivel" id="activo" required> <i></i> Coordinador </label>
+		<label > <input type="radio" value="coordinador" name="nivel" id="activo" required {{ $usuario->nivel == 'coordinador' ? 'checked' : NULL }}> <i></i> Coordinador </label>
 	</div>
 	<div class="radio-inline i-checks">
-		<label > <input type="radio" value="supervirsor" name="nivel" id="inactivo" required> <i></i> Supervisor </label>
+		<label > <input type="radio" value="supervisor" name="nivel" id="inactivo" required {{ $usuario->nivel == 'supervisor' ? 'checked' : NULL }}> <i></i> Supervisor </label>
 	</div>
 	<div class="radio-inline i-checks">
-		<label > <input type="radio" value="jefe" name="nivel" id="inactivo" required> <i></i> Jefe </label>
+		<label > <input type="radio" value="jefe" name="nivel" id="inactivo" required {{ $usuario->nivel== 'jefe' ? 'checked' : NULL }}> <i></i> Jefe </label>
 	</div>
+	@if ($errors->has('nivel'))
+		<span class="help-block m-b-none">
+			<strong>{{ $errors->first('nivel') }}</strong>
+		</span>
+	@endif
 </div>
 <div class="form-group">
 	<button type="submit" class="ladda-button ladda-button-demo btn btn-success " data-style="zoom-in">Guardar </button>

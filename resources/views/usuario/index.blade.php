@@ -71,7 +71,7 @@
 											<th>Empleado</th>
 											<th>Nombre</th>
 											<th>Correo</th>
-											<th>Nivel</th>
+											<th>Permisos de </th>
 											<th>Acciones</th>
 										</tr>
 									</thead>

@@ -40,6 +40,13 @@ class UsuarioController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request,[
+            'nombre' => 'required|string',
+            'correo' => 'required|email',
+            'nivel'  => 'required',
+            'clave'  => 'required'
+        ]);
+
         $data = new Usuario;
 
         $data->nombre = $request->get('nombre');
@@ -84,7 +91,10 @@ class UsuarioController extends Controller
      */
     public function edit(Usuario $usuario)
     {
-        //
+        $data['usuario'] = $usuario;
+        $data['empleados'] = Empleado::where('id_usuario',NULL)->where('estado','activo')->get();
+
+        return view('usuario.editar',$data);
     }
 
     /**
@@ -96,17 +106,29 @@ class UsuarioController extends Controller
      */
     public function update(Request $request, Usuario $usuario)
     {
-        //
-    }
+        $this->validate($request,[
+            'nombre' => 'required|string',
+            'correo' => 'required|email',
+            'nivel'  => 'required',
+            'clave'  => 'min:7|nullable'
+        ]);
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \sacep\Usuario  $usuario
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Usuario $usuario)
-    {
-        //
+        $usuario->nombre = $request->get('nombre');
+        $usuario->correo = $request->get('correo');
+        $usuario->nivel = $request->get('nivel');
+        if ($request->get('clave') == '') {
+            $usuario->clave = bcrypt($request->get('clave'));
+        }
+
+        $usuario->save();
+
+        $msg = [
+            'type' => 'success',
+            'msg' => 'Se ha registrado un usuario con el nombre '.$request->get('nombre'),
+            'title' => 'Usuario modificado',
+        ];
+
+        return redirect()->route('usuarios')->with('notif', $msg);
+
     }
 }
