@@ -116,7 +116,7 @@ class UsuarioController extends Controller
         $usuario->nombre = $request->get('nombre');
         $usuario->correo = $request->get('correo');
         $usuario->nivel = $request->get('nivel');
-        if ($request->get('clave') == '') {
+        if ($request->get('clave') != '') {
             $usuario->clave = bcrypt($request->get('clave'));
         }
 
