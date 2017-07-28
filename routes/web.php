@@ -83,4 +83,18 @@ Route::group(['middleware'=>'auth'], function (){
             'update'=> 'update_usuario',
         ]
     ]);
+
+    Route::get('evaluar/{empleado}/evaluar',[
+        'uses' => 'EvaluacionController@evaluar',
+        'as'   => 'evaluar'
+    ]);
+
+    Route::resource('evaluar','EvaluacionController',[
+        'names' => [
+            'index' => 'index_evaluar',
+            'store' => 'guardar_evaluacion',
+            'edit'  => 'editar_evaluacion',
+            'update'=> 'update_evaluacion',
+        ]
+    ]);
 });

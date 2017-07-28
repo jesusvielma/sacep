@@ -15,7 +15,7 @@ class ItemFactor extends Model
 	protected $fillable = [
 		'nombre',
 		'visivilidad',
-		'infomracion',
+		'informacion',
 		'id_factor'
 	];
 

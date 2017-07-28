@@ -34,14 +34,19 @@
                             <img alt="image" class="img-circle" src="{{ URL::asset('img/profile_small.jpg')}}" />
                              </span>
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <span class="clear"> <span class="block m-t-xs"> <strong class="font-bold">
-                                @if (isset(Auth::user()->empleado->nombre_completo))
-                                    {{ count(Auth::user()->nombre) < count(Auth::user()->empleado->nombre_completo) ? Auth::user()->nombre : Auth::user()->empleado->nombre_completo }}
-                                @else
-                                    {{ Auth::user()->nombre }}
-                                @endif
-                                <b class="caret"></b></strong></a>
-                             {{-- </span> <span class="text-muted text-xs block">Art Director </span> </span> --}}
+                            <span class="clear">
+                                <span class="block m-t-xs">
+                                    <strong class="font-bold">
+                                        @if (isset(Auth::user()->empleado->nombre_completo))
+                                            {{ count(Auth::user()->nombre) < count(Auth::user()->empleado->nombre_completo) ? Auth::user()->nombre : Auth::user()->empleado->nombre_completo }}
+                                        @else
+                                            {{ Auth::user()->nombre }}
+                                        @endif
+                                    </strong>
+                                </span>
+                                <span class="text-muted text-xs block">{{ isset(Auth::user()->empleado->cargo->nombre) ? Auth::user()->empleado->cargo->nombre : 'Admin' }} <b class="caret"></b></span>
+                            </span>
+                        </a>
                         <ul class="dropdown-menu animated fadeInRight m-t-xs">
                             {{-- <li><a href="#">Profile</a></li>
                             <li><a href="#">Contacts</a></li>
@@ -98,7 +103,7 @@
                 </li>
                 @endcan
                 <li>
-                    <a href="#"><i class="fa fa-pie-chart"></i> <span class="nav-label">Evaluar</span>  </a>
+                    <a href="{{ route('index_evaluar') }}"><i class="fa fa-pie-chart"></i> <span class="nav-label">Evaluar</span>  </a>
                 </li>
                 <li>
                     <a href="#"><i class="fa fa-flask"></i> <span class="nav-label">Widgets</span></a>
