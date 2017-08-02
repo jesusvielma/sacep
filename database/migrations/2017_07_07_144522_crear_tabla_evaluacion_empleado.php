@@ -17,7 +17,7 @@ class CrearTablaEvaluacionEmpleado extends Migration
             $table->integer('id_evaluacion')->unsigned();
             $table->integer('cedula_empleado');
             $table->primary(['id_evaluacion','cedula_empleado']);
-            $table->enum('tipo_empleado',['coordinador','supervisor','jefe','gerente','trabajador','evaluador','th']);
+            $table->enum('tipo',['coordinador','supervisor','jefe','gerente','trabajador','evaluador','th']);
             $table->foreign('id_evaluacion')->references('id_evaluacion')->on('evaluacion')
             ->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('cedula_empleado')->references('cedula_empleado')->on('empleado')

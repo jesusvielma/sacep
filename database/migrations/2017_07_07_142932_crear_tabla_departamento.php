@@ -17,6 +17,10 @@ class CrearTablaDepartamento extends Migration
             $table->increments('id_departamento');
             $table->string('nombre',100);
             $table->integer('responsable')->nullable();
+            $table->integer('departamento_padre')->nullable();
+            $table->string('tipo',100);
+            $table->foreign('departamento_padre')->references('id_departamento')->on('departamento')
+            ->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

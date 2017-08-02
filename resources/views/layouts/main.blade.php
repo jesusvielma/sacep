@@ -62,7 +62,7 @@
                 {{-- <li>
                     <a href="#"><i class="fa fa-diamond"></i> <span class="nav-label">Layouts</span></a>
                 </li> --}}
-                @can('ver_menu')
+                @can('config')
                 <li class="{{ $current_route_name == 'departamento.index' || $current_route_name == 'departamento.create' || $current_route_name == 'departamento.edit' || $current_route_name == 'cargo.edit' || $current_route_name == 'cargos' || $current_route_name == 'cargo_nuevo' ? 'active' : NULL }}">
                     <a href=""><i class="fa fa-bar-chart-o"></i> <span class="nav-label">Configuraciones</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
@@ -94,6 +94,8 @@
                         <li><a href="{{ route('empleado_nuevo') }}">Nuevo</a></li>
                     </ul>
                 </li>
+                @endcan
+                @can('admin')
                 <li>
                     <a href="#"><i class="fa fa-user-o"></i> <span class="nav-label">Usuarios</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
