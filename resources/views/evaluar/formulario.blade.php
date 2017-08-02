@@ -5,25 +5,6 @@
 	<div class="row">
 		<div class="col-lg-10">
 			<div class="row">
-				<div class="col-lg-4">
-					<div class="form-group">
-						<label>Fecha de emisión</label>
-						<input id="fe" name="fecha_evaluacion" type="text" class="form-control required" readonly>
-					</div>
-				</div>
-				<div class="col-lg-8">
-					<div class="form-group" id="data_5">
-						<label>Periodo de evaluación</label>
-						<div class="input-daterange input-group" id="datepicker">
-							<span class="input-group-addon">Desde</span>
-							<input type="text" class="form-control required" name="periodo_desde"/>
-							<span class="input-group-addon">Hasta</span>
-							<input type="text" class="form-control required" name="periodo_hasta" />
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row">
 				<div class="col-lg-5">
 					<h4>Nombre del trabajador</h4>
 					<p>{{ $empleado->nombre_completo }}</p>
@@ -31,10 +12,13 @@
 				<div class="col-lg-4">
 					<h4>Cédula de identidad</h4>
 					<p>{{ $empleado->cedula_empleado }}</p>
+					<input type="hidden" name="cedula_empleado" value="{{ $empleado->cedula_empleado }}">
 				</div>
 				<div class="col-lg-3">
 					<h4>Cargo / Ocupación actual </h4>
 					<p>{{ $empleado->cargo->nombre }}</p>
+					<input type="hidden" name="cargo_trabajador_evaluado" value="{{ $empleado->cargo->id_cargo }}">
+					<input type="hidden" name="departamento_trabajador_evaluado" value="{{ $empleado->departamento->id_departamento }}">
 				</div>
 			</div>
 			<div class="row">
@@ -54,7 +38,7 @@
 				<div class="col-lg-6">
 					<div class="form-group">
 						<label>Tipo de evaluacion</label>
-						<select class="form-control required" name="tipo">
+						<select class="form-control required" name="tipo" id="tipo">
 							<option value="">- Seleccione -</option>
 							<option value="mensual">Mensual</option>
 							<option value="bimestral">Bimestral</option>
@@ -62,6 +46,25 @@
 							<option value="semestral">Semetral</option>
 							<option value="anual">Anual</option>
 						</select>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-4">
+					<div class="form-group">
+						<label>Fecha de emisión</label>
+						<input id="fe" name="fecha_evaluacion" type="text" class="form-control required" readonly>
+					</div>
+				</div>
+				<div class="col-lg-8">
+					<div class="form-group" id="data_5">
+						<label>Periodo de evaluación</label>
+						<div class="input-daterange input-group" id="datepicker">
+							<span class="input-group-addon">Desde</span>
+							<input type="text" class="form-control required" name="periodo_desde" >
+							<span class="input-group-addon">Hasta</span>
+							<input type="text" class="form-control required" name="periodo_hasta" />
+						</div>
 					</div>
 				</div>
 			</div>
@@ -89,7 +92,9 @@
 								<label>{{ $item->nombre }}</label>
 								<div class="row">
 									<div class="col-sm-10">
-										<input name="na" type="text" class="form-control required range">
+										<input name="items[{{ $item->id_item }}][puntaje]" type="text" class="form-control required range">
+										<input type="hidden" name="items[{{ $item->id_item }}][item_evaluado]" value="{{ $item->id_item }}">
+										<!-- informacion del Item -->
 										<div class="collapse" id="item-{{ $item->id_item }}">
 											<div class="panel panel-info">
 												<div class="panel-heading">
@@ -101,6 +106,7 @@
 											</div>
 										</div>
 									</div>
+									<!-- Fin informacion del item -->
 									<div class="col-sm-2">
 										<button class="btn btn-info dim" type="button" data-toggle="collapse" data-target="#item-{{ $item->id_item }}" aria-expanded="false" aria-controls="item-{{$item->id_item}}">
 											<i class="fa fa-info"></i>
@@ -123,8 +129,7 @@
 	</div>
 @endforeach
 
-<h1>Finish</h1>
+<h1>Final</h1>
 <div>
-	<h2>Terms and Conditions</h2>
-	<input id="acceptTerms" name="acceptTerms" type="checkbox" class="required"> <label for="acceptTerms">I agree with the Terms and Conditions.</label>
+	<h2>Esta a punto de enviar la evaluación del empleado</h2>
 </div>

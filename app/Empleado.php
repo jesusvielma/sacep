@@ -64,7 +64,7 @@ class Empleado extends Model
 	*/
 	public function evaluaciones()
 	{
-		return $this->belongsToMany('sacep\Evaluacion','evaluacion_empleado','cedula_empleado','id_evaluacion');
+		return $this->belongsToMany('sacep\Evaluacion','evaluacion_empleado','cedula_empleado','id_evaluacion')->withPivot('tipo');
 	}
 
 	/**

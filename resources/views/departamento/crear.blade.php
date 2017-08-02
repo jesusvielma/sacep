@@ -26,9 +26,6 @@
 					nombre: {
 						required: true,
 						maxlength: 60
-					},
-					responsable: {
-						required: true,
 					}
 				}
 			});

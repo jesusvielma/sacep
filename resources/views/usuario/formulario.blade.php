@@ -46,7 +46,7 @@
 </div>
 <div class="form-group">
 	<label for="clave">Clave</label>
-	<input type="password" name="clave" class="form-control" value="{{ old('clave') }}" {{ $usuario ? NULL : 'required'}}>
+	<input type="password" name="clave" class="form-control" value="{{ old('clave') }}" {{ isset($usuario) ? NULL : 'required'}}>
 	@if ($errors->has('clave'))
 		<span class="help-block m-b-none">
 			<strong>{{ $errors->first('clave') }}</strong>
@@ -57,19 +57,19 @@
 	<label for="estado">Permisos de </label>
 	<br>
 	<div class="radio-inline i-checks">
-		<label > <input type="radio" value="gerente" name="nivel" id="inactivo" required {{ $usuario->nivel =='gerente' ? 'checked' : NULL }}> <i></i> Gerente </label>
+		<label > <input type="radio" value="gerente" name="nivel" id="inactivo" required {{ isset($usuario->nivel) =='gerente' ? 'checked' : NULL }}> <i></i> Gerente </label>
 	</div>
 	<div class="radio-inline i-checks">
-		<label > <input type="radio" value="th" name="nivel" id="inactivo" required {{ $usuario->nivel == 'th' ? 'checked' : NULL }}> <i></i> Talento Humano </label>
+		<label > <input type="radio" value="th" name="nivel" id="inactivo" required {{ isset($usuario->nivel) == 'th' ? 'checked' : NULL }}> <i></i> Talento Humano </label>
 	</div>
 	<div class="radio-inline i-checks">
-		<label > <input type="radio" value="coordinador" name="nivel" id="activo" required {{ $usuario->nivel == 'coordinador' ? 'checked' : NULL }}> <i></i> Coordinador </label>
+		<label > <input type="radio" value="coordinador" name="nivel" id="activo" required {{ isset($usuario->nivel) == 'coordinador' ? 'checked' : NULL }}> <i></i> Coordinador </label>
 	</div>
 	<div class="radio-inline i-checks">
-		<label > <input type="radio" value="supervisor" name="nivel" id="inactivo" required {{ $usuario->nivel == 'supervisor' ? 'checked' : NULL }}> <i></i> Supervisor </label>
+		<label > <input type="radio" value="supervisor" name="nivel" id="inactivo" required {{ isset($usuario->nivel) == 'supervisor' ? 'checked' : NULL }}> <i></i> Supervisor </label>
 	</div>
 	<div class="radio-inline i-checks">
-		<label > <input type="radio" value="jefe" name="nivel" id="inactivo" required {{ $usuario->nivel== 'jefe' ? 'checked' : NULL }}> <i></i> Jefe </label>
+		<label > <input type="radio" value="jefe" name="nivel" id="inactivo" required {{ isset($usuario->nivel)== 'jefe' ? 'checked' : NULL }}> <i></i> Jefe </label>
 	</div>
 	@if ($errors->has('nivel'))
 		<span class="help-block m-b-none">

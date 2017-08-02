@@ -32,7 +32,7 @@ class Evaluacion extends Model
 
     public function item_evaluado()
     {
-        return $this->belongsToMany('sacep\FactorDeEvaluacion','item_evaluado','id_evaluacion','id_factor')
+        return $this->belongsToMany('sacep\FactorDeEvaluacion','item_evaluado','id_evaluacion','id_item')
         ->withPivot('puntaje');
     }
 }

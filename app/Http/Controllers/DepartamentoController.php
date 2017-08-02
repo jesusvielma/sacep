@@ -43,7 +43,6 @@ class DepartamentoController extends Controller
     {
         $this->validate($request,[
             'nombre' => 'required|max:60',
-            'responsable' => 'required',
         ]);
 
         Departamento::create($request->only(['nombre','responsable']));

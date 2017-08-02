@@ -78,7 +78,7 @@
 							<div class="ibox-content">
 								<h4>Información</h4>
 								<dl class="dl-horizontal">
-									<dt>Responsable:</dt><dd> {{ $dep->encargado->nombre_completo }} </dd>
+									<dt>Responsable:</dt><dd> {{ isset($dep->encargado->nombre_completo) ? $dep->encargado->nombre_completo : ''}} </dd>
 								</dl>
 							</div>
 						</div>
@@ -95,5 +95,5 @@
 			@endif
 		</div>
 	</div>
-	
+
 @endsection
