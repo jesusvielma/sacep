@@ -72,6 +72,6 @@ class Empleado extends Model
 	*/
 	public function departamento()
 	{
-		return $this->hasOne('sacep\Departamento','id_departamento','id_departamento');
+		return $this->belongsTo('sacep\Departamento','id_departamento','id_departamento');
 	}
 }
