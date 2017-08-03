@@ -15,7 +15,11 @@ return [
 		'coordinador' => 'Coordinador',
 		'gerente' => 'Gerente',
 		'supervisor' => 'Supervisor',
-		'jefe'	=> 'Jefe'
-	]
+		'jefe'	=> 'Jefe',
+	],
+    'departamento' => [
+        'coordinacion' => 'Coordinación',
+        'unidad'       => 'Unidad',
+    ]
 
 ];
