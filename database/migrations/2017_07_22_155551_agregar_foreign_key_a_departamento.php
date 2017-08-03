@@ -16,6 +16,8 @@ class AgregarForeignKeyADepartamento extends Migration
         Schema::table('departamento', function (Blueprint $table) {
             $table->foreign('responsable')->references('cedula_empleado')->on('empleado')
             ->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('departamento_padre')->references('id_departamento')->on('departamento')
+            ->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

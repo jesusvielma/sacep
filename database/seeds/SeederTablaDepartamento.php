@@ -12,13 +12,36 @@ class SeederTablaDepartamento extends Seeder
      */
     public function run()
     {
-        $empleado = sacep\Empleado::first();
+        $dep = new Departamento;
+        $dep->nombre = 'Coordinación de Talento Humano';
+        $dep->tipo   = 'coordinacion';
+        $dep->save();
 
-        $data = [
-            'nombre' => 'Coordinación de Talento Humano',
-            'responsable' => $empleado->cedula_empleado,
-        ];
+        $dep->empleados()->saveMany(factory(sacep\Empleado::class,10)->make());
 
-        Departamento::create($data);
+        unset($dep);
+
+        $dep = new Departamento;
+        $dep->nombre = 'Coordinación Gestión tecnologica';
+        $dep->tipo   = 'coordinacion';
+        $dep->save();
+
+        $dep->empleados()->saveMany(factory(sacep\Empleado::class,15)->make());
+
+        unset($dep);
+
+        $dep = new Departamento;
+        $dep->nombre = 'Coordinación Gestión Administrativa';
+        $dep->tipo   = 'coordinacion';
+        $dep->save();
+
+        $dep->empleados()->saveMany(factory(sacep\Empleado::class,5)->make());
+
+        unset($dep);
+
+        $dep = new Departamento;
+        $dep->nombre = 'Gerencia STM';
+        $dep->tipo   = 'coordinacion';
+        $dep->save();
     }
 }

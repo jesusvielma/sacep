@@ -17,7 +17,8 @@ class SeederTablaUsuario extends Seeder
             'nombre' => 'Administrador del sistema',
             'correo' => 'admin@sacep.app',
             'clave'  => bcrypt('admin'),
-            'nivel'  => 'th',
+            'nivel'  => 'admin',
+            'estado' => 1
         ];
         Usuario::create($data);
     }
