@@ -15,6 +15,8 @@ class Departamento extends Model
 	protected $fillable = [
 		'nombre',
         'responsable',
+        'departamento_padre',
+        'tipo',
 	];
 
 	public function encargado()
@@ -24,7 +26,16 @@ class Departamento extends Model
 
     public function empleados()
     {
-        return $this->belongsToMany('sacep\Empleado','departamento_tiene_empleado','id_departamento','cedula_empleado')
-        ->withPivot(['desde','hasta','estado']);
+        return $this->hasMany('sacep\Empleado','id_departamento','id_departamento');
+    }
+
+    public function hijo()
+    {
+        return $this->belongsTo('sacep\Departamento','departamento_padre','id_departamento');
+    }
+
+    public function padre()
+    {
+        return $this->hasMany('sacep\Departamento','departamento_padre','id_departamento');
     }
 }

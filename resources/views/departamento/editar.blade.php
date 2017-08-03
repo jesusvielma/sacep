@@ -7,6 +7,8 @@
 	<!-- Ladda style -->
     <link href="{{ URL::asset('css/plugins/ladda/ladda-themeless.min.css') }}" rel="stylesheet">
 	<link href="{{ URL::asset('css/plugins/select2/select2.min.css') }}" rel="stylesheet">
+	<link href="{{ URL::asset('css/plugins/iCheck/custom.css')}}" rel="stylesheet">
+	<link href="{{ URL::asset('css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css')}}" rel="stylesheet">
 @endsection
 
 @section('js')
@@ -19,6 +21,7 @@
     <script src="{{ URL::asset('js/plugins/validate/jquery.validate.min.js') }}"></script>
 	<!-- Select2 -->
     <script src="{{ URL::asset('js/plugins/select2/select2.full.min.js') }}"></script>
+	<script src="{{ URL::asset('js/plugins/iCheck/icheck.min.js')}}"></script>
 	<script>
          $(document).ready(function(){
 
@@ -30,17 +33,29 @@
                      },
                      responsable: {
                          required: true,
-                     }
+                     },
+ 					tipo: {
+ 						required: true
+ 					}
                  }
              });
 			 $(".responsable").select2({
                  placeholder: "Selecciona un responsable",
                  allowClear: true
              });
-			 var l = $('.ladda-button-demo').ladda('bind');
-			 l.click(function () {
-				 l.start();
-			 });
+			 $(".depto").select2({
+ 				placeholder: "Selecciona un coordinación padre",
+ 				allowClear: true
+ 			});
+ 		   $('.i-checks').iCheck({
+ 			   radioClass: 'iradio_square-green',
+ 		   });
+ 		   $('#unidad').on('ifChecked', function(){
+ 			   $(".depto").prop("disabled", false);
+ 		   });
+ 		   $('#coord').on('ifChecked', function(){
+ 			   $(".depto").prop("disabled", true);
+ 		   });
         });
     </script>
 

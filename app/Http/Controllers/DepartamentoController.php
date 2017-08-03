@@ -29,6 +29,7 @@ class DepartamentoController extends Controller
     public function create()
     {
         $data['empleados'] = Empleado::select(['nombre_completo','cedula_empleado'])->where('estado','activo')->get();
+        $data['deps'] = Departamento::where('tipo','coordinacion')->get();
 
         return view('departamento.crear',$data);
     }
@@ -43,9 +44,13 @@ class DepartamentoController extends Controller
     {
         $this->validate($request,[
             'nombre' => 'required|max:60',
+            'tipo'   => 'required'
         ]);
 
-        Departamento::create($request->only(['nombre','responsable']));
+        if($request->get('tipo') == 'unidad')
+            Departamento::create($request->only(['nombre','responsable','tipo','departamento_padre']));
+        else
+            Departamento::create($request->only(['nombre','responsable','tipo']));
         $msg = [
             'type' => 'success',
             'msg' => 'Se ha creado el departamento '.$request->get('nombre'),
@@ -76,6 +81,7 @@ class DepartamentoController extends Controller
     {
         $data['dep'] = Departamento::findOrFail($departamento);
         $data['empleados'] = Empleado::select(['nombre_completo','cedula_empleado'])->where('estado','activo')->get();
+        $data['deps'] = Departamento::where('tipo','coordinacion')->get();
 
         return view('departamento.editar',$data);
     }

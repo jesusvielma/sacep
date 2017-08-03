@@ -35,6 +35,10 @@
 		<!-- Toastr script -->
 	    <script src="{{ URL::asset('js/plugins/toastr/toastr.min.js') }}"></script>
 		<script>
+			toastr.options = {
+			  "progressBar": false,
+			  "positionClass": "toast-top-center",
+			}
 			toastr.{{ session('notif.type')}}('{{ session('notif.msg') }}','{{ session('notif.title') }}')
 		</script>
 	@endif
@@ -78,7 +82,14 @@
 							<div class="ibox-content">
 								<h4>Información</h4>
 								<dl class="dl-horizontal">
-									<dt>Responsable:</dt><dd> {{ isset($dep->encargado->nombre_completo) ? $dep->encargado->nombre_completo : ''}} </dd>
+									<dt>Responsable:</dt><dd> {{ isset($dep->encargado->nombre_completo) ? $dep->encargado->nombre_completo : 'Se debe asignar un responsable de esta coordinación o unidad'}} </dd>
+									<dt>Cantidad de Empleados: </dt><dd>{{ $dep->empleados()->count() }}</dd>
+									<dt>Tipo:</dt> <dd>@lang('enums.departamento.'.$dep->tipo)</dd>
+									@if ($dep->departamento_padre)
+										<dt>Adscrita a la coordinación: </dt><dd>{{$dep->hijo->nombre}}</dd>
+									@else
+										<dt>Esta coordinación tiene: </dt><dd>{{$dep->padre()->count()}} unidades</dd>
+									@endif
 								</dl>
 							</div>
 						</div>
