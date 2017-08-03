@@ -35,6 +35,10 @@
 		<!-- Toastr script -->
 	    <script src="{{ URL::asset('js/plugins/toastr/toastr.min.js') }}"></script>
 		<script>
+			toastr.options = {
+			  "progressBar": false,
+			  "positionClass": "toast-top-center",
+			}
 			toastr.{{ session('notif.type')}}('{{ session('notif.msg') }}','{{ session('notif.title') }}')
 		</script>
 	@endif

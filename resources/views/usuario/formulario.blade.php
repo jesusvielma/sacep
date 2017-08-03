@@ -6,8 +6,14 @@
 			@else
 				<select class="trabajador form-control" name="cedula_empleado" id="trabajador" required>
 					<option></option>
-					@foreach ($empleados as $empleado)
-						<option value="{{ $empleado->cedula_empleado }}"> {{ $empleado->nombre_completo }}</option>
+					@foreach ($empleados as $dep)
+						@if ($dep->empleados()->count())
+							<optgroup label="{{ $dep->nombre }}">
+									@foreach ($dep->empleados as $empleado)
+										<option value="{{ $empleado->cedula_empleado }}"> {{ $empleado->nombre_completo }}</option>
+									@endforeach
+							</optgroup>
+						@endif
 					@endforeach
 				</select>
 			@endif

@@ -5,6 +5,7 @@ namespace sacep\Http\Controllers;
 use sacep\Usuario;
 use Illuminate\Http\Request;
 use sacep\Empleado;
+use sacep\Departamento;
 
 class UsuarioController extends Controller
 {
@@ -27,8 +28,11 @@ class UsuarioController extends Controller
      */
     public function create()
     {
-        $data['empleados'] = Empleado::where('id_usuario',NULL)->where('estado','activo')->get();
+        $data['empleados'] = Departamento::with(['empleados'=> function($query){
+            $query->where('estado','activo');
+        }])->get();
 
+        //dd($data['empleados'][0]);
         return view('usuario.crear',$data);
     }
 
@@ -53,6 +57,7 @@ class UsuarioController extends Controller
         $data->correo = $request->get('correo');
         $data->nivel = $request->get('nivel');
         $data->clave = bcrypt($request->get('clave'));
+        $data->estado = 1;
 
         $data->save();
 
@@ -64,7 +69,7 @@ class UsuarioController extends Controller
 
         $msg = [
             'type' => 'success',
-            'msg' => 'Se ha registrado un usuario con el nombre '.$request->get('nombre').' y permisos de '.$request->get('nivel'),
+            'msg' => 'Se ha registrado un usuario con el nombre '.$request->get('nombre').' y permisos de '.trans('enums.usuaruio'.$request->get('nivel')),
             'title' => 'Usuario registrado',
         ];
 
@@ -119,7 +124,7 @@ class UsuarioController extends Controller
         if ($request->get('clave') != '') {
             $usuario->clave = bcrypt($request->get('clave'));
         }
-
+        $usuario->estado = $request->get('estado');
         $usuario->save();
 
         $msg = [
