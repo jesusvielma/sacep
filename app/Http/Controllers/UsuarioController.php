@@ -56,7 +56,7 @@ class UsuarioController extends Controller
         $data->nombre = $request->get('nombre');
         $data->correo = $request->get('correo');
         $data->nivel = $request->get('nivel');
-        $data->clave = bcrypt($request->get('clave'));
+        $data->password = bcrypt($request->get('clave'));
         $data->estado = 1;
 
         $data->save();
