@@ -101,7 +101,7 @@
 													<h4>{{ $item->nombre }}</h4>
 												</div>
 												<div class="panel-body">
-													<p>{{ $item->informacion }}</p>
+													<p>{!! $item->informacion !!}</p>
 												</div>
 											</div>
 										</div>

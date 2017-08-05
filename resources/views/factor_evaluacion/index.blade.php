@@ -146,7 +146,7 @@
 													<tr>
 														<td>{{ $item->nombre }}</td>
 														<td>{{ $item->visivilidad }}</td>
-														<td>{{ $item->informacion }}</td>
+														<td>{!! $item->informacion !!}</td>
 													</tr>
 												@endforeach
 											</tbody>

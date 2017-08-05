@@ -166,9 +166,8 @@
 			    warningClass: "label label-primary",
 			    limitReachedClass: "label label-danger",
 			    placement: 'top',
-			    preText: 'used ',
-			    separator: ' of ',
-			    postText: ' chars.'
+			    preText: 'Caracteres usados',
+			    separator: ' de ',
 			});
 			$('.100').maxlength({
 			    threshold: 20,
