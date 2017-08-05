@@ -82,6 +82,9 @@ class EvaluacionController extends Controller
             'estado'           => 'guardada',
             'departamento_trabajador_evaluado' => $dep,
             'cargo_trabajador_evaluado' => $request->get('cargo_trabajador_evaluado'),
+            'descripcion'      => $request->get('descripcion'),
+            'recomendacion'    => $request->get('recomendacion'),
+            'comentario'       => $request->get('comentario')
         ];
 
         $ev = Evaluacion::create($evaluacion);

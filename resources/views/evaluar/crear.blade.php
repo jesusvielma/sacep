@@ -8,7 +8,6 @@
     <link href="{{ URL::asset('css/plugins/ladda/ladda-themeless.min.css') }}" rel="stylesheet">
 	<link href="{{ URL::asset('css/plugins/select2/select2.min.css') }}" rel="stylesheet">
 	<link href="{{ URL::asset('css/plugins/datapicker/datepicker3.css') }}" rel="stylesheet">
-	<link href="{{ URL::asset('"css/plugins/datapicker/datepicker3.css') }}" rel="stylesheet">
 	<link href="{{ URL::asset('css/plugins/iCheck/custom.css') }}" rel="stylesheet">
     <link href="{{ URL::asset('css/plugins/steps/jquery.steps.css') }}" rel="stylesheet">
 	<link href="{{ URL::asset('css/plugins/ionRangeSlider/ion.rangeSlider.css')}}" rel="stylesheet">
@@ -48,6 +47,9 @@
 
 	<!-- IonRangeSlider -->
     <script src="{{ URL::asset('js/plugins/ionRangeSlider/ion.rangeSlider.min.js')}}"></script>
+
+	<!-- Word/Char counter -->
+    <script src="{{ URL::asset('js/bootstrap-maxlength.js')}}"></script>
 
 	<script>
          $(document).ready(function(){
@@ -158,6 +160,21 @@
 	            ],
 				step:1
 	        });
+			$('.255').maxlength({
+			    alwaysShow: true,
+			    threshold: 50,
+			    warningClass: "label label-primary",
+			    limitReachedClass: "label label-danger",
+			    placement: 'top',
+			    preText: 'used ',
+			    separator: ' of ',
+			    postText: ' chars.'
+			});
+			$('.100').maxlength({
+			    threshold: 20,
+			    warningClass: "label label-primary",
+			    limitReachedClass: "label label-danger",
+			});
 
 			$('#tipo').change(function(){
 				@if(is_object($last_ev))
@@ -231,12 +248,12 @@
 @section('content')
 	<div class="row wrapper border-bottom white-bg page-heading">
 		<div class="col-lg-9">
-			<h2>Empleados</h2>
+			<h2>Evaluación</h2>
 			<ol class="breadcrumb">
 				<li><a href="{{ route('pagina_inicio') }}"> Inicio </a></li>
-				<li><a href="{{ route('empleados') }}"> Empleados </a></li>
+				<li><a href="{{ route('empleados') }}"> Evaluar - Listado de empleados </a></li>
 				<li class="active">
-					<strong>Crear</strong>
+					<strong>Evaluar</strong>
 				</li>
 			</ol>
 		</div>
@@ -250,7 +267,7 @@
 			<div class="col-lg-10 col-lg-offset-1">
 				<div class="ibox">
 					<div class="ibox-title">
-						<h5>Crear</h5>
+						<h5>Evaluar a {{ $empleado->nombre_completo }}</h5>
 					</div>
 					<div class="ibox-content">
 						<form action="{{ route('guardar_evaluacion') }}" method="post" id="form" class="wizard-big">

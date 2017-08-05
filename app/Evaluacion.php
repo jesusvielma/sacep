@@ -21,7 +21,10 @@ class Evaluacion extends Model
 		'motivo',
 		'tipo',
         'departamento_trabajador_evaluado',
-        'cargo_trabajador_evaluado'
+        'cargo_trabajador_evaluado',
+        'descripcion',
+        'recomendacion',
+        'comentario',
 	];
 
     public function empleado()

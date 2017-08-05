@@ -129,7 +129,42 @@
 	</div>
 @endforeach
 
-<h1>Final</h1>
+<h1>Notas finales </h1>
 <div>
-	<h2>Esta a punto de enviar la evaluación del empleado</h2>
+	<h2>Notas finales</h2>
+	<div class="row">
+		<div class="col-lg-10">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="form-group">
+						<label>Descripción, Motivo, Situación</label>
+						<textarea name="descripcion" rows="5" class="form-control 255 required" maxlength="255"></textarea>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="form-group">
+						<label>Recomendación para asignación</label>
+						<textarea name="recomendacion" rows="1" class="form-control 100 required" maxlength="80"></textarea>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="form-group">
+						<label>Comentario General del evaluador</label>
+						<textarea name="comentario" rows="5" class="form-control 255 required" maxlength="255"></textarea>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-2">
+			<div class="text-center">
+				<div style="margin-top: 20px; margin-left:-30px">
+					<i class="fa fa-comments-o" style="font-size: 180px;color: #e5e5e5 "></i>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
