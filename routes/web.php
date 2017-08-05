@@ -22,6 +22,11 @@ Route::post('/entrar',[
     'as'   => 'post_login'
 ]);
 
+Route::get('pdf', 'PdfController@invoice');
+Route::get('pdf/ver', function (){
+    return view('invoice');
+});
+
 Route::group(['middleware'=>'auth'], function (){
 
     Route::get('/salir', [
@@ -89,11 +94,15 @@ Route::group(['middleware'=>'auth'], function (){
         'as'   => 'evaluar'
     ]);
 
+    Route::get('evaluar/{empleado}/editar',[
+        'uses' => 'EvaluacionController@evaluar',
+        'as'   => 'evaluar'
+    ]);
+
     Route::resource('evaluar','EvaluacionController',[
         'names' => [
             'index' => 'index_evaluar',
             'store' => 'guardar_evaluacion',
-            'edit'  => 'editar_evaluacion',
             'update'=> 'update_evaluacion',
         ]
     ]);
