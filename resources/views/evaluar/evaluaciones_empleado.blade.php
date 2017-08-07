@@ -102,7 +102,7 @@
 												$cant_items = $evaluacion->item_evaluado()->count();
 											@endphp
 											<tr>
-												<td>{{ $evaluacion->fecha_evaluacion->format('d-m-Y') }}</td>
+												<td>{{ $evaluacion->fecha_evaluacion->format('d-m-Y h:i:s a') }}</td>
 												<td>{{ $evaluacion->periodo_desde->format('d-m-Y') }}</td>
 												<td>{{ $evaluacion->periodo_hasta->format('d-m-Y') }}</td>
 												<td>

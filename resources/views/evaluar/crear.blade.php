@@ -149,7 +149,7 @@
 				endDate: date
             });
 			//moment.locale('es');
-			$('#fe').val(date);
+			$('#fe').val(moment().format('YYYY-MM-DD HH:mm:ss'));
 			$('.tooltip-demo button').popover();
 			$('.range').ionRangeSlider({
 				hasGrid: true,
