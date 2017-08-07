@@ -2,6 +2,7 @@
 
 namespace sacep\Http\Controllers;
 
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use sacep\Usuario;
 use sacep\Empleado;
@@ -104,16 +105,16 @@ class EvaluacionController extends Controller
                 $th->empleado->cedula_empleado => ['tipo' => 'th'],
                 $gerente->empleado->cedula_empleado => ['tipo' => 'gerente'],
             ];
-            $ev->empleado()->attach($evaluacion_empleado);
+            $ev->empleados()->attach($evaluacion_empleado);
         }else{
             $evaluacion_empleado = [
                 $empleado->cedula_empleado => ['tipo' => 'trabajador'],
                 $evaluador               => ['tipo' => 'evaluador'],
                 $th->empleado->cedula_empleado => ['tipo' => 'th'],
                 $gerente->empleado->cedula_empleado => ['tipo' => 'gerente'],
-                $responsable->responsable => ['tipo'=>$nivel_responsable->usuario->nivel]
+                $responsable->responsable => ['tipo'=> $nivel_responsable->usuario->nivel]
             ];
-            $ev->empleado()->attach($evaluacion_empleado);
+            $ev->empleados()->attach($evaluacion_empleado);
         }
 
 
@@ -129,19 +130,71 @@ class EvaluacionController extends Controller
             'title' => 'Evaluación completada',
         ];
 
-        return redirect()->route('index_evaluar')->with('notif', $msg);
+        //return redirect()->route('index_evaluar')->with('notif', $msg);
+
+        return redirect()->route('imprimir_evaluacion',['id'=>$ev->id_evaluacion]);
     }
 
     /**
-     * Display the specified resource.
+     * Muestra la evaluación para imprimirla
      *
-     * @param  \sacep\Evaluacion  $evaluacion
+     * @param  int $eval
      * @return \Illuminate\Http\Response
      */
-    public function show(Evaluacion $evaluacion)
+    public function imprimir($eval)
     {
-        //
+        $data['evaluacion'] = Evaluacion::where('id_evaluacion',$eval)->with(['empleados','item_evaluado'])->first();
+
+        foreach ($data['evaluacion']->empleados as $empleado) {
+            if ($empleado->pivot->tipo == 'trabajador') {
+                $data['empleado'] = $empleado;
+            }elseif ($empleado->pivot->tipo == 'th') {
+                $data['th'] = $empleado;
+            }elseif ($empleado->pivot->tipo == 'gerente') {
+                $data['gerente'] = $empleado;
+            }elseif ($empleado->pivot->tipo == 'evaluador') {
+                $data['evaluador'] = $empleado;
+            }elseif ($empleado->pivot->tipo == 'coordinador' || $empleado->pivot->tipo == 'supervisor' || $empleado->pivot->tipo == 'jefe') {
+                $data['responsable'] = $empleado;
+            }
+        }
+
+        $data['factores'] = FactorDeEvaluacion::all();
+
+        //$view =  \View::make('evaluacion_imprimir', compact('data', 'date', 'invoice'))->render();
+		$pdf = App::make('dompdf.wrapper');
+		$pdf->loadView('evaluacion_imprimir',$data);
+		return $pdf->stream('evaluacion_imprimir');
+
+        //return view('evaluacion_imprimir',$data);
     }
+
+
+    /**
+     * Muestra los resultados de las evaluaciones del empleado
+     *
+     * @param  int $empleado
+     * @return \Illuminate\Http\Response
+     */
+     public function evaluaciones($empleado)
+     {
+        $data['evaluaciones'] = Evaluacion::with(['item_evaluado','empleados' => function($query) use ($empleado){
+            $query->where('evaluacion_empleado.cedula_empleado',$empleado);
+        }])->get();
+
+        $data['empleado'] = Empleado::find($empleado);
+
+        $puntaje = 0;
+        // foreach ($evaluaciones as $evaluacion) {
+        //     $cant_items = $evaluacion->item_evaluado()->count();
+        //     foreach($evaluacion->item_evaluado as $item) {
+        //         $puntaje = $puntaje + $item->pivot->puntaje;
+        //     }
+        // }
+
+        return view('evaluar.evaluaciones_empleado',$data);
+     }
+
 
     /**
      * Show the form for editing the specified resource.

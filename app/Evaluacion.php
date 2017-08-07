@@ -12,6 +12,12 @@ class Evaluacion extends Model
 
 	public $timestamps = false;
 
+    protected $dates = [
+        'fecha_evaluacion',
+        'periodo_desde',
+		'periodo_hasta',
+    ];
+
 	protected $fillable = [
 		'id_evaluacion',
 		'fecha_evaluacion',
@@ -27,7 +33,7 @@ class Evaluacion extends Model
         'comentario',
 	];
 
-    public function empleado()
+    public function empleados()
 	{
 		return $this->belongsToMany('sacep\Empleado','evaluacion_empleado','id_evaluacion','cedula_empleado')
         ->withPivot('tipo');
@@ -35,7 +41,7 @@ class Evaluacion extends Model
 
     public function item_evaluado()
     {
-        return $this->belongsToMany('sacep\FactorDeEvaluacion','item_evaluado','id_evaluacion','id_item')
+        return $this->belongsToMany('sacep\ItemFactor','item_evaluado','id_evaluacion','id_item')
         ->withPivot('puntaje');
     }
 }

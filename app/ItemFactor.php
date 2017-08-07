@@ -23,4 +23,6 @@ class ItemFactor extends Model
 	{
 		return $this->belongsTo('sacep\FactorDeEvaluacion','id_factor','id_factor');
 	}
+
+	
 }

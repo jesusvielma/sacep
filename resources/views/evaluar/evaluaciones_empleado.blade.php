@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @section('title')
-	Listado de empleados
+	Listado de evaluaciones del empelado {{$empleado->nombre_completo}}
 @endsection
 
 @section('css')
@@ -58,24 +58,24 @@
 @section('content')
 	<div class="row wrapper border-bottom white-bg page-heading">
 		<div class="col-lg-9">
-			<h2>Empleados</h2>
+			<h2>Evaluaciones de {{ $empleado->nombre_completo }}</h2>
 			<ol class="breadcrumb">
 				<li><a href="{{ route('pagina_inicio') }}"> Inicio </a></li>
+				<li><a href="{{ route('index_evaluar') }}"> Listado de trabajadores a evaluar </a></li>
 				<li class="active">
-					<strong>Empleados</strong>
+					<strong>{{ $empleado->nombre_completo }}</strong>
 				</li>
 			</ol>
 		</div>
 		<div class="col-lg-3">
 			<div class="title-action">
-				<a href="{{ route('empleado_nuevo') }}" class="ladda-button ladda-button-demo btn btn-primary" name="button" data-style="zoom-in"> Nuevo empleado</a>
+				<a href="{{ route('evaluar',['empleado'=>$empleado->ceduela_empleado]) }}" class="ladda-button ladda-button-demo btn btn-primary" name="button" data-style="zoom-in"> Nuevo empleado</a>
 			</div>
 		</div>
 	</div>
 
 	<div class="wrapper wrapper-content animated fadeInRightBig">
 		<div class="row">
-			@if (count($empleados)>0)
 				<div class="col-lg-12">
 					<div class="ibox ">
 						<div class="ibox-title">
@@ -88,23 +88,33 @@
 								<table class="table table-striped table-bordered table-hover dataTables-example">
 									<thead>
 										<tr>
-											<th>Cedula de identidad</th>
-											<th>Nombre</th>
-											<th>Fechad ingreso</th>
-											<th>Cargo</th>
+											<th>Fecha de emision</th>
+											<th>Periodo desde </th>
+											<th>Periodo hasta</th>
+											<th>Puntaje Final</th>
 											<th>Acciones</th>
 										</tr>
 									</thead>
 									<tbody>
-										@foreach ($empleados as $empleado)
+										@foreach ($evaluaciones as $evaluacion)
+											@php
+												$puntaje = 0;
+												$cant_items = $evaluacion->item_evaluado()->count();
+											@endphp
 											<tr>
-												<td>{{ $empleado->cedula_empleado }}</td>
-												<td>{{ $empleado->nombre_completo }}</td>
-												<td>{{ $empleado->fecha_ingreso }}</td>
-												<td>{{ $empleado->cargo ? $empleado->cargo->nombre : 'Debe darle un cargo a esta empleado' }}</td>
+												<td>{{ $evaluacion->fecha_evaluacion->format('d-m-Y') }}</td>
+												<td>{{ $evaluacion->periodo_desde->format('d-m-Y') }}</td>
+												<td>{{ $evaluacion->periodo_hasta->format('d-m-Y') }}</td>
 												<td>
-													<a href="{{ route('evaluar',['id'=>$empleado->cedula_empleado])}}" class="btn btn-xs btn-primary"><i class="fa fa-pie-chart"></i></a>
-													<a href="{{ route('evaluaciones',['id'=>$empleado->cedula_empleado])}}" class="btn btn-xs btn-success"><i class="fa fa-list"></i></a>
+													@foreach ($evaluacion->item_evaluado as $item)
+														@php
+															$puntaje = $puntaje + $item->pivot->puntaje;
+														@endphp
+													@endforeach
+													{{ round($puntaje = $puntaje/$cant_items) }}
+												</td>
+												<td>
+													<a class="btn btn-xs btn-primary" href="{{ route('imprimir_evaluacion',['id'=> $evaluacion->id_evaluacion]) }}"><i class="fa fa-eye"></i></a>
 												</td>
 											</tr>
 										@endforeach
@@ -114,15 +124,6 @@
 						</div>
 					</div>
 				</div>
-			@else
-				<div class="col-lg-6 col-lg-offset-3">
-					<div class="alert alert-info">
-						<h4>Oops! No hemos encontrado información</h4>
-						<p>Parece que no ha información sobre departamentos te invitamos a crear uno nuevo.</p>
-						<p>Le recomendamos usar el botón que se encuentra la parte superior derecha de su pantalla para crear un nuevo departamento</p>
-					</div>
-				</div>
-			@endif
 		</div>
 	</div>
 

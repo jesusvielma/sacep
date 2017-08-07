@@ -43,6 +43,11 @@ class Empleado extends Model
 		'id_usuario'
 	];
 
+	protected $dates = [
+		'fecha_ingreso',
+		'fecha_nacimiento',
+	];
+
 	/**
      * Obtener el usuario al que esta asociado un Empleado
      */

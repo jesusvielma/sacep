@@ -94,9 +94,19 @@ Route::group(['middleware'=>'auth'], function (){
         'as'   => 'evaluar'
     ]);
 
+    Route::get('evaluaciones/{empleado}',[
+        'uses' => 'EvaluacionController@evaluaciones',
+        'as'   => 'evaluaciones'
+    ]);
+
     Route::get('evaluar/{empleado}/editar',[
-        'uses' => 'EvaluacionController@evaluar',
-        'as'   => 'evaluar'
+        'uses' => 'EvaluacionController@edit',
+        'as'   => 'editar_evaluacion'
+    ]);
+
+    Route::get('evaluar/{id}/imprimir_evaluacion',[
+        'uses' => 'EvaluacionController@imprimir',
+        'as'   => 'imprimir_evaluacion'
     ]);
 
     Route::resource('evaluar','EvaluacionController',[
