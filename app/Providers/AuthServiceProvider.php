@@ -4,6 +4,8 @@ namespace sacep\Providers;
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use sacep\Empleado;
+use sacep\Policies\EvaluacionPolicy;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -14,6 +16,8 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         'sacep\Model' => 'sacep\Policies\ModelPolicy',
+        //'sacep\Evaluacion' => 'sacep\Policies\EvaluacionPolicy',
+        Empleado::class => EvaluacionPolicy::class,
     ];
 
     /**
