@@ -209,7 +209,40 @@ class EvaluacionController extends Controller
     {
         $this->authorize('editar_eval',$evaluacion);
 
-        
+        $rol_evaluador = Auth::user()->nivel == 'gerente';
+        if ($rol_evaluador === TRUE) {
+            $data['factores'] = FactorDeEvaluacion::where('estado',1)->with(['items'=> function($query){
+                $query->where('visivilidad','!=','trabajador');
+            }])->get();
+        }
+        else{
+            $data['factores'] = FactorDeEvaluacion::where('estado',1)->with(['items'=> function($query){
+                $query->where('visivilidad','!=','coordinador');
+            }])->get();
+        }
+        $data['evaluacion'] = $evaluacion;
+
+        foreach ($data['evaluacion']->empleados as $empleado) {
+            if ($empleado->pivot->tipo == 'trabajador') {
+                $data['empleado'] = $empleado;
+            }elseif ($empleado->pivot->tipo == 'th') {
+                $data['th'] = $empleado;
+            }elseif ($empleado->pivot->tipo == 'gerente') {
+                $data['gerente'] = $empleado;
+            }elseif ($empleado->pivot->tipo == 'evaluador') {
+                $data['evaluador'] = $empleado;
+            }elseif ($empleado->pivot->tipo == 'coordinador' || $empleado->pivot->tipo == 'supervisor' || $empleado->pivot->tipo == 'jefe') {
+                $data['responsable'] = $empleado;
+            }
+        }
+        // $data['empleado'] = $empleado;
+        //
+        // $data['last_ev'] = Evaluacion::select('evaluacion.periodo_hasta')
+        // ->join('evaluacion_empleado','evaluacion_empleado.id_evaluacion','=','evaluacion.id_evaluacion')
+        // ->where('evaluacion_empleado.cedula_empleado','=',$empleado->cedula_empleado)
+        // ->latest('periodo_hasta')->first();
+
+        return  view('evaluar.editar',$data);
     }
 
     /**

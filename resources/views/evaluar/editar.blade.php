@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @section('title')
-	Evaluar a {{ $empleado->nombre_completo }}
+	Evaluar a
 @endsection
 
 @section('css')
@@ -149,17 +149,20 @@
 				endDate: date
             });
 			//moment.locale('es');
-			$('#fe').val(moment().format('YYYY-MM-DD HH:mm:ss'));
-			$('.tooltip-demo button').popover();
-			$('.range').ionRangeSlider({
-				hasGrid: true,
-				type: 'single',
-	            values: [
-	                "Deficiente", "Regular", "Bueno",
-					"Muy Bueno", "Excelente"
-	            ],
-				step:1
-	        });
+			//$('#fe').val(moment().format('YYYY-MM-DD HH:mm:ss'));
+			$('.range').each(function(){
+				var input = $(this).val();
+				$(this).ionRangeSlider({
+					hasGrid: true,
+					type: 'single',
+		            values: [
+		                "Deficiente", "Regular", "Bueno",
+						"Muy Bueno", "Excelente"
+		            ],
+					step:1,
+					from: input,
+		        });
+			});
 			$('.255').maxlength({
 			    alwaysShow: true,
 			    threshold: 50,
@@ -173,71 +176,6 @@
 			    threshold: 20,
 			    warningClass: "label label-primary",
 			    limitReachedClass: "label label-danger",
-			});
-
-			$('#tipo').change(function(){
-				@if(is_object($last_ev))
-					var desde = moment("{{ $last_ev->periodo_hasta }}").add(1,'d').format('YYYY-MM-DD');
-					var desde_bd = true;
-				@else
-					var hoy = moment().format('DD');
-					var desde_bd = false;
-					if(hoy != '01')
-					{
-						var desde = moment().format('YYYY-MM')+"-01";
-					}else{
-						var desde = moment().format('YYYY-MM-DD');
-					}
-				@endif
-				var tipo = $(this).val();
-				if(tipo == 'mensual'){
-					var hasta = moment(desde).add(1,'M').subtract(1,'d').format('YYYY-MM-DD');
-				}else if (tipo == 'bimestral') {
-					var hasta = moment(desde).add(2,'M').subtract(1,'d').format('YYYY-MM-DD');
-					if(moment(hasta).isAfter(date)){
-						if(!desde_bd){
-							var desde = moment(desde).subtract(1,'M').format('YYYY-MM-DD');
-							var hasta = moment(hasta).subtract(1,'M').format('YYYY-MM-DD');
-						}else {
-							alert('periodo hasta sobre pasa la fecha actual');
-							var aux = true;
-						}
-					}
-				}else if (tipo == 'trimestral') {
-					var hasta = moment(desde).add(3,'M').subtract(1,'d').format('YYYY-MM-DD');
-					if(moment(hasta).isAfter(date)){
-						if(!desde_bd){
-							var desde = moment(desde).subtract(2,'M').format('YYYY-MM-DD');
-							var hasta = moment(hasta).subtract(2,'M').format('YYYY-MM-DD');
-						}else {
-							alert('periodo hasta sobre pasa la fecha actual');
-							var aux = true;
-						}
-					}
-				}else if (tipo == 'semestral') {
-					var hasta = moment(desde).add(6,'M').subtract(1,'d').format('YYYY-MM-DD');
-					if(moment(hasta).isAfter(date)){
-						if(!desde_bd){
-							var desde = moment(desde).subtract(5,'M').format('YYYY-MM-DD');
-							var hasta = moment(hasta).subtract(5,'M').format('YYYY-MM-DD');
-						}else {
-							alert('periodo hasta sobre pasa la fecha actual');
-							var aux = true;
-						}
-					}
-				}
-				else{
-					var hasta = moment(desde).add(1,'y').subtract(1,'d').format('YYYY-MM-DD');
-				}
-				if(desde_bd && aux){
-					$(this).val('');
-					$('input[name=periodo_desde]').val('');
-					$('input[name=periodo_hasta]').val('');
-				}else{
-					$('input[name=periodo_desde]').val(desde);
-					$('input[name=periodo_hasta]').val(hasta);
-					$('#data_5 .input-daterange').datepicker('update');
-				}
 			});
         });
     </script>
@@ -266,10 +204,10 @@
 			<div class="col-lg-10 col-lg-offset-1">
 				<div class="ibox">
 					<div class="ibox-title">
-						<h5>Evaluar a {{ $empleado->nombre_completo }}</h5>
+						<h5>Evaluar a </h5>
 					</div>
 					<div class="ibox-content">
-						<form action="{{ route('update_evaluacion') }}" method="post" id="form" class="wizard-big">
+						<form action="{{ route('update_evaluacion',['id'=>$evaluacion->id_evaluacion]) }}" method="post" id="form" class="wizard-big">
 							@include('evaluar.formulario')
 						</form>
 					</div>
