@@ -177,8 +177,10 @@ class EvaluacionController extends Controller
      * @param  int $empleado
      * @return \Illuminate\Http\Response
      */
-     public function evaluaciones($empleado)
-     {
+    public function evaluaciones($empleado)
+    {
+        $emp = Empleado::find($empleado);
+        $this->authorize('evaluaciones',$emp);
         $data['evaluaciones'] = Evaluacion::with(['item_evaluado','empleados' => function($query) use ($empleado){
             $query->where('evaluacion_empleado.cedula_empleado',$empleado);
         }])->get();
@@ -205,7 +207,9 @@ class EvaluacionController extends Controller
      */
     public function edit(Evaluacion $evaluacion)
     {
-        //
+        $this->authorize('editar_eval',$evaluacion);
+
+        
     }
 
     /**

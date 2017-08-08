@@ -99,7 +99,7 @@ Route::group(['middleware'=>'auth'], function (){
         'as'   => 'evaluaciones'
     ]);
 
-    Route::get('evaluar/{empleado}/editar',[
+    Route::get('evaluar/{evaluacion}/editar',[
         'uses' => 'EvaluacionController@edit',
         'as'   => 'editar_evaluacion'
     ]);

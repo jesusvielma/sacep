@@ -69,7 +69,7 @@
 		</div>
 		<div class="col-lg-3">
 			<div class="title-action">
-				<a href="{{ route('evaluar',['empleado'=>$empleado->ceduela_empleado]) }}" class="ladda-button ladda-button-demo btn btn-primary" name="button" data-style="zoom-in"> Nuevo empleado</a>
+				<a href="{{ route('evaluar',['empleado'=>$empleado->cedula_empleado]) }}" class="ladda-button ladda-button-demo btn btn-primary" name="button" data-style="zoom-in"> Evaluar</a>
 			</div>
 		</div>
 	</div>
@@ -89,9 +89,10 @@
 									<thead>
 										<tr>
 											<th>Fecha de emision</th>
-											<th>Periodo desde </th>
-											<th>Periodo hasta</th>
-											<th>Puntaje Final</th>
+											<th>Periodo de evaluación </th>
+											<th style="width:10%">Puntaje Final</th>
+											<th>Motivo de evaluación</th>
+											<th>Estado</th>
 											<th>Acciones</th>
 										</tr>
 									</thead>
@@ -103,8 +104,9 @@
 											@endphp
 											<tr>
 												<td>{{ $evaluacion->fecha_evaluacion->format('d-m-Y h:i:s a') }}</td>
-												<td>{{ $evaluacion->periodo_desde->format('d-m-Y') }}</td>
-												<td>{{ $evaluacion->periodo_hasta->format('d-m-Y') }}</td>
+												<td>
+													{{ $evaluacion->periodo_desde->format('d-m-Y') }} | {{ $evaluacion->periodo_hasta->format('d-m-Y') }}
+												</td>
 												<td>
 													@foreach ($evaluacion->item_evaluado as $item)
 														@php
@@ -113,8 +115,13 @@
 													@endforeach
 													{{ round($puntaje = $puntaje/$cant_items) }}
 												</td>
+												<td>{{ ucfirst($evaluacion->motivo) }}</td>
+												<td>{{ ucfirst($evaluacion->estado) }}</td>
 												<td>
 													<a class="btn btn-xs btn-primary" href="{{ route('imprimir_evaluacion',['id'=> $evaluacion->id_evaluacion]) }}"><i class="fa fa-eye"></i></a>
+													@if ($evaluacion->estado == 'guardada')
+														<a class="btn btn-xs btn-success" href="{{ route('editar_evaluacion',['id'=>$evaluacion->id_evaluacion]) }}"><i class="fa fa-pencil"></i></a>
+													@endif
 												</td>
 											</tr>
 										@endforeach
