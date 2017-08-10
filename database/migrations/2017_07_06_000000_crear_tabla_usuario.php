@@ -17,7 +17,7 @@ class CrearTablaUsuario extends Migration
             $table->increments('id_usuario');
             $table->string('nombre');
             $table->string('correo',100)->unique();
-            $table->string('clave');
+            $table->string('password');
             $table->enum('nivel',['th','coordinador','gerente','supervisor','admin','jefe']);
             $table->boolean('estado');
             $table->rememberToken();
