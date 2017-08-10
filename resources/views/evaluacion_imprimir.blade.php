@@ -237,11 +237,11 @@
                             <td  class="font-bold">Apellidos y Nombres</td>
                             <td colspan="3">{{ $th->nombre_completo }}</td>
                             <td >Nº de cédula</td>
-                            <td >{{ $evaluador->cedula_empleado }}</td>
+                            <td >{{ $th->cedula_empleado }}</td>
                         </tr>
                         <tr>
                             <td  class="font-bold">Cargo:</td>
-                            <td colspan="5">{{ $evaluador->cargo->nombre }}</td>
+                            <td colspan="5">{{ $th->cargo->nombre }}</td>
                         </tr>
                     @endif
                     <tr>
