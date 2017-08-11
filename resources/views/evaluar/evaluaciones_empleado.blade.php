@@ -79,7 +79,7 @@
 				<div class="col-lg-12">
 					<div class="ibox ">
 						<div class="ibox-title">
-							<h5>Todos los empleados</h5>
+							<h5>Todos las evaluaciones</h5>
 							<div class="ibox-tools">
 							</div>
 						</div>
@@ -98,32 +98,34 @@
 									</thead>
 									<tbody>
 										@foreach ($evaluaciones as $evaluacion)
-											@php
+											@if ($evaluacion->empleados->count())
+												@php
 												$puntaje = 0;
-												$cant_items = $evaluacion->item_evaluado()->count();
-											@endphp
-											<tr>
-												<td>{{ $evaluacion->fecha_evaluacion->format('d-m-Y h:i:s a') }}</td>
-												<td>
-													{{ $evaluacion->periodo_desde->format('d-m-Y') }} | {{ $evaluacion->periodo_hasta->format('d-m-Y') }}
-												</td>
-												<td>
-													@foreach ($evaluacion->item_evaluado as $item)
-														@php
+												$cant_items = $evaluacion->item_evaluado->count();
+												@endphp
+												<tr>
+													<td>{{ $evaluacion->fecha_evaluacion->format('d-m-Y h:i:s a') }}</td>
+													<td>
+														{{ $evaluacion->periodo_desde->format('d-m-Y') }} | {{ $evaluacion->periodo_hasta->format('d-m-Y') }}
+													</td>
+													<td>
+														@foreach ($evaluacion->item_evaluado as $item)
+															@php
 															$puntaje = $puntaje + $item->pivot->puntaje;
-														@endphp
-													@endforeach
-													{{ round($puntaje = $puntaje/$cant_items) }}
-												</td>
-												<td>{{ ucfirst($evaluacion->motivo) }}</td>
-												<td>{{ ucfirst($evaluacion->estado) }}</td>
-												<td>
-													<a class="btn btn-xs btn-primary" href="{{ route('imprimir_evaluacion',['id'=> $evaluacion->id_evaluacion]) }}"><i class="fa fa-eye"></i></a>
-													@if ($evaluacion->estado == 'guardada')
-														<a class="btn btn-xs btn-success" href="{{ route('editar_evaluacion',['id'=>$evaluacion->id_evaluacion]) }}"><i class="fa fa-pencil"></i></a>
-													@endif
-												</td>
-											</tr>
+															@endphp
+														@endforeach
+														{{ round($puntaje = $puntaje/$cant_items,1) }}
+													</td>
+													<td>{{ ucfirst($evaluacion->motivo) }}</td>
+													<td>{{ ucfirst($evaluacion->estado) }}</td>
+													<td>
+														<a class="btn btn-xs btn-primary" href="{{ route('imprimir_evaluacion',['id'=> $evaluacion->id_evaluacion]) }}"><i class="fa fa-eye"></i></a>
+														@if ($evaluacion->estado == 'guardada')
+															<a class="btn btn-xs btn-success" href="{{ route('editar_evaluacion',['id'=>$evaluacion->id_evaluacion]) }}"><i class="fa fa-pencil"></i></a>
+														@endif
+													</td>
+												</tr>
+											@endif
 										@endforeach
 									</tbody>
 								</table>

@@ -160,13 +160,13 @@
                                         @endphp
                                         @if ($cant_items == 0)
                                             @if ($can == 2)
-                                                <td style="padding:2px" colspan="2">x</td>
+                                                <td style="padding:2px" colspan="2"></td>
                                                 </tr>
                                                 @php
                                                     $can = 0;
                                                 @endphp
                                             @elseif ($can == 1)
-                                                <td style="padding:2px" colspan="4">x</td>
+                                                <td style="padding:2px" colspan="4"></td>
                                                 </tr>
                                                 @php
                                                     $can = 0;
@@ -175,13 +175,13 @@
                                         @endif
                                 @else
                                     @if ($can == 2)
-                                        <td style="padding:2px" colspan="2">x</td>
+                                        <td style="padding:2px" colspan="2"></td>
                                         </tr>
                                         @php
                                             $can = 0;
                                         @endphp
                                     @elseif ($can == 1)
-                                        <td style="padding:2px" colspan="4">x</td>
+                                        <td style="padding:2px" colspan="4"></td>
                                         </tr>
                                         @php
                                             $can = 0;
@@ -314,7 +314,7 @@
 					</tr>
                     <tr>
                         <td class="font-bold">Promedio de calificacion</td>
-                        <td>{{ round($prom = $prom/$cant_items1) }}</td>
+                        <td>{{ round($prom = $prom/$cant_items1,1) }}</td>
                         <td colspan="4"></td>
                     </tr>
                     <tr>

@@ -19,14 +19,20 @@ class EvaluacionController extends Controller
      */
     public function index()
     {
-        $dep = Auth::user()->empleado->id_departamento;
+        if(Auth::user()->nivel !='gerente'){
+            $dep = Auth::user()->empleado->id_departamento;
 
-        $cedula = Auth::user()->empleado->cedula_empleado;
+            $cedula = Auth::user()->empleado->cedula_empleado;
 
-        $data['empleados'] = Empleado::where('estado','activo')
-                                       ->where('id_departamento',$dep)
-                                       ->where('cedula_empleado','!=',$cedula)
-                                       ->get();
+            $data['empleados'] = Empleado::where('estado','activo')
+            ->where('id_departamento',$dep)
+            ->where('cedula_empleado','!=',$cedula)
+            ->get();
+        }
+        else{
+            $data['empleados'] = Empleado::where('empleado.estado','activo')->where('usuario.nivel','coordinador')
+            ->leftJoin('usuario','usuario.id_usuario','=','empleado.id_usuario')->get();
+        }
 
         return view('evaluar.index',$data);
     }
@@ -98,24 +104,13 @@ class EvaluacionController extends Controller
         $th = Usuario::where('nivel','th')->with('empleado')->first();
         $gerente = Usuario::where('nivel','gerente')->with('empleado')->first();
 
-        if($responsable->responsable == $evaluador){
-            $evaluacion_empleado = [
-                $empleado->cedula_empleado => ['tipo' => 'trabajador'],
-                $evaluador               => ['tipo' => 'evaluador'],
-                $th->empleado->cedula_empleado => ['tipo' => 'th'],
-                $gerente->empleado->cedula_empleado => ['tipo' => 'gerente'],
-            ];
-            $ev->empleados()->attach($evaluacion_empleado);
-        }else{
-            $evaluacion_empleado = [
-                $empleado->cedula_empleado => ['tipo' => 'trabajador'],
-                $evaluador               => ['tipo' => 'evaluador'],
-                $th->empleado->cedula_empleado => ['tipo' => 'th'],
-                $gerente->empleado->cedula_empleado => ['tipo' => 'gerente'],
-                $responsable->responsable => ['tipo'=> $nivel_responsable->usuario->nivel]
-            ];
-            $ev->empleados()->attach($evaluacion_empleado);
+        if($responsable->responsable != $evaluador && $responsable->responsable != NULL){
+            $ev->empleados()->attach([$responsable->responsable => ['tipo'=> $nivel_responsable->usuario->nivel]]);
         }
+        $ev->empleados()->attach([$evaluador => ['tipo' => 'evaluador']]);
+        $ev->empleados()->attach([$empleado->cedula_empleado => ['tipo' => 'evaluado']]);
+        $ev->empleados()->attach([$th->empleado->cedula_empleado => ['tipo' => 'th']]);
+        $ev->empleados()->attach([$gerente->empleado->cedula_empleado => ['tipo' => 'gerente']]);
 
 
         $items = $request->get('items');
@@ -167,7 +162,7 @@ class EvaluacionController extends Controller
         $data['evaluacion'] = Evaluacion::where('id_evaluacion',$eval)->with(['empleados','item_evaluado'])->first();
 
         foreach ($data['evaluacion']->empleados as $empleado) {
-            if ($empleado->pivot->tipo == 'trabajador') {
+            if ($empleado->pivot->tipo == 'evaluado') {
                 $data['empleado'] = $empleado;
             }elseif ($empleado->pivot->tipo == 'th') {
                 $data['th'] = $empleado;
@@ -202,7 +197,7 @@ class EvaluacionController extends Controller
         $emp = Empleado::find($empleado);
         $this->authorize('evaluaciones',$emp);
         $data['evaluaciones'] = Evaluacion::with(['item_evaluado','empleados' => function($query) use ($empleado){
-            $query->where('evaluacion_empleado.cedula_empleado',$empleado);
+            $query->where('evaluacion_empleado.cedula_empleado','=',$empleado)->where('evaluacion_empleado.tipo','=','evaluado');
         }])->get();
 
         $data['empleado'] = Empleado::find($empleado);
@@ -243,7 +238,7 @@ class EvaluacionController extends Controller
         $data['evaluacion'] = $evaluacion;
 
         foreach ($data['evaluacion']->empleados as $empleado) {
-            if ($empleado->pivot->tipo == 'trabajador') {
+            if ($empleado->pivot->tipo == 'evaluado') {
                 $data['empleado'] = $empleado;
             }elseif ($empleado->pivot->tipo == 'th') {
                 $data['th'] = $empleado;
@@ -292,13 +287,49 @@ class EvaluacionController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Lista la evaluaciones que deben procesarse
      *
-     * @param  \sacep\Evaluacion  $evaluacion
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Evaluacion $evaluacion)
+    public function procesar_index()
     {
-        //
+        $this->authorize('procesar',\sacep\Evaluacion::class);
+        $data['evaluaciones'] = Evaluacion::where('estado','guardada')->with(['item_evaluado','empleados' => function($query){
+            $query->where('evaluacion_empleado.tipo','=','evaluado')->orWhere('evaluacion_empleado.tipo','=','evaluador');
+        }])->get();
+
+        return view('evaluar.procesar_index',$data);
+    }
+
+    /**
+     * Cambia el estado de un evaluación
+     *
+     * @param \sacep\Evaluacion $evaluacion
+     * @return \Illuminate\Http\Response
+     */
+    public function procesar_una(Evaluacion $evaluacion)
+    {
+        $evaluacion->estado = 'procesada';
+        $evaluacion->save();
+
+        return redirect()->route('procesar_index');
+    }
+
+    /**
+     * Cambia el estado de un evaluación
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function procesar_varias(Request $request)
+    {
+        $eva = '';
+        foreach ($request->get('id_evaluacion') as $ev) {
+            $eva = Evaluacion::find($ev);
+            $eva->estado = 'procesada';
+            $eva->save();
+            unset($eva);
+        }
+        return redirect()->route('procesar_index');
     }
 }

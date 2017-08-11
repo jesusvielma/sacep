@@ -109,7 +109,7 @@
                         <ul class="nav nav-second-level collapse">
                             <li><a href="{{ route('index_evaluar') }}">Evaluar</a></li>
                             @can('procesar')
-                            <li><a href="{{ route('crear_usuario') }}">Procesar</a></li>
+                            <li><a href="{{ route('procesar_index') }}">Procesar</a></li>
                             @endcan
                         </ul>
                     </li>

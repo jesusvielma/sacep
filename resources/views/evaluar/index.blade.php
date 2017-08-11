@@ -100,7 +100,7 @@
 											<tr>
 												<td>{{ $empleado->cedula_empleado }}</td>
 												<td>{{ $empleado->nombre_completo }}</td>
-												<td>{{ $empleado->fecha_ingreso }}</td>
+												<td>{{ $empleado->fecha_ingreso->format('d-m-Y') }}</td>
 												<td>{{ $empleado->cargo ? $empleado->cargo->nombre : 'Debe darle un cargo a esta empleado' }}</td>
 												<td>
 													<a href="{{ route('evaluar',['id'=>$empleado->cedula_empleado])}}" class="btn btn-xs btn-primary"><i class="fa fa-pie-chart"></i></a>

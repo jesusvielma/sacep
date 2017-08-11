@@ -109,6 +109,21 @@ Route::group(['middleware'=>'auth'], function (){
         'as'   => 'imprimir_evaluacion'
     ]);
 
+    Route::get('procesar_evaluaciones',[
+        'uses' => 'EvaluacionController@procesar_index',
+        'as'   => 'procesar_index'
+    ]);
+
+    Route::get('procesar_evaluaciones/{evaluacion}',[
+        'uses' => 'EvaluacionController@procesar_una',
+        'as'   => 'procesar_una'
+    ]);
+
+    Route::post('procesar_evaluaciones',[
+        'uses' => 'EvaluacionController@procesar_varias',
+        'as'   => 'procesar_varias'
+    ]);
+
     Route::resource('evaluar','EvaluacionController',[
         'names' => [
             'index' => 'index_evaluar',
