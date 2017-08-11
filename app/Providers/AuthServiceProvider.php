@@ -40,5 +40,10 @@ class AuthServiceProvider extends ServiceProvider
         {
             return $usuario->nivel == 'admin';
         });
+
+        Gate::define('procesar',function ($usuario)
+        {
+            return $usuario->nivel == 'th';
+        });
     }
 }

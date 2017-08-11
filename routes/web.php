@@ -114,6 +114,6 @@ Route::group(['middleware'=>'auth'], function (){
             'index' => 'index_evaluar',
             'store' => 'guardar_evaluacion',
             'update'=> 'update_evaluacion',
-        ]
+        ],
     ]);
 });

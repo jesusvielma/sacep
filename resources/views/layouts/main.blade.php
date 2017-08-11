@@ -104,168 +104,15 @@
                     </ul>
                 </li>
                 @endcan
-                <li>
-                    <a href="{{ route('index_evaluar') }}"><i class="fa fa-pie-chart"></i> <span class="nav-label">Evaluar</span>  </a>
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-flask"></i> <span class="nav-label">Widgets</span></a>
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-desktop"></i> <span class="nav-label">App Views</span>  <span class="pull-right label label-primary">SPECIAL</span></a>
-                    <ul class="nav nav-second-level collapse">
-                        <li><a href="#">Contacts</a></li>
-                        <li><a href="#">Profile</a></li>
-                        <li><a href="#">Profile v.2</a></li>
-                        <li><a href="#">Contacts v.2</a></li>
-                        <li><a href="#">Projects</a></li>
-                        <li><a href="#">Project detail</a></li>
-                        <li><a href="#">Activity stream</a></li>
-                        <li><a href="#">Teams board</a></li>
-                        <li><a href="#">Social feed</a></li>
-                        <li><a href="#">Clients</a></li>
-                        <li><a href="#">Outlook view</a></li>
-                        <li><a href="#">Vote list</a></li>
-                        <li><a href="#">File manager</a></li>
-                        <li><a href="#">Calendar</a></li>
-                        <li><a href="#">Issue tracker</a></li>
-                        <li><a href="#">Blog</a></li>
-                        <li><a href="#">Article</a></li>
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">Timeline</a></li>
-                        <li><a href="#">Pin board</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-files-o"></i> <span class="nav-label">Other Pages</span><span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level">
-                        <li><a href="#">Search results</a></li>
-                        <li><a href="#">Lockscreen</a></li>
-                        <li><a href="#">Invoice</a></li>
-                        <li><a href="#">Login</a></li>
-                        <li><a href="#">Login v.2</a></li>
-                        <li><a href="#">Forget password</a></li>
-                        <li><a href="#">Register</a></li>
-                        <li><a href="#">404 Page</a></li>
-                        <li><a href="#">500 Page</a></li>
-                        <li><a href="#">Empty page</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-globe"></i> <span class="nav-label">Miscellaneous</span><span class="label label-info pull-right">NEW</span></a>
-                    <ul class="nav nav-second-level collapse">
-                        <li><a href="#">Notification</a></li>
-                        <li><a href="#">Nestable list</a></li>
-                        <li><a href="#">Agile board</a></li>
-                        <li><a href="#">Timeline v.2</a></li>
-                        <li><a href="#">Diff</a></li>
-                        <li><a href="#">PDF viewer</a></li>
-                        <li><a href="i18#">i18 support</a></li>
-                        <li><a href="#">Sweet alert</a></li>
-                        <li><a href="#">Idle timer</a></li>
-                        <li><a href="#">Truncate</a></li>
-                        <li><a href="#">Password meter</a></li>
-                        <li><a href="#">Spinners</a></li>
-                        <li><a href="#">Spinners usage</a></li>
-                        <li><a href="#">Live favicon</a></li>
-                        <li><a href="#">Google maps</a></li>
-                        <li><a href="#">Datamaps</a></li>
-                        <li><a href="#">Social buttons</a></li>
-                        <li><a href="#">Code editor</a></li>
-                        <li><a href="#">Modal window</a></li>
-                        <li><a href="#">Clipboard</a></li>
-                        <li><a href="#">Text spinners</a></li>
-                        <li><a href="#">Forum view</a></li>
-                        <li><a href="#">Validation</a></li>
-                        <li><a href="#">Tree view</a></li>
-                        <li><a href="#">Loading buttons</a></li>
-                        <li><a href="#">Chat view</a></li>
-                        <li><a href="#">Masonry</a></li>
-                        <li><a href="#">Tour</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-flask"></i> <span class="nav-label">UI Elements</span><span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level collapse">
-                        <li><a href="#">Typography</a></li>
-                        <li><a href="#">Icons</a></li>
-                        <li><a href="#">Draggable Panels</a></li> <li><a href="#">Resizeable Panels</a></li>
-                        <li><a href="#">Buttons</a></li>
-                        <li><a href="#">Video</a></li>
-                        <li><a href="#">Panels</a></li>
-                        <li><a href="#">Tabs</a></li>
-                        <li><a href="#">Notifications & Tooltips</a></li>
-                        <li><a href="#">Helper css classes</a></li>
-                        <li><a href="#">Badges, Labels, Progress</a></li>
-                    </ul>
-                </li>
-
-                <li>
-                    <a href="#"><i class="fa fa-laptop"></i> <span class="nav-label">Grid options</span></a>
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-table"></i> <span class="nav-label">Tables</span><span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level collapse">
-                        <li><a href="#">Static Tables</a></li>
-                        <li><a href="#">Data Tables</a></li>
-                        <li><a href="#">Foo Tables</a></li>
-                        <li><a href="#">jqGrid</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-shopping-cart"></i> <span class="nav-label">E-commerce</span><span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level collapse">
-                        <li><a href="#">Products grid</a></li>
-                        <li><a href="#">Products list</a></li>
-                        <li><a href="#">Product edit</a></li>
-                        <li><a href="#">Product detail</a></li>
-                        <li><a href="ecommerce-#">Cart</a></li>
-                        <li><a href="ecommerce-#">Orders</a></li>
-                        <li><a href="#">Credit Card form</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-picture-o"></i> <span class="nav-label">Gallery</span><span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level collapse">
-                        <li><a href="#">Lightbox Gallery</a></li>
-                        <li><a href="#">Slick Carousel</a></li>
-                        <li><a href="#">Bootstrap Carousel</a></li>
-
-                    </ul>
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-sitemap"></i> <span class="nav-label">Menu Levels </span><span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level collapse">
-                        <li>
-                            <a href="#">Third Level <span class="fa arrow"></span></a>
-                            <ul class="nav nav-third-level">
-                                <li>
-                                    <a href="#">Third Level Item</a>
-                                </li>
-                                <li>
-                                    <a href="#">Third Level Item</a>
-                                </li>
-                                <li>
-                                    <a href="#">Third Level Item</a>
-                                </li>
-
-                            </ul>
-                        </li>
-                        <li><a href="#">Second Level Item</a></li>
-                        <li>
-                            <a href="#">Second Level Item</a></li>
-                        <li>
-                            <a href="#">Second Level Item</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#"><i class="fa fa-magic"></i> <span class="nav-label">CSS Animations </span><span class="label label-info pull-right">62</span></a>
-                </li>
-                <li class="landing_link">
-                    <a target="_blank" href="#"><i class="fa fa-star"></i> <span class="nav-label">Landing Page</span> <span class="label label-warning pull-right">NEW</span></a>
-                </li>
-                <li class="special_link">
-                    <a href="#"><i class="fa fa-database"></i> <span class="nav-label">Package</span></a>
-                </li>
+                    <li>
+                        <a href="#"><i class="fa fa-pie-chart"></i> <span class="nav-label">Evaluaciones</span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level collapse">
+                            <li><a href="{{ route('index_evaluar') }}">Evaluar</a></li>
+                            @can('procesar')
+                            <li><a href="{{ route('crear_usuario') }}">Procesar</a></li>
+                            @endcan
+                        </ul>
+                    </li>
             </ul>
 
         </div>
@@ -284,7 +131,7 @@
         </div>
             <ul class="nav navbar-top-links navbar-right">
                 <li>
-                    <span class="m-r-sm text-muted welcome-message">Welcome to INSPINIA+ Admin Theme.</span>
+                    <span class="m-r-sm text-muted welcome-message">Bienvenido a {{ env('APP_NAME') }}</span>
                 </li>
                 <li class="dropdown">
                     <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">

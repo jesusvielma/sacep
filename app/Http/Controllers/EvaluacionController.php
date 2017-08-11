@@ -1,13 +1,12 @@
 <?php
 
 namespace sacep\Http\Controllers;
-
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use sacep\Usuario;
 use sacep\Empleado;
 use sacep\Evaluacion;
-use Illuminate\Http\Request;
 use sacep\Departamento;
 use sacep\FactorDeEvaluacion;
 
@@ -144,13 +143,13 @@ class EvaluacionController extends Controller
 
     private function cambiar_string_puntaje($puntaje)
     {
-        if ($value == "Deficiente") {
+        if ($puntaje == "Deficiente") {
             return 1;
-        }elseif ($value == "Regular") {
+        }elseif ($puntaje == "Regular") {
             return 2;
-        }elseif ($value == "Bueno") {
+        }elseif ($puntaje == "Bueno") {
             return 3;
-        }elseif ($value == "Muy Bueno") {
+        }elseif ($puntaje == "Muy Bueno") {
             return 4;
         }else {
             return 5;
@@ -273,9 +272,23 @@ class EvaluacionController extends Controller
      * @param  \sacep\Evaluacion  $evaluacion
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Evaluacion $evaluacion)
+    public function update(Request $request,$evaluacion)
     {
-        //
+        $evaluacion = Evaluacion::find($evaluacion);
+
+        $evaluacion->comentario = $request->get('comentario');
+        $evaluacion->recomendacion = $request->get('recomendacion');
+        $evaluacion->descripcion = $request->get('descripcion');
+        $evaluacion->save();
+
+        $items = $request->get('items');
+        foreach($items as $item){
+            $evaluacion->item_evaluado()->updateExistingPivot($item['item_evaluado'],
+            ['puntaje' => $this->cambiar_string_puntaje($item['puntaje'])]);
+            //echo "item_evaluado = ".$item['item_evaluado']." Puntaje= ".$this->cambiar_string_puntaje($item['puntaje'])."<br>";
+        }
+
+        return redirect()->route('imprimir_evaluacion',['id'=>$evaluacion->id_evaluacion]);
     }
 
     /**

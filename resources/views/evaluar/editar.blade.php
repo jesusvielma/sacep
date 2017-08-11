@@ -210,7 +210,8 @@
 						<h5>Evaluar a </h5>
 					</div>
 					<div class="ibox-content">
-						<form action="{{ route('update_evaluacion',['id'=>$evaluacion->id_evaluacion]) }}" method="post" id="form" class="wizard-big">
+						<form action="{{ route('update_evaluacion',['evaluacion'=>$evaluacion->id_evaluacion]) }}" method="post" id="form" class="wizard-big">
+							{{ method_field('PUT') }}
 							@include('evaluar.formulario')
 						</form>
 					</div>
