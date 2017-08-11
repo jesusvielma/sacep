@@ -10,8 +10,8 @@
 	<link href="{{ URL::asset('css/plugins/datapicker/datepicker3.css') }}" rel="stylesheet">
 	<link href="{{ URL::asset('css/plugins/iCheck/custom.css') }}" rel="stylesheet">
     <link href="{{ URL::asset('css/plugins/steps/jquery.steps.css') }}" rel="stylesheet">
-	<link href="{{ URL::asset('css/plugins/ionRangeSlider/ion.rangeSlider.css')}}" rel="stylesheet">
-    <link href="{{ URL::asset('css/plugins/ionRangeSlider/ion.rangeSlider.skinFlat.css')}}" rel="stylesheet">
+	<link href="{{ URL::asset('css/plugins/ionRangeSlider/ion.rangeSlider1.css')}}" rel="stylesheet">
+    <link href="{{ URL::asset('css/plugins/ionRangeSlider/ion.rangeSlider.skinFlat1.css')}}" rel="stylesheet">
 	<style >
 		.wizard > .content {
 			background: #FFF;
@@ -46,7 +46,7 @@
     <script src="{{ URL::asset('js/plugins/steps/jquery.steps.min.js') }}"></script>
 
 	<!-- IonRangeSlider -->
-    <script src="{{ URL::asset('js/plugins/ionRangeSlider/ion.rangeSlider.min.js')}}"></script>
+    <script src="{{ URL::asset('js/plugins/ionRangeSlider/ion.rangeSlider.js')}}"></script>
 
 	<!-- Word/Char counter -->
     <script src="{{ URL::asset('js/bootstrap-maxlength.js')}}"></script>
@@ -153,7 +153,7 @@
 			$('.range').each(function(){
 				var input = $(this).val();
 				$(this).ionRangeSlider({
-					hasGrid: true,
+					grid: true,
 					type: 'single',
 		            values: [
 		                "Deficiente", "Regular", "Bueno",
@@ -161,6 +161,9 @@
 		            ],
 					step:1,
 					from: input,
+					onChange: function(data){
+						console.log(data);
+					},
 		        });
 			});
 			$('.255').maxlength({

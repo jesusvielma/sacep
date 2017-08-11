@@ -121,19 +121,40 @@ class EvaluacionController extends Controller
 
         $items = $request->get('items');
         foreach($items as $item){
-            $ev->item_evaluado()->attach([$item['item_evaluado'] => ['puntaje' => $item['puntaje']]]);
-            //echo "item_evaluado = ".$item['item_evaluado']." Puntaje= ".$item['puntaje']."<br>";
+            $ev->item_evaluado()->attach([$item['item_evaluado'] => ['puntaje' => $this->cambiar_string_puntaje($item['puntaje'])]]);
+            //echo "item_evaluado = ".$item['item_evaluado']." Puntaje= ".$this->cambiar_string_puntaje($item['puntaje'])."<br>";
         }
 
-        $msg = [
-            'type' => 'success',
-            'msg' => 'Se ha completado la evaluación de '.$empleado->nombre_completo.", para el periodo ".$request->get('periodo_desde')." hasta ".$request->get('periodo_hasta')." con motivo: ".ucfirst($request->get('motivo')).".",
-            'title' => 'Evaluación completada',
-        ];
+        // $msg = [
+        //     'type' => 'success',
+        //     'msg' => 'Se ha completado la evaluación de '.$empleado->nombre_completo.", para el periodo ".$request->get('periodo_desde')." hasta ".$request->get('periodo_hasta')." con motivo: ".ucfirst($request->get('motivo')).".",
+        //     'title' => 'Evaluación completada',
+        // ];
 
         //return redirect()->route('index_evaluar')->with('notif', $msg);
 
         return redirect()->route('imprimir_evaluacion',['id'=>$ev->id_evaluacion]);
+    }
+
+    /**
+    * Cambiar el valor que viene del formulario de evaluacion para el puntaje
+    * @param string $puntaje
+    * @return int
+    */
+
+    private function cambiar_string_puntaje($puntaje)
+    {
+        if ($value == "Deficiente") {
+            return 1;
+        }elseif ($value == "Regular") {
+            return 2;
+        }elseif ($value == "Bueno") {
+            return 3;
+        }elseif ($value == "Muy Bueno") {
+            return 4;
+        }else {
+            return 5;
+        }
     }
 
     /**

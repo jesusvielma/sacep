@@ -45,12 +45,22 @@ class EvaluacionPolicy
         return $usuario->empleado->id_departamento === $empleado->id_departamento || $usuario->nivel == 'th' || $usuario->nivel == 'gerente';
     }
 
+
+    /**
+    * Determina si la evaluación puede ser editada por el usuario dado
+    * @param \sacep\Usuario $usuario
+    * @param \sacep\Evaluacion $evaluacion
+    * @return bool
+    */
     public function editar_eval(Usuario $usuario, Evaluacion $evaluacion)
     {
-        foreach ($evaluacion->empleados as $empleado) {
-            if ($usuario->empleado->cedula_empleado == $empleado->cedula_empleado && ($empleado->pivot->tipo == 'evaluador')) {
-                return true;
+        if ($evaluacion->estado == 'guardada') {
+            foreach ($evaluacion->empleados as $empleado) {
+                if ($usuario->empleado->cedula_empleado == $empleado->cedula_empleado && ($empleado->pivot->tipo == 'evaluador')) {
+                    return true;
+                }
             }
         }
+        return false;
     }
 }
