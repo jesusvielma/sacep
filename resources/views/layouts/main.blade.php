@@ -63,56 +63,68 @@
                     <a href="#"><i class="fa fa-diamond"></i> <span class="nav-label">Layouts</span></a>
                 </li> --}}
                 @can('config')
-                <li class="{{ $current_route_name == 'departamento.index' || $current_route_name == 'departamento.create' || $current_route_name == 'departamento.edit' || $current_route_name == 'cargo.edit' || $current_route_name == 'cargos' || $current_route_name == 'cargo_nuevo' || $current_route_name == 'factores' ? 'active' : NULL }}">
-                    <a href=""><i class="fa fa-bar-chart-o"></i> <span class="nav-label">Configuraciones</span><span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level collapse">
-                        <li class="{{ $current_route_name == 'departamento.index' || $current_route_name == 'departamento.create' || $current_route_name == 'departamento.edit' ? 'active' : NULL }}">
-                            <a href="#">Departamentos <span class="fa arrow"></span></a>
-                            <ul class="nav nav-third-level">
-                                <li><a href="{{ route('departamento.create') }}">Nuevo</a></li>
-                                <li><a href="{{ route('departamento.index') }}">Listado</a></li>
-                            </ul>
-                        </li>
-                        <li class="{{ $current_route_name == 'cargos' || $current_route_name == 'cargo_nuevo' || $current_route_name == 'cargo.edit' ? 'active' : NULL }}">
-                            <a href="#">Cargos <span class="fa arrow"></span></a>
-                            <ul class="nav nav-third-level">
-                                <li><a href="{{ route('cargos') }}">Listado</a></li>
-                            </ul>
-                        </li>
-                        <li class="{{ $current_route_name == 'factores' || $current_route_name == 'factor_nuevo' || $current_route_name == 'editar_factor' ? 'active' : NULL }}">
-                            <a href="#">Evaluación <span class="fa arrow"></span></a>
-                            <ul class="nav nav-third-level">
-                                <li><a href="{{ route('factores') }}">Todos</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-                <li class="{{ $current_route_name == 'empleados' || $current_route_name == 'empleado_nuevo'? 'active' : NULL }}">
-                    <a href="#"><i class="fa fa-envelope"></i> <span class="nav-label">Empleados </span><span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level collapse">
-                        <li><a href="{{ route('empleados') }}">Todos</a></li>
-                        <li><a href="{{ route('empleado_nuevo') }}">Nuevo</a></li>
-                    </ul>
-                </li>
+                    <li class="{{ $current_route_name == 'departamento.index' || $current_route_name == 'departamento.create' || $current_route_name == 'departamento.edit' || $current_route_name == 'cargo.edit' || $current_route_name == 'cargos' || $current_route_name == 'cargo_nuevo' || $current_route_name == 'factores' ? 'active' : NULL }}">
+                        <a href=""><i class="fa fa-bar-chart-o"></i> <span class="nav-label">Configuraciones</span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level collapse">
+                            <li class="{{ $current_route_name == 'departamento.index' || $current_route_name == 'departamento.create' || $current_route_name == 'departamento.edit' ? 'active' : NULL }}">
+                                <a href="#">Departamentos <span class="fa arrow"></span></a>
+                                <ul class="nav nav-third-level">
+                                    <li><a href="{{ route('departamento.create') }}">Nuevo</a></li>
+                                    <li><a href="{{ route('departamento.index') }}">Listado</a></li>
+                                </ul>
+                            </li>
+                            <li class="{{ $current_route_name == 'cargos' || $current_route_name == 'cargo_nuevo' || $current_route_name == 'cargo.edit' ? 'active' : NULL }}">
+                                <a href="#">Cargos <span class="fa arrow"></span></a>
+                                <ul class="nav nav-third-level">
+                                    <li><a href="{{ route('cargos') }}">Listado</a></li>
+                                </ul>
+                            </li>
+                            <li class="{{ $current_route_name == 'factores' || $current_route_name == 'factor_nuevo' || $current_route_name == 'editar_factor' ? 'active' : NULL }}">
+                                <a href="#">Evaluación <span class="fa arrow"></span></a>
+                                <ul class="nav nav-third-level">
+                                    <li><a href="{{ route('factores') }}">Todos</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="{{ $current_route_name == 'empleados' || $current_route_name == 'empleado_nuevo'? 'active' : NULL }}">
+                        <a href="#"><i class="fa fa-envelope"></i> <span class="nav-label">Empleados </span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level collapse">
+                            <li><a href="{{ route('empleados') }}">Todos</a></li>
+                            <li><a href="{{ route('empleado_nuevo') }}">Nuevo</a></li>
+                        </ul>
+                    </li>
                 @endcan
                 @can('admin')
-                <li class="{{ $current_route_name == 'usuarios' || $current_route_name == 'crear_usuario'? 'active' : NULL }}">
-                    <a href="#"><i class="fa fa-user-o"></i> <span class="nav-label">Usuarios</span><span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level collapse">
-                        <li><a href="{{ route('usuarios') }}">Todos</a></li>
-                        <li><a href="{{ route('crear_usuario') }}">Nuevo</a></li>
-                    </ul>
-                </li>
+                    <li class="{{ $current_route_name == 'usuarios' || $current_route_name == 'crear_usuario'? 'active' : NULL }}">
+                        <a href="#"><i class="fa fa-user-o"></i> <span class="nav-label">Usuarios</span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level collapse">
+                            <li><a href="{{ route('usuarios') }}">Todos</a></li>
+                            <li><a href="{{ route('crear_usuario') }}">Nuevo</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-cubes"></i> <span class="nav-label">Opereacines masivas</span></a>
+                    </li>
+                    {{-- <li >
+                        <a href="#"><i class="fa fa-database"></i> <span class="nav-label">Base de datos</span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level collapse">
+                            <li><a href="{{ route('usuarios') }}">Todos</a></li>
+                            <li><a href="{{ route('crear_usuario') }}">Nuevo</a></li>
+                        </ul>
+                    </li> --}}
                 @endcan
-                <li class="{{ $current_route_name == 'index_evaluar' || $current_route_name == 'procesar_index' || $current_route_name == 'evaluar' || $current_route_name == 'editar_evaluacion' ? 'active' : NULL }}">
-                    <a href="#"><i class="fa fa-pie-chart"></i> <span class="nav-label">Evaluaciones</span><span class="fa arrow"></span></a>
-                    <ul class="nav nav-second-level collapse">
-                        <li><a href="{{ route('index_evaluar') }}">Evaluar</a></li>
-                        @can('procesar')
-                        <li><a href="{{ route('procesar_index') }}">Procesar</a></li>
-                        @endcan
-                    </ul>
-                </li>
+                @can('ver_ev')
+                    <li class="{{ $current_route_name == 'index_evaluar' || $current_route_name == 'procesar_index' || $current_route_name == 'evaluar' || $current_route_name == 'editar_evaluacion' ? 'active' : NULL }}">
+                        <a href="#"><i class="fa fa-pie-chart"></i> <span class="nav-label">Evaluaciones</span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level collapse">
+                            <li><a href="{{ route('index_evaluar') }}">Evaluar</a></li>
+                            @can('procesar')
+                            <li><a href="{{ route('procesar_index') }}">Procesar</a></li>
+                            @endcan
+                        </ul>
+                    </li>
+                @endcan
             </ul>
 
         </div>
