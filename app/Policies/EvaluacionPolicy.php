@@ -30,7 +30,7 @@ class EvaluacionPolicy
 
     public function evaluar(Usuario $usuario,Empleado $empleado)
     {
-        return $usuario->empleado->id_departamento === $empleado->id_departamento ;
+        return ($usuario->empleado->id_departamento === $empleado->id_departamento ) || ($usuario->nivel == 'gerente' && $empleado->usuario->nivel == 'coordinador');
     }
 
     /**
@@ -62,5 +62,15 @@ class EvaluacionPolicy
             }
         }
         return false;
+    }
+
+    /**
+    * Determina si el usuario puede procesar las evaluaciones
+    * @param \sacep\Usuario $usuario
+    * @return bool
+    */
+    public function procesar(Usuario $usuario)
+    {
+        return $usuario->nivel == 'th';
     }
 }
