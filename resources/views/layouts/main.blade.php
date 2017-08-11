@@ -63,7 +63,7 @@
                     <a href="#"><i class="fa fa-diamond"></i> <span class="nav-label">Layouts</span></a>
                 </li> --}}
                 @can('config')
-                <li class="{{ $current_route_name == 'departamento.index' || $current_route_name == 'departamento.create' || $current_route_name == 'departamento.edit' || $current_route_name == 'cargo.edit' || $current_route_name == 'cargos' || $current_route_name == 'cargo_nuevo' ? 'active' : NULL }}">
+                <li class="{{ $current_route_name == 'departamento.index' || $current_route_name == 'departamento.create' || $current_route_name == 'departamento.edit' || $current_route_name == 'cargo.edit' || $current_route_name == 'cargos' || $current_route_name == 'cargo_nuevo' || $current_route_name == 'factores' ? 'active' : NULL }}">
                     <a href=""><i class="fa fa-bar-chart-o"></i> <span class="nav-label">Configuraciones</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
                         <li class="{{ $current_route_name == 'departamento.index' || $current_route_name == 'departamento.create' || $current_route_name == 'departamento.edit' ? 'active' : NULL }}">
@@ -87,7 +87,7 @@
                         </li>
                     </ul>
                 </li>
-                <li>
+                <li class="{{ $current_route_name == 'empleados' || $current_route_name == 'empleado_nuevo'? 'active' : NULL }}">
                     <a href="#"><i class="fa fa-envelope"></i> <span class="nav-label">Empleados </span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
                         <li><a href="{{ route('empleados') }}">Todos</a></li>
@@ -96,7 +96,7 @@
                 </li>
                 @endcan
                 @can('admin')
-                <li>
+                <li class="{{ $current_route_name == 'usuarios' || $current_route_name == 'crear_usuario'? 'active' : NULL }}">
                     <a href="#"><i class="fa fa-user-o"></i> <span class="nav-label">Usuarios</span><span class="fa arrow"></span></a>
                     <ul class="nav nav-second-level collapse">
                         <li><a href="{{ route('usuarios') }}">Todos</a></li>
@@ -104,15 +104,15 @@
                     </ul>
                 </li>
                 @endcan
-                    <li>
-                        <a href="#"><i class="fa fa-pie-chart"></i> <span class="nav-label">Evaluaciones</span><span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level collapse">
-                            <li><a href="{{ route('index_evaluar') }}">Evaluar</a></li>
-                            @can('procesar')
-                            <li><a href="{{ route('procesar_index') }}">Procesar</a></li>
-                            @endcan
-                        </ul>
-                    </li>
+                <li class="{{ $current_route_name == 'index_evaluar' || $current_route_name == 'procesar_index' || $current_route_name == 'evaluar' || $current_route_name == 'editar_evaluacion' ? 'active' : NULL }}">
+                    <a href="#"><i class="fa fa-pie-chart"></i> <span class="nav-label">Evaluaciones</span><span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="{{ route('index_evaluar') }}">Evaluar</a></li>
+                        @can('procesar')
+                        <li><a href="{{ route('procesar_index') }}">Procesar</a></li>
+                        @endcan
+                    </ul>
+                </li>
             </ul>
 
         </div>
@@ -123,11 +123,6 @@
         <nav class="navbar navbar-static-top  " role="navigation" style="margin-bottom: 0">
         <div class="navbar-header">
             <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
-            <form role="search" class="navbar-form-custom" action="#">
-                <div class="form-group">
-                    <input type="text" placeholder="Search for something..." class="form-control" name="top-search" id="top-search">
-                </div>
-            </form>
         </div>
             <ul class="nav navbar-top-links navbar-right">
                 <li>
