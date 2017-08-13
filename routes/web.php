@@ -22,10 +22,6 @@ Route::post('/entrar',[
     'as'   => 'post_login'
 ]);
 
-Route::get('pdf', 'PdfController@invoice');
-Route::get('pdf/ver', function (){
-    return view('invoice');
-});
 
 Route::group(['middleware'=>'auth'], function (){
 
@@ -130,5 +126,15 @@ Route::group(['middleware'=>'auth'], function (){
             'store' => 'guardar_evaluacion',
             'update'=> 'update_evaluacion',
         ],
+    ]);
+
+    Route::get('operaciones_masivas',[
+        'uses' => 'OperacionesMasivasController@index',
+        'as'   => 'operaciones_masivas'
+    ]);
+
+    Route::post('operaciones_masivas',[
+        'uses' => 'OperacionesMasivasController@procesar_subida',
+        'as'   => 'procesar_om'
     ]);
 });

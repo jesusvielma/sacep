@@ -104,7 +104,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-cubes"></i> <span class="nav-label">Opereacines masivas</span></a>
+                        <a href="{{ route('operaciones_masivas') }}"><i class="fa fa-cubes"></i> <span class="nav-label">Opereacines masivas</span></a>
                     </li>
                     {{-- <li >
                         <a href="#"><i class="fa fa-database"></i> <span class="nav-label">Base de datos</span><span class="fa arrow"></span></a>
