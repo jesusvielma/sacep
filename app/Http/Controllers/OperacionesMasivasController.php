@@ -5,6 +5,7 @@ namespace sacep\Http\Controllers;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 use sacep\Cargo;
+use sacep\Usuario;
 use sacep\Empleado;
 use sacep\Departamento;
 
@@ -17,6 +18,7 @@ class OperacionesMasivasController extends Controller
 	*/
     public function index()
     {
+		$this->authorize('admin',Usuario::class);
     	return view('operaciones_masivas.index');
     }
 

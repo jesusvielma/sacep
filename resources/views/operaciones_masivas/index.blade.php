@@ -152,7 +152,7 @@
 								<label for="">Tipo de carga</label>
 								<br>
 								<div class="radio-inline i-checks">
-									<label > <input type="radio" value="coords" name="tipo"> <i></i> Coordinación </label>
+									<label > <input type="radio" value="coords" name="tipo"> <i></i> Coordinación/Unidad </label>
 								</div>
 								<div class="radio-inline i-checks">
 									<label > <input type="radio" value="cargo" name="tipo" > <i></i> Cargos </label>
