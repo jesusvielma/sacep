@@ -95,7 +95,8 @@
 							</div>
 						@endif
 						@if (session('no_creados'))
-							<div class="alert alert-warning">
+							<div class="alert alert-warning alert-dismissable">
+								<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
 								<h4>Información repedita</h4>
 								<p>La siguiente información no se ha almacenado en la base de datos debido a que ya existe, por favor verifique su archivo y vuelva a intentarlo</p>
 								<ul>
@@ -107,23 +108,32 @@
 						@endif
 
 						@if (session('nocreado'))
-							<div class="alert alert-warning">
+							<div class="alert alert-warning alert-dismissable">
+								<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
 								<h4>No hemos creado estos registros</h4>
 								<p>La siguiente información no se ha almacenado en la base de datos debido a que no se encuentra informacion, verifique la tabla y compruebe la infomración</p>
 								<div class="table-responsive">
 									<table class="table table-striped table-bordered table-hover dataTables-example">
 										<thead>
-											<th>Cédula</th>
+											@if (array_key_exists('cedula',session('nocreado')))
+												<th>Cédula</th>
+											@endif
 											<th>Nombre</th>
-											<th>Faltantes o no encontrado</th>
+											@if (array_key_exists('faltantes',session('nocreado')))
+												<th>Faltantes o no encontrado</th>
+											@endif
 											<th>Información sumistrada</th>
 										</thead>
 										<tbody>
 											@foreach (session('nocreado') as $key)
 												<tr>
-													<td>{{ $key['cedula'] }}</td>
+													@if (array_key_exists('cedula',session('nocreado')))
+														<td>{{ $key['cedula'] }}</td>
+													@endif
 													<td>{{ $key['nombre'] }}</td>
-													<td>{{ $key['faltantes'] }}</td>
+													@if (array_key_exists('cedula',session('nocreado')))
+														<td>{{ $key['faltantes'] }}</td>
+													@endif
 													<td>{{ $key['suministrado'] }}</td>
 												</tr>
 											@endforeach

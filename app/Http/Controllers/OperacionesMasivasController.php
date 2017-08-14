@@ -44,11 +44,20 @@ class OperacionesMasivasController extends Controller
 		$res=Excel::load($archivo, function ($reader){
 
 		})->get();
-
 		if ($request->get('tipo') == 'coords') {
 			foreach ($res as $key => $coord) {
-				if ($coord->padre != '') {
-					$dep = Departamento::firstOrCreate(['nombre' => $coord->nombre],['padre'=>$coord->padre,'tipo'=>$coord->tipo]);
+				if ($coord->padre != '' || $coord->padre != NULL) {
+					$padre = Departamento::where('nombre',$coord->padre)->first();
+					if ($padre) {
+						$dep = Departamento::firstOrCreate(['nombre' => $coord->nombre],['departamento_padre'=>$padre->id_departamento,'tipo'=>$coord->tipo]);
+					}
+					else{
+						$suministrado = 'Padre: '.($coord->padre != '' ? $coord->padre : 'Vacio');
+						$data2[$key] = [
+							'nombre' => $coord->nombre,
+							'suministrado' => $suministrado
+						];
+					}
 				}else{
 					$dep = Departamento::firstOrCreate(['nombre' => $coord->nombre],['tipo'=>$coord->tipo]);
 				}
