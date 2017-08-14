@@ -32,7 +32,7 @@ class Usuario extends Authenticatable
     ];
 
     /**
-     * Obtener la Información del usuario
+     * Obtener la información del empleado si usuario la tiene
      */
 
     public function empleado()

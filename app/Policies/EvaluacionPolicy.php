@@ -65,10 +65,10 @@ class EvaluacionPolicy
     }
 
     /**
-    * Determina si el usuario puede procesar las evaluaciones
-    * @param \sacep\Usuario $usuario
-    * @return bool
-    */
+     * Determina si el usuario puede procesar las evaluaciones
+     * @param  Usuario $usuario 
+     * @return bool
+     */
     public function procesar(Usuario $usuario)
     {
         return $usuario->nivel == 'th';

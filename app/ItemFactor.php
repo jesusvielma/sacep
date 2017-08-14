@@ -19,10 +19,13 @@ class ItemFactor extends Model
 		'id_factor'
 	];
 
+	/**
+	 * La pertenencia de un item a un factor
+	 */
 	public function factor()
 	{
 		return $this->belongsTo('sacep\FactorDeEvaluacion','id_factor','id_factor');
 	}
 
-	
+
 }

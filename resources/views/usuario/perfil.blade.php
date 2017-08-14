@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @section('title')
-	Listado de usuarios
+	Perfil de usuario
 @endsection
 
 @section('css')

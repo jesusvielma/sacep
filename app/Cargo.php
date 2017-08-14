@@ -14,6 +14,9 @@ class Cargo extends Model
 
 	protected $fillable = ['nombre','estado'];
 
+    /**
+     * @return [type] [description]
+     */
     public function empleados()
     {
         return $this->hasMany('sacep\Empelado','id_cargo','cedula_empleado');
