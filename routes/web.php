@@ -75,6 +75,11 @@ Route::group(['middleware'=>'auth'], function (){
         ]
     ]);
 
+    Route::get('perfil',[
+        'uses' => 'UsuarioController@perfil',
+        'as'   => 'perfil'
+    ]);
+
     Route::resource('usuario','UsuarioController',[
         'names' => [
             'index' => 'usuarios',

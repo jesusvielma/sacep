@@ -48,8 +48,8 @@
                             </span>
                         </a>
                         <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                            {{-- <li><a href="#">Profile</a></li>
-                            <li><a href="#">Contacts</a></li>
+                            <li><a href="{{ route('perfil') }}">Perfil</a></li>
+                            {{--<li><a href="#">Contacts</a></li>
                             <li><a href="#">Mailbox</a></li> --}}
                             <li class="divider"></li>
                             <li><a href="{{ route('salir') }}">Cerrar sesión</a></li>
@@ -96,14 +96,14 @@
                     </li>
                 @endcan
                 @can('admin')
-                    <li class="{{ $current_route_name == 'usuarios' || $current_route_name == 'crear_usuario'? 'active' : NULL }}">
+                    <li class="{{ $current_route_name == 'usuarios' || $current_route_name == 'crear_usuario' || $current_route_name == 'editar_usuario'? 'active' : NULL }}">
                         <a href="#"><i class="fa fa-user-o"></i> <span class="nav-label">Usuarios</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse">
                             <li><a href="{{ route('usuarios') }}">Todos</a></li>
                             <li><a href="{{ route('crear_usuario') }}">Nuevo</a></li>
                         </ul>
                     </li>
-                    <li>
+                    <li class="{{ $current_route_name == 'operaciones_masivas' ? 'active' : NULL }}">
                         <a href="{{ route('operaciones_masivas') }}"><i class="fa fa-cubes"></i> <span class="nav-label">Opereacines masivas</span></a>
                     </li>
                     {{-- <li >
@@ -115,7 +115,7 @@
                     </li> --}}
                 @endcan
                 @can('ver_ev')
-                    <li class="{{ $current_route_name == 'index_evaluar' || $current_route_name == 'procesar_index' || $current_route_name == 'evaluar' || $current_route_name == 'editar_evaluacion' ? 'active' : NULL }}">
+                    <li class="{{ $current_route_name == 'index_evaluar' || $current_route_name == 'procesar_index' || $current_route_name == 'evaluar' || $current_route_name == 'editar_evaluacion' || $current_route_name == 'evaluaciones' ? 'active' : NULL }}">
                         <a href="#"><i class="fa fa-pie-chart"></i> <span class="nav-label">Evaluaciones</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse">
                             <li><a href="{{ route('index_evaluar') }}">Evaluar</a></li>

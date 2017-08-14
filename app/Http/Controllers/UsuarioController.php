@@ -2,8 +2,9 @@
 
 namespace sacep\Http\Controllers;
 
-use sacep\Usuario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use sacep\Usuario;
 use sacep\Empleado;
 use sacep\Departamento;
 
@@ -16,7 +17,7 @@ class UsuarioController extends Controller
      */
     public function index()
     {
-        $data['usuarios'] = Usuario::with('empleado')->paginate(15);
+        $data['usuarios'] = Usuario::where('nivel','!=','admin')->with('empleado')->paginate(15);
 
         return view('usuario.index',$data);
     }
@@ -67,9 +68,11 @@ class UsuarioController extends Controller
         $empleado->id_usuario = $id;
         $empleado->save();
 
+
+
         $msg = [
             'type' => 'success',
-            'msg' => 'Se ha registrado un usuario con el nombre '.$request->get('nombre').' y permisos de '.trans('enums.usuaruio'.$request->get('nivel')),
+            'msg' => 'Se ha modificado el usuario con el nombre '.$request->get('nombre').' y permisos de '.trans('enums.usuario'.$request->get('nivel')),
             'title' => 'Usuario registrado',
         ];
 
@@ -122,18 +125,41 @@ class UsuarioController extends Controller
         $usuario->correo = $request->get('correo');
         $usuario->nivel = $request->get('nivel');
         if ($request->get('clave') != '') {
-            $usuario->clave = bcrypt($request->get('clave'));
+            $usuario->password = bcrypt($request->get('clave'));
         }
         $usuario->estado = $request->get('estado');
         $usuario->save();
 
+
+        if ($request->get('perfil') !== NULL && $request->get('perfil') == 1) {
+            $msg = [
+                'type' => 'success',
+                'msg' => $request->get('nombre').' hemos modifcado su usuario con exito.',
+                'title' => 'Usuario modificado',
+            ];
+            return redirect()->route('perfil')->with('notif', $msg);
+        }
+
         $msg = [
             'type' => 'success',
-            'msg' => 'Se ha registrado un usuario con el nombre '.$request->get('nombre'),
+            'msg' => 'Se ha modificado el usuario con el nombre '.$request->get('nombre'),
             'title' => 'Usuario modificado',
         ];
-
         return redirect()->route('usuarios')->with('notif', $msg);
 
+    }
+
+    /**
+     * Muestra el perfil de usuario
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function perfil()
+    {
+        date_default_timezone_set('America/Caracas');
+		setlocale(LC_ALL,'es_VE.UTF-8','es_VE','Windows-1252','esp','es_ES.UTF-8','es_ES');
+        $data['usuario'] = Auth::user();
+
+        return view('usuario.perfil',$data);
     }
 }
