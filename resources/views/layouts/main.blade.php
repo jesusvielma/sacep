@@ -38,7 +38,7 @@
                                 <span class="block m-t-xs">
                                     <strong class="font-bold">
                                         @if (isset(Auth::user()->empleado->nombre_completo))
-                                            {{ count(Auth::user()->nombre) < count(Auth::user()->empleado->nombre_completo) ? Auth::user()->nombre : Auth::user()->empleado->nombre_completo }}
+                                            {{ strlen(Auth::user()->nombre) < strlen(Auth::user()->empleado->nombre_completo) ? Auth::user()->nombre : Auth::user()->empleado->nombre_completo }}
                                         @else
                                             {{ Auth::user()->nombre }}
                                         @endif
