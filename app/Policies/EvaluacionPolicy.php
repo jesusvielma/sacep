@@ -30,7 +30,7 @@ class EvaluacionPolicy
 
     public function evaluar(Usuario $usuario,Empleado $empleado)
     {
-        return ($usuario->empleado->id_departamento === $empleado->id_departamento ) || ($usuario->nivel == 'gerente' && $empleado->usuario->nivel == 'coordinador');
+        return ($usuario->empleado->id_departamento === $empleado->id_departamento ) || ($usuario->nivel == 'gerente' && $empleado->usuario->nivel == 'coordinador' || $empleado->usuario->nivel == 'th');
     }
 
     /**

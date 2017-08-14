@@ -30,7 +30,7 @@ class EvaluacionController extends Controller
             ->get();
         }
         else{
-            $data['empleados'] = Empleado::where('empleado.estado','activo')->where('usuario.nivel','coordinador')
+            $data['empleados'] = Empleado::where('empleado.estado','activo')->where('usuario.nivel','coordinador')->orWhere('usuario.nivel','th')
             ->leftJoin('usuario','usuario.id_usuario','=','empleado.id_usuario')->get();
         }
 
