@@ -28,7 +28,10 @@ class DepartamentoController extends Controller
      */
     public function create()
     {
-        $data['empleados'] = Empleado::select(['nombre_completo','cedula_empleado'])->where('estado','activo')->get();
+        //$data['empleados'] = Empleado::select(['nombre_completo','cedula_empleado'])->where('estado','activo')->get();
+        $data['departamentos'] = Departamento::with(['empleados' => function ($query){
+            $query->where('estado','activo');
+        }])->get();
         $data['deps'] = Departamento::where('tipo','coordinacion')->get();
 
         return view('departamento.crear',$data);
@@ -81,6 +84,9 @@ class DepartamentoController extends Controller
     {
         $data['dep'] = Departamento::findOrFail($departamento);
         $data['empleados'] = Empleado::select(['nombre_completo','cedula_empleado'])->where('estado','activo')->get();
+        $data['departamentos'] = Departamento::with(['empleados' => function ($query){
+            $query->where('estado','activo');
+        }])->get();
         $data['deps'] = Departamento::where('tipo','coordinacion')->get();
 
         return view('departamento.editar',$data);

@@ -58,7 +58,7 @@
 @section('content')
 	<div class="row wrapper border-bottom white-bg page-heading">
 		<div class="col-lg-9">
-			<h2>Empleados</h2>
+			<h2>Evaluar</h2>
 			<ol class="breadcrumb">
 				<li><a href="{{ route('pagina_inicio') }}"> Inicio </a></li>
 				<li class="active">
@@ -67,9 +67,6 @@
 			</ol>
 		</div>
 		<div class="col-lg-3">
-			<div class="title-action">
-				<a href="{{ route('empleado_nuevo') }}" class="ladda-button ladda-button-demo btn btn-primary" name="button" data-style="zoom-in"> Nuevo empleado</a>
-			</div>
 		</div>
 	</div>
 
