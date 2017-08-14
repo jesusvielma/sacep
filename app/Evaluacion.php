@@ -44,4 +44,14 @@ class Evaluacion extends Model
         return $this->belongsToMany('sacep\ItemFactor','item_evaluado','id_evaluacion','id_item')
         ->withPivot('puntaje');
     }
+
+    public function cargo_emp()
+    {
+        return $this->belongsTo('sacep\Cargo','cargo_trabajador_evaluado','id_cargo');
+    }
+
+    public function dep_emp()
+    {
+        return $this->belongsTo('sacep\Departamento','departamento_trabajador_evaluado','id_departamento');
+    }
 }

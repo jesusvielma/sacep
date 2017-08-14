@@ -112,9 +112,9 @@
 						</tr>
 						<tr>
 							<td style="padding:2px" class="font-bold">Cargo/Ocupación actual</td>
-							<td style="padding:2px" colspan="2" >{{$empleado->cargo->nombre}}</td>
+							<td style="padding:2px" colspan="2" >{{$evaluacion->cargo_emp->nombre}}</td>
 							<td class="font-bold" style="width:15%; padding:2px">Coordinación/Unidad</td>
-							<td style="padding:2px" colspan="2" rowspan="2">{{ $empleado->departamento->nombre }}</td>
+							<td style="padding:2px" colspan="2" rowspan="2">{{ $evaluacion->dep_emp->nombre }}</td>
 						</tr>
 						<tr>
 							<td style="padding:2px" colspan="3" class="font-bold">Fecha de ingreso a la empresa</td>
