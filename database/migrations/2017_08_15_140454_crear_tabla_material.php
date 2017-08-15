@@ -17,6 +17,7 @@ class CrearTablaMaterial extends Migration
             $table->increments('id_material');
             $table->string('nombre',60);
             $table->string('codigo_material')->nullable();
+            $table->integer('cantidad');
             $table->integer('id_departamento')->unsigned();
             $table->foreign('id_departamento')->references('id_departamento')->on('departamento')
             ->onUpdate('cascade')->onDelete('cascade');
