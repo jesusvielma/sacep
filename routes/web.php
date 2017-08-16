@@ -42,7 +42,7 @@ Route::group(['middleware'=>'auth'], function (){
             'create' => 'empleado_nuevo',
             'store' => 'guardar_empelado',
             'edit' => 'editar_empleado',
-            'update' => 'update_empleado'
+            'update' => 'update_empleado',
         ]
     ]);
 
@@ -141,5 +141,20 @@ Route::group(['middleware'=>'auth'], function (){
     Route::post('operaciones_masivas',[
         'uses' => 'OperacionesMasivasController@procesar_subida',
         'as'   => 'procesar_om'
+    ]);
+
+    Route::get('material/crear/{departamento}',[
+        'uses'  => 'MaterialController@create',
+        'as'    => 'crear_material'
+    ]);
+
+    Route::resource('material','MaterialController',[
+        'names' => [
+            'index' => 'materiales',
+            'store' => 'guardar_material',
+            'edit'  => 'editar_material',
+            'update'=> 'update_material',
+            'show'  => 'mostrar_material'
+        ]
     ]);
 });

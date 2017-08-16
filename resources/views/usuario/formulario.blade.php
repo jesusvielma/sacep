@@ -10,7 +10,7 @@
 						@if ($dep->empleados()->count())
 							<optgroup label="{{ $dep->nombre }}">
 									@foreach ($dep->empleados as $empleado)
-										<option value="{{ $empleado->cedula_empleado }}" {{ isset($empleado->id_usuario) && $empleado->usuario->estado == 1 ? 'disabled' : NULL }} > {{ $empleado->nombre_completo }} | Cargo: {{ $empleado->cargo->nombre }}</option>
+										<option value="{{ $empleado->cedula_empleado }}" {{ isset($empleado->id_usuario) && $empleado->usuario->estado == 1 ? 'disabled' : NULL }} title="Cargo: {{ $empleado->cargo->nombre }}"> {{ $empleado->nombre_completo }} </option>
 									@endforeach
 							</optgroup>
 						@endif

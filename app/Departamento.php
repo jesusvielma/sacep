@@ -51,4 +51,12 @@ class Departamento extends Model
     {
         return $this->hasMany('sacep\Departamento','departamento_padre','id_departamento');
     }
+
+    /**
+     * Materiales de un departamento
+     */
+    public function materiales()
+    {
+        return $this->hasMany('sacep\Material','id_departamento','id_departamento');
+    }
 }

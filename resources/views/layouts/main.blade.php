@@ -125,8 +125,16 @@
                         </ul>
                     </li>
                 @endcan
+                @can('material',sacep\Departamento::class)
+                <li class="{{ $current_route_name == 'materiales' || $current_route_name == 'crear_material' || $current_route_name == 'editar_material' || $current_route_name == 'mostrar_material'? 'active' : NULL }}">
+                    <a href="#"><i class="fa fa-puzzle-piece"></i> <span class="nav-label">Materiales</span><span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level collapse">
+                        <li><a href="{{ route('materiales') }}">Todos</a></li>
+                        <li><a href="{{ route('crear_material',['id'=>Auth::user()->empleado->id_departamento]) }}">Nuevo</a></li>
+                    </ul>
+                </li>
+                @endcan
             </ul>
-
         </div>
     </nav>
 
