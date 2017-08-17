@@ -120,7 +120,10 @@
                         <ul class="nav nav-second-level collapse">
                             <li><a href="{{ route('index_evaluar') }}">Evaluar</a></li>
                             @can('procesar')
-                            <li><a href="{{ route('procesar_index') }}">Procesar</a></li>
+                                <li><a href="{{ route('procesar_index') }}">Procesar</a></li>
+                            @endcan
+                            @can('gerente_ve_evaluaciones',sacep\Evaluacion::class)
+                                <li><a href="#" id="consultaEvaTraba">Consultar trabajador</a></li>
                             @endcan
                         </ul>
                     </li>
@@ -296,6 +299,40 @@
             setTimeout("clock()", 1000);
         }
     </script>
+    @can('gerente_ve_evaluaciones',sacep\Evaluacion::class)
+        <div class="modal inmodal" id="consultaEvaTrabaModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content animated bounceInRight">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <i class="fa fa-laptop modal-icon"></i>
+                        <h4 class="modal-title">Consultar trabajador</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Cedula de trabajador</label>
+                            <input type="number" id="cedula_empleado" placeholder="Cedula del trabajador" class="form-control">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-white" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-primary" id="consultar_ev_emp">Consultar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            $('#consultaEvaTraba').click(function () {
+                $('#consultaEvaTrabaModal').modal('show');
+            });
+            $('#consultar_ev_emp').click(function () {
+                var url = '{{ route('evaluaciones',['id'=>':ID']) }}';
+                var cedula = $('#cedula_empleado').val();
+                url = url.replace(':ID',cedula);
+                $(location).attr('href',url);
+            });
+        </script>
+    @endcan
 	<!-- JS extras -->
 	@yield('js')
 

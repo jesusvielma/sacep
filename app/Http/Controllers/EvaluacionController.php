@@ -189,18 +189,19 @@ class EvaluacionController extends Controller
     /**
      * Muestra los resultados de las evaluaciones del empleado
      *
-     * @param  int $empleado
+     * @param  Empleado $empleado
      * @return \Illuminate\Http\Response
      */
-    public function evaluaciones($empleado)
+    public function evaluaciones(Empleado $empleado)
     {
-        $emp = Empleado::find($empleado);
-        $this->authorize('evaluaciones',$emp);
+        //$emp = Empleado::find($empleado);
+
+        $this->authorize('evaluaciones',$empleado);
         $data['evaluaciones'] = Evaluacion::with(['item_evaluado','empleados' => function($query) use ($empleado){
-            $query->where('evaluacion_empleado.cedula_empleado','=',$empleado)->where('evaluacion_empleado.tipo','=','evaluado');
+            $query->where('evaluacion_empleado.cedula_empleado','=',$empleado->cedula_empleado)->where('evaluacion_empleado.tipo','=','evaluado');
         }])->get();
 
-        $data['empleado'] = Empleado::find($empleado);
+        $data['empleado'] = $empleado;
 
         $puntaje = 0;
         // foreach ($evaluaciones as $evaluacion) {

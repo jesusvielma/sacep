@@ -66,11 +66,21 @@ class EvaluacionPolicy
 
     /**
      * Determina si el usuario puede procesar las evaluaciones
-     * @param  Usuario $usuario 
+     * @param  Usuario $usuario
      * @return bool
      */
     public function procesar(Usuario $usuario)
     {
         return $usuario->nivel == 'th';
+    }
+
+    /**
+     * Determina si el usuario es gerente y puede ver las evaluaciones de los empleados
+     * @param  Usuario $usuario
+     * @return bool
+     */
+    public function gerente_ve_evaluaciones(Usuario $usuario)
+    {
+        return $usuario->nivel == 'gerente';
     }
 }
