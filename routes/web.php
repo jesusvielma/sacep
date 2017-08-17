@@ -157,4 +157,17 @@ Route::group(['middleware'=>'auth'], function (){
             'show'  => 'mostrar_material'
         ]
     ]);
+
+    Route::resource('configuracion/sanciones','ArticuloController',[
+        'names' => [
+            'index' => 'articulos',
+            'create'=> 'articulo_nuevo',
+            'store' => 'guardar_articulo',
+            'edit'  => 'editar_articulo',
+            'update'=> 'update_articulo',
+        ],
+        'parameters' => [
+            'sanciones' => 'articulo'
+        ]
+    ]);
 });

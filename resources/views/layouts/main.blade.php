@@ -85,9 +85,9 @@
                                     <li><a href="{{ route('factores') }}">Factores</a></li>
                                 </ul>
                             </li>
-                            {{-- <li class="{{ $current_route_name == 'sanciones' || $current_route_name == 'factor_nuevo' || $current_route_name == 'editar_factor' ? 'active' : NULL }}">
+                            <li class="{{ $current_route_name == 'sanciones' || $current_route_name == 'factor_nuevo' || $current_route_name == 'editar_factor' ? 'active' : NULL }}">
                                 <a href="{{ route('articulos') }}"> Sanciones</a>
-                            </li> --}}
+                            </li>
                         </ul>
                     </li>
                     <li class="{{ $current_route_name == 'empleados' || $current_route_name == 'empleado_nuevo'? 'active' : NULL }}">
