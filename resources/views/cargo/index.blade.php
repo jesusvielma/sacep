@@ -97,7 +97,9 @@
 											<td>{{ $c->nombre }}</td>
 											<td>{{ $c->estado == 1 ? 'Activo' : 'Inactivo' }}</td>
 											<td>
-												<button  class="btn btn-xs btn-success update-cargo"> <i class="fa fa-pencil"></i>
+												<div class="tooltip-demo">
+													<button  class="btn btn-xs btn-success update-cargo"> <i class="fa fa-pencil" data-toggle="tooltip" data-placement="top" title="Editar" ></i>
+												</div>
 												</button>
 											</td>
 										</tr>

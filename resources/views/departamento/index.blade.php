@@ -70,13 +70,13 @@
 						<div class="ibox ">
 							<div class="ibox-title">
 								<h5>{{ $dep->nombre }}</h5>
-								<div class="ibox-tools">
-									<a href="{{ route('departamento.edit',['id'=>$dep->id_departamento]) }}"> <i class="fa fa-pencil"></i></a>
-									<a href="#" id="form_submit"> <i class="fa fa-remove"></i></a>
+								<div class="ibox-tools tooltip-demo">
+									<a href="{{ route('departamento.edit',['id'=>$dep->id_departamento]) }}" data-toggle="tooltip" data-placement="top" title="Editar"> <i class="fa fa-pencil"></i></a>
+									{{-- <a href="#" id="form_submit"> <i class="fa fa-remove"></i></a>
 									<form id="form" action="{{ route('departamento.destroy',['id'=>$dep->id_departamento]) }}" method="post">
 										{{ csrf_field() }}
 										{{ method_field('DELETE') }}
-									</form>
+									</form> --}}
 								</div>
 							</div>
 							<div class="ibox-content">

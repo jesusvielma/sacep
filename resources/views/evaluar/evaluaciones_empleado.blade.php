@@ -118,10 +118,10 @@
 													</td>
 													<td>{{ ucfirst($evaluacion->motivo) }}</td>
 													<td>{{ ucfirst($evaluacion->estado) }}</td>
-													<td>
-														<a class="btn btn-xs btn-primary" href="{{ route('imprimir_evaluacion',['id'=> $evaluacion->id_evaluacion]) }}"><i class="fa fa-eye"></i></a>
+													<td class="tooltip-demo">
+														<a class="btn btn-xs btn-primary" href="{{ route('imprimir_evaluacion',['id'=> $evaluacion->id_evaluacion]) }}" data-toggle="tooltip" data-placement="top" title="Ver esta evaluación"><i class="fa fa-eye"></i></a>
 														@if ($evaluacion->estado == 'guardada')
-															<a class="btn btn-xs btn-success" href="{{ route('editar_evaluacion',['id'=>$evaluacion->id_evaluacion]) }}"><i class="fa fa-pencil"></i></a>
+															<a class="btn btn-xs btn-success" href="{{ route('editar_evaluacion',['id'=>$evaluacion->id_evaluacion]) }}" data-toggle="tooltip" data-placement="top" title="Editar esta evaluación"><i class="fa fa-pencil"></i></a>
 														@endif
 													</td>
 												</tr>

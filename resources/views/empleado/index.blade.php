@@ -103,13 +103,13 @@
 											<tr>
 												<td>{{ $empleado->cedula_empleado }}</td>
 												<td>{{ $empleado->nombre_completo }}</td>
-												<td>{{ $empleado->fecha_ingreso }}</td>
-												<td>{{ $empleado->fecha_nacimiento }}</td>
+												<td>{{ $empleado->fecha_ingreso->format('d-m-Y') }}</td>
+												<td>{{ $empleado->fecha_nacimiento->format('d-m-Y') }}</td>
 												<td>{{ $empleado->estado }}</td>
 												<td>{{ $empleado->cargo ? $empleado->cargo->nombre : 'Debe darle un cargo a esta empleado' }}</td>
 												<td>{{ $empleado->departamento ? $empleado->departamento->nombre : 'Debe asociar al empleado a un departamento' }}</td>
-												<td>
-													<a href="{{ route('editar_empleado',['id'=>$empleado->cedula_empleado])}}" class="btn btn-xs btn-primary"><i class="fa fa-pencil"></i></a>
+												<td class="tooltip-demo">
+													<a href="{{ route('editar_empleado',['id'=>$empleado->cedula_empleado])}}" class="btn btn-xs btn-primary" data-toggle="tooltip" data-placement="top" title="Editar a {{ $empleado->nombre_completo }}"><i class="fa fa-pencil"></i></a>
 												</td>
 											</tr>
 										@endforeach

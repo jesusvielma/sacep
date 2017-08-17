@@ -86,8 +86,8 @@
 												<td>{{ $usuario->nombre }}</td>
 												<td>{{ $usuario->correo }}</td>
 												<td>@lang('enums.usuario.'.$usuario->nivel)</td>
-												<td>
-													<a class="btn btn-success btn-xs" href="{{ route('editar_usuario',['id'=>$usuario->id_usuario]) }}"><i class="fa fa-pencil"></i></a>
+												<td class="tooltip-demo">
+													<a class="btn btn-success btn-xs" href="{{ route('editar_usuario',['id'=>$usuario->id_usuario]) }}" data-toggle="tooltip" data-placement="top" title="Editar el usuario de {{ $usuario->nombre }}"><i class="fa fa-pencil"></i></a>
 												</td>
 											</tr>
 										@endforeach

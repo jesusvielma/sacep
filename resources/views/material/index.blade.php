@@ -100,9 +100,9 @@
 												<td>{{ $material->nombre }}</td>
 												<td>{{ $material->cantidad }}</td>
 												<td>{{ $material->codigo_material }}</td>
-												<td>
-													<a href="{{ route('editar_material',['id'=>$material->id_material])}}" class="btn btn-xs btn-primary"><i class="fa fa-pencil"></i></a>
-													<a href="{{ route('mostrar_material',['id'=>$material->id_material])}}" class="btn btn-xs btn-success"><i class="fa fa-search"></i></a>
+												<td class="tooltip-demo">
+													<a href="{{ route('editar_material',['id'=>$material->id_material])}}" class="btn btn-xs btn-primary" data-toggle="tooltip" data-placement="top" title="Editar {{ $material->nombre }}"><i class="fa fa-pencil"></i></a>
+													<a href="{{ route('mostrar_material',['id'=>$material->id_material])}}" class="btn btn-xs btn-success" data-toggle="tooltip" data-placement="top" title="Ver historial de dotación "><i class="fa fa-search"></i></a>
 												</td>
 											</tr>
 										@endforeach

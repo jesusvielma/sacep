@@ -41,10 +41,36 @@
 				language: {
 					url : '{{ URL::asset('js/plugins/dataTables/i18n/es.json') }}',
 				},
-				lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "Todos"]]
+				lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "Todos"]],
+				columns :[
+					null,
+					null,
+					null,
+					null,
+					null,
+					null,
+					{"orderable":false},
+					{"orderable":false}
+				]
             });
 			$('.i-checks').iCheck({
 			    checkboxClass: 'icheckbox_square-green',
+			});
+			$('#marcarTodos').click(function () {
+				if ($(this).hasClass('btn-outline')) {
+					$(this).removeClass('btn-outline');
+					$('input:checkbox').attr('checked',true);
+					$('.i-checks').iCheck({
+					    checkboxClass: 'icheckbox_square-green',
+					});
+				}
+				else{
+					$(this).addClass('btn-outline');
+					$('input:checkbox').attr('checked',false);
+					$('.i-checks').iCheck({
+					    checkboxClass: 'icheckbox_square-green',
+					});
+				}
 			});
 		});
 	</script>
@@ -100,7 +126,10 @@
 													<th>Evaluado</th>
 													<th>Evaluador</th>
 													<th>Coordinación/Unidad</th>
-													<th style="width:15%">Acciones</th>
+													<th style="width:10%">Acciones</th>
+													<th class="tooltip-demo">
+														<button type="button" class="btn btn-sm btn-success btn-outline dim" data-toggle="tooltip" data-placement="top" title="Marcar todos para procesar" id="marcarTodos"><i class="fa fa-check-square-o"></i></button>
+													</th>
 												</tr>
 											</thead>
 											<tbody>
@@ -143,13 +172,13 @@
 																@endif
 															@endforeach
 														</td>
-														<td>
-															<a class="btn btn-xs btn-primary" href="{{ route('imprimir_evaluacion',['id'=> $evaluacion->id_evaluacion]) }}"><i class="fa fa-eye"></i></a>
-															<a href="{{ route('procesar_una',['id'=>$evaluacion->id_evaluacion]) }}" class="btn btn-xs btn-success"><i class="fa fa-check"></i></a>
-															<div class="checkbox-inline i-checks">
-																<label > <input type="checkbox" name="id_evaluacion[]" value="{{ $evaluacion->id_evaluacion }}"> </label>
-															</div>
+														<td class="tooltip-demo form-inline">
+															<a class="btn btn-xs btn-primary" href="{{ route('imprimir_evaluacion',['id'=> $evaluacion->id_evaluacion]) }}" data-toggle="tooltip" data-placement="top" title="Ver esta evaluación"><i class="fa fa-eye"></i></a>
+															<a href="{{ route('procesar_una',['id'=>$evaluacion->id_evaluacion]) }}" class="btn btn-xs btn-success" data-toggle="tooltip" data-placement="top" title="Procesar esta evaluación"><i class="fa fa-check"></i></a>
 														</td>
+														<td><div class="checkbox-inline i-checks">
+															<label > <input type="checkbox" name="id_evaluacion[]" value="{{ $evaluacion->id_evaluacion }}"> </label>
+														</div></td>
 													</tr>
 												@endforeach
 											</tbody>

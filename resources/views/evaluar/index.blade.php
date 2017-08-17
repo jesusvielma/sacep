@@ -85,11 +85,11 @@
 								<table class="table table-striped table-bordered table-hover dataTables-example">
 									<thead>
 										<tr>
-											<th>Cedula de identidad</th>
+											<th style="width:15%">Cedula de identidad</th>
 											<th>Nombre</th>
-											<th>Fechad ingreso</th>
+											<th style="width:15%">Fechad ingreso</th>
 											<th>Cargo</th>
-											<th>Acciones</th>
+											<th style="width:10%">Acciones</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -99,9 +99,9 @@
 												<td>{{ $empleado->nombre_completo }}</td>
 												<td>{{ $empleado->fecha_ingreso->format('d-m-Y') }}</td>
 												<td>{{ $empleado->cargo ? $empleado->cargo->nombre : 'Debe darle un cargo a esta empleado' }}</td>
-												<td>
-													<a href="{{ route('evaluar',['id'=>$empleado->cedula_empleado])}}" class="btn btn-xs btn-primary"><i class="fa fa-pie-chart"></i></a>
-													<a href="{{ route('evaluaciones',['id'=>$empleado->cedula_empleado])}}" class="btn btn-xs btn-success"><i class="fa fa-list"></i></a>
+												<td class="tooltip-demo">
+													<a href="{{ route('evaluar',['id'=>$empleado->cedula_empleado])}}" class="btn btn-xs btn-primary" data-toggle="tooltip" data-placement="top" title="Evaluar a {{ $empleado->nombre_completo }}"><i class="fa fa-pie-chart"></i></a>
+													<a href="{{ route('evaluaciones',['id'=>$empleado->cedula_empleado])}}" class="btn btn-xs btn-success" data-toggle="tooltip" data-placement="top" title="Evaluaciones de {{ $empleado->nombre_completo }}"><i class="fa fa-list"></i></a>
 												</td>
 											</tr>
 										@endforeach

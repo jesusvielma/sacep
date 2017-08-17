@@ -67,7 +67,7 @@
                         <a href=""><i class="fa fa-bar-chart-o"></i> <span class="nav-label">Configuraciones</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse">
                             <li class="{{ $current_route_name == 'departamento.index' || $current_route_name == 'departamento.create' || $current_route_name == 'departamento.edit' ? 'active' : NULL }}">
-                                <a href="#">Departamentos <span class="fa arrow"></span></a>
+                                <a href="#">Coordinación/Unuidad <span class="fa arrow"></span></a>
                                 <ul class="nav nav-third-level">
                                     <li><a href="{{ route('departamento.create') }}">Nuevo</a></li>
                                     <li><a href="{{ route('departamento.index') }}">Listado</a></li>
@@ -76,13 +76,13 @@
                             <li class="{{ $current_route_name == 'cargos' || $current_route_name == 'cargo_nuevo' || $current_route_name == 'cargo.edit' ? 'active' : NULL }}">
                                 <a href="#">Cargos <span class="fa arrow"></span></a>
                                 <ul class="nav nav-third-level">
-                                    <li><a href="{{ route('cargos') }}">Listado</a></li>
+                                    <li><a href="{{ route('cargos') }}">Todos</a></li>
                                 </ul>
                             </li>
                             <li class="{{ $current_route_name == 'factores' || $current_route_name == 'factor_nuevo' || $current_route_name == 'editar_factor' ? 'active' : NULL }}">
                                 <a href="#">Evaluación <span class="fa arrow"></span></a>
                                 <ul class="nav nav-third-level">
-                                    <li><a href="{{ route('factores') }}">Todos</a></li>
+                                    <li><a href="{{ route('factores') }}">Factores</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -104,7 +104,7 @@
                         </ul>
                     </li>
                     <li class="{{ $current_route_name == 'operaciones_masivas' ? 'active' : NULL }}">
-                        <a href="{{ route('operaciones_masivas') }}"><i class="fa fa-cubes"></i> <span class="nav-label">Opereacines masivas</span></a>
+                        <a href="{{ route('operaciones_masivas') }}"><i class="fa fa-cubes"></i> <span class="nav-label">Opereaciones masivas</span></a>
                     </li>
                     {{-- <li >
                         <a href="#"><i class="fa fa-database"></i> <span class="nav-label">Base de datos</span><span class="fa arrow"></span></a>
@@ -148,7 +148,7 @@
                 <li>
                     <span class="m-r-sm text-muted welcome-message">Bienvenido a {{ env('APP_NAME') }}</span>
                 </li>
-                <li class="dropdown">
+                {{-- <li class="dropdown">
                     <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
                         <i class="fa fa-envelope"></i>  <span class="label label-warning">16</span>
                     </a>
@@ -242,7 +242,7 @@
                             </div>
                         </li>
                     </ul>
-                </li>
+                </li> --}}
 
 
                 <li>
@@ -258,10 +258,10 @@
 
         <div class="footer fixed">
             <div class="pull-right">
-                10GB of <strong>250GB</strong> Free.
+                Fecha <strong id="fechaPie"> </strong> Hora: <strong id="horaPie"> </strong>.
             </div>
             <div>
-                <strong>Copyright</strong> Example Company &copy; 2014-2017
+                <strong>Copyright</strong> Mukumbarí Sistema Teleférico de Mérida &copy; 2017
             </div>
         </div>
 
@@ -282,6 +282,19 @@
             height: '100%',
             railOpacity: 0.9
         });
+    </script>
+    <script src="{{URL::asset('js/plugins/fullcalendar/moment.min.js')}}"></script>
+    <script src="{{URL::asset('js/plugins/fullcalendar/locale/es.js')}}"></script>
+    <script>
+        moment.locale('es');
+        var fechaPie = moment().format('dd DD [de] MMM [de] YYYY');
+        $('#fechaPie').text(fechaPie);
+        clock();
+        function clock() {
+            var horaPie = moment().format('h:mm:ss a');
+            $('#horaPie').text(horaPie);
+            setTimeout("clock()", 1000);
+        }
     </script>
 	<!-- JS extras -->
 	@yield('js')

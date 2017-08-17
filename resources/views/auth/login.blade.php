@@ -12,7 +12,7 @@
                 <h2 class="font-bold">Bienvenido a {{ env('APP_NAME') }}</h2>
 
                 <p>
-                    Bienvenido al Sistema Automatizado para el Control y Evaluación del Personal de Mukumbarí Sitema Teléferico de Mérida.
+                    Bienvenido al Sistema Automatizado para el Control y Evaluación del Personal de Mukumbarí Sistema Teléferico de Mérida.
                 </p>
 
             </div>

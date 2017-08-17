@@ -33,6 +33,9 @@ class UsuarioController extends Controller
             $query->where('estado','activo');
         }])->get();
 
+        $data['gerente'] = Usuario::where('nivel','gerente')->where('estado',1)->first();
+        $data['th'] = Usuario::where('nivel','th')->where('estado',1)->first();
+
         //dd($data['empleados'][0]);
         return view('usuario.crear',$data);
     }
