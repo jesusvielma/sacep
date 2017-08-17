@@ -29,7 +29,7 @@ class LoginController extends Controller
             'clave'  => 'required',
         ]);
 
-        if (!Auth::guard('web')->attempt(['correo'=>$request->get('correo'),'password'=>$request->get('clave')])) {
+        if (!Auth::attempt(['correo'=>$request->get('correo'),'password'=>$request->get('clave'),'estado'=>'1'])) {
             return redirect()->route('mostrar_login')->withInput($request->only(['correo','clave']))
             ->withErrors('Las credenciasles no coinciden con las registradas en el sistema');
         }
