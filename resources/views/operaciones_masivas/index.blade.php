@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @section('title')
-	Listado de usuarios
+	Carga de datos
 @endsection
 
 @section('css')
@@ -66,18 +66,15 @@
 @section('content')
 	<div class="row wrapper border-bottom white-bg page-heading">
 		<div class="col-lg-9">
-			<h2>Usuarios</h2>
+			<h2>Carga de datos</h2>
 			<ol class="breadcrumb">
 				<li><a href="{{ route('pagina_inicio') }}"> Inicio </a></li>
 				<li class="active">
-					<strong>Usuarios</strong>
+					<strong>Carga de datos</strong>
 				</li>
 			</ol>
 		</div>
 		<div class="col-lg-3">
-			<div class="title-action">
-				<a href="{{ route('crear_usuario') }}" class="ladda-button ladda-button-demo btn btn-primary" data-style="zoom-in"> Nuevo usuario</a>
-			</div>
 		</div>
 	</div>
 
@@ -158,6 +155,8 @@
 								</span>
 								<a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Quitar</a>
 							</div>
+							<span class="help-block m-b-none font-bold">Solo se aceptan archivos con la extensión .csv</span>
+							<br>
 							<div class="form-group">
 								<label for="">Tipo de carga</label>
 								<br>

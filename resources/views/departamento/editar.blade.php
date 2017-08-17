@@ -19,6 +19,8 @@
 
 	<!-- Jquery Validate -->
     <script src="{{ URL::asset('js/plugins/validate/jquery.validate.min.js') }}"></script>
+	<script src="{{ URL::asset('js/plugins/validate/additional-methods.js') }}"></script>
+	<script src="{{ URL::asset('js/plugins/validate/messages_es.js') }}"></script>
 	<!-- Select2 -->
     <script src="{{ URL::asset('js/plugins/select2/select2.full.min.js') }}"></script>
 	<script src="{{ URL::asset('js/plugins/iCheck/icheck.min.js')}}"></script>
@@ -29,7 +31,8 @@
                  rules: {
                      nombre: {
                          required: true,
-                         maxlength: 60
+                         maxlength: 60,
+						 letraspuntacion: true
                      },
                      responsable: {
                          required: true,
