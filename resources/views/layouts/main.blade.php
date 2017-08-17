@@ -79,12 +79,15 @@
                                     <li><a href="{{ route('cargos') }}">Todos</a></li>
                                 </ul>
                             </li>
-                            <li class="{{ $current_route_name == 'factores' || $current_route_name == 'factor_nuevo' || $current_route_name == 'editar_factor' ? 'active' : NULL }}">
+                            <li class="{{ $current_route_name == 'factores' || $current_route_name == 'articulo_nuevo' || $current_route_name == 'editar_articulo' ? 'active' : NULL }}">
                                 <a href="#">Evaluación <span class="fa arrow"></span></a>
                                 <ul class="nav nav-third-level">
                                     <li><a href="{{ route('factores') }}">Factores</a></li>
                                 </ul>
                             </li>
+                            {{-- <li class="{{ $current_route_name == 'sanciones' || $current_route_name == 'factor_nuevo' || $current_route_name == 'editar_factor' ? 'active' : NULL }}">
+                                <a href="{{ route('articulos') }}"> Sanciones</a>
+                            </li> --}}
                         </ul>
                     </li>
                     <li class="{{ $current_route_name == 'empleados' || $current_route_name == 'empleado_nuevo'? 'active' : NULL }}">
@@ -104,7 +107,7 @@
                         </ul>
                     </li>
                     <li class="{{ $current_route_name == 'operaciones_masivas' ? 'active' : NULL }}">
-                        <a href="{{ route('operaciones_masivas') }}"><i class="fa fa-cubes"></i> <span class="nav-label">Opereaciones masivas</span></a>
+                        <a href="{{ route('operaciones_masivas') }}"><i class="fa fa-cubes"></i> <span class="nav-label">Carga de datos</span></a>
                     </li>
                     {{-- <li >
                         <a href="#"><i class="fa fa-database"></i> <span class="nav-label">Base de datos</span><span class="fa arrow"></span></a>

@@ -154,7 +154,7 @@
 								<span class="input-group-addon btn btn-default btn-file">
 									<span class="fileinput-new"> <i class="fa fa-search"></i> Seleccionar un archivo</span>
 									<span class="fileinput-exists"><i class="fa fa-repeat"></i> Cambiar</span>
-									<input type="file" name="archivo" accept="text/csv, .csv"/>
+									<input type="file" name="archivo" accept="text/csv, .csv, csv"/>
 								</span>
 								<a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Quitar</a>
 							</div>
