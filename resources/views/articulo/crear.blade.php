@@ -29,30 +29,23 @@
 
 	<!-- SUMMERNOTE -->
 	<script src="{{ asset('js/plugins/summernote/summernote.min.js')}}"></script>
+	<script src="{{ asset('js/plugins/summernote/summernote-es-ES.js')}}"></script>
 
 	<script>
          $(document).ready(function(){
 			$("#form").validate({
 				rules: {
-					nombre_completo: {
+					identificador: {
 						required: true,
 					},
-					cedula_empleado: {
+					contenido: {
 						required: true,
-						number: true,
 					},
-					fecha_nacimiento: {
+					ley: {
 						required: true,
-						date: true,
+						maxlength: 255,
 					},
-					fecha_ingreso: {
-						required: true,
-						date: true,
-					},
-					id_cargo:{
-						required: true
-					},
-					id_departamento:{
+					tipo:{
 						required: true,
 					}
 				}
@@ -67,6 +60,7 @@
 				],
 				placeholder: "Escriba aqui toda la información sobre el articulo/literal/párrafo que esta ingresando. Recuerde este información será mostrada en el acta correspondiente",
 				height: 200,
+				lang: 'es-ES'
 			});
 			 $( 'button[type=submit]' ).ladda( 'bind', { timeout: 50000 } );
         });
@@ -77,12 +71,12 @@
 @section('content')
 	<div class="row wrapper border-bottom white-bg page-heading">
 		<div class="col-lg-9">
-			<h2>Empleados</h2>
+			<h2>Configuraciones</h2>
 			<ol class="breadcrumb">
 				<li><a href="{{ route('pagina_inicio') }}"> Inicio </a></li>
-				<li><a href="{{ route('empleados') }}"> Empleados </a></li>
+				<li><a href="{{ route('articulos') }}"> Configuración / Sanciones  </a></li>
 				<li class="active">
-					<strong>Crear</strong>
+					<strong>Crear articulo / literal / párrafo</strong>
 				</li>
 			</ol>
 		</div>

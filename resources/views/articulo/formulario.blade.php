@@ -8,34 +8,18 @@
 		@endif
 	</div>
 </div>
-<div class="form-group {{ $errors->has('nombre_completo') ? 'has-error' : ''}}">
+<div class="form-group {{ $errors->has('contenido') ? 'has-error' : ''}}">
 	<label for="nombre_completo">Texto citado</label>
 	<textarea name="contenido" rows="8" cols="80" class="form-control" id="editor">{{ isset($articulo->contenido) ? $articulo->contenido : NULL }}</textarea>
 	@if ($errors->has('contenido'))
-		<span class="help-block m-b-none">{{ $errors->first('contenido') }}</span>
+		<span class="help-block m-b-none"><strong>{{ $errors->first('contenido') }}</strong></span>
 	@endif
 </div>
 <div class="form-group {{ $errors->has('ley') ? 'has-error' : ''}}">
 	<label for="nombre_completo">Nombre dela ley a la que pertenece</label>
-	<input type="text" name="ley" class="form-control" value="{{ $articulo->ley }}">
+	<input type="text" name="ley" class="form-control" value="{{ old('ley',isset($articulo->ley) ? $articulo->ley : NULL)}}">
 	@if ($errors->has('contenido'))
 		<span class="help-block m-b-none">{{ $errors->first('ley') }}</span>
-	@endif
-</div>
-<div class="form-group {{ $errors->has('gravedad') ? 'has-error' : ''}}">
-	<label for="nombre_completo">Gravedad que representa el articulo</label>
-	<br>
-	<div class="radio-inline i-checks">
-		<label > <input type="radio" value="amonestacion" name="gravedad" {{ isset($articulo->gravedad) && $articulo->gravedad == 'amonestacion' ? 'checked' : NULL }} required> <i></i> Amonestación </label>
-	</div>
-	<div class="radio-inline i-checks">
-		<label > <input type="radio" value="falta" name="gravedad" {{ isset($articulo->gravedad) && $articulo->gravedad == 'falta'  ? 'checked' : NULL}} required> <i></i> Falta </label>
-	</div>
-	<div class="radio-inline i-checks">
-		<label > <input type="radio" value="inasistencia" name="gravedad" {{ isset($articulo->gravedad) && $articulo->gravedad == 'inasistencia'? 'checked' : NULL  }} required> <i></i> Inasistencia </label>
-	</div>
-	@if ($errors->has('contenido'))
-		<span class="help-block m-b-none">{{ $errors->first('gravedad') }}</span>
 	@endif
 </div>
 <div class="form-group {{ $errors->has('tipo') ? 'has-error' : ''}}">

@@ -91,7 +91,6 @@
 											<th>Número/Letra</th>
 											<th>Contenido</th>
 											<th>Ley</th>
-											<th>Gravedad</th>
 											<th>Tipo</th>
 											<th>Acciones</th>
 										</tr>
@@ -102,10 +101,9 @@
 												<td>{{ $articulo->identificador }}</td>
 												<td>{!! $articulo->contenido !!}</td>
 												<td>{{ $articulo->ley }}</td>
-												<td>{{ $articulo->gravedad }}</td>
 												<td>{{ $articulo->tipo }}</td>
 												<td class="tooltip-demo">
-													<a href="{{ route('editar_articulo',['id'=>$articulo->id])}}" class="btn btn-xs btn-primary" data-toggle="tooltip" data-placement="top" title="Editar a {{ $articulo->tipo.' '.$articulo->identificador }}"><i class="fa fa-pencil"></i></a>
+													<a href="{{ route('editar_articulo',['id'=>$articulo->id_articulo])}}" class="btn btn-xs btn-primary" data-toggle="tooltip" data-placement="top" title="Editar a {{ $articulo->tipo.' '.$articulo->identificador }}"><i class="fa fa-pencil"></i></a>
 												</td>
 											</tr>
 										@endforeach

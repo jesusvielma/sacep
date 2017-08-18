@@ -63,7 +63,7 @@
                     <a href="#"><i class="fa fa-diamond"></i> <span class="nav-label">Layouts</span></a>
                 </li> --}}
                 @can('config')
-                    <li class="{{ $current_route_name == 'departamento.index' || $current_route_name == 'departamento.create' || $current_route_name == 'departamento.edit' || $current_route_name == 'cargo.edit' || $current_route_name == 'cargos' || $current_route_name == 'cargo_nuevo' || $current_route_name == 'factores' ? 'active' : NULL }}">
+                    <li class="{{ $current_route_name == 'departamento.index' || $current_route_name == 'departamento.create' || $current_route_name == 'departamento.edit' || $current_route_name == 'cargo.edit' || $current_route_name == 'cargos' || $current_route_name == 'cargo_nuevo' || $current_route_name == 'factores' || $current_route_name == 'articulos' || $current_route_name == 'articulo_nuevo' || $current_route_name == 'editar_articulo' ? 'active' : NULL }}">
                         <a href=""><i class="fa fa-bar-chart-o"></i> <span class="nav-label">Configuraciones</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse">
                             <li class="{{ $current_route_name == 'departamento.index' || $current_route_name == 'departamento.create' || $current_route_name == 'departamento.edit' ? 'active' : NULL }}">
@@ -79,13 +79,13 @@
                                     <li><a href="{{ route('cargos') }}">Todos</a></li>
                                 </ul>
                             </li>
-                            <li class="{{ $current_route_name == 'factores' || $current_route_name == 'articulo_nuevo' || $current_route_name == 'editar_articulo' ? 'active' : NULL }}">
+                            <li class="{{ $current_route_name == 'factores' || $current_route_name == 'factor_nuevo' || $current_route_name == 'editar_factor' ? 'active' : NULL }}">
                                 <a href="#">Evaluación <span class="fa arrow"></span></a>
                                 <ul class="nav nav-third-level">
                                     <li><a href="{{ route('factores') }}">Factores</a></li>
                                 </ul>
                             </li>
-                            <li class="{{ $current_route_name == 'sanciones' || $current_route_name == 'factor_nuevo' || $current_route_name == 'editar_factor' ? 'active' : NULL }}">
+                            <li class="{{ $current_route_name == 'articulos' || $current_route_name == 'articulo_nuevo' || $current_route_name == 'editar_articulo' ? 'active' : NULL }}">
                                 <a href="{{ route('articulos') }}"> Sanciones</a>
                             </li>
                         </ul>

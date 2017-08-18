@@ -8,7 +8,7 @@ class Articulo extends Model
 {
 	protected $table = 'articulo';
 
-	protected $primaryKey = 'id';
+	protected $primaryKey = 'id_articulo';
 
 	public $timestamps = false;
 

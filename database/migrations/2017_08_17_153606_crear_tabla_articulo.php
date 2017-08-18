@@ -14,12 +14,11 @@ class CrearTablaArticulo extends Migration
     public function up()
     {
         Schema::create('articulo', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id_articulo');
             $table->string('identificador',4);
             $table->text('contenido');
             $table->string('ley');
-            $table->enum('gravedad',['amonestacion','inasistencia','falta']);
-            $table->enum('tipo',['articulo','literal','parreafo']);
+            $table->enum('tipo',['articulo','literal','parrafo']);
         });
     }
 
@@ -30,6 +29,6 @@ class CrearTablaArticulo extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('articulos');
+        Schema::dropIfExists('articulo');
     }
 }

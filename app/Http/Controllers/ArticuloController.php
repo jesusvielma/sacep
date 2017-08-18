@@ -41,7 +41,6 @@ class ArticuloController extends Controller
             'identificador' => 'required|string',
             'contenido'     => 'required',
             'ley'           => 'required|alpha_num|max:255',
-            'gravedad'      => 'required',
             'tipo'          => 'required'
         ]);
 
@@ -87,14 +86,12 @@ class ArticuloController extends Controller
             'identificador' => 'required|string',
             'contenido'     => 'required',
             'ley'           => 'required|alpha_num|max:255',
-            'gravedad'      => 'required',
             'tipo'          => 'required'
         ]);
 
         $articulo->identificador = $request->get('identificador');
         $articulo->contenido = $request->get('contenido');
         $articulo->ley = $request->get('ley');
-        $articulo->gravedad = $request->get('gravedad');
         $articulo->tipo = $request->get('tipo');
 
         $articulo->save();
