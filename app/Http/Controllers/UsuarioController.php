@@ -121,7 +121,8 @@ class UsuarioController extends Controller
             'nombre' => 'required|string',
             'correo' => 'required|email',
             'nivel'  => 'required',
-            'clave'  => 'min:7|nullable'
+            'clave'  => 'min:7|nullable',
+            'avatar' => 'nullable|mimes:jpeg,png,jpg|dimensions:max_width=128,max_height=128'
         ]);
 
         $usuario->nombre = $request->get('nombre');
@@ -131,6 +132,11 @@ class UsuarioController extends Controller
             $usuario->password = bcrypt($request->get('clave'));
         }
         $usuario->estado = $request->get('estado');
+        $file = $request->file('avatar');
+        $avatar_name = Auth::id().'-'.date('Y-m-d').'.'.$file->getClientOriginalExtension();
+        $file->storeAs('public/avatar',$avatar_name);
+        //$save = $file->storeAs('img/avatar');
+        $usuario->avatar = $avatar_name;
         $usuario->save();
 
 

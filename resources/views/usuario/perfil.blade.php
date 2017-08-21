@@ -6,6 +6,7 @@
 @section('css')
 	<!-- Ladda style -->
     <link href="{{ URL::asset('css/plugins/ladda/ladda-themeless.min.css') }}" rel="stylesheet">
+	<link href="{{ asset('css/plugins/jasny/jasny-bootstrap.min.css')}}" rel="stylesheet">
 	@if (session('notif'))
 		<!-- Toastr style -->
 	    <link href="{{ URL::asset('css/plugins/toastr/toastr.min.css') }}" rel="stylesheet">
@@ -17,6 +18,8 @@
     <script src="{{ URL::asset('js/plugins/ladda/spin.min.js')}}"></script>
     <script src="{{ URL::asset('js/plugins/ladda/ladda.min.js')}}"></script>
     <script src="{{ URL::asset('js/plugins/ladda/ladda.jquery.min.js')}}"></script>
+	<!-- Jasny -->
+    <script src="{{ asset('js/plugins/jasny/jasny-bootstrap.min.js')}}"></script>
 	<script>
 		$(document).ready(function () {
 			var l = $('.ladda-button-demo').ladda();
@@ -67,8 +70,25 @@
 						<h5>Mi Perfil</h5>
 					</div>
 					<div>
-						<div class="ibox-content no-padding border-left-right">
-							<img alt="{{ $usuario->nombre }}" class="img-responsive center-block" src="img/profile.jpg">
+						<form action="{{ route('update_usuario',['id'=>$usuario->id_usuario]) }}" method="post" id="form" enctype="multipart/form-data">
+						<div class="ibox-content no-padding border-left-right text-center">
+							@if ($errors->has('avatar'))
+								<div class="alert alert-warning">
+									{{ $errors->first('avatar')}}
+								</div>
+							@endif
+							<div class="fileinput fileinput-new" data-provides="fileinput">
+								<div class="fileinput-new thumbnail" style="width: 128px; height: 128px;">
+							    	<img alt="{{ $usuario->nombre }}" class="img-responsive center-block" src="{{ isset($usuario->avatar) ? asset('storage/avatar/'.$usuario->avatar) : asset('img/profile.jpg') }}">
+							 	</div>
+							  	<div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+							  	<div>
+							    	<span class="btn btn-default btn-file"><span class="fileinput-new">Seleciona una imagen</span><span class="fileinput-exists">Cambiar</span><input type="file" name="avatar" value="{{ old('avatar',(isset($usuario->avatar) ? $usuario->avatar :  NULL)) }}" accept=".png, .jpg, .jpeg"></span>
+							    	<a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Quitar</a>
+							  </div>
+							  <span class="help-block m-b-none font-bold">Su imagen debe tener 128px X 128px</span>
+							</div>
+
 						</div>
 							<div class="ibox-content profile-content">
 								<h4>Nombre del perfil: <strong>{{ $usuario->nombre }}</strong></h4>
@@ -101,7 +121,6 @@
 							<h5>Cambiar perfil</h5>
 						</div>
 						<div class="ibox-content">
-							<form action="{{ route('update_usuario',['id'=>$usuario->id_usuario]) }}" method="post" id="form">
 								{{ method_field('PUT') }}
 								{{ csrf_field() }}
 								<div class="form-group {{ $errors->has('trabajador') ? 'has-error' : ''}}">

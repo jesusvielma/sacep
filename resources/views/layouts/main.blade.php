@@ -31,7 +31,7 @@
             <ul class="nav metismenu" id="side-menu">
                 <li class="nav-header">
                     <div class="dropdown profile-element"> <span>
-                            <img alt="image" class="img-circle" src="{{ URL::asset('img/profile_small.jpg')}}" />
+                            <img alt="image" class="img-circle img-md" src="{{ isset($usuario->avatar) ? asset('storage/avatar/'.$usuario->avatar) : asset('img/profile.jpg') }}" />
                              </span>
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="clear">
