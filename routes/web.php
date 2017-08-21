@@ -61,6 +61,7 @@ Route::group(['middleware'=>'auth'], function (){
             'store' => 'guardar_factor',
             'edit' => 'editar_factor',
             'update' => 'update_factor',
+            'destroy' => 'eliminar_factor'
         ]
     ]);
 
@@ -168,6 +169,48 @@ Route::group(['middleware'=>'auth'], function (){
         ],
         'parameters' => [
             'sanciones' => 'articulo'
+        ]
+    ]);
+
+    Route::get('acta/{empleado}/nueva',[
+        'uses'  => 'ActaController@crear',
+        'as'    => 'acta_nueva'
+    ]);
+
+    Route::get('acta/{empleado}/ver',[
+        'uses'  => 'ActaController@ver',
+        'as'    => 'ver_actas'
+    ]);
+
+    Route::get('imprimir_acta/{acta}',[
+        'uses'  => 'ActaController@imprimir_acta',
+        'as'    => 'imprimir_acta'
+    ]);
+
+    Route::get('procesar_actas',[
+        'uses' => 'ActaController@procesar_index',
+        'as'   => 'procesar_actas'
+    ]);
+
+    Route::get('procesar_actas/{acta}',[
+        'uses' => 'ActaController@procesar_una',
+        'as'   => 'procesar_acta'
+    ]);
+
+    Route::post('procesar_actas',[
+        'uses' => 'ActaController@procesar_varias',
+        'as'   => 'procesar_varias_actas'
+    ]);
+
+    Route::resource('acta', 'ActaController',[
+        'names' => [
+            'index' => 'actas',
+            'store' => 'guardar_acta',
+            'edit'  => 'editar_acta',
+            'update'=> 'update_acta',
+        ],
+        'parameters' => [
+            'acta' => 'acta'
         ]
     ]);
 });

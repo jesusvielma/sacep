@@ -13,4 +13,9 @@ class Articulo extends Model
 	public $timestamps = false;
 
 	protected $fillable = ['identificador','contenido','ley','gravedad','tipo'];
+
+	public function art_padre()
+	{
+		return $this->belongsTo('sacep\Articulo','padre','id_articulo');
+	}
 }

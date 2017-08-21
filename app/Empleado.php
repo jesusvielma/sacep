@@ -88,4 +88,9 @@ class Empleado extends Model
 		return $this->belongsToMany('sacep\Material','material_asignado_empleado','cedula_empleado','id_material')
 		->withPivot(['fecha','tipo']);
 	}
+
+	public function actas()
+	{
+		return $this->belongsToMany('sacep\Acta','empleado_sancion','cedula_empleado','id_acta')->withPivot('tipo');
+	}
 }
