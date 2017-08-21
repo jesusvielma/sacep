@@ -1,6 +1,7 @@
 <?php
 
 namespace sacep\Http\Controllers;
+use sacep;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
@@ -45,7 +46,8 @@ class EvaluacionController extends Controller
      */
     public function evaluar(Empleado $empleado)
     {
-        $this->authorize('evaluar',$empleado);
+        $eval = new Evaluacion;
+        $this->authorize('evaluar',[$eval,$empleado]);
         $rol_evaluador = Auth::user()->nivel == 'gerente';
         if ($rol_evaluador === TRUE) {
             $data['factores'] = FactorDeEvaluacion::where('estado',1)->with(['items'=> function($query){

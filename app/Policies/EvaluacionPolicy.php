@@ -25,10 +25,11 @@ class EvaluacionPolicy
     * Determina si el usuario actual puede evaluar a empleado solicitado
     * @param \sacep\Usuario $usuario
     * @param \sacep\Empleado $empleado
+    * @param \sacep\Evaluacion $evaluacion
     * @return bool
     */
 
-    public function evaluar(Usuario $usuario,Empleado $empleado)
+    public function evaluar(Usuario $usuario,Evaluacion $evaluacion,Empleado $empleado)
     {
         return ($usuario->empleado->id_departamento === $empleado->id_departamento ) || ($usuario->nivel == 'gerente' && $empleado->usuario->nivel == 'coordinador' || $empleado->usuario->nivel == 'th');
     }

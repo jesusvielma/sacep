@@ -14,19 +14,7 @@ class AgregarEntregaMaterialDepartamento extends Migration
     public function up()
     {
         Schema::table('departamento', function (Blueprint $table) {
-            $table->boolean('entrega_material');
-        });
-    }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::table('departamento', function (Blueprint $table) {
-            $table->dropColumn('entrega_material');
+            $table->boolean('entrega_material')->nullable();
         });
     }
 }

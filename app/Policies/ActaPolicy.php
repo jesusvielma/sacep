@@ -31,7 +31,7 @@ class ActaPolicy
         }
     }
 
-    public function levantar(Usuario $usuario, Empleado $empleado)
+    public function levantar(Usuario $usuario,Acta $acta, Empleado $empleado)
     {
         if ($usuario->nivel == 'gerente') {
             return true;

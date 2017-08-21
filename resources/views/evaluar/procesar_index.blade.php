@@ -50,8 +50,8 @@
 					null,
 					null,
 					{"orderable":false},
-					{"orderable":false}
-				]
+					{"orderable":false},
+				],
             });
 			$('.i-checks').iCheck({
 			    checkboxClass: 'icheckbox_square-green',
@@ -120,12 +120,12 @@
 										<table class="table table-striped table-bordered table-hover dataTables-example">
 											<thead>
 												<tr>
+													<th>Coordinación/Unidad Generadora</th>
 													<th>Fecha de emision</th>
 													<th>Periodo de evaluación </th>
 													<th style="width:10%">Puntaje Final</th>
 													<th>Evaluado</th>
 													<th>Evaluador</th>
-													<th>Coordinación/Unidad</th>
 													<th style="width:10%">Acciones</th>
 													<th class="tooltip-demo">
 														<button type="button" class="btn btn-sm btn-success btn-outline dim" data-toggle="tooltip" data-placement="top" title="Marcar todos para procesar" id="marcarTodos"><i class="fa fa-check-square-o"></i></button>
@@ -139,6 +139,13 @@
 													$cant_items = $evaluacion->item_evaluado->count();
 													@endphp
 													<tr>
+														<td>
+															@foreach ($evaluacion->empleados as $empleado)
+																@if ($empleado->pivot->tipo == 'evaluador')
+																	{{ $empleado->departamento->nombre }}
+																@endif
+															@endforeach
+														</td>
 														<td>{{ $evaluacion->fecha_evaluacion->format('d-m-Y h:i:s a') }}</td>
 														<td>
 															{{ $evaluacion->periodo_desde->format('d-m-Y') }} | {{ $evaluacion->periodo_hasta->format('d-m-Y') }}
@@ -165,15 +172,8 @@
 																@endif
 															@endforeach
 														</td>
-														<td>
-															@foreach ($evaluacion->empleados as $empleado)
-																@if ($empleado->pivot->tipo == 'evaluador')
-																	{{ $empleado->departamento->nombre }}
-																@endif
-															@endforeach
-														</td>
 														<td class="tooltip-demo form-inline">
-															<a class="btn btn-xs btn-primary" href="{{ route('imprimir_evaluacion',['id'=> $evaluacion->id_evaluacion]) }}" data-toggle="tooltip" data-placement="top" title="Ver esta evaluación"><i class="fa fa-eye"></i></a>
+															<a class="btn btn-xs btn-primary" href="{{ route('imprimir_evaluacion',['id'=> $evaluacion->id_evaluacion]) }}" data-toggle="tooltip" data-placement="top" title="Ver esta evaluación" target="_blank"><i class="fa fa-eye"></i></a>
 															<a href="{{ route('procesar_una',['id'=>$evaluacion->id_evaluacion]) }}" class="btn btn-xs btn-success" data-toggle="tooltip" data-placement="top" title="Procesar esta evaluación"><i class="fa fa-check"></i></a>
 														</td>
 														<td><div class="checkbox-inline i-checks">

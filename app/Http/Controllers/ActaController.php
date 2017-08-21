@@ -36,7 +36,8 @@ class ActaController extends Controller
      */
     public function crear(Empleado $empleado)
     {
-        $this->authorize('levantar',$empleado);
+        $acta = new Acta;
+        $this->authorize('levantar',[$acta,$empleado]);
         $data['empleado'] = $empleado;
         $data['articulos'] = Articulo::all();
         $data['testigos'] = Empleado::where('estado','activo')->get();

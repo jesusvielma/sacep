@@ -30,6 +30,6 @@ class CrearTablaActa extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('actas');
+        Schema::dropIfExists('acta');
     }
 }

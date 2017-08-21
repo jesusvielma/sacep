@@ -18,17 +18,4 @@ class AgregarPadreAArticulo extends Migration
             $table->foreign('padre')->references('id_articulo')->on('articulo');
         });
     }
-
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
-        Schema::table('articulo', function (Blueprint $table) {
-            $table->dropForeign('padre');
-            $table->dropColumn('padre');
-        });
-    }
 }
