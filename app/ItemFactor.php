@@ -27,5 +27,14 @@ class ItemFactor extends Model
 		return $this->belongsTo('sacep\FactorDeEvaluacion','id_factor','id_factor');
 	}
 
+	/**
+     * Los items que han sido usados en evaluaciones
+     */
+    public function item_usuados()
+    {
+        return $this->belongsToMany('sacep\Evaluacion','item_evaluado','id_item','id_evaluacion')
+        ->withPivot('puntaje');
+    }
+
 
 }

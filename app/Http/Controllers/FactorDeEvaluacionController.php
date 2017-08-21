@@ -112,4 +112,15 @@ class FactorDeEvaluacionController extends Controller
         return redirect()->route('factores')->with('notif', $msg);
     }
 
+    /**
+     * [destroy description]
+     * @param  FactorDeEvaluacion $factor
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(FactorDeEvaluacion $factor)
+    {
+        $factor->delete();
+        return redirect()->route('factores');
+    }
+
 }

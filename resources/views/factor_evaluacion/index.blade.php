@@ -63,7 +63,12 @@
 			});
 			$('.scroll_content').slimscroll({
 	            height: '300px'
-	        })
+	        });
+
+			$('.eliminar').click(function () {
+				var id = $(this).attr('id');
+				$('#factor_'+id).submit();
+			});
 		});
 	</script>
 	@if (session('notif') || $errors->has('nombre') || $errors->has('porcentaje') )
@@ -127,6 +132,33 @@
 		                            </a>
 									<a href="#" class="update" data-id="{{ $factor->id_factor }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Editar este factor"><i class="fa fa-pencil"></i></a>
 									<a href="{{ route('crear_item',['factor'=>$factor->id_factor]) }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Agrega items a este factor"><i class="fa fa-plus-square"></i></a>
+									@if ($factor->items->count())
+										@php
+											$usado = 0;
+										@endphp
+										@foreach ($factor->items as $item)
+											@if (!$item->item_usuados->count() && $usado == 0)
+												<a href="#" class="eliminar" id="{{ $factor->id_factor }}" data-toggle="tooltip" data-placement="top" title="Borrar este factor con sus items"><i class="fa fa-remove"></i></a>
+												<form action="{{ route('eliminar_factor',['id'=>$factor->id_factor]) }}" method="post" class="inline-form" id="factor_{{ $factor->id_factor }}">
+													{{ csrf_field() }}
+													{{ method_field('DELETE') }}
+												</form>
+												@php
+													break;
+												@endphp
+											@else
+												@php
+													$usado = 1;
+												@endphp
+											@endif
+										@endforeach
+									@else
+										<a href="#" class="eliminar" id="{{ $factor->id_factor }}" data-toggle="tooltip" data-placement="top" title="Borrar este factor con sus items"><i class="fa fa-remove"></i></a>
+										<form action="{{ route('eliminar_factor',['id'=>$factor->id_factor]) }}" method="post" class="inline-form" id="factor_{{ $factor->id_factor }}">
+											{{ csrf_field() }}
+											{{ method_field('DELETE') }}
+										</form>
+									@endif
 								</div>
 							</div>
 							<div class="ibox-content">
