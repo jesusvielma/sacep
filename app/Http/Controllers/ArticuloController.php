@@ -70,6 +70,7 @@ class ArticuloController extends Controller
     public function edit(Articulo $articulo)
     {
         $data['articulo'] = $articulo;
+        $data['articulos'] = Articulo::all();
 
         return view('articulo.editar',$data);
     }

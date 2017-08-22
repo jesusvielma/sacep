@@ -6,6 +6,7 @@
 @section('css')
 	<!-- Ladda style -->
     <link href="{{ URL::asset('css/plugins/ladda/ladda-themeless.min.css') }}" rel="stylesheet">
+	<link href="{{ URL::asset('css/plugins/select2/select2.min.css') }}" rel="stylesheet">
 	<link href="{{ URL::asset('css/plugins/iCheck/custom.css')}}" rel="stylesheet">
 	<link href="{{ URL::asset('css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css')}}" rel="stylesheet">
 	<link href="{{ asset('css/plugins/summernote/summernote.css')}}" rel="stylesheet">
@@ -51,6 +52,37 @@
  			});
 			$('.i-checks').iCheck({
 				radioClass: 'iradio_square-green',
+			});
+			$('#literal').on('ifChecked', function(){
+				$(".padre").prop("disabled", false);
+				$('.articulo').prop('disabled',false);
+				$('.literal').prop('disabled',true);
+				$(".padre").select2({
+					placeholder: "Selecciona",
+					allowClear: true
+				});
+			});
+			$('#parrafo').on('ifChecked', function(){
+				$(".padre").prop("disabled", false);
+				$('.literal').prop('disabled',false);
+				$('.articulo').prop('disabled',true);
+				$(".padre").select2({
+					placeholder: "Selecciona",
+					allowClear: true
+				});
+			});
+			$('#articulo').on('ifChecked', function(){
+				$(".padre").prop("disabled", true);
+				$('option').prop('disabled',true);
+				$(".padre").select2({
+					placeholder: "Selecciona",
+					allowClear: true
+				});
+			});
+
+			$(".padre").select2({
+				placeholder: "Selecciona",
+				allowClear: true
 			});
 			$('#editor').summernote({
 				toolbar: [
