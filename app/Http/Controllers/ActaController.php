@@ -128,7 +128,7 @@ class ActaController extends Controller
         }
         $pdf = App::make('dompdf.wrapper');
 		$pdf->loadView('acta.acta',$data);
-		return $pdf->stream('acta_imprimir');
+		return $pdf->stream('SACEP-Acta-de-'.$acta->tipo.'-de-'.str_replace(' ','-',$data['sancionado']->nombre_completo).'.pdf');
 
     }
 

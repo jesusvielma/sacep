@@ -30,7 +30,7 @@
 			 position: fixed;
 			 /*left: 0.5cm;
 			 right: 1cm;*/
-             top: -10px;
+             top: -30px;
 		}
         #footer {
             bottom: : 0px;
@@ -88,14 +88,15 @@
     <div id="header">
         <div class="row">
             <div class="col-xs-12">
-                <img src="{{ asset('img/cabecera_acta.png') }}" alt="" class="img-responsive">
+                {{-- <img src="{{ asset('img/membrete-superior.png') }}" alt="" class="img-responsive" style="height:80px" > --}}
+                <img src="{{ asset('img/membrete-superior.png') }}" alt="" class="img-responsive">
             </div>
         </div>
     </div>
     <div id="footer">
         <div class="row">
             <div class="col-xs-12">
-                <img src="{{ asset('img/pie_acta.jpg') }}" alt="" class="img-responsive">
+                <img src="{{ asset('img/membrete-inferior.png') }}" alt="" class="img-responsive">
             </div>
         </div>
     </div>
