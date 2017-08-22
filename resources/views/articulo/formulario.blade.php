@@ -26,18 +26,31 @@
 	<label for="nombre_completo">Este registro es un</label>
 	<br>
 	<div class="radio-inline i-checks">
-		<label > <input type="radio" value="articulo" name="tipo" {{ isset($articulo->tipo) && $articulo->tipo == 'articulo' ? 'checked' : NULL}} required> <i></i> Articulo </label>
+		<label > <input type="radio" value="articulo" id="articulo" name="tipo" {{ old('tipo',(isset($articulo->tipo) && $articulo->tipo == 'articulo' ? 'checked' : NULL)) }} required> <i></i> Articulo </label>
 	</div>
 	<div class="radio-inline i-checks">
-		<label > <input type="radio" value="literal" name="tipo" {{ isset($articulo->tipo) && $articulo->tipo == 'literal' ? 'checked' : NULL}} required> <i></i> Literal </label>
+		<label > <input type="radio" value="literal" id="literal" name="tipo" {{ old('tipo',(isset($articulo->tipo) && $articulo->tipo == 'literal' ? 'checked' : NULL)) }} required> <i></i> Literal </label>
 	</div>
 	<div class="radio-inline i-checks">
-		<label > <input type="radio" value="parrafo" name="tipo" {{ isset($articulo->tipo) && $articulo->tipo == 'parrafo' ? 'checked' : NULL}} required> <i></i> Párrafo </label>
+		<label > <input type="radio" value="parrafo" id="parrafo" name="tipo" {{ old('tipo',(isset($articulo->tipo) && $articulo->tipo == 'parrafo' ? 'checked' : NULL)) }} required> <i></i> Párrafo </label>
 	</div>
-	@if ($errors->has('contenido'))
+	@if ($errors->has('ley'))
 		<span class="help-block m-b-none">{{ $errors->first('tipo') }}</span>
 	@endif
 </div>
+@if ($articulos->count())
+	<div class="form-group">
+		<label>Literal o parrafo contenido en:</label>
+		<select class="padre form-control" name="padre" {{ isset($articulo->tipo) && ($articulo->tipo == 'literal' || $articulo->tipo == 'parrafo') ? NULL : 'disabled'}}>
+			<option></option>
+			@foreach ($articulos as $art)
+				@if ($art->tipo == 'articulo' || $art->tipo == 'literal')
+					<option value="{{ $art->id_articulo }}" class="{{ $art->tipo }}" disabled> {{ $art->ley }} {{ $art->identificador }}</option>
+				@endif
+			@endforeach
+		</select>
+	</div>
+@endif
 <div class="form-group">
 	<button type="submit" class="ladda-button ladda-button-demo btn btn-success " data-style="zoom-in">Guardar </button>
 </div>

@@ -26,7 +26,8 @@ class ArticuloController extends Controller
      */
     public function create()
     {
-        return view('articulo.crear');
+        $data['articulos'] = Articulo::all();
+        return view('articulo.crear',$data);
     }
 
     /**
@@ -40,7 +41,7 @@ class ArticuloController extends Controller
         $this->validate($request,[
             'identificador' => 'required|string',
             'contenido'     => 'required',
-            'ley'           => 'required|alpha_num|max:255',
+            'ley'           => 'required|max:255',
             'tipo'          => 'required'
         ]);
 
@@ -85,7 +86,7 @@ class ArticuloController extends Controller
         $this->validate($request,[
             'identificador' => 'required|string',
             'contenido'     => 'required',
-            'ley'           => 'required|alpha_num|max:255',
+            'ley'           => 'required|max:255',
             'tipo'          => 'required'
         ]);
 
@@ -93,6 +94,7 @@ class ArticuloController extends Controller
         $articulo->contenido = $request->get('contenido');
         $articulo->ley = $request->get('ley');
         $articulo->tipo = $request->get('tipo');
+        $articulo->padre = $request->get('padre');
 
         $articulo->save();
         return redirect()->route('articulos');
