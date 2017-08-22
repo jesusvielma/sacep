@@ -8,7 +8,8 @@
     <link href="{{ URL::asset('css/plugins/ladda/ladda-themeless.min.css') }}" rel="stylesheet">
 	<link href="{{ URL::asset('css/plugins/iCheck/custom.css')}}" rel="stylesheet">
 	<link href="{{ URL::asset('css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css')}}" rel="stylesheet">
-	<link href="{{ asset('css/plugins/dualListbox/bootstrap-duallistbox.min.css')}}" rel="stylesheet">
+	<link href="{{ URL::asset('css/plugins/select2/select2.min.css') }}" rel="stylesheet">
+
 @endsection
 
 @section('js')
@@ -22,7 +23,7 @@
 	<script src="{{ URL::asset('js/plugins/validate/additional-methods.js') }}"></script>
 	<script src="{{ URL::asset('js/plugins/validate/messages_es.js') }}"></script>
 	<!-- Select2 -->
-    <script src="{{ URL::asset('js/plugins/select2/select2.full.min.js') }}"></script>
+    <script src="{{ URL::asset('js/plugins/select2/select2.full.js') }}"></script>
 
 	<script src="{{ URL::asset('js/plugins/iCheck/icheck.min.js')}}"></script>
 
@@ -66,11 +67,13 @@
  			});
  			$( 'button[type=submit]' ).ladda( 'bind', { timeout: 50000 } );
 			@foreach ($acta->articulos as $art)
-				$('.dual_select option[value={{$art->id_articulo}}]').prop('selected',true);
+				$('.articulo option[value={{$art->id_articulo}}]').prop('selected',true);
 			@endforeach
-			$('.dual_select').bootstrapDualListbox({
-				selectorMinimalHeight: 160
-			});
+			$('.articulo').select2({
+				 placeholder: "Selecciona los articulos a incluir",
+				 allowClear: true,
+				 language: 'es'
+            });
         });
     </script>
 

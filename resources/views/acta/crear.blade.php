@@ -8,7 +8,7 @@
     <link href="{{ URL::asset('css/plugins/ladda/ladda-themeless.min.css') }}" rel="stylesheet">
 	<link href="{{ URL::asset('css/plugins/iCheck/custom.css')}}" rel="stylesheet">
 	<link href="{{ URL::asset('css/plugins/awesome-bootstrap-checkbox/awesome-bootstrap-checkbox.css')}}" rel="stylesheet">
-	<link href="{{ asset('css/plugins/dualListbox/bootstrap-duallistbox.min.css')}}" rel="stylesheet">
+	<link href="{{ URL::asset('css/plugins/select2/select2.min.css') }}" rel="stylesheet">
 @endsection
 
 @section('js')
@@ -22,15 +22,13 @@
 	<script src="{{ URL::asset('js/plugins/validate/additional-methods.js') }}"></script>
 	<script src="{{ URL::asset('js/plugins/validate/messages_es.js') }}"></script>
 	<!-- Select2 -->
-    <script src="{{ URL::asset('js/plugins/select2/select2.full.min.js') }}"></script>
+    <script src="{{ URL::asset('js/plugins/select2/select2.full.js') }}"></script>
 
 	<script src="{{ URL::asset('js/plugins/iCheck/icheck.min.js')}}"></script>
 
 	<!-- Word/Char counter -->
     <script src="{{ URL::asset('js/bootstrap-maxlength.js')}}"></script>
 
-	<!-- Dual Listbox -->
-    <script src="{{ asset('js/plugins/dualListbox/jquery.bootstrap-duallistbox.js')}}"></script>
 
 	<script>
          $(document).ready(function(){
@@ -65,8 +63,16 @@
 			$('.i-checks').iCheck({
 				radioClass: 'iradio_square-green',
 			});
-			$('.dual_select').bootstrapDualListbox({
-                selectorMinimalHeight: 160
+			$('.articulo').select2({
+				 placeholder: "Selecciona los articulos a incluir",
+				 allowClear: true,
+				 language: 'es'
+            });
+			$('.testigos').select2({
+				 placeholder: "Selecciona 2 testigos",
+				 maximumSelectionLength: 2,
+				 allowClear: true,
+				 language: "es",
             });
 			$( 'button[type=submit]' ).ladda( 'bind', { timeout: 50000 } );
         });

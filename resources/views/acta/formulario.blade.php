@@ -54,7 +54,7 @@
 <div class="form-group">
 	<div class="col-lg-12">
 		<label >Articulos, literales, parrafos</label>
-		<select class="form-control dual_select" multiple name="articulo[]">
+		<select class="form-control articulo" multiple name="articulo[]">
 			@foreach ($articulos as $articulo)
 				<option value="{{ $articulo->id_articulo }}">
 					@if (!isset($articulo->padre))
@@ -74,7 +74,7 @@
 	<div class="form-group">
 		<div class="col-lg-12">
 			<label for="">Testigos</label>
-			<select class="form-control dual_select" multiple name="testigo[]">
+			<select class="form-control testigos" multiple name="testigo[]">
 				@foreach ($testigos as $testigo)
 					<option value="{{ $testigo->cedula_empleado }}"> {{ $testigo->nombre_completo }} </option>
 				@endforeach

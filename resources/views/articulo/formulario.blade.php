@@ -45,7 +45,7 @@
 			<option></option>
 			@foreach ($articulos as $art)
 				@if ($art->tipo == 'articulo' || $art->tipo == 'literal')
-					<option value="{{ $art->id_articulo }}" class="{{ $art->tipo }}" disabled> {{ $art->ley }} {{ $art->identificador }}</option>
+					<option value="{{ $art->id_articulo }}" class="{{ $art->tipo }}" disabled {{ isset($articulo->padre) && $art->id_articulo == $articulo->id_articulo ? 'checked' : NULL}}> {{ $art->ley }} {{ $art->identificador }}</option>
 				@endif
 			@endforeach
 		</select>
