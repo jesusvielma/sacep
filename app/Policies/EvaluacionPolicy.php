@@ -41,7 +41,7 @@ class EvaluacionPolicy
     * @return bool
     */
 
-    public function evaluaciones(Usuario $usuario,Empleado $empleado)
+    public function evaluaciones(Usuario $usuario,Evaluacion $evaluacion,Empleado $empleado)
     {
         return $usuario->empleado->id_departamento === $empleado->id_departamento || $usuario->nivel == 'th' || $usuario->nivel == 'gerente';
     }

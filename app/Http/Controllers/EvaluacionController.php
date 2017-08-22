@@ -196,9 +196,9 @@ class EvaluacionController extends Controller
      */
     public function evaluaciones(Empleado $empleado)
     {
-        //$emp = Empleado::find($empleado);
+        $ev = new Evaluacion;
 
-        $this->authorize('evaluaciones',$empleado);
+        $this->authorize('evaluaciones',[$ev,$empleado]);
         $data['evaluaciones'] = Evaluacion::with(['item_evaluado','empleados' => function($query) use ($empleado){
             $query->where('evaluacion_empleado.cedula_empleado','=',$empleado->cedula_empleado)->where('evaluacion_empleado.tipo','=','evaluado');
         }])->get();

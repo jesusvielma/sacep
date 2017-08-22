@@ -45,7 +45,6 @@
 	<div class="col-lg-12">
 		<label for="lugar">Lugar donde se levanta la sanción</label>
 		<input type="text" name="lugar" class="form-control" value="{{ old('lugar',isset($acta->lugar) ? $acta->lugar : NULL)}}">
-		<span class="help-block m-b-none">Ejemplo: asusencia, falta, etc</span>
 		@if ($errors->has('lugar'))
 			<span class="help-block m-b-none">{{ $errors->first('lugar') }}</span>
 		@endif

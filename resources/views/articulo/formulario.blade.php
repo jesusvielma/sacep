@@ -16,7 +16,7 @@
 	@endif
 </div>
 <div class="form-group {{ $errors->has('ley') ? 'has-error' : ''}}">
-	<label for="nombre_completo">Nombre dela ley a la que pertenece</label>
+	<label for="nombre_completo">Nombre de la ley a la que pertenece</label>
 	<input type="text" name="ley" class="form-control" value="{{ old('ley',isset($articulo->ley) ? $articulo->ley : NULL)}}">
 	@if ($errors->has('contenido'))
 		<span class="help-block m-b-none">{{ $errors->first('ley') }}</span>

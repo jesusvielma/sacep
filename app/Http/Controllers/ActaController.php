@@ -21,10 +21,10 @@ class ActaController extends Controller
     public function index()
     {
         if (Auth::user()->nivel != 'gerente') {
-            $data['empleados'] = Empleado::where('estado','activo')->where('id_departamento',Auth::user()->empleado->id_departamento)->get();
+            $data['empleados'] = Empleado::where('estado','activo')->where('id_departamento',Auth::user()->empleado->id_departamento)->where('cedula_empleado','!=',Auth::user()->empleado->cedula_empleado)->get();
         }
         else{
-            $data['empleados'] = Empleado::where('estado','activo')->get();
+            $data['empleados'] = Empleado::where('estado','activo')->where('cedula_empleado','!=',Auth::user()->empleado->cedula_empleado)->get();
         }
 
         return view('acta.index',$data);

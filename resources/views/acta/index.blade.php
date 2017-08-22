@@ -76,7 +76,7 @@
 	<div class="wrapper wrapper-content animated fadeInRightBig">
 		<div class="row">
 			@if ($empleados->count())
-				<div class="col-lg-12">
+				<div class="col-lg-8 col-lg-offset-2">
 					<div class="ibox ">
 						<div class="ibox-title">
 							<h5>Todos los recursos de sanciones</h5>
