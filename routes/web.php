@@ -34,7 +34,7 @@ Route::group(['middleware'=>'auth'], function (){
         'uses' => 'InicioController@index',
         'as'   => 'pagina_inicio',
     ]);
-    Route::resource('departamento','DepartamentoController');
+    Route::resource('configuracion/departamento','DepartamentoController');
 
     Route::resource('empleado','EmpleadoController',[
         'names' => [
@@ -46,7 +46,7 @@ Route::group(['middleware'=>'auth'], function (){
         ]
     ]);
 
-    Route::resource('cargo','CargoController',[
+    Route::resource('configuracion/cargo','CargoController',[
         'names' => [
             'index' => 'cargos',
             'store' => 'guardar_cargo',
@@ -55,7 +55,7 @@ Route::group(['middleware'=>'auth'], function (){
         ]
     ]);
 
-    Route::resource('factor','FactorDeEvaluacionController',[
+    Route::resource('configuracion/factor','FactorDeEvaluacionController',[
         'names' => [
             'index' => 'factores',
             'store' => 'guardar_factor',
@@ -65,12 +65,12 @@ Route::group(['middleware'=>'auth'], function (){
         ]
     ]);
 
-    Route::get('item_factor/{factor}/crear',[
+    Route::get('configuracion/item_factor/{factor}/crear',[
         'uses' => 'ItemFactorController@crear',
         'as'    => 'crear_item'
     ]);
 
-    Route::resource('item_factor','ItemFactorController',[
+    Route::resource('configuracion/item_factor','ItemFactorController',[
         'names' => [
             'store' => 'guardar_item'
         ]

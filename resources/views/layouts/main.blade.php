@@ -67,7 +67,7 @@
                         <a href=""><i class="fa fa-bar-chart-o"></i> <span class="nav-label">Configuraciones</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse">
                             <li class="{{ $current_route_name == 'departamento.index' || $current_route_name == 'departamento.create' || $current_route_name == 'departamento.edit' ? 'active' : NULL }}">
-                                <a href="#">Coordinación/Unuidad <span class="fa arrow"></span></a>
+                                <a href="#">Coordinación/Unidad <span class="fa arrow"></span></a>
                                 <ul class="nav nav-third-level">
                                     <li><a href="{{ route('departamento.create') }}">Nuevo</a></li>
                                     <li><a href="{{ route('departamento.index') }}">Listado</a></li>
