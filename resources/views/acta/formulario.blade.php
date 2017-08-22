@@ -75,8 +75,12 @@
 		<div class="col-lg-12">
 			<label for="">Testigos</label>
 			<select class="form-control testigos" multiple name="testigo[]">
-				@foreach ($testigos as $testigo)
-					<option value="{{ $testigo->cedula_empleado }}"> {{ $testigo->nombre_completo }} </option>
+				@foreach ($deps as $dep)
+					<optgroup label="{{ $dep->nombre }}">
+						@foreach ($dep->empleados as $testigo)
+							<option value="{{ $testigo->cedula_empleado }}"> {{ $testigo->nombre_completo }}</option>
+						@endforeach
+					</optgroup>
 				@endforeach
 			</select>
 		</div>

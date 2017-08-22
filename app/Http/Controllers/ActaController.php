@@ -9,6 +9,7 @@ use sacep\Empleado;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\App;
+use sacep\Departamento;
 
 class ActaController extends Controller
 {
@@ -40,7 +41,10 @@ class ActaController extends Controller
         $this->authorize('levantar',[$acta,$empleado]);
         $data['empleado'] = $empleado;
         $data['articulos'] = Articulo::all();
-        $data['testigos'] = Empleado::where('estado','activo')->get();
+        //$data['testigos'] = Empleado::where('estado','activo')->get();
+        $data['deps'] = Departamento::with(['empleados'=>function ($query){
+            $query->where('estado','activo');
+        }])->get();
 
         return view('acta.crear',$data);
     }
