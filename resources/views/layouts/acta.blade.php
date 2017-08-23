@@ -22,7 +22,7 @@
 			/*margin: 1cm 1cm 1cm 1cm;*/
 			color: black;
             padding: 0;
-            font-size: 10.5;
+            font-size: 10.5pt;
             font-family: sans-serif;
             text-align: justify;
 		}
