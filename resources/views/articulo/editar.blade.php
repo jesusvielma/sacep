@@ -79,7 +79,11 @@
 					allowClear: true
 				});
 			});
-
+			@if ($articulo->tipo == 'literal')
+				$('.articulo').prop('disabled',false);
+			@else
+				$('.literal').prop('disabled',false);
+			@endif
 			$(".padre").select2({
 				placeholder: "Selecciona",
 				allowClear: true

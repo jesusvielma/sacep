@@ -5,6 +5,7 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
     <title>{{ env('APP_NAME') }} | Acta de {{ trans('acta.tipo.'.$acta->tipo) }}</title>
 
@@ -13,14 +14,17 @@
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
 	<style>
-        @page {margin: 2cm 2.5cm 2.5cm 2cm}
+        @page {margin: 1.5cm 2cm 1.5cm 1.5cm}
         html, body {
             background: #FFF;
         }
 		body {
 			/*margin: 1cm 1cm 1cm 1cm;*/
 			color: black;
-            padding: 0
+            padding: 0;
+            font-size: 10.5;
+            font-family: sans-serif;
+            text-align: justify;
 		}
         hr {
             page-break-after: always;
@@ -28,24 +32,26 @@
         }
 		#header{
 			 position: fixed;
-			 /*left: 0.5cm;
-			 right: 1cm;*/
-             top: -30px;
+			 left: 0;
+			 right: 0;
+             top: -30;
 		}
         #footer {
-            bottom: : 0px;
+            bottom: 30;
             position: fixed;
-            /*left: 0.5cm;
-            right: 1cm;*/
+            left: 0;
+            right: 0;
         }
-        /*.body-acta {
-            margin-left: -0.5cm
-        }*/
+        .body-acta {
+            margin-left: 3.85cm;
+        }
 		.borde-tabla > tbody > tr > td  {
 			border: 1px solid black;
 		}
-		table {
-			font-size: 10px
+		table, tr, td {
+			border: 0 !important;
+            padding: 0 !important;
+            margin: 0 !important;
 		}
         .bg-success {
             background-color: #0070c1;
@@ -77,9 +83,6 @@
             font-size: 12px;
             font-style: italic;
         }
-        p {
-            text-align: justify;
-        }
 	</style>
 
 </head>
@@ -88,8 +91,8 @@
     <div id="header">
         <div class="row">
             <div class="col-xs-12">
-                {{-- <img src="{{ asset('img/membrete-superior.png') }}" alt="" class="img-responsive" style="height:80px" > --}}
-                <img src="{{ asset('img/membrete-superior.png') }}" alt="" class="img-responsive">
+                <img src="{{ asset('img/membrete-superior.png') }}" alt="" class="img-responsive" style="height:80px" >
+                {{-- <img src="{{ asset('img/membrete-superior.png') }}" alt="" class="img-responsive"> --}}
             </div>
         </div>
     </div>
@@ -99,6 +102,9 @@
                 <img src="{{ asset('img/membrete-inferior.png') }}" alt="" class="img-responsive">
             </div>
         </div>
+    </div>
+    <div class="continer-fluid">
+
     </div>
     @yield('content')
 </div>
