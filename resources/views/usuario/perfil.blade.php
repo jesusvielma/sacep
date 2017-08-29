@@ -70,24 +70,31 @@
 						<h5>Mi Perfil</h5>
 					</div>
 					<div>
-						<form action="{{ route('update_usuario',['id'=>$usuario->id_usuario]) }}" method="post" id="form" enctype="multipart/form-data">
 						<div class="ibox-content no-padding border-left-right text-center">
 							@if ($errors->has('avatar'))
 								<div class="alert alert-warning">
 									{{ $errors->first('avatar')}}
 								</div>
 							@endif
-							<div class="fileinput fileinput-new" data-provides="fileinput">
-								<div class="fileinput-new thumbnail" style="width: 128px; height: 128px;">
-							    	<img alt="{{ $usuario->nombre }}" class="img-responsive center-block" src="{{ isset($usuario->avatar) ? asset('storage/avatar/'.$usuario->avatar) : asset('img/profile.jpg') }}">
-							 	</div>
-							  	<div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
-							  	<div>
-							    	<span class="btn btn-default btn-file"><span class="fileinput-new">Seleciona una imagen</span><span class="fileinput-exists">Cambiar</span><input type="file" name="avatar" value="{{ old('avatar',(isset($usuario->avatar) ? $usuario->avatar :  NULL)) }}" accept=".png, .jpg, .jpeg"></span>
-							    	<a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Quitar</a>
-							  </div>
-							  <span class="help-block m-b-none font-bold">Su imagen debe tener 128px X 128px</span>
-							</div>
+							<form action="{{ route('avatar',['id'=>$usuario->id_usuario]) }}" method="post" enctype="multipart/form-data">
+								{{ csrf_field() }}
+								<div class="fileinput fileinput-new" data-provides="fileinput">
+									<div class="fileinput-new thumbnail" style="width: 128px; height: 128px;">
+										<img alt="{{ $usuario->nombre }}" class="img-responsive center-block" src="{{ isset($usuario->avatar) ? asset('storage/avatar/'.$usuario->avatar) : asset('img/profile.jpg') }}">
+									</div>
+									<div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+									<div>
+										<span class="btn btn-primary btn-file">
+											<span class="fileinput-new">Seleciona una imagen</span>
+											<span class="fileinput-exists">Cambiar</span>
+											<input type="file" name="avatar" value="{{ old('avatar',(isset($usuario->avatar) ? $usuario->avatar :  NULL)) }}" accept=".png, .jpg, .jpeg">
+										</span>
+										<button type="submit" class="btn btn-success fileinput-exists"><i class="fa fa-upload"></i> Subir</button>
+										<a href="#" class="btn btn-danger fileinput-exists" data-dismiss="fileinput">Quitar</a>
+									</div>
+									<span class="help-block m-b-none font-bold">Su imagen debe tener 128px X 128px</span>
+								</div>
+							</form>
 
 						</div>
 							<div class="ibox-content profile-content">
@@ -121,6 +128,7 @@
 							<h5>Cambiar perfil</h5>
 						</div>
 						<div class="ibox-content">
+							<form action="{{ route('update_usuario',['id'=>$usuario->id_usuario]) }}" method="post" id="form">
 								{{ method_field('PUT') }}
 								{{ csrf_field() }}
 								<div class="form-group {{ $errors->has('trabajador') ? 'has-error' : ''}}">

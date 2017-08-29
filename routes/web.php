@@ -81,6 +81,11 @@ Route::group(['middleware'=>'auth'], function (){
         'as'   => 'perfil'
     ]);
 
+    Route::post('perfil/{usuario}',[
+        'uses' => 'UsuarioController@avatar',
+        'as'   => 'avatar'
+    ]);
+
     Route::resource('usuario','UsuarioController',[
         'names' => [
             'index' => 'usuarios',

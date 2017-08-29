@@ -122,7 +122,6 @@ class UsuarioController extends Controller
             'correo' => 'required|email',
             'nivel'  => 'required',
             'clave'  => 'min:7|nullable',
-            'avatar' => 'nullable|mimes:jpeg,png,jpg|dimensions:max_width=128,max_height=128'
         ]);
 
         $usuario->nombre = $request->get('nombre');
@@ -132,11 +131,6 @@ class UsuarioController extends Controller
             $usuario->password = bcrypt($request->get('clave'));
         }
         $usuario->estado = $request->get('estado');
-        $file = $request->file('avatar');
-        $avatar_name = Auth::id().'-'.date('Y-m-d').'.'.$file->getClientOriginalExtension();
-        $file->storeAs('public/avatar',$avatar_name);
-        //$save = $file->storeAs('img/avatar');
-        $usuario->avatar = $avatar_name;
         $usuario->save();
 
 
@@ -170,5 +164,33 @@ class UsuarioController extends Controller
         $data['usuario'] = Auth::user();
 
         return view('usuario.perfil',$data);
+    }
+
+    /**
+     * Cambiar foto de perfil de usuario
+     * @param  Request $request
+     * @param  Usuario $usuario
+     * @return \Illuminate\Http\Response
+     */
+    public function avatar(Request $request, Usuario $usuario)
+    {
+
+        $this->validate($request,[
+            'avatar' => 'required|mimes:jpeg,png,jpg|dimensions:max_width=128,max_height=128'
+        ]);
+
+        $file = $request->file('avatar');
+        $avatar_name = Auth::id().'-'.date('Y-m-d').'.'.$file->getClientOriginalExtension();
+        $file->storeAs('public/avatar',$avatar_name);
+        //$save = $file->storeAs('img/avatar');
+        $usuario->avatar = $avatar_name;
+        $usuario->save();
+
+        $msg = [
+            'type' => 'success',
+            'msg' => 'Felicidades, '.$usuario->nombre.' has modificado tu foto de perfil.',
+            'title' => 'Foto actualizada',
+        ];
+        return redirect()->route('perfil')->with('notif', $msg);
     }
 }
