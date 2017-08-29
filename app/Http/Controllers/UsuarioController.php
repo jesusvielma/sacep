@@ -176,7 +176,7 @@ class UsuarioController extends Controller
     {
 
         $this->validate($request,[
-            'avatar' => 'required|mimes:jpeg,png,jpg|dimensions:max_width=128,max_height=128'
+            'avatar' => 'required|mimes:jpeg,png,jpg|max:1000'
         ]);
 
         $file = $request->file('avatar');
