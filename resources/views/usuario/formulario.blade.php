@@ -50,17 +50,15 @@
 		</span>
 	@endif
 </div>
-@if (!isset($usuario))
-	<div class="form-group">
-		<label for="clave">Clave</label>
-		<input type="password" name="clave" class="form-control" value="{{ old('clave') }}" {{ isset($usuario) ? NULL : 'required'}}>
-		@if ($errors->has('clave'))
-			<span class="help-block m-b-none">
-				<strong>{{ $errors->first('clave') }}</strong>
-			</span>
-		@endif
-	</div>
-@endif
+<div class="form-group">
+	<label for="clave">Clave</label>
+	<input type="password" name="clave" class="form-control" value="{{ old('clave') }}" {{ isset($usuario) ? NULL : 'required'}}>
+	@if ($errors->has('clave'))
+		<span class="help-block m-b-none">
+			<strong>{{ $errors->first('clave') }}</strong>
+		</span>
+	@endif
+</div>
 <div class="form-group">
 	<label for="estado">Permisos de </label> <button tabindex="0" type="button" class="btn btn-info dim" role="button" data-toggle="popover" data-trigger="focus" title="Información" data-content="Los usuarios para talento humano y gerencia tiene los permisos necesarios porque lsolo es necesario crear con el permiso correspondiente "><i class="fa fa-info"></i></button>
 	<br>

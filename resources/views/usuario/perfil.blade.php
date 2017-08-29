@@ -92,7 +92,7 @@
 										<button type="submit" class="btn btn-success fileinput-exists"><i class="fa fa-upload"></i> Subir</button>
 										<a href="#" class="btn btn-danger fileinput-exists" data-dismiss="fileinput">Quitar</a>
 									</div>
-									<span class="help-block m-b-none font-bold">Su imagen debe tener 128px X 128px</span>
+									<span class="help-block m-b-none font-bold">Su imagen debe 1Mb (1000 kilobytes) o menos </span>
 								</div>
 							</form>
 

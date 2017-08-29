@@ -104,6 +104,8 @@ class UsuarioController extends Controller
     {
         $data['usuario'] = $usuario;
         $data['empleados'] = Empleado::where('id_usuario',NULL)->where('estado','activo')->get();
+        $data['gerente'] = Usuario::where('nivel','gerente')->where('estado',1)->first();
+        $data['th'] = Usuario::where('nivel','th')->where('estado',1)->first();
 
         return view('usuario.editar',$data);
     }
