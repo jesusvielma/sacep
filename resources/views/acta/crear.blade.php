@@ -63,10 +63,27 @@
 			$('.i-checks').iCheck({
 				radioClass: 'iradio_square-green',
 			});
+			var data = [
+				@foreach ($articulos as $articulo)
+					{ id: '{{ $articulo->id_articulo }}',
+					  text: @if (!isset($articulo->padre))
+  						'{{ ucfirst($articulo->tipo)}} {{$articulo->identificador}} de <b> {{ $articulo->ley }} </b>'
+  					@elseif (isset($articulo->padre) && !isset($articulo->art_padre->padre))
+  						'{{ ucfirst($articulo->tipo) }} {{ $articulo->identificador }} del <b>{{ ucfirst($articulo->art_padre->tipo).' '.$articulo->art_padre->identificador }}</b> de <b>{{ $articulo->ley }}</b>'
+  					@endif
+  					@if (isset($articulo->art_padre->padre))
+  						'{{ ucfirst($articulo->tipo) }} {{ $articulo->identificador }} del <b>{{ ucfirst($articulo->art_padre->tipo) }} {{ $articulo->art_padre->identificador }}</b> del <b>{{ ucfirst($articulo->art_padre->art_padre->tipo).' '.$articulo->art_padre->art_padre->identificador }}</b> de <b>{{ $articulo->ley }}</b>'
+  					@endif,
+					title: '{{ $articulo->tipo }}'
+				},
+				@endforeach
+			];
 			$('.articulo').select2({
+				data: data,
 				 placeholder: "Selecciona los articulos a incluir",
 				 allowClear: true,
-				 language: 'es'
+				 language: 'es',
+				 escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
             });
 			$('.testigos').select2({
 				 placeholder: "Selecciona 2 testigos",

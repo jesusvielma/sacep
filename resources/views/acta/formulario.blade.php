@@ -54,18 +54,18 @@
 	<div class="col-lg-12">
 		<label >Articulos, literales, parrafos</label>
 		<select class="form-control articulo" multiple name="articulo[]">
-			@foreach ($articulos as $articulo)
-				<option value="{{ $articulo->id_articulo }}">
+			{{-- @foreach ($articulos as $articulo)
+				<option value="{{ $articulo->id_articulo }}" title="{{ $articulo->tipo }}">
 					@if (!isset($articulo->padre))
-						{{ $articulo->ley.' -> '.ucfirst($articulo->tipo).' '.$articulo->identificador}}
+						{{ ucfirst($articulo->tipo)}} {{$articulo->identificador}} de <b> {{ $articulo->ley }} </b>
 					@elseif (isset($articulo->padre) && !isset($articulo->art_padre->padre))
-						{{ $articulo->ley }} -> {{ ucfirst($articulo->art_padre->tipo).' '.$articulo->art_padre->identificador }} -> {{ ucfirst($articulo->tipo) }} {{ $articulo->identificador }}
+						{{ ucfirst($articulo->tipo) }} {{ $articulo->identificador }} del {{ ucfirst($articulo->art_padre->tipo).' '.$articulo->art_padre->identificador }} de {{ $articulo->ley }}
 					@endif
 					@if (isset($articulo->art_padre->padre))
-						{{ $articulo->ley }} -> {{ ucfirst($articulo->art_padre->art_padre->tipo).' '.$articulo->art_padre->art_padre->identificador }} -> {{ ucfirst($articulo->art_padre->tipo) }} {{ $articulo->art_padre->identificador }} {{ ucfirst($articulo->tipo) }} -> {{ $articulo->identificador }}
+						{{ ucfirst($articulo->tipo) }} {{ $articulo->identificador }} del {{ ucfirst($articulo->art_padre->tipo) }} {{ $articulo->art_padre->identificador }} del {{ ucfirst($articulo->art_padre->art_padre->tipo).' '.$articulo->art_padre->art_padre->identificador }} de {{ $articulo->ley }}
 					@endif
 				</option>
-			@endforeach
+			@endforeach --}}
 		</select>
 	</div>
 </div>
