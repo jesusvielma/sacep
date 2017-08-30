@@ -13,7 +13,7 @@
 					@endphp
 					@foreach ($acta->articulos as $articulo)
 						@if ($articulo->tipo !='articulo')
-							<strong> {{ ucfirst($articulo->tipo) }} {{ $articulo->identificador }} </strong> {!! strip_tags($articulo->contenido,'<b><i><u><ul><ol><li>') !!}
+							<strong> {{ ucfirst($articulo->tipo) }} {{ $articulo->identificador }} </strong> {!! strip_tags($articulo->contenido,'<b><i><u><ul><ol><li><style>') !!}
 								@php
 								$count = $count + strlen(strip_tags($articulo->contenido))
 								@endphp
