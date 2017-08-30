@@ -66,23 +66,84 @@
  				radioClass: 'iradio_square-green',
  			});
  			$( 'button[type=submit]' ).ladda( 'bind', { timeout: 50000 } );
-			var data = [
+			// var data = [
+			// 	@foreach ($articulos as $articulo)
+			// 		{ id: '{{ $articulo->id_articulo }}',
+			// 		  text: @if (!isset($articulo->padre))
+  	// 					'{{ ucfirst($articulo->tipo)}} {{$articulo->identificador}} de <b> {{ $articulo->ley }} </b>'
+  	// 				@elseif (isset($articulo->padre) && !isset($articulo->art_padre->padre))
+  	// 					'{{ ucfirst($articulo->tipo) }} {{ $articulo->identificador }} del <b>{{ ucfirst($articulo->art_padre->tipo).' '.$articulo->art_padre->identificador }}</b> de <b>{{ $articulo->ley }}</b>'
+  	// 				@endif
+  	// 				@if (isset($articulo->art_padre->padre))
+  	// 					'{{ ucfirst($articulo->tipo) }} {{ $articulo->identificador }} del <b>{{ ucfirst($articulo->art_padre->tipo) }} {{ $articulo->art_padre->identificador }}</b> del <b>{{ ucfirst($articulo->art_padre->art_padre->tipo).' '.$articulo->art_padre->art_padre->identificador }}</b> de <b>{{ $articulo->ley }}</b>'
+  	// 				@endif,
+			// 		title: '{{ $articulo->tipo }}'
+			// 	},
+			// 	@endforeach
+			// ];
+			// $('.articulo').select2({
+			// 	data: data,
+			// 	 placeholder: "Selecciona los articulos a incluir",
+			// 	 allowClear: true,
+			// 	 language: 'es',
+			// 	 escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
+            // });
+			var lp = [
 				@foreach ($articulos as $articulo)
-					{ id: '{{ $articulo->id_articulo }}',
-					  text: @if (!isset($articulo->padre))
-  						'{{ ucfirst($articulo->tipo)}} {{$articulo->identificador}} de <b> {{ $articulo->ley }} </b>'
-  					@elseif (isset($articulo->padre) && !isset($articulo->art_padre->padre))
-  						'{{ ucfirst($articulo->tipo) }} {{ $articulo->identificador }} del <b>{{ ucfirst($articulo->art_padre->tipo).' '.$articulo->art_padre->identificador }}</b> de <b>{{ $articulo->ley }}</b>'
-  					@endif
-  					@if (isset($articulo->art_padre->padre))
-  						'{{ ucfirst($articulo->tipo) }} {{ $articulo->identificador }} del <b>{{ ucfirst($articulo->art_padre->tipo) }} {{ $articulo->art_padre->identificador }}</b> del <b>{{ ucfirst($articulo->art_padre->art_padre->tipo).' '.$articulo->art_padre->art_padre->identificador }}</b> de <b>{{ $articulo->ley }}</b>'
-  					@endif,
-					title: '{{ $articulo->tipo }}'
-				},
+					@if ($articulo->tipo != 'articulo')
+						{ id: '{{ $articulo->id_articulo }}',
+						  text: @if (!isset($articulo->padre))
+	  							'{{ ucfirst($articulo->tipo)}} {{$articulo->identificador}} de <b> {{ $articulo->ley }} </b>'
+			  					@elseif (isset($articulo->padre) && !isset($articulo->art_padre->padre))
+			  						'{{ ucfirst($articulo->tipo) }} {{ $articulo->identificador }} del <b>{{ ucfirst($articulo->art_padre->tipo).' '.$articulo->art_padre->identificador }}</b> de <b>{{ $articulo->ley }}</b>'
+			  					@endif
+			  					@if (isset($articulo->art_padre->padre))
+			  						'{{ ucfirst($articulo->tipo) }} {{ $articulo->identificador }} del <b>{{ ucfirst($articulo->art_padre->tipo) }} {{ $articulo->art_padre->identificador }}</b> del <b>{{ ucfirst($articulo->art_padre->art_padre->tipo).' '.$articulo->art_padre->art_padre->identificador }}</b> de <b>{{ $articulo->ley }}</b>'
+			  					@endif,
+							title: '{{ ucfirst($articulo->tipo) }}',
+							dataid: '{{ $articulo->padre }}',
+							disabled: true,
+						},
+					@endif
 				@endforeach
 			];
+
+			var art = [
+				@foreach ($articulos as $articulo)
+					@if ($articulo->tipo == 'articulo')
+						{ id: '{{ $articulo->id_articulo }}',
+						  text: @if (!isset($articulo->padre))
+	  							'{{ ucfirst($articulo->tipo)}} {{$articulo->identificador}} de <b> {{ $articulo->ley }} </b>'
+			  					@endif,
+							title: '{{ $articulo->tipo }}',
+						},
+					@endif
+				@endforeach
+			];
+
 			$('.articulo').select2({
-				data: data,
+				data: art,
+				 placeholder: "Selecciona un articulo",
+				 allowClear: true,
+				 language: 'es',
+				 escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
+            });
+
+			$('.articulo').change(function () {
+				var val = $(this).val();
+				$('.articulo1').prop('disabled',false)
+				$('.articulo1 option').prop('disabled',true)
+				$('.articulo1 option[id='+val+']').prop('disabled',false)
+				$('.articulo1').select2({
+					placeholder: "Selecciona los literales y párrafos correspondiente con el acta",
+	   				allowClear: true,
+	   				language: 'es',
+	   				escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
+				});
+			});
+
+			$('.articulo1').select2({
+				data: lp,
 				 placeholder: "Selecciona los articulos a incluir",
 				 allowClear: true,
 				 language: 'es',
@@ -91,6 +152,25 @@
 			@foreach ($acta->articulos as $art)
 			$('.articulo option[value={{$art->id_articulo}}]').prop('selected',true);
 			@endforeach
+			$('.articulo').select2({
+				 placeholder: "Selecciona un articulo",
+				 allowClear: true,
+				 language: 'es',
+				 escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
+            });
+
+			@foreach ($acta->articulos as $art)
+			$('.articulo1 option[value={{$art->id_articulo}}]').prop('selected',true);
+			@if ($art->padre)
+			$('.articulo1 option[id={{ $art->padre }}]').prop('disabled',false);
+			@endif
+			@endforeach
+			$('.articulo1').select2({
+				placeholder: "Selecciona los literales y párrafos correspondiente con el acta",
+				allowClear: true,
+				language: 'es',
+				escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
+			});
         });
     </script>
 

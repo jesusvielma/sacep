@@ -25,7 +25,7 @@
 <div class="form-group {{ $errors->has('descripcion') ? 'has-error' : ''}}">
 	<div class="col-md-12">
 		<label for="descripcion">Descripción de la sanción</label>
-		<textarea maxlength="255" name="descripcion" rows="3" class="form-control" id="editor">{{ isset($acta->descripcion) ? $acta->descripcion : NULL }}</textarea>
+		<textarea maxlength="255" name="descripcion" rows="3" class="form-control" id="editor">{{ isset($acta->descripcion) ? $acta->descripcion : (old('descripcion')) }}</textarea>
 		@if ($errors->has('descripcion'))
 			<span class="help-block m-b-none"><strong>{{ $errors->first('descripcion') }}</strong></span>
 		@endif
@@ -50,10 +50,27 @@
 		@endif
 	</div>
 </div>
-<div class="form-group">
+<div class="form-group {{ $errors->has('articulo') ? 'has-error' : ''}}">
 	<div class="col-lg-12">
-		<label >Articulos, literales, parrafos</label>
-		<select class="form-control articulo" multiple name="articulo[]">
+		<label>Articulo</label>
+		<select class="select2 form-control articulo" name="articulo" required>
+			<option></option>
+		</select>
+		@if ($errors->has('articulo'))
+			<span class="help-block m-b-none">
+				<ul>
+					@foreach ($errors->get('articulo') as $msg)
+						<li>{{ $msg }}</li>
+					@endforeach
+				</ul>
+			</span>
+		@endif
+	</div>
+</div>
+<div class="form-group {{ $errors->has('lp') ? 'has-error' : ''}}">
+	<div class="col-lg-12">
+		<label >Literales y párrafos del articulo seleccionado</label>
+		<select class="form-control articulo1" {{ isset($acta) ? NULL : 'disabled'}} multiple name="lp[]" required>
 			{{-- @foreach ($articulos as $articulo)
 				<option value="{{ $articulo->id_articulo }}" title="{{ $articulo->tipo }}">
 					@if (!isset($articulo->padre))
@@ -67,27 +84,45 @@
 				</option>
 			@endforeach --}}
 		</select>
+		@if ($errors->has('lp'))
+			<span class="help-block m-b-none">
+				<ul>
+					@foreach ($errors->get('lp') as $msg)
+						<li>{{ $msg }}</li>
+					@endforeach
+				</ul>
+			</span>
+		@endif
 	</div>
 </div>
 @if (!isset($acta))
-	<div class="form-group">
+	<div class="form-group {{ $errors->has('testigo') ? 'has-error' : ''}}">
 		<div class="col-lg-12">
-			<label for="">Testigos</label>
-			<select class="form-control testigos" multiple name="testigo[]">
+			<label >Testigos</label>
+			<select class="form-control testigos" multiple name="testigo[]"  required>
 				@foreach ($deps as $dep)
 					<optgroup label="{{ $dep->nombre }}">
 						@foreach ($dep->empleados as $testigo)
-							<option value="{{ $testigo->cedula_empleado }}"> {{ $testigo->nombre_completo }}</option>
+							<option value="{{ $testigo->cedula_empleado }}" > {{ $testigo->nombre_completo }}</option>
 						@endforeach
 					</optgroup>
 				@endforeach
 			</select>
+			@if ($errors->has('testigo'))
+				<span class="help-block m-b-none">
+					<ul>
+						@foreach ($errors->get('testigo') as $msg)
+							<li>{{ $msg }}</li>
+						@endforeach
+					</ul>
+				</span>
+			@endif
 		</div>
 	</div>
 @endif
 <div class="form-group {{ $errors->has('tipo') ? 'has-error' : ''}}">
 	<div class="col-lg-12">
-		<label for="nombre_completo">Tipo de sanción</label>
+		<label >Tipo de sanción</label>
 		<br>
 		<div class="radio-inline i-checks">
 			<label > <input type="radio" value="amonestacion" name="tipo" {{ isset($acta->tipo) && $acta->tipo == 'amonestacion' ? 'checked' : NULL}} required> <i></i> Amonestación </label>

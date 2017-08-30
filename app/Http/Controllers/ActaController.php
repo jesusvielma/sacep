@@ -40,7 +40,7 @@ class ActaController extends Controller
         $acta = new Acta;
         $this->authorize('levantar',[$acta,$empleado]);
         $data['empleado'] = $empleado;
-        $data['articulos'] = Articulo::all();
+        $data['articulos'] = Articulo::orderBy('identificador','ASC')->get();
         //$data['testigos'] = Empleado::where('estado','activo')->get();
         $data['deps'] = Departamento::with(['empleados'=>function ($query){
             $query->where('estado','activo');
@@ -60,10 +60,14 @@ class ActaController extends Controller
         $this->validate($request,[
             'descripcion' => 'required|string|max:255',
             'palabra_clave' => 'required',
-            'articulo'  => 'required|min:1',
+            'articulo'  => 'required',
+            'lp'    => 'required|array|min:1',
             'tipo'  => 'required',
             'lugar' => 'required',
-            'testigo' => 'required'
+            'testigo' => 'required|array|min:2'
+        ], [
+            'lp.min' => 'Debes seleccionar al menos un literal o párrafo',
+            'testigo.min'=> 'Debes seleccionar 2 testigos'
         ]);
 
         $sancion = new Acta;
@@ -78,7 +82,8 @@ class ActaController extends Controller
         $sancion->estado = 'guardada';
 
         $sancion->save();
-        foreach ($request->get('articulo') as $articulo) {
+        $sancion->articulos()->attach($request->get('articulo'));
+        foreach ($request->get('lp') as $articulo) {
             $sancion->articulos()->attach($articulo);
         }
 
@@ -154,7 +159,7 @@ class ActaController extends Controller
     {
         $this->authorize('editar_acta',$acta);
         $data['acta'] = $acta;
-        $data['articulos'] = Articulo::all();
+        $data['articulos'] = Articulo::orderBy('identificador','ASC')->get();
         $data['testigos'] = Empleado::where('estado','activo')->get();
 
         foreach ($acta->empleados as $empleado) {
@@ -175,6 +180,16 @@ class ActaController extends Controller
      */
     public function update(Request $request, Acta $acta)
     {
+
+        $this->validate($request,[
+            'descripcion' => 'required|string|max:255',
+            'palabra_clave' => 'required',
+            'articulo'  => 'required',
+            'lp'    => 'required|min:1',
+            'tipo'  => 'required',
+            'lugar' => 'required',
+        ]);
+
         $acta->descripcion = $request->get('descripcion');
         $acta->palabra_clave = $request->get('palabra_clave');
         $acta->lugar = $request->get('lugar');
@@ -182,8 +197,8 @@ class ActaController extends Controller
         $acta->save();
 
         $acta->articulos()->detach();
-
-        foreach ($request->get('articulo') as $articulo) {
+        $acta->articulos()->attach($request->get('articulo'));
+        foreach ($request->get('lp') as $articulo) {
             $acta->articulos()->attach($articulo);
         }
 

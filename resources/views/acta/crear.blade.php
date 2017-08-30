@@ -41,10 +41,14 @@
 					palabra_clave: {
 						required: true,
 					},
-					"articulo[]": {
+					articulo: {
 						required: true,
-						minlength: 1
-
+					},
+					"lp[]": "required",
+					testigo: {
+						required: true,
+						minlength: 2,
+						maxlength: 2,
 					},
 					tipo:{
 						required: true,
@@ -63,23 +67,62 @@
 			$('.i-checks').iCheck({
 				radioClass: 'iradio_square-green',
 			});
-			var data = [
+			var lp = [
 				@foreach ($articulos as $articulo)
-					{ id: '{{ $articulo->id_articulo }}',
-					  text: @if (!isset($articulo->padre))
-  						'{{ ucfirst($articulo->tipo)}} {{$articulo->identificador}} de <b> {{ $articulo->ley }} </b>'
-  					@elseif (isset($articulo->padre) && !isset($articulo->art_padre->padre))
-  						'{{ ucfirst($articulo->tipo) }} {{ $articulo->identificador }} del <b>{{ ucfirst($articulo->art_padre->tipo).' '.$articulo->art_padre->identificador }}</b> de <b>{{ $articulo->ley }}</b>'
-  					@endif
-  					@if (isset($articulo->art_padre->padre))
-  						'{{ ucfirst($articulo->tipo) }} {{ $articulo->identificador }} del <b>{{ ucfirst($articulo->art_padre->tipo) }} {{ $articulo->art_padre->identificador }}</b> del <b>{{ ucfirst($articulo->art_padre->art_padre->tipo).' '.$articulo->art_padre->art_padre->identificador }}</b> de <b>{{ $articulo->ley }}</b>'
-  					@endif,
-					title: '{{ $articulo->tipo }}'
-				},
+					@if ($articulo->tipo != 'articulo')
+						{ id: '{{ $articulo->id_articulo }}',
+						  text: @if (!isset($articulo->padre))
+	  							'{{ ucfirst($articulo->tipo)}} {{$articulo->identificador}} de <b> {{ $articulo->ley }} </b>'
+			  					@elseif (isset($articulo->padre) && !isset($articulo->art_padre->padre))
+			  						'{{ ucfirst($articulo->tipo) }} {{ $articulo->identificador }} del <b>{{ ucfirst($articulo->art_padre->tipo).' '.$articulo->art_padre->identificador }}</b> de <b>{{ $articulo->ley }}</b>'
+			  					@endif
+			  					@if (isset($articulo->art_padre->padre))
+			  						'{{ ucfirst($articulo->tipo) }} {{ $articulo->identificador }} del <b>{{ ucfirst($articulo->art_padre->tipo) }} {{ $articulo->art_padre->identificador }}</b> del <b>{{ ucfirst($articulo->art_padre->art_padre->tipo).' '.$articulo->art_padre->art_padre->identificador }}</b> de <b>{{ $articulo->ley }}</b>'
+			  					@endif,
+							title: '{{ ucfirst($articulo->tipo) }}',
+							dataid: '{{ $articulo->padre }}',
+							disabled: true,
+						},
+					@endif
 				@endforeach
 			];
+
+			var art = [
+				@foreach ($articulos as $articulo)
+					@if ($articulo->tipo == 'articulo')
+						{ id: '{{ $articulo->id_articulo }}',
+						  text: @if (!isset($articulo->padre))
+	  							'{{ ucfirst($articulo->tipo)}} {{$articulo->identificador}} de <b> {{ $articulo->ley }} </b>'
+			  					@endif,
+							title: '{{ $articulo->tipo }}',
+						},
+					@endif
+				@endforeach
+			];
+
 			$('.articulo').select2({
-				data: data,
+				data: art,
+				 placeholder: "Selecciona un articulo",
+				 allowClear: true,
+				 language: 'es',
+				 escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
+            });
+
+			$('.articulo').change(function () {
+				var val = $(this).val();
+				$('.articulo1').prop('disabled',false)
+				$('.articulo1 option').prop('disabled',true)
+				$('.articulo1 option[id='+val+']').prop('disabled',false)
+				$('.articulo1').select2({
+					placeholder: "Selecciona los literales y párrafos correspondiente con el acta",
+	   				allowClear: true,
+	   				language: 'es',
+	   				escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
+				});
+			});
+
+			$('.articulo1').select2({
+				data: lp,
 				 placeholder: "Selecciona los articulos a incluir",
 				 allowClear: true,
 				 language: 'es',
