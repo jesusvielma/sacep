@@ -1,7 +1,6 @@
 <?php
 
 namespace sacep\Http\Controllers;
-use sacep;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
@@ -334,5 +333,14 @@ class EvaluacionController extends Controller
             unset($eva);
         }
         return redirect()->route('procesar_index');
+    }
+
+    public function ver_empleados()
+    {
+
+        $data['deps'] =  Departamento::where('nombre','not like','%Gerencia%')->orWhere('nombre','not like','%gerencia%')->get();
+
+        return view('evaluar.todo_empleados',$data);
+
     }
 }

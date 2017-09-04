@@ -118,7 +118,7 @@
                     </li> --}}
                 @endcan
                 @can('ver_ev')
-                    <li class="{{ $current_route_name == 'index_evaluar' || $current_route_name == 'procesar_index' || $current_route_name == 'evaluar' || $current_route_name == 'editar_evaluacion' || $current_route_name == 'evaluaciones' ? 'active' : NULL }}">
+                    <li class="{{ $current_route_name == 'index_evaluar' || $current_route_name == 'procesar_index' || $current_route_name == 'evaluar' || $current_route_name == 'editar_evaluacion' || $current_route_name == 'evaluaciones' || $current_route_name == 'ver_empleados' ? 'active' : NULL }}">
                         <a href="#"><i class="fa fa-pie-chart"></i> <span class="nav-label">Evaluaciones</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse">
                             <li><a href="{{ route('index_evaluar') }}">Evaluar</a></li>
@@ -127,6 +127,7 @@
                             @endcan
                             @can('gerente_ve_evaluaciones',sacep\Evaluacion::class)
                                 <li><a href="#" id="consultaEvaTraba">Consultar trabajador</a></li>
+                                <li><a href="{{ route('ver_empleados') }}" >Todos los trabajadores</a></li>
                             @endcan
                         </ul>
                     </li>

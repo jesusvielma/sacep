@@ -40,6 +40,11 @@
 				},
 				lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "Todos"]]
             });
+			$('.ver').click(function (event) {
+				event.preventDefault();
+				url = $(this).attr('href');
+				window.open(url,'Vista de impresión','width=1024,height=768,titlebar=no,left=100');
+			});
 		});
 	</script>
 	@if (session('notif'))
@@ -119,7 +124,7 @@
 													<td>{{ ucfirst($evaluacion->motivo) }}</td>
 													<td>{{ ucfirst($evaluacion->estado) }}</td>
 													<td class="tooltip-demo">
-														<a class="btn btn-xs btn-primary" href="{{ route('imprimir_evaluacion',['id'=> $evaluacion->id_evaluacion]) }}" data-toggle="tooltip" data-placement="top" title="Ver esta evaluación"><i class="fa fa-eye"></i></a>
+														<a class="btn btn-xs btn-primary ver" href="{{ route('imprimir_evaluacion',['id'=> $evaluacion->id_evaluacion]) }}" data-toggle="tooltip" data-placement="top" title="Ver esta evaluación (abre en una nueva ventana)"><i class="fa fa-eye"></i></a>
 														@if ($evaluacion->estado == 'guardada')
 															<a class="btn btn-xs btn-success" href="{{ route('editar_evaluacion',['id'=>$evaluacion->id_evaluacion]) }}" data-toggle="tooltip" data-placement="top" title="Editar esta evaluación"><i class="fa fa-pencil"></i></a>
 														@endif
