@@ -76,20 +76,47 @@
 			    checkboxClass: 'icheckbox_square-green',
 			});
 
-			var mark = function() {
-
-    			// Read the keyword
-    			var keyword = $("input[name='busqueda']").val();
-
-    			// Remove previous marked elements and mark
-    			// the new keyword inside the context
-    			$(".search").unmark({
-      				done: function() {
-        			$(".search").mark(keyword);
-      				}
-    			});
-  			};
-			$("input[name='busqueda']").on('input',mark);
+			// var mark = function() {
+			//
+    		// 	// Read the keyword
+    		// 	var keyword = $("input[name='busqueda']").val();
+			//
+    		// 	// Remove previous marked elements and mark
+    		// 	// the new keyword inside the context
+    		// 	$(".search").unmark({
+      // 				done: function() {
+        	// 		$(".search").mark(keyword);
+      // 				}
+    		// 	});
+  	// 		};
+  	 		var $search = $('.search > div'), $input = $("input[name='busqueda']");
+			$input.on('input',function (){
+				var term = $(this).val();
+				$search.show().unmark();
+				if (term) {
+					$search.mark(term, {
+						separateWordSearch: false,
+						diacritics: false,
+						"exclude": [
+							".ibox-content *"
+						],
+						done: function (e) {
+							$search.not(':has(mark)').hide();
+							if (e>1) {
+								$('#notMatch').removeClass('fadeIn').addClass('hide');
+							}
+						},
+						noMatch: function () {
+							$('#notMatch').removeClass('hide').addClass('fadeIn');
+						}
+					})
+				}
+			});
+			$('.borrar_busqueda').click(function () {
+				$search.show().unmark();
+				$input.val('').focus();
+				$('#notMatch').removeClass('fadeIn').addClass('hide');
+			});
 		});
 	</script>
 	@if (session('notif'))
@@ -122,12 +149,22 @@
 				<div class="input-group">
 					<span class="input-group-addon"><i class="fa fa-search"></i></span>
 					<input type="text" name="busqueda" placeholder="Buscar coordinación o unidad" class="form-control">
+					<span class="input-group-btn"><button class="btn btn-warning borrar_busqueda"><i class="fa fa-times"></i></button></span>
 				</div>
 			</div>
 		</div>
 	</div>
 
 	<div class="wrapper wrapper-content animated fadeInRightBig">
+		<div class="row hide animated " id="notMatch">
+			<div class="col-lg-6 col-lg-offset-3">
+				<div class="alert alert-info">
+					<h4>No hay resultados</h4>
+					<p>La busqueda realizado no presenta resultado, por favor verifiquela y vuela a intentarlo</p>
+					<button class="btn btn-warning btn-block borrar_busqueda"><i class="fa fa-times"></i> Borrar y reiniciar la busqueda</button>
+				</div>
+			</div>
+		</div>
 		<div class="row search">
 			@foreach ($deps as $dep)
 				<div class="col-lg-6">
