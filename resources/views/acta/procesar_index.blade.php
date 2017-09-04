@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @section('title')
-	Actas por procesar
+	Actas y llamados de atención por procesar
 @endsection
 
 @section('css')
@@ -71,6 +71,19 @@
 					});
 				}
 			});
+			$('.ver').click(function (event) {
+				url = '{!! url('/') !!}/';
+				event.preventDefault();
+				tipo = $(this).data('tipo');
+				id = $(this).data('id');
+				if (tipo !='llamado') {
+					url = url+'imprimir_acta/'+id;
+				}
+				else{
+					url = url+'imprimir_llamado/'+id;
+				}
+				window.open(url,'Vista de impresión','width=1024,height=768,titlebar=no,left=100');
+			});
 		});
 	</script>
 	@if (session('notif'))
@@ -89,12 +102,12 @@
 @section('content')
 	<div class="row wrapper border-bottom white-bg page-heading">
 		<div class="col-lg-9">
-			<h2>Evaluaciones por procesar</h2>
+			<h2>Actas y llamdos de atención por procesar</h2>
 			<ol class="breadcrumb">
 				<li><a href="{{ route('pagina_inicio') }}"> Inicio </a></li>
-				<li><a href="{{ route('index_evaluar') }}"> Listado de trabajadores a evaluar </a></li>
+				<li><a href="{{ route('actas') }}"> Trabajadores - Actas y Llamados de atención</a></li>
 				<li class="active">
-					<strong>Procesar evaluaciones</strong>
+					<strong>Docuementos por procesar</strong>
 				</li>
 			</ol>
 		</div>
@@ -159,7 +172,7 @@
 															@endforeach
 														</td>
 														<td class="tooltip-demo form-inline">
-															<a class="btn btn-xs btn-primary" href="{{ route('imprimir_acta',['id'=> $acta->id_acta]) }}" data-toggle="tooltip" data-placement="top" title="Ver esta evaluación"><i class="fa fa-eye"></i></a>
+															<a class="btn btn-xs btn-primary ver" data-tipo="{{ $acta->tipo }}" data-id="{{ $acta->id_acta }}" href="#" data-toggle="tooltip" data-placement="top" title="Ver esta evaluación"><i class="fa fa-eye"></i></a>
 															<a href="{{ route('procesar_acta',['id'=>$acta->id_acta]) }}" class="btn btn-xs btn-success" data-toggle="tooltip" data-placement="top" title="Procesar esta evaluación"><i class="fa fa-check"></i></a>
 														</td>
 														<td><div class="checkbox-inline i-checks">

@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @section('title')
-	Listado de actas del empelado {{$empleado->nombre_completo}}
+	Listado de llamados de atención del empelado {{$empleado->nombre_completo}}
 @endsection
 
 @section('css')
@@ -40,7 +40,6 @@
 				},
 				lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "Todos"]]
             });
-
 			$('.ver').click(function (event) {
 				event.preventDefault();
 				url = $(this).attr('href');
@@ -75,7 +74,7 @@
 		</div>
 		<div class="col-lg-3">
 			<div class="title-action">
-				<a href="{{ route('acta_nueva',['empleado'=>$empleado->cedula_empleado]) }}" class="ladda-button ladda-button-demo btn btn-primary" name="button" data-style="zoom-in"> Levantar acta</a>
+				<a href="{{ route('llamado_nuevo',['empleado'=>$empleado->cedula_empleado]) }}" class="ladda-button ladda-button-demo btn btn-primary" name="button" data-style="zoom-in"> Levantar acta</a>
 			</div>
 		</div>
 	</div>
@@ -94,10 +93,8 @@
 								<table class="table table-striped table-bordered table-hover dataTables-example">
 									<thead>
 										<tr>
-											<th>Fecha</th>
-											<th>Tipo</th>
-											<th>Palabra clave</th>
-											<th>Descrición</th>
+											<th style="width:15%">Fecha</th>
+											<th>Situación</th>
 											<th>Estado</th>
 											<th>Acciones</th>
 										</tr>
@@ -105,21 +102,15 @@
 									<tbody>
 										@foreach ($empleado->actas as $acta)
 											@if ($empleado->actas->count())
-												@if ($acta->tipo!='llamado')
+												@if ($acta->tipo=='llamado')
 													<tr>
-														<td>{{ $acta->fecha->format('d-m-Y h:i:s a') }}</td>
-														<td>
-															@lang('acta.tipo.'.$acta->tipo)
-														</td>
-														<td>
-															{{ $acta->palabra_clave }}
-														</td>
+														<td>{{ $acta->fecha->formatLocalized('%d de %B de %Y') }}</td>
 														<td>{{ $acta->descripcion }}</td>
 														<td>{{ ucfirst($acta->estado) }}</td>
 														<td class="tooltip-demo">
-															<a class="btn btn-xs btn-primary ver" href="{{ route('imprimir_acta',['id'=> $acta->id_acta]) }}" data-toggle="tooltip" data-placement="top" title="Ver esta acta (Abre en una nueva ventana)" target="_blank"><i class="fa fa-eye"></i></a>
+															<a class="btn btn-xs btn-primary ver" href="{{ route('imprimir_llamado',['id'=> $acta->id_acta]) }}" data-toggle="tooltip" data-placement="top" title="Ver este llamado de atención"><i class="fa fa-eye"></i></a>
 															@if ($acta->estado == 'guardada')
-																<a class="btn btn-xs btn-success" href="{{ route('editar_acta',['id'=>$acta->id_acta]) }}" data-toggle="tooltip" data-placement="top" title="Editar acta"><i class="fa fa-pencil"></i></a>
+																<a class="btn btn-xs btn-success" href="{{ route('editar_llamado',['id'=>$acta->id_acta]) }}" data-toggle="tooltip" data-placement="top" title="Editar este llamado de atención"><i class="fa fa-pencil"></i></a>
 															@endif
 														</td>
 													</tr>

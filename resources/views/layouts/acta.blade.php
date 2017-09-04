@@ -7,7 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-    <title>{{ env('APP_NAME') }} | Acta de {{ trans('acta.tipo.'.$acta->tipo) }}</title>
+    <title>{{ env('APP_NAME') }} |
+
+        @if (isset($acta))
+            Acta de {{ trans('acta.tipo.'.$acta->tipo) }}
+        @elseif (isset($llamado))
+            Llamado de atención de {{ $sancionado->nombre_completo }}
+        @endif
+    </title>
 
     <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
     {{-- <link href="{{ asset('font-awesome/css/font-awesome.css') }}" rel="stylesheet"> --}}
@@ -31,10 +38,10 @@
             border: 0;
         }
 		#header{
-			 position: fixed;
-			 left: 0;
-			 right: 0;
-             top: -30;
+			position: fixed;
+			left: 0;
+			right: 0;
+            top: -30;
 		}
         #footer {
             bottom: 30;
@@ -43,7 +50,9 @@
             right: 0;
         }
         .body-acta {
+            margin-top: 1.2cm;
             margin-left: 3.85cm;
+            margin-bottom: 1.5cm;
         }
 		.borde-tabla > tbody > tr > td  {
 			border: 1px solid black;
@@ -83,6 +92,13 @@
             font-size: 12px;
             font-style: italic;
         }
+        .other-page {
+            page-break-before: always;
+            margin-top: 1.5cm;
+            margin-left: 3.85cm;
+            orphans: 10;
+            widows: 1;
+        }
 	</style>
 
 </head>
@@ -102,9 +118,6 @@
                 <img src="{{ asset('img/membrete-inferior.png') }}" alt="" class="img-responsive">
             </div>
         </div>
-    </div>
-    <div class="continer-fluid">
-
     </div>
     @yield('content')
 </div>

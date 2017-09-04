@@ -132,7 +132,7 @@ class ActaController extends Controller
             }
         }
         $pdf = App::make('dompdf.wrapper');
-		$pdf->loadView('acta.acta',$data);
+		$pdf->loadView('acta.acta2',$data);
 		return $pdf->stream('SACEP-Acta-de-'.$acta->tipo.'-de-'.str_replace(' ','-',$data['sancionado']->nombre_completo).'.pdf');
 
     }

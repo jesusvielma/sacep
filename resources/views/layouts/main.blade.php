@@ -130,19 +130,15 @@
                             @endcan
                         </ul>
                     </li>
-                    @can('procesar')
-                        <li class="{{ $current_route_name == 'actas' || $current_route_name == 'crear_acta' || $current_route_name == 'editar_acta' || $current_route_name == 'procesar_actas' || $current_route_name == 'ver_actas' ? 'active' : NULL }}">
-                            <a href="#"><i class="fa fa-file"></i> <span class="nav-label">Actas</span><span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level collapse">
-                                <li><a href="{{ route('actas') }}">Actas</a></li>
-                                <li><a href="{{ route('procesar_actas') }}">Procesar actas</a></li>
-                            </ul>
-                        </li>
-                    @endcan
-                    @cannot('procesar')
-                        <li class="{{ $current_route_name == 'actas' || $current_route_name == 'crear_acta' || $current_route_name == 'editar_acta' || $current_route_name == 'ver_actas' ? 'active' : NULL }}">
-                            <a href="{{ route('actas') }}"><i class="fa fa-file"></i> <span class="nav-label">Actas</span></a>
-                    @endcannot
+                    <li class="{{ $current_route_name == 'actas' || $current_route_name == 'acta_nueva' || $current_route_name == 'editar_acta' || $current_route_name == 'procesar_actas' || $current_route_name == 'ver_actas' || $current_route_name == 'ver_llamados' || $current_route_name == 'llamado_nuevo' || $current_route_name == 'editar_llamado' ? 'active' : NULL }}">
+                        <a href="#"><i class="fa fa-file"></i> <span class="nav-label">Actas y llamados</span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level collapse">
+                            <li><a href="{{ route('actas') }}">Trabajadores</a></li>
+                            @can('procesar')
+                                <li><a href="{{ route('procesar_actas') }}">Procesar actas/llamados</a></li>
+                            @endcan
+                        </ul>
+                    </li>
                 @endcan
                 @can('material',sacep\Material::class)
                 <li class="{{ $current_route_name == 'materiales' || $current_route_name == 'crear_material' || $current_route_name == 'editar_material' || $current_route_name == 'mostrar_material'? 'active' : NULL }}">

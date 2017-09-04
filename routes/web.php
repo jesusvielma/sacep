@@ -207,15 +207,42 @@ Route::group(['middleware'=>'auth'], function (){
         'as'   => 'procesar_varias_actas'
     ]);
 
+    Route::get('actas_llamados',[
+        'uses'  => 'ActaController@index',
+        'as'    => 'actas'
+    ]);
+
     Route::resource('acta', 'ActaController',[
         'names' => [
-            'index' => 'actas',
             'store' => 'guardar_acta',
             'edit'  => 'editar_acta',
             'update'=> 'update_acta',
         ],
         'parameters' => [
             'acta' => 'acta'
+        ]
+    ]);
+
+    Route::get('llamado/{empleado}/nuevo',[
+        'uses'  => 'LlamadoController@crear',
+        'as'    => 'llamado_nuevo'
+    ]);
+
+    Route::get('llamado/{empleado}/ver',[
+        'uses'  => 'LlamadoController@ver',
+        'as'    => 'ver_llamados'
+    ]);
+
+    Route::get('imprimir_llamado/{llamado}',[
+        'uses'  => 'LlamadoController@imprimir_llamado',
+        'as'    => 'imprimir_llamado'
+    ]);
+
+    Route::resource('llamados','LlamadoController',[
+        'names' => [
+            'store' => 'guardar_llamado',
+            'edit'  => 'editar_llamado',
+            'update'=> 'update_llamado',
         ]
     ]);
 });

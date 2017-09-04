@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @section('title')
-	Actas
+	Trabajores - Actas y Llamados de atención
 @endsection
 
 @section('css')
@@ -58,11 +58,11 @@
 @section('content')
 	<div class="row wrapper border-bottom white-bg page-heading">
 		<div class="col-lg-9">
-			<h2>Actas</h2>
+			<h2>Trabajores - Actas y Llamados de atención</h2>
 			<ol class="breadcrumb">
 				<li><a href="{{ route('pagina_inicio') }}"> Inicio </a></li>
 				<li class="active">
-					<strong>Actas</strong>
+					<strong>Trabajores - Actas y Llamados de atención</strong>
 				</li>
 			</ol>
 		</div>
@@ -76,10 +76,10 @@
 	<div class="wrapper wrapper-content animated fadeInRightBig">
 		<div class="row">
 			@if ($empleados->count())
-				<div class="col-lg-8 col-lg-offset-2">
+				<div class="{{ Auth::user()->nivel == 'gerente' ? 'col-lg-10 col-lg-offset-1' : 'col-lg-8 col-lg-offset-2' }}">
 					<div class="ibox ">
 						<div class="ibox-title">
-							<h5>Todos los recursos de sanciones</h5>
+							<h5>Trabajadores</h5>
 							<div class="ibox-tools">
 							</div>
 						</div>
@@ -88,12 +88,12 @@
 								<table class="table table-striped table-bordered table-hover dataTables-example">
 									<thead>
 										<tr>
-											<th>Número/Letra</th>
-											<th>Contenido</th>
+											<th>Cedula</th>
+											<th>Trabajador</th>
 											@if (Auth::user()->nivel == 'gerente')
 												<th>Coordinación / Unidad</th>
 											@endif
-											<th>Acciones</th>
+											<th style="width:25%">Acciones</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -104,9 +104,15 @@
 												@if (Auth::user()->nivel == 'gerente')
 													<td>{{ $empleado->departamento->nombre }}</td>
 												@endif
-												<td class="tooltip-demo">
-													<a href="{{ route('acta_nueva',['id'=>$empleado->cedula_empleado])}}" class="btn btn-xs btn-primary" data-toggle="tooltip" data-placement="top" title="Levantar acta a {{ $empleado->nombre_completo }}"><i class="fa fa-file"></i></a>
-													<a href="{{ route('ver_actas',['id'=>$empleado->cedula_empleado])}}" class="btn btn-xs btn-success" data-toggle="tooltip" data-placement="top" title="Ver actas de {{ $empleado->nombre_completo }}"><i class="fa fa-files-o"></i></a>
+												<td class="tooltip-demo ">
+													<div class="btn-group">
+														<a href="{{ route('acta_nueva',['id'=>$empleado->cedula_empleado])}}" class="btn btn-sm btn-primary" data-toggle="tooltip" data-placement="top" title="Levantar acta a {{ $empleado->nombre_completo }}"><i class="fa fa-file-text"></i></a>
+														<a href="{{ route('ver_actas',['id'=>$empleado->cedula_empleado])}}" class="btn btn-sm btn-success" data-toggle="tooltip" data-placement="top" title="Ver actas de {{ $empleado->nombre_completo }}"><i class="fa fa-files-o"></i></a>
+													</div>
+													<div class="btn-group">
+														<a href="{{ route('llamado_nuevo',['id'=>$empleado->cedula_empleado])}}" class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="top" title="Levantar llamado de atención a {{ $empleado->nombre_completo }}"><i class="fa fa-bullhorn"></i></a>
+														<a href="{{ route('ver_llamados',['id'=>$empleado->cedula_empleado])}}" class="btn btn-sm btn-success" data-toggle="tooltip" data-placement="top" title="Ver llamados de atención de {{ $empleado->nombre_completo }}"><i class="fa fa-files-o"></i></a>
+													</div>
 												</td>
 											</tr>
 										@endforeach
