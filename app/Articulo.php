@@ -15,7 +15,7 @@ class Articulo extends Model
 	protected $fillable = ['identificador','contenido','ley','gravedad','tipo','padre'];
 
 	/**
-	 * LIterales o parrafos contenido en otros
+	 * Literales o párrafos contenido en otros
 	 */
 	public function art_padre()
 	{

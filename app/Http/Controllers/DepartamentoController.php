@@ -7,10 +7,14 @@ use sacep\Empleado;
 use sacep\Departamento;
 use Illuminate\Http\Request;
 
+/**
+ * Controlador para el modulo de coordinación o unidades
+ * @author Jesus Vielma <jesusvielma309@gmail.com>
+ */
 class DepartamentoController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Muestra las coordinaciones y unidades
      *
      * @return \Illuminate\Http\Response
      */
@@ -22,7 +26,7 @@ class DepartamentoController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Muestra el formulario para crear una coordinación o unidad
      *
      * @return \Illuminate\Http\Response
      */
@@ -38,7 +42,7 @@ class DepartamentoController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Guarda la información de una nueva coordinación o unidad
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -75,7 +79,7 @@ class DepartamentoController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Muestra el formulario para editar una coordinación o unidad
      *
      * @param  \sacep\Departamento  $departamento
      * @return \Illuminate\Http\Response
@@ -93,7 +97,7 @@ class DepartamentoController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Actualizar la información de la coordinación o unidad
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \sacep\Departamento  $departamento
@@ -120,7 +124,7 @@ class DepartamentoController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Borrar una coordinación o unidad
      *
      * @param  \sacep\Departamento  $departamento
      * @return \Illuminate\Http\Response

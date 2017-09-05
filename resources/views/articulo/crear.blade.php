@@ -90,7 +90,7 @@
 					['style', ['bold', 'italic', 'underline', 'clear']],
 					['para', ['ul', 'ol']],
 				],
-				placeholder: "Escriba aqui toda la información sobre el articulo/literal/párrafo que esta ingresando. Recuerde este información será mostrada en el acta correspondiente",
+				placeholder: "Escriba aquí toda la información sobre el articulo/literal/párrafo que esta ingresando. Recuerde este información será mostrada en el acta correspondiente",
 				height: 200,
 				lang: 'es-ES'
 			});

@@ -8,10 +8,14 @@ use sacep\Usuario;
 use sacep\Empleado;
 use sacep\Departamento;
 
+/**
+ * Controlador para el modulo de usuario
+ * @author Jesus Vielma <jesusvielma309@gmail.com>
+ */
 class UsuarioController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Muestra los usuarios del sistema
      *
      * @return \Illuminate\Http\Response
      */
@@ -23,7 +27,7 @@ class UsuarioController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Muestra el formulario para crear un nuevo usuario
      *
      * @return \Illuminate\Http\Response
      */
@@ -41,7 +45,7 @@ class UsuarioController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Guarda al nuevo usuario
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -95,7 +99,7 @@ class UsuarioController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Muestra el formulario para editar a un usuario
      *
      * @param  \sacep\Usuario  $usuario
      * @return \Illuminate\Http\Response
@@ -111,7 +115,7 @@ class UsuarioController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Actualiza la información de un usuario
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \sacep\Usuario  $usuario

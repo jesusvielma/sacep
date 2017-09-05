@@ -63,10 +63,10 @@
 @section('content')
 	<div class="row wrapper border-bottom white-bg page-heading">
 		<div class="col-lg-9">
-			<h2>Trabajores - Actas y Llamados de atención</h2>
+			<h2>Trabajadores - Actas y Llamados de atención</h2>
 			<ol class="breadcrumb">
 				<li><a href="{{ route('pagina_inicio') }}"> Inicio </a></li>
-				<li><a href="{{ route('actas') }}">Trabajores - Actas y Llamados de atención </a></li>
+				<li><a href="{{ route('actas') }}">Trabajadores - Actas y Llamados de atención </a></li>
 				<li class="active">
 					<strong>Editar llamado</strong>
 				</li>

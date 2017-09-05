@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @section('title')
-	Crear un nuevo departamento
+	Editar el @lang('enums.departamento'.$dep->tipo) {{ $dep->nombre }}
 @endsection
 
 @section('css')
@@ -67,10 +67,10 @@
 @section('content')
 	<div class="row wrapper border-bottom white-bg page-heading">
 		<div class="col-lg-9">
-			<h2>Departamentos</h2>
+			<h2>Coordinación/Unidad</h2>
 			<ol class="breadcrumb">
 				<li><a href="{{ route('pagina_inicio') }}"> Inicio </a></li>
-				<li><a href="{{ route('departamento.index') }}"> Departamentos </a></li>
+				<li><a href="{{ route('departamento.index') }}"> Coordinación/Unidad </a></li>
 				<li class="active">
 					<strong>Editar</strong>
 				</li>

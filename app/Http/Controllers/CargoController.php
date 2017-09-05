@@ -5,11 +5,15 @@ namespace sacep\Http\Controllers;
 use sacep\Cargo;
 use Illuminate\Http\Request;
 
+/**
+ * Controlador para el modulo de cargos
+ * @author Jesus Vielma <jesusvielma309@gmail.com>
+ */
 class CargoController extends Controller
 {
 
     /**
-     * Display a listing of the resource.
+     * Muestra un listado de cargdos
      *
      * @return \Illuminate\Http\Response
      */
@@ -21,7 +25,7 @@ class CargoController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Almacena la información de nuevo cargo
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -49,18 +53,8 @@ class CargoController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \sacep\Cargo  $cargo
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Cargo $cargo)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
+     * Envia mediante un arregla en formato json la información del
+     * cargo solicitado.
      *
      * @param  \sacep\Cargo  $cargo
      * @return \Illuminate\Http\Response
@@ -75,7 +69,7 @@ class CargoController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Actualiza la información del cargo.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \sacep\Cargo  $cargo

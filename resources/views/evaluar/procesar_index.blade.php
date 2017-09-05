@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @section('title')
-	Evaluaciones por procesar
+	Procesar evaluaciones
 @endsection
 
 @section('css')
@@ -72,6 +72,11 @@
 					});
 				}
 			});
+			$('.ver').click(function (event) {
+				event.preventDefault();
+				url = $(this).attr('href');
+				window.open(url,'Vista de impresión','width=1024,height=768,titlebar=no,left=100');
+			});
 		});
 	</script>
 	@if (session('notif'))
@@ -121,7 +126,7 @@
 											<thead>
 												<tr>
 													<th>Coordinación/Unidad Generadora</th>
-													<th>Fecha de emision</th>
+													<th>Fecha de emisión</th>
 													<th>Periodo de evaluación </th>
 													<th style="width:10%">Puntaje Final</th>
 													<th>Evaluado</th>
@@ -173,7 +178,7 @@
 															@endforeach
 														</td>
 														<td class="tooltip-demo form-inline">
-															<a class="btn btn-xs btn-primary" href="{{ route('imprimir_evaluacion',['id'=> $evaluacion->id_evaluacion]) }}" data-toggle="tooltip" data-placement="top" title="Ver esta evaluación" target="_blank"><i class="fa fa-eye"></i></a>
+															<a class="btn btn-xs btn-primary ver" href="{{ route('imprimir_evaluacion',['id'=> $evaluacion->id_evaluacion]) }}" data-toggle="tooltip" data-placement="top" title="Ver esta evaluación (abre en una nueva ventana)" target="_blank"><i class="fa fa-eye"></i></a>
 															<a href="{{ route('procesar_una',['id'=>$evaluacion->id_evaluacion]) }}" class="btn btn-xs btn-success" data-toggle="tooltip" data-placement="top" title="Procesar esta evaluación"><i class="fa fa-check"></i></a>
 														</td>
 														<td><div class="checkbox-inline i-checks">
@@ -201,5 +206,4 @@
 				</div>
 		</div>
 	</div>
-
 @endsection

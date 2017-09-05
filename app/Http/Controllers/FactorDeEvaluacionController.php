@@ -2,13 +2,18 @@
 
 namespace sacep\Http\Controllers;
 
+use FontLib\Table\Type\name;
 use sacep\FactorDeEvaluacion;
 use Illuminate\Http\Request;
 
+/**
+ * Controlador para el modulo de factores de evaluación
+ * @author Jesus Vielma <jesusvielma309@gmail.com>
+ */
 class FactorDeEvaluacionController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Muestro todos los factores con sus ítems.
      *
      * @return \Illuminate\Http\Response
      */
@@ -30,7 +35,7 @@ class FactorDeEvaluacionController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Guarda la información de un nuevo factor de evaluación
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -69,7 +74,7 @@ class FactorDeEvaluacionController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Envia la información de un factor mediante json.
      *
      * @param  \sacep\FactorDeEvaluacion  $factor
      * @return \Illuminate\Http\Response
@@ -86,7 +91,7 @@ class FactorDeEvaluacionController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Actualiza la información de un ffactor de evaluación
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \sacep\FactorDeEvaluacion  $factor
@@ -113,7 +118,7 @@ class FactorDeEvaluacionController extends Controller
     }
 
     /**
-     * [destroy description]
+     * Borrar factor de evaluación
      * @param  FactorDeEvaluacion $factor
      * @return \Illuminate\Http\Response
      */

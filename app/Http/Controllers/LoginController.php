@@ -5,10 +5,13 @@ namespace sacep\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * Controlador para el login y sesión del sistema
+ */
 class LoginController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Muestra el formulario de inicio de sesión
      *
      * @return \Illuminate\Http\Response
      */

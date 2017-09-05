@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @section('title')
-	Trabajores - Actas y Llamados de atención
+	Trabajadores - Actas y Llamados de atención
 @endsection
 
 @section('css')
@@ -58,11 +58,11 @@
 @section('content')
 	<div class="row wrapper border-bottom white-bg page-heading">
 		<div class="col-lg-9">
-			<h2>Trabajores - Actas y Llamados de atención</h2>
+			<h2>Trabajadores - Actas y Llamados de atención</h2>
 			<ol class="breadcrumb">
 				<li><a href="{{ route('pagina_inicio') }}"> Inicio </a></li>
 				<li class="active">
-					<strong>Trabajores - Actas y Llamados de atención</strong>
+					<strong>Trabajadores  - Actas y Llamados de atención</strong>
 				</li>
 			</ol>
 		</div>
@@ -88,7 +88,7 @@
 								<table class="table table-striped table-bordered table-hover dataTables-example">
 									<thead>
 										<tr>
-											<th>Cedula</th>
+											<th>Cédula</th>
 											<th>Trabajador</th>
 											@if (Auth::user()->nivel == 'gerente')
 												<th>Coordinación / Unidad</th>
@@ -126,8 +126,8 @@
 				<div class="col-lg-6 col-lg-offset-3">
 					<div class="alert alert-info">
 						<h4>Oops! No hemos encontrado información</h4>
-						<p>Parece que no ha información sobre departamentos te invitamos a crear uno nuevo.</p>
-						<p>Le recomendamos usar el botón que se encuentra la parte superior derecha de su pantalla para crear un nuevo departamento</p>
+						<p>Parece que no hay trabajadores en su {{ ucfirst(trans('enums.departamento.'.Auth::user()->empleado->departamento->tipo)) }}.</p>
+						<p>Le recomendamos que verifique con la cooridinación encargada.</p>
 					</div>
 				</div>
 			@endif

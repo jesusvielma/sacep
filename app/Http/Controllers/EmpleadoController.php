@@ -7,10 +7,14 @@ use sacep\Empleado;
 use Illuminate\Http\Request;
 use sacep\Departamento;
 
+/**
+ * Controlador para el modulo de Empleados
+ * @author Jesus Vielma <jesusvielma309@gmail.com>
+ */
 class EmpleadoController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Muestro todos los empleados.
      *
      * @return \Illuminate\Http\Response
      */
@@ -22,7 +26,7 @@ class EmpleadoController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Muestra un formulario para ingresar un nuevo empleado
      *
      * @return \Illuminate\Http\Response
      */
@@ -35,7 +39,7 @@ class EmpleadoController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Guarda la información del nuevo empleado
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -73,7 +77,7 @@ class EmpleadoController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Muestra el formulario para editar la información de un empleado
      *
      * @param  \sacep\Empleado  $empleado
      * @return \Illuminate\Http\Response
@@ -88,7 +92,7 @@ class EmpleadoController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Actualizar la información de un empleado
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \sacep\Empleado  $empleado

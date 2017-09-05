@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @section('title')
-	Editar empleado
+	Editar información de {{ $empleado->nombre_completo }}
 @endsection
 
 @section('css')

@@ -27,7 +27,7 @@
 	<label for="nombre">Nombre para mostrar en el sistema</label>
 	<div class="row">
 		<div class="tooltip-demo {{ isset($usuario->nombre) ? 'col-lg-12' : 'col-lg-11'}}">
-			<input type="text" name="nombre" value="{{ old('nombre',isset($usuario->nombre) ? $usuario->nombre : NULL) }}" class="form-control" data-toggle="tooltip" data-placement="top" title="" data-original-title="Se recomienda utilizar un nommbre compuesto del primer Nombre y primer Apellido" {{ isset($usuario->nombre) ? '': 'readonly' }}>
+			<input type="text" name="nombre" value="{{ old('nombre',isset($usuario->nombre) ? $usuario->nombre : NULL) }}" class="form-control" data-toggle="tooltip" data-placement="top" title="" data-original-title="Se recomienda utilizar un nombre compuesto del primer Nombre y primer Apellido" {{ isset($usuario->nombre) ? '': 'readonly' }}>
 		</div>
 		@if (!isset($usuario->nombre))
 			<div class="col-lg-1 tooltip-demo">

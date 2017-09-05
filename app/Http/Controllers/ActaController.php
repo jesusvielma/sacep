@@ -10,11 +10,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\App;
 use sacep\Departamento;
-
+/**
+ * Controllador para actas
+ * @author Jesus Vielma <jesusvielma309@gmail.com>
+ */
 class ActaController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Muestra un listado de todas las actas segun el usuario autenticado
      *
      * @return \Illuminate\Http\Response
      */
@@ -32,6 +35,7 @@ class ActaController extends Controller
 
     /**
      * Muestra el formulario para levantar un acta al empleado
+     *
      * @param  Empleado $empleado
      * @return \Illuminate\Http\Response
      */
@@ -67,7 +71,7 @@ class ActaController extends Controller
             'testigo' => 'required|array|min:2'
         ], [
             'lp.min' => 'Debes seleccionar al menos un literal o párrafo',
-            'testigo.min'=> 'Debes seleccionar 2 testigos'
+            'testigo.min'=> 'Debes seleccionar dos (2) testigos'
         ]);
 
         $sancion = new Acta;
@@ -150,7 +154,7 @@ class ActaController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Muestra el formulario para editar un acta
      *
      * @param  \sacep\Acta  $acta
      * @return \Illuminate\Http\Response
@@ -172,7 +176,7 @@ class ActaController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Actualiza la información del acta
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \sacep\Acta  $acta
@@ -206,7 +210,7 @@ class ActaController extends Controller
     }
 
     /**
-     * [procesar_index description]
+     * Muestra el listado de actas por empleado para ser procesadas
      * @return [type] [description]
      */
     public function procesar_index()

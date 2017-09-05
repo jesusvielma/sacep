@@ -19,7 +19,7 @@ class FactorDeEvaluacion extends Model
 	];
 
 	/**
-	* obtener los item de un factor de evaluación
+	* obtener los ítem de un factor de evaluación
 	*/
 	public function items()
 	{

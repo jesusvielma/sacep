@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @section('title')
-	Listado de actas del empelado {{$empleado->nombre_completo}}
+	Listado de actas del empleado {{$empleado->nombre_completo}}
 @endsection
 
 @section('css')

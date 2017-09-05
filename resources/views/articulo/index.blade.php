@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @section('title')
-	Listado de empleados
+	Listado de articulos, literales y párrafos
 @endsection
 
 @section('css')
@@ -62,7 +62,7 @@
 			<ol class="breadcrumb">
 				<li><a href="{{ route('pagina_inicio') }}"> Inicio </a></li>
 				<li class="active">
-					<strong>Sanciones - Articulos/Literales/Parrafos</strong>
+					<strong>Sanciones - Artículos/Literales/Párrafos</strong>
 				</li>
 			</ol>
 		</div>
@@ -117,8 +117,8 @@
 				<div class="col-lg-6 col-lg-offset-3">
 					<div class="alert alert-info">
 						<h4>Oops! No hemos encontrado información</h4>
-						<p>Parece que no ha información sobre departamentos te invitamos a crear uno nuevo.</p>
-						<p>Le recomendamos usar el botón que se encuentra la parte superior derecha de su pantalla para crear un nuevo departamento</p>
+						<p>Parece que no hay información sobre artículos, literales o párrafos te invitamos a crear uno nuevo.</p>
+						<p>Le recomendamos usar el botón que se encuentra la parte superior derecha de su pantalla para crear un nuevo recurso</p>
 					</div>
 				</div>
 			@endif

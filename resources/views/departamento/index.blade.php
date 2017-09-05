@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @section('title')
-	Listado de departamentos
+	Listado de coordinaciones y unidades
 @endsection
 
 @section('css')
@@ -47,17 +47,17 @@
 @section('content')
 	<div class="row wrapper border-bottom white-bg page-heading">
 		<div class="col-lg-9">
-			<h2>Departamentos</h2>
+			<h2>Coordinacióin/Unidad</h2>
 			<ol class="breadcrumb">
 				<li><a href="{{ route('pagina_inicio') }}"> Inicio </a></li>
 				<li class="active">
-					<strong>Departamentos</strong>
+					<strong>Coordinación/Unidad</strong>
 				</li>
 			</ol>
 		</div>
 		<div class="col-lg-3">
 			<div class="title-action">
-				<a href="{{ route('departamento.create') }}" class="ladda-button ladda-button-demo btn btn-primary" name="button" data-style="zoom-in"> Nuevo departamento</a>
+				<a href="{{ route('departamento.create') }}" class="ladda-button ladda-button-demo btn btn-primary" name="button" data-style="zoom-in"> Nuevo coordinación/unidad</a>
 			</div>
 		</div>
 	</div>
@@ -99,8 +99,8 @@
 				<div class="col-lg-6 col-lg-offset-3">
 					<div class="alert alert-info">
 						<h4>Oops! No hemos encontrado información</h4>
-						<p>Parece que no ha información sobre departamentos te invitamos a crear uno nuevo.</p>
-						<p>Le recomendamos usar el botón que se encuentra la parte superior derecha de su pantalla para crear un nuevo departamento</p>
+						<p>Parece que no ha información sobre coordinaciones o unidades te invitamos a crear uno nuevo.</p>
+						<p>Le recomendamos usar el botón que se encuentra la parte superior derecha de su pantalla para crear un nuevo</p>
 					</div>
 				</div>
 			@endif

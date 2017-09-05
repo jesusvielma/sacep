@@ -3,12 +3,17 @@
 namespace sacep\Http\Controllers;
 
 use Carbon\Carbon;
+use FontLib\Table\Type\name;
 use sacep\Acta;
 use sacep\Empleado;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 
+/**
+ * Controlador para el modulo de llamado de atención
+ * @author Jesus Vielma <jesusvielma309@gmail.com>
+ */
 class LlamadoController extends Controller
 {
     /**
@@ -26,7 +31,7 @@ class LlamadoController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Guarda la información de un llamado de atención
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -59,7 +64,7 @@ class LlamadoController extends Controller
     }
 
     /**
-     * PDF
+     * Muestra el PDF de un llamado de atención
      *
      * @param  \sacep\Acta  $llamado
      * @return \Illuminate\Http\Response
@@ -84,7 +89,7 @@ class LlamadoController extends Controller
     }
 
     /**
-     * Ver actas de un empleado
+     * Ver llamados de atención de un empleado
      * @param  Empleado $empleado
      * @return \Illuminate\Http\Response
      */
@@ -97,7 +102,7 @@ class LlamadoController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Muestra el formulario para editar un llamado de atención.
      *
      * @param  \sacep\Acta  $llamado
      * @return \Illuminate\Http\Response
@@ -117,7 +122,7 @@ class LlamadoController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Actualiza la información de un llamado de atención
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \sacep\Acta  $llamado
@@ -133,16 +138,5 @@ class LlamadoController extends Controller
         $llamado->save();
 
         return redirect()->route('imprimir_llamado',['id'=>$llamado->id_acta]);
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \sacep\Acta  $llamado
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Acta $llamado)
-    {
-        //
     }
 }

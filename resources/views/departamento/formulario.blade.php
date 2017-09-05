@@ -1,6 +1,6 @@
 {{ csrf_field() }}
 <div class="form-group {{ $errors->has('nombre') ? 'has-error' : ''}}">
-	<label for="nombre">Nombre del departamento</label>
+	<label for="nombre">Nombre de la coordinación/unidad</label>
 	<input type="text" name="nombre" value="{{ old('nombre',isset($dep->nombre) ? $dep->nombre : NULL) }}" class="form-control">
 </div>
 <div class="form-group {{ $errors->has('responsable') ? 'has-error' : ''}}">
@@ -31,7 +31,7 @@
 	</div>
 </div>
 <div class="form-group {{ $errors->has('responsable') ? 'has-error' : ''}}" id="selectUnidad">
-	<label for="">Coordinación para la unidad que se creada</label>
+	<label for="">Coordinación para la unidad que será creada</label>
 	<select class="depto form-control" name="departamento_padre" {{ isset($dep->tipo) && $dep->tipo == 'unidad' ? NULL : 'disabled'}}>
 		<option></option>
 		@foreach ($deps as $dept)

@@ -40,7 +40,7 @@
 </div>
 @if ($articulos->count())
 	<div class="form-group">
-		<label>Literal o parrafo contenido en:</label>
+		<label>Literal o párrafo contenido en:</label>
 		<select class="padre form-control" name="padre" {{ isset($articulo->tipo) && ($articulo->tipo == 'literal' || $articulo->tipo == 'parrafo') ? NULL : 'disabled'}}>
 			<option></option>
 			@foreach ($articulos as $art)

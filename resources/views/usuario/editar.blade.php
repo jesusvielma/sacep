@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @section('title')
-	Crear un nuevo departamento
+	Editar el usuario de {{ $usuario->nombre }}
 @endsection
 
 @section('css')

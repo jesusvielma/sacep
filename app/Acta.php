@@ -17,7 +17,7 @@ class Acta extends Model
 	protected $fillable = ['descripcion','fecha','lugar','tipo','palabra_clave','estado'];
 
 	/**
-	 * Articulos en una sanción
+	 * Artículos en una sanción
 	 */
 	public function articulos()
 	{

@@ -114,7 +114,7 @@
 						<div class="ibox collapsed">
 							<div class="ibox-title">
 								<h5>{{ $factor->nombre }}
-									@if ($factor->items()->count() && $factor->estado == 1)
+									{{-- @if ($factor->items()->count() && $factor->estado == 1)
 										<small class="text-success"> En uso
 									@elseif ($factor->items()->count() && $factor->estado == 0)
 										<small class="text-danger"> No se usa para nuevas evaluaciones
@@ -124,21 +124,42 @@
 										<small class="text-danger"> Fuera de uso | Sin items
 									@endif
 									| {{ $factor->porcentaje > 0 ? 'Valor: '.$factor->porcentaje.'%' : 'Sin valor'}}
-									</small>
-								</h5>
-								<div class="ibox-tools tooltip-demo">
-									<a class="collapse-link" data-toggle="tooltip" data-placement="top" title="" data-original-title="Muestra o esconde la información del factor">
-		                                <i class="fa fa-chevron-up"></i>
-		                            </a>
-									<a href="#" class="update" data-id="{{ $factor->id_factor }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Editar este factor"><i class="fa fa-pencil"></i></a>
-									<a href="{{ route('crear_item',['factor'=>$factor->id_factor]) }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Agrega items a este factor"><i class="fa fa-plus-square"></i></a>
+									</small> --}}
 									@if ($factor->items->count())
 										@php
 											$usado = 0;
 										@endphp
 										@foreach ($factor->items as $item)
 											@if (!$item->item_usuados->count() && $usado == 0)
-												<a href="#" class="eliminar" id="{{ $factor->id_factor }}" data-toggle="tooltip" data-placement="top" title="Borrar este factor con sus items"><i class="fa fa-remove"></i></a>
+												<small class="text-danger">Sin usar</small>
+												@php
+													break;
+												@endphp
+											@else
+												<small class="text-success">Usado</small>
+												@php
+													$usado = 1;
+													break;
+												@endphp
+											@endif
+										@endforeach
+									@else
+										<small class="text-danger">Sin usar</small>
+									@endif
+								</h5>
+								<div class="ibox-tools tooltip-demo">
+									<a class="collapse-link" data-toggle="tooltip" data-placement="top" title="" data-original-title="Muestra o esconde la información del factor">
+		                                <i class="fa fa-chevron-up"></i>
+		                            </a>
+									<a href="#" class="update" data-id="{{ $factor->id_factor }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Editar este factor"><i class="fa fa-pencil"></i></a>
+									<a href="{{ route('crear_item',['factor'=>$factor->id_factor]) }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Agrega ítems a este factor"><i class="fa fa-plus-square"></i></a>
+									@if ($factor->items->count())
+										@php
+											$usado = 0;
+										@endphp
+										@foreach ($factor->items as $item)
+											@if (!$item->item_usuados->count() && $usado == 0)
+												<a href="#" class="eliminar" id="{{ $factor->id_factor }}" data-toggle="tooltip" data-placement="top" title="Borrar este factor con sus ítems"><i class="fa fa-remove"></i></a>
 												<form action="{{ route('eliminar_factor',['id'=>$factor->id_factor]) }}" method="post" class="inline-form" id="factor_{{ $factor->id_factor }}">
 													{{ csrf_field() }}
 													{{ method_field('DELETE') }}
@@ -153,7 +174,7 @@
 											@endif
 										@endforeach
 									@else
-										<a href="#" class="eliminar" id="{{ $factor->id_factor }}" data-toggle="tooltip" data-placement="top" title="Borrar este factor con sus items"><i class="fa fa-remove"></i></a>
+										<a href="#" class="eliminar" id="{{ $factor->id_factor }}" data-toggle="tooltip" data-placement="top" title="Borrar este factor con sus ítems"><i class="fa fa-remove"></i></a>
 										<form action="{{ route('eliminar_factor',['id'=>$factor->id_factor]) }}" method="post" class="inline-form" id="factor_{{ $factor->id_factor }}">
 											{{ csrf_field() }}
 											{{ method_field('DELETE') }}
@@ -186,7 +207,7 @@
 									@else
 										<div class="alert alert-info">
 											<h4>Oops!</h4>
-											<p>No hemos encontrados los item de este factor, puede proceder a hacer clic en simbolo de mas en la parte superior izquierda de esta caja para agregar items de evaluación a este factor.</p>
+											<p>No hemos encontrados los ítem de este factor, puede proceder a hacer clic en símbolo de mas en la parte superior izquierda de esta caja para agregar ítems de evaluación a este factor.</p>
 										</div>
 									@endif
 								</div>
@@ -209,7 +230,7 @@
 				<div class="modal-content">
 					<form role="form" action="{{ route('guardar_factor') }}" method="post">
 						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+							<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Cerrar</span></button>
 							<i class="fa fa-plus modal-icon"></i>
 							<h4 class="modal-title">Nuevo factor de evaluación</h4>
 						</div>

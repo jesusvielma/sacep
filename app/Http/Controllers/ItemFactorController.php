@@ -4,6 +4,7 @@ namespace sacep\Http\Controllers;
 
 use sacep\ItemFactor;
 use Illuminate\Http\Request;
+use sacep\FactorDeEvaluacion;
 
 class ItemFactorController extends Controller
 {
@@ -24,7 +25,7 @@ class ItemFactorController extends Controller
      */
     public function crear($id_factor)
     {
-        $data['factor'] = $id_factor;
+        $data['factor'] = FactorDeEvaluacion::find($id_factor);
         return view('item_factor.crear',$data);
     }
 

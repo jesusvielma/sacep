@@ -4,7 +4,7 @@
     <div class="col-sm-5">
       <p class="form-control-static">{{ $empleado->nombre_completo }}</p>
     </div>
-	<label class="col-sm-2 control-label">Cedula sancionado</label>
+	<label class="col-sm-2 control-label">Cédula sancionado</label>
     <div class="col-sm-3">
       <p class="form-control-static">{{ $empleado->cedula_empleado }}</p>
 	  <input type="hidden" name="sancionado" value="{{ $empleado->cedula_empleado }}" readonly class="form-control">
@@ -15,7 +15,7 @@
     <div class="col-sm-5">
       <p class="form-control-static">{{ Auth::user()->empleado->nombre_completo }}</p>
     </div>
-	<label class="col-sm-2 control-label">Cédula sancioandor</label>
+	<label class="col-sm-2 control-label">Cédula sancionador</label>
     <div class="col-sm-3">
       <p class="form-control-static">{{ Auth::user()->empleado->cedula_empleado }}</p>
 	  <input type="hidden" name="sancionador" value="{{ Auth::user()->empleado->cedula_empleado }}">
@@ -35,7 +35,7 @@
 	<div class="col-lg-12">
 		<label for="palabra_clave">Palabra clave de la sanción</label>
 		<input type="text" name="palabra_clave" class="form-control" value="{{ old('palabra_clave',isset($acta->palabra_clave) ? $acta->palabra_clave : NULL)}}">
-		<span class="help-block m-b-none">Ejemplo: asusencia, falta, etc</span>
+		<span class="help-block m-b-none">Ejemplo: ausencia, falta, etc</span>
 		@if ($errors->has('palabra_clave'))
 			<span class="help-block m-b-none">{{ $errors->first('palabra_clave') }}</span>
 		@endif

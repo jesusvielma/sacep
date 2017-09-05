@@ -22,7 +22,7 @@
 
     <div class="middle-box text-center animated fadeInDown">
         <h1>{{ $exception->getStatusCode() }}</h1>
-        <h3 class="font-bold">No puede relizar la acción solicitada</h3>
+        <h3 class="font-bold">No puede realizar la acción solicitada</h3>
 
         <div class="error-desc">
             Lo sentimos, pero la acción solicitada no puede ser procesada ya que no cuenta con las permisos necesarios para la misma, le invitamos a corroborar la solicitud.

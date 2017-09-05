@@ -88,7 +88,7 @@
 								<table class="table table-striped table-bordered table-hover dataTables-example">
 									<thead>
 										<tr>
-											<th>Cedula de identidad</th>
+											<th>Cédula de identidad</th>
 											<th>Nombre</th>
 											<th>Fechad ingreso</th>
 											<th>Fecha de nacimiento</th>
@@ -109,7 +109,7 @@
 												<td>{{ $empleado->cargo ? $empleado->cargo->nombre : 'Debe darle un cargo a esta empleado' }}</td>
 												<td>{{ $empleado->departamento ? $empleado->departamento->nombre : 'Debe asociar al empleado a un departamento' }}</td>
 												<td class="tooltip-demo">
-													<a href="{{ route('editar_empleado',['id'=>$empleado->cedula_empleado])}}" class="btn btn-xs btn-primary" data-toggle="tooltip" data-placement="top" title="Editar a {{ $empleado->nombre_completo }}"><i class="fa fa-pencil"></i></a>
+													<a href="{{ route('editar_empleado',['id'=>$empleado->cedula_empleado])}}" class="btn btn-xs btn-primary" data-toggle="tooltip" data-placement="top" title="Editar información de {{ $empleado->nombre_completo }}"><i class="fa fa-pencil"></i></a>
 												</td>
 											</tr>
 										@endforeach
@@ -123,8 +123,8 @@
 				<div class="col-lg-6 col-lg-offset-3">
 					<div class="alert alert-info">
 						<h4>Oops! No hemos encontrado información</h4>
-						<p>Parece que no ha información sobre departamentos te invitamos a crear uno nuevo.</p>
-						<p>Le recomendamos usar el botón que se encuentra la parte superior derecha de su pantalla para crear un nuevo departamento</p>
+						<p>Parece que no hay empleados en la base de datos.</p>
+						<p>Le recomendamos usar el botón que se encuentra la parte superior derecha de su pantalla para ingresar un nuevo empleado</p>
 					</div>
 				</div>
 			@endif

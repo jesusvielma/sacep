@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @section('title')
-	Listado de evaluaciones del empelado {{$empleado->nombre_completo}}
+	Listado de evaluaciones del empleado {{$empleado->nombre_completo}}
 @endsection
 
 @section('css')
@@ -93,7 +93,7 @@
 								<table class="table table-striped table-bordered table-hover dataTables-example">
 									<thead>
 										<tr>
-											<th>Fecha de emision</th>
+											<th>Fecha de emisión</th>
 											<th>Periodo de evaluación </th>
 											<th style="width:10%">Puntaje Final</th>
 											<th>Motivo de evaluación</th>

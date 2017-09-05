@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @section('title')
-	Evaluaciones por procesar
+	Evaluaciones / Consultado de trabajadores
 @endsection
 
 @section('css')
@@ -76,19 +76,6 @@
 			    checkboxClass: 'icheckbox_square-green',
 			});
 
-			// var mark = function() {
-			//
-    		// 	// Read the keyword
-    		// 	var keyword = $("input[name='busqueda']").val();
-			//
-    		// 	// Remove previous marked elements and mark
-    		// 	// the new keyword inside the context
-    		// 	$(".search").unmark({
-      // 				done: function() {
-        	// 		$(".search").mark(keyword);
-      // 				}
-    		// 	});
-  	// 		};
   	 		var $search = $('.search > div'), $input = $("input[name='busqueda']");
 			$input.on('input',function (){
 				var term = $(this).val();
@@ -135,12 +122,12 @@
 @section('content')
 	<div class="row wrapper border-bottom white-bg page-heading">
 		<div class="col-lg-9">
-			<h2>Evaluaciones por procesar</h2>
+			<h2>Listado de coordinaciones/Unidades</h2>
 			<ol class="breadcrumb">
 				<li><a href="{{ route('pagina_inicio') }}"> Inicio </a></li>
 				<li><a href="{{ route('index_evaluar') }}"> Listado de trabajadores a evaluar </a></li>
 				<li class="active">
-					<strong>Procesar evaluaciones</strong>
+					<strong>Coordinaciones/Unidades con sus trabajadores</strong>
 				</li>
 			</ol>
 		</div>
@@ -160,8 +147,8 @@
 			<div class="col-lg-6 col-lg-offset-3">
 				<div class="alert alert-info">
 					<h4>No hay resultados</h4>
-					<p>La busqueda realizado no presenta resultado, por favor verifiquela y vuela a intentarlo</p>
-					<button class="btn btn-warning btn-block borrar_busqueda"><i class="fa fa-times"></i> Borrar y reiniciar la busqueda</button>
+					<p>La búsqueda realizado no presenta resultado, por favor verifíquela y vuela a intentarlo</p>
+					<button class="btn btn-warning btn-block borrar_busqueda"><i class="fa fa-times"></i> Borrar y reiniciar la búsqueda</button>
 				</div>
 			</div>
 		</div>

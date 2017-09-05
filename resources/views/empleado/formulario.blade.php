@@ -2,7 +2,7 @@
 <div class="form-group {{ $errors->has('cedula_empleado') ? 'has-error' : ''}}">
 	<label for="cedula_empleado">Cédula</label>
 	<div class="tooltip-demo">
-		<input id="cedula_empleado" type="text" name="cedula_empleado" value="{{ old('cedula_empleado',isset($empleado->cedula_empleado) ? $empleado->cedula_empleado : NULL) }}" class="form-control" data-toggle="tooltip" data-placement="top" title="" data-original-title="Escribe la cédula sin separadores">
+		<input id="cedula_empleado" type="text" name="cedula_empleado" value="{{ old('cedula_empleado',isset($empleado->cedula_empleado) ? $empleado->cedula_empleado : NULL) }}" class="form-control" data-toggle="tooltip" data-placement="top" title="" data-original-title="Escriba la cédula sin separadores">
 		@if ($errors->has('cedula_empleado'))
 			<span class="help-block m-b-none">{{ $errors->first('cedula_empleado') }}</span>
 		@endif
@@ -29,7 +29,7 @@
 	</div>
 	<div class="col-lg-6">
 		<div class="form-group {{ $errors->has('fecha_ingreso') ? 'has-error' : ''}}" id="data_3">
-			<label >Fecha de Ingreso a la empresa</label>
+			<label >Fecha de ingreso a la empresa</label>
 			<div class="input-group date">
 				<span class="input-group-addon"><i class="fa fa-calendar"></i></span><input name="fecha_ingreso" type="text" class="form-control" value="{{ old('fecha_ingreso',isset($empleado->fecha_ingreso) ? $empleado->fecha_ingreso : NULL) }}">
 				@if ($errors->has('fecha_ingreso'))
@@ -54,7 +54,7 @@
 </div>
 
 <div class="form-group {{ $errors->has('id_departamento') ? 'has-error' : ''}}">
-	<label for="dep">Departamento</label>
+	<label for="dep">Coordinación/Unidad</label>
 	<select class="dep form-control" name="id_departamento">
 		<option></option>
 		@foreach ($deps as $dep)

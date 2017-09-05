@@ -21,11 +21,10 @@
 
 	<div class="wrapper wrapper-content">
 		<div class="middle-box text-center animated fadeInRightBig">
-			<h3 class="font-bold">This is page content</h3>
+			<h3 class="font-bold">SACEP</h3>
 			<div class="error-desc">
-				You can create here any grid layout you want. And any variation layout you imagine:) Check out
-				main dashboard and other site. It use many different layout.
-				<br/><a href="index.html" class="btn btn-primary m-t">Dashboard</a>
+				Bienvenido al Sistema Automatizado de Control de Evaluaciones y Personal
+				<br/><a href="{{ route('pagina_inicio') }}" class="btn btn-primary m-t">Inicio</a>
 			</div>
 		</div>
 	</div>

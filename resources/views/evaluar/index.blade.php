@@ -115,8 +115,8 @@
 				<div class="col-lg-6 col-lg-offset-3">
 					<div class="alert alert-info">
 						<h4>Oops! No hemos encontrado información</h4>
-						<p>Parece que no ha información sobre departamentos te invitamos a crear uno nuevo.</p>
-						<p>Le recomendamos usar el botón que se encuentra la parte superior derecha de su pantalla para crear un nuevo departamento</p>
+						<p>Parece que no hay empleados registrado para su coordinación.</p>
+						<p>Le recomendamos verificar esta información con el coordinador encargado.</p>
 					</div>
 				</div>
 			@endif

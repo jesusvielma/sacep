@@ -123,7 +123,7 @@
 
 			$('.articulo1').select2({
 				data: lp,
-				 placeholder: "Selecciona los articulos a incluir",
+				 placeholder: "Selecciona los artículos a incluir",
 				 allowClear: true,
 				 language: 'es',
 				 escapeMarkup: function (markup) { return markup; }, // let our custom formatter work

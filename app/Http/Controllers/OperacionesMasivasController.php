@@ -9,6 +9,10 @@ use sacep\Usuario;
 use sacep\Empleado;
 use sacep\Departamento;
 
+/**
+ * Controlador para hacer carga de datos masiva
+ * @author Jesus Vielma <jesusvielma309@gmail.com>
+ */
 class OperacionesMasivasController extends Controller
 {
 

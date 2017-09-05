@@ -10,10 +10,14 @@ use sacep\Evaluacion;
 use sacep\Departamento;
 use sacep\FactorDeEvaluacion;
 
+/**
+ * Controlador para el modulo de evaluaciones
+ * @author Jesus Vielma <jesusvielma309@gmail.com>
+ */
 class EvaluacionController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Muestra los empleados segun el departamento del usuario conectado
      *
      * @return \Illuminate\Http\Response
      */
@@ -38,7 +42,7 @@ class EvaluacionController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Muestra el formulario para evaluar a un empleado
      *
      * @param \sacep\Empleado $empleado
      * @return \Illuminate\Http\Response
@@ -73,7 +77,7 @@ class EvaluacionController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Guarda la evaluación
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -132,7 +136,7 @@ class EvaluacionController extends Controller
     }
 
     /**
-    * Cambiar el valor que viene del formulario de evaluacion para el puntaje
+    * Cambiar el valor que viene del formulario de evaluación para el puntaje
     * @param string $puntaje
     * @return int
     */
@@ -217,7 +221,7 @@ class EvaluacionController extends Controller
 
 
     /**
-     * Show the form for editing the specified resource.
+     * Muestra el formulario para editar la evaluación
      *
      * @param  \sacep\Evaluacion  $evaluacion
      * @return \Illuminate\Http\Response
@@ -263,7 +267,7 @@ class EvaluacionController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Actualiza la información de la evaluación
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \sacep\Evaluacion  $evaluacion

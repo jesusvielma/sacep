@@ -54,7 +54,7 @@
 			<ol class="breadcrumb">
 				<li><a href="{{ route('pagina_inicio') }}"> Inicio </a></li>
 				<li class="active">
-					<strong>Usuarios</strong>
+					<strong>Perfil</strong>
 				</li>
 			</ol>
 		</div>
@@ -85,7 +85,7 @@
 									<div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
 									<div>
 										<span class="btn btn-primary btn-file">
-											<span class="fileinput-new">Seleciona una imagen</span>
+											<span class="fileinput-new">Selecciona una imagen</span>
 											<span class="fileinput-exists">Cambiar</span>
 											<input type="file" name="avatar" value="{{ old('avatar',(isset($usuario->avatar) ? $usuario->avatar :  NULL)) }}" accept=".png, .jpg, .jpeg">
 										</span>

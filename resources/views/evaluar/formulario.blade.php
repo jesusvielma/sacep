@@ -24,11 +24,11 @@
 			<div class="row">
 				<div class="col-lg-6">
 					<div class="form-group">
-						<label>Motivo de evaluacion</label>
+						<label>Motivo de evaluación</label>
 						<select class="form-control required" name="motivo">
 							<option value="">- Seleccione -</option>
 							<option value="regular" {{ isset($evaluacion->motivo) && $evaluacion->motivo == 'regular' ? 'selected' : NULL}}>Regular</option>
-							<option value="periodica" {{ isset($evaluacion->motivo) && $evaluacion->motivo == 'periodica' ? 'selected' : NULL}}>Periodica</option>
+							<option value="periodica" {{ isset($evaluacion->motivo) && $evaluacion->motivo == 'periodica' ? 'selected' : NULL}}>Periódica</option>
 							<option value="renovacion" {{ isset($evaluacion->motivo) && $evaluacion->motivo == 'renovacion' ? 'selected' : NULL}}>Renovación</option>
 							<option value="ascenso" {{ isset($evaluacion->motivo) && $evaluacion->motivo == 'ascenso' ? 'selected' : NULL}}>Ascenso</option>
 							<option value="traslado" {{ isset($evaluacion->motivo) && $evaluacion->motivo == 'traslado' ? 'selected' : NULL}}>Traslado</option>
@@ -37,13 +37,13 @@
 				</div>
 				<div class="col-lg-6">
 					<div class="form-group">
-						<label>Tipo de evaluacion</label>
+						<label>Tipo de evaluación</label>
 						<select class="form-control required" name="tipo" id="tipo">
 							<option value="">- Seleccione -</option>
 							<option value="mensual" {{ isset($evaluacion->tipo) && $evaluacion->tipo == 'mensual' ? 'selected' : NULL}}>Mensual</option>
 							<option value="bimestral" {{ isset($evaluacion->tipo) && $evaluacion->tipo == 'bimestral' ? 'selected' : NULL}}>Bimestral</option>
 							<option value="trimestral" {{ isset($evaluacion->tipo) && $evaluacion->tipo == 'trimestral' ? 'selected' : NULL}}>Trimestral</option>
-							<option value="semestral" {{ isset($evaluacion->tipo) && $evaluacion->tipo == 'semetral' ? 'selected' : NULL}}>Semetral</option>
+							<option value="semestral" {{ isset($evaluacion->tipo) && $evaluacion->tipo == 'semetral' ? 'selected' : NULL}}>Semestral</option>
 							<option value="anual" {{ isset($evaluacion->tipo) && $evaluacion->tipo == 'anual' ? 'selected' : NULL}}>Anual</option>
 						</select>
 					</div>

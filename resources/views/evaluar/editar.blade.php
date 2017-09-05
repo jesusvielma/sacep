@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @section('title')
-	Evaluar a
+	Editar la evaluación de {{ $empleado->nombre_completo }}
 @endsection
 
 @section('css')
@@ -207,7 +207,7 @@
 			<div class="col-lg-10 col-lg-offset-1">
 				<div class="ibox">
 					<div class="ibox-title">
-						<h5>Evaluar a </h5>
+						<h5>Editar evaluación </h5>
 					</div>
 					<div class="ibox-content">
 						<form action="{{ route('update_evaluacion',['evaluacion'=>$evaluacion->id_evaluacion]) }}" method="post" id="form" class="wizard-big">

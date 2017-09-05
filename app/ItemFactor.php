@@ -20,7 +20,7 @@ class ItemFactor extends Model
 	];
 
 	/**
-	 * La pertenencia de un item a un factor
+	 * La pertenencia de un ítem a un factor
 	 */
 	public function factor()
 	{
@@ -28,7 +28,7 @@ class ItemFactor extends Model
 	}
 
 	/**
-     * Los items que han sido usados en evaluaciones
+     * Los ítems que han sido usados en evaluaciones
      */
     public function item_usuados()
     {

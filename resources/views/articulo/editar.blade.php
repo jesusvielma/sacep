@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @section('title')
-	Editar empleado
+	Editar articulo, literal o párrafo
 @endsection
 
 @section('css')

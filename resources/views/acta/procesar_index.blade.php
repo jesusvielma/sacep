@@ -148,7 +148,7 @@
 													<tr>
 														<td>{{ $acta->fecha->format('d-m-Y h:i:s a') }}</td>
 														<td>
-															{{ $acta->tipo }}
+															{{ ucfirst(trans('enums.acta.'.$acta->tipo))}}
 														</td>
 														<td>
 															@foreach ($acta->empleados as $empleado)
@@ -172,8 +172,8 @@
 															@endforeach
 														</td>
 														<td class="tooltip-demo form-inline">
-															<a class="btn btn-xs btn-primary ver" data-tipo="{{ $acta->tipo }}" data-id="{{ $acta->id_acta }}" href="#" data-toggle="tooltip" data-placement="top" title="Ver esta evaluación"><i class="fa fa-eye"></i></a>
-															<a href="{{ route('procesar_acta',['id'=>$acta->id_acta]) }}" class="btn btn-xs btn-success" data-toggle="tooltip" data-placement="top" title="Procesar esta evaluación"><i class="fa fa-check"></i></a>
+															<a class="btn btn-xs btn-primary ver" data-tipo="{{ $acta->tipo }}" data-id="{{ $acta->id_acta }}" href="#" data-toggle="tooltip" data-placement="top" title="Ver @lang('enums.acta.'.$acta->tipo) (abre en una nueva ventana)"><i class="fa fa-eye"></i></a>
+															<a href="{{ route('procesar_acta',['id'=>$acta->id_acta]) }}" class="btn btn-xs btn-success" data-toggle="tooltip" data-placement="top" title="Procesar @lang('enums.acta.'.$acta->tipo)"><i class="fa fa-check"></i></a>
 														</td>
 														<td><div class="checkbox-inline i-checks">
 															<label > <input type="checkbox" name="id_evaluacion[]" value="{{ $acta->id_acta }}"> </label>

@@ -7,6 +7,10 @@ use sacep\Acta;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use sacep\Empleado;
 
+/**
+ * Politica/ permisos para usuar el modelo de actasç
+ * @author Jesus Vielma <jesusvielma309@gmail.com>
+ */
 class ActaPolicy
 {
     use HandlesAuthorization;
@@ -31,6 +35,13 @@ class ActaPolicy
         }
     }
 
+    /**
+     * El usuario puede lenvatar actas y llamados de atención
+     * @param  Usuario  $usuario
+     * @param  Acta     $acta
+     * @param  Empleado $empleado
+     * @return bool
+     */
     public function levantar(Usuario $usuario,Acta $acta, Empleado $empleado)
     {
         if ($usuario->nivel == 'gerente') {

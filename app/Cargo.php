@@ -15,7 +15,7 @@ class Cargo extends Model
 	protected $fillable = ['nombre','estado'];
 
     /**
-     * @return [type] [description]
+     * Emplado que tiene un cargo
      */
     public function empleados()
     {

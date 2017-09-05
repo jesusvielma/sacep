@@ -89,6 +89,9 @@ class Empleado extends Model
 		->withPivot(['fecha','tipo']);
 	}
 
+	/**
+	 * Actas de un empleado
+	 */
 	public function actas()
 	{
 		return $this->belongsToMany('sacep\Acta','empleado_sancion','cedula_empleado','id_acta')->withPivot('tipo');

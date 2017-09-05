@@ -7,6 +7,9 @@ use sacep\Empleado;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use sacep\Evaluacion;
 
+/**
+ * êrmisos para usar el modelo de Evaluacion
+ */
 class EvaluacionPolicy
 {
     use HandlesAuthorization;
@@ -37,10 +40,10 @@ class EvaluacionPolicy
     /**
     * Determina si el usuario actual puede ver las evaluaciones del empleado determinado.
     * @param \sacep\Usuario $usuario
+    * @param \sacep\Evaluacion $evaluacion
     * @param \sacep\Empleado $empleado
     * @return bool
     */
-
     public function evaluaciones(Usuario $usuario,Evaluacion $evaluacion,Empleado $empleado)
     {
         return $usuario->empleado->id_departamento === $empleado->id_departamento || $usuario->nivel == 'th' || $usuario->nivel == 'gerente';

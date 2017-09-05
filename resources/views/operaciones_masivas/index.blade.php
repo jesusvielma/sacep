@@ -94,8 +94,8 @@
 						@if (session('no_creados'))
 							<div class="alert alert-warning alert-dismissable">
 								<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-								<h4>Información repedita</h4>
-								<p>La siguiente información no se ha almacenado en la base de datos debido a que ya existe, por favor verifique su archivo y vuelva a intentarlo</p>
+								<h4>Información repetida</h4>
+								<p>La siguiente información no se ha almacenado en la base de datos debido a que ya existe, por favor verifique su archivo y vuelva a intentarlo.</p>
 								<ul>
 									@foreach (session('no_creados') as $key)
 										<li>{{ $key['nombre'] }}</li>
@@ -108,7 +108,7 @@
 							<div class="alert alert-warning alert-dismissable">
 								<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
 								<h4>No hemos creado estos registros</h4>
-								<p>La siguiente información no se ha almacenado en la base de datos debido a que no se encuentra informacion, verifique la tabla y compruebe la infomración</p>
+								<p>La siguiente información no se ha almacenado en la base de datos debido a que no se encuentra información, verifique la tabla y compruebe la información</p>
 								<div class="table-responsive">
 									<table class="table table-striped table-bordered table-hover dataTables-example">
 										<thead>
@@ -119,7 +119,7 @@
 											@if (array_key_exists('faltantes',session('nocreado')))
 												<th>Faltantes o no encontrado</th>
 											@endif
-											<th>Información sumistrada</th>
+											<th>Información suministrada</th>
 										</thead>
 										<tbody>
 											@foreach (session('nocreado') as $key)

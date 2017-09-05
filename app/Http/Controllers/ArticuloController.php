@@ -5,10 +5,14 @@ namespace sacep\Http\Controllers;
 use sacep\Articulo;
 use Illuminate\Http\Request;
 
+/**
+ * Controlador para el modulo de artículos
+ * @author Jesus Vielma <jesusvielma309@gmail.com>
+ */
 class ArticuloController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Muestra un listado de todos los recursos del modelo
      *
      * @return \Illuminate\Http\Response
      */
@@ -20,7 +24,7 @@ class ArticuloController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Muestra el formulario para crear un articulo, literal o párrafo
      *
      * @return \Illuminate\Http\Response
      */
@@ -31,7 +35,7 @@ class ArticuloController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Guarda la información de un nuevo articulo, literal o párrafo
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -51,18 +55,7 @@ class ArticuloController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \sacep\Articulo  $articulo
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Articulo $articulo)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
+     * Muestra el formulario para editar el recurso
      *
      * @param  \sacep\Articulo  $articulo
      * @return \Illuminate\Http\Response
@@ -76,7 +69,7 @@ class ArticuloController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Actualiza la información del recurso
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \sacep\Articulo  $articulo
@@ -99,16 +92,5 @@ class ArticuloController extends Controller
 
         $articulo->save();
         return redirect()->route('articulos');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \sacep\Articulo  $articulo
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Articulo $articulo)
-    {
-        //
     }
 }
