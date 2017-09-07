@@ -75,7 +75,7 @@
 
 	<div class="wrapper wrapper-content animated fadeInRightBig">
 		<div class="row">
-			@if ($empleados->count())
+			@if ($empleados->count() || $cant_hijos>0)
 				<div class="{{ Auth::user()->nivel == 'gerente' ? 'col-lg-10 col-lg-offset-1' : 'col-lg-8 col-lg-offset-2' }}">
 					<div class="ibox ">
 						<div class="ibox-title">
@@ -116,6 +116,24 @@
 												</td>
 											</tr>
 										@endforeach
+										@if ($cant_hijos>0)
+											@foreach ($hijos as $key => $hijo)
+												<tr>
+													<td>{{ $hijo->cedula_empleado }}</td>
+													<td>{{ $hijo->nombre_completo }}</td>
+													<td class="tooltip-demo">
+														<div class="btn-group">
+															<a href="{{ route('acta_nueva',['id'=>$hijo->cedula_empleado])}}" class="btn btn-sm btn-primary" data-toggle="tooltip" data-placement="top" title="Levantar acta a {{ $hijo->nombre_completo }}"><i class="fa fa-file-text"></i></a>
+															<a href="{{ route('ver_actas',['id'=>$hijo->cedula_empleado])}}" class="btn btn-sm btn-success" data-toggle="tooltip" data-placement="top" title="Ver actas de {{ $hijo->nombre_completo }}"><i class="fa fa-files-o"></i></a>
+														</div>
+														<div class="btn-group">
+															<a href="{{ route('llamado_nuevo',['id'=>$hijo->cedula_empleado])}}" class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="top" title="Levantar llamado de atención a {{ $hijo->nombre_completo }}"><i class="fa fa-bullhorn"></i></a>
+															<a href="{{ route('ver_llamados',['id'=>$hijo->cedula_empleado])}}" class="btn btn-sm btn-success" data-toggle="tooltip" data-placement="top" title="Ver llamados de atención de {{ $hijo->nombre_completo }}"><i class="fa fa-files-o"></i></a>
+														</div>
+													</td>
+												</tr>
+											@endforeach
+										@endif
 									</tbody>
 								</table>
 							</div>

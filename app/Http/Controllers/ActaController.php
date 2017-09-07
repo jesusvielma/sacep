@@ -25,6 +25,21 @@ class ActaController extends Controller
     {
         if (Auth::user()->nivel != 'gerente') {
             $data['empleados'] = Empleado::where('estado','activo')->where('id_departamento',Auth::user()->empleado->id_departamento)->where('cedula_empleado','!=',Auth::user()->empleado->cedula_empleado)->get();
+            if (Auth::user()->nivel == 'gerente' || Auth::user()->nivel == 'coordinador' ) {
+                $dep2 = Departamento::find(Auth::user()->empleado->id_departamento);
+                if ($dep2->hijo->count()) {
+                    $data['cant_hijos'] = $dep2->hijo->count();
+                    $data1= [];
+                    foreach ($dep2->hijo as $key => $hijo) {
+                        $hijo = Empleado::find($hijo->responsable);
+                        $data1 = $data1 + [$hijo];
+                    }
+                    $data['hijos'] = $data1;
+                }
+                else {
+                    $data['cant_hijos'] = $dep2->hijo->count();
+                }
+            }
         }
         else{
             $data['empleados'] = Empleado::where('estado','activo')->where('cedula_empleado','!=',Auth::user()->empleado->cedula_empleado)->get();
