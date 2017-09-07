@@ -19,7 +19,9 @@
 </head>
 
 <body class="gray-bg ">
-
+    <div class="">
+        <img src="{{ asset('img/sacep.jpg') }}" alt="" class="img-responsive stm-sacep2">
+    </div>
      @yield('content')
 
     <!-- Mainly scripts -->

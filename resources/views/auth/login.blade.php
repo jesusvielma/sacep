@@ -9,9 +9,9 @@
         <div class="row">
             {{-- <img src="{{ asset('img/sacep.jpg') }}" alt="" class="img-responsive stm-sacep1"> --}}
             <div class="col-md-6">
-                <h2 class="font-bold ">{{ env('APP_NAME') }}</h2>
+                <h2 class="font-bold stm-sacep1-color">{{ env('APP_NAME') }}</h2>
 
-                <p class="">
+                <p class="stm-sacep1-color">
                     Bienvenido al Sistema Automatizado para el Control y Evaluación del Personal de Mukumbarí Sistema Teléferico de Mérida.
                 </p>
                 {{-- <img src="{{ asset('img/sacep.jpg') }}" alt="" class="img-responsive stm-sacep2"> --}}
@@ -32,7 +32,7 @@
                         @endif
                     </div>
                 @endif
-                <div class="ibox-content ">
+                <div class="ibox-content ibox-content-stm">
                     <form class="m-t" role="form" action="{{ route('post_login') }}" method="post">
                         {{ csrf_field() }}
                         <div class="form-group {{ $errors->has('correo') ? ' has-error' : '' }}">
@@ -62,7 +62,7 @@
                         </p>
                         <a class="btn btn-sm btn-white btn-block" href="register.html">Create an account</a> --}}
                     </form>
-                    <p class="m-t">
+                    <p class="m-t stm-sacep1-color-black">
                         <small> {{ env('APP_NAME') }} - 2017</small>
                     </p>
 
