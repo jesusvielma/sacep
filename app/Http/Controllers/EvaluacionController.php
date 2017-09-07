@@ -358,7 +358,7 @@ class EvaluacionController extends Controller
     public function ver_empleados()
     {
 
-        $data['deps'] =  Departamento::where('nombre','not like','%Gerencia%')->orWhere('nombre','not like','%gerencia%')->get();
+        $data['deps'] =  Departamento::all();
 
         return view('evaluar.todo_empleados',$data);
 
