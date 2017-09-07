@@ -68,7 +68,7 @@ class EvaluacionController extends Controller
         $eval = new Evaluacion;
         $this->authorize('evaluar',[$eval,$empleado]);
         $rol_evaluador = Auth::user()->nivel == 'gerente';
-        if ($rol_evaluador === TRUE) {
+        if ($rol_evaluador === TRUE || $empleado->usuario->nivel == 'supervisor' || $empleado->usuario->nivel == 'jefe') {
             $data['factores'] = FactorDeEvaluacion::where('estado',1)->with(['items'=> function($query){
                 $query->where('visivilidad','!=','trabajador');
             }])->get();
