@@ -8560,3 +8560,44 @@ body.md-skin {
     margin: 0;
   }
 }
+
+/*
+Estos van en para el body
+ */
+.stm-sacep {
+    background-image: url('../img/sacep.jpg');
+    background-size: 100%;
+}
+
+.stm-sacep  h2, .stm-sacep p {
+    color: white;
+}
+
+/*
+este es par ala imagen sobre los col
+ */
+.stm-sacep1 {
+    position: absolute;
+    top: 5%;
+    opacity: 0.8;
+    z-index: -1
+}
+.stm-sacep1-color {
+    color: white;
+    font-weight: 900;
+}
+
+.ibox-content-stm {
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+/*
+solo la imagen en el text
+ */
+ .stm-sacep2 {
+     position: absolute;
+     top: 0;
+     left: -1px;
+     opacity: 0.8;
+     z-index: -1
+ }

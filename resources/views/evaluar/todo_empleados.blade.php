@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @section('title')
-	Evaluaciones / Consultado de trabajadores
+	Evaluaciones / Consulta de trabajadores
 @endsection
 
 @section('css')

@@ -37,11 +37,10 @@ class Departamento extends Model
 
     /**
      * Saber la coordinación de la undiad
-     * @return [type] [description]
      */
     public function hijo()
     {
-        return $this->belongsTo('sacep\Departamento','departamento_padre','id_departamento');
+        return $this->hasMany('sacep\Departamento','departamento_padre','id_departamento');
     }
 
     /**
@@ -49,7 +48,7 @@ class Departamento extends Model
      */
     public function padre()
     {
-        return $this->hasMany('sacep\Departamento','departamento_padre','id_departamento');
+        return $this->belongsTo('sacep\Departamento','departamento_padre','id_departamento');
     }
 
     /**

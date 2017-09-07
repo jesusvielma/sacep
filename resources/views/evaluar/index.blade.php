@@ -38,7 +38,8 @@
 				language: {
 					url : '{{ URL::asset('js/plugins/dataTables/i18n/es.json') }}',
 				},
-				lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "Todos"]]
+				lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "Todos"]],
+				order: [ [4,'desc'], [0,'asc'] ]
             });
 		});
 	</script>
@@ -72,7 +73,7 @@
 
 	<div class="wrapper wrapper-content animated fadeInRightBig">
 		<div class="row">
-			@if (count($empleados)>0)
+			@if ($empleados->count() || $cant_hijos>0)
 				<div class="col-lg-12">
 					<div class="ibox ">
 						<div class="ibox-title">
@@ -89,6 +90,7 @@
 											<th>Nombre</th>
 											<th style="width:15%">Fechad ingreso</th>
 											<th>Cargo</th>
+											<th>Adscrito a</th>
 											<th style="width:10%">Acciones</th>
 										</tr>
 									</thead>
@@ -99,12 +101,28 @@
 												<td>{{ $empleado->nombre_completo }}</td>
 												<td>{{ $empleado->fecha_ingreso->format('d-m-Y') }}</td>
 												<td>{{ $empleado->cargo ? $empleado->cargo->nombre : 'Debe darle un cargo a esta empleado' }}</td>
+												<td>{{ $empleado->departamento->nombre }}</td>
 												<td class="tooltip-demo">
 													<a href="{{ route('evaluar',['id'=>$empleado->cedula_empleado])}}" class="btn btn-xs btn-primary" data-toggle="tooltip" data-placement="top" title="Evaluar a {{ $empleado->nombre_completo }}"><i class="fa fa-pie-chart"></i></a>
 													<a href="{{ route('evaluaciones',['id'=>$empleado->cedula_empleado])}}" class="btn btn-xs btn-success" data-toggle="tooltip" data-placement="top" title="Evaluaciones de {{ $empleado->nombre_completo }}"><i class="fa fa-list"></i></a>
 												</td>
 											</tr>
 										@endforeach
+										@if ($cant_hijos>0)
+											@foreach ($hijos as $key => $hijo)
+												<tr>
+													<td>{{ $hijo->cedula_empleado }}</td>
+													<td>{{ $hijo->nombre_completo }}</td>
+													<td>{{ $hijo->fecha_ingreso->format('d-m-Y') }}</td>
+													<td>{{ $hijo->cargo ? $hijo->cargo->nombre : 'Debe darle un cargo a esta empleado' }}</td>
+													<td>{{ $hijo->departamento->nombre }}</td>
+													<td class="tooltip-demo">
+														<a href="{{ route('evaluar',['id'=>$hijo->cedula_empleado])}}" class="btn btn-xs btn-primary" data-toggle="tooltip" data-placement="top" title="Evaluar a {{ $hijo->nombre_completo }}"><i class="fa fa-pie-chart"></i></a>
+														<a href="{{ route('evaluaciones',['id'=>$hijo->cedula_empleado])}}" class="btn btn-xs btn-success" data-toggle="tooltip" data-placement="top" title="Evaluaciones de {{ $hijo->nombre_completo }}"><i class="fa fa-list"></i></a>
+													</td>
+												</tr>
+											@endforeach
+										@endif
 									</tbody>
 								</table>
 							</div>

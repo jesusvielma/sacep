@@ -7,14 +7,14 @@
 @section('content')
     <div class="loginColumns animated fadeInDown">
         <div class="row">
-
+            {{-- <img src="{{ asset('img/sacep.jpg') }}" alt="" class="img-responsive stm-sacep1"> --}}
             <div class="col-md-6">
-                <h2 class="font-bold">Bienvenido a {{ env('APP_NAME') }}</h2>
+                <h2 class="font-bold ">{{ env('APP_NAME') }}</h2>
 
-                <p>
+                <p class="">
                     Bienvenido al Sistema Automatizado para el Control y Evaluación del Personal de Mukumbarí Sistema Teléferico de Mérida.
                 </p>
-
+                {{-- <img src="{{ asset('img/sacep.jpg') }}" alt="" class="img-responsive stm-sacep2"> --}}
             </div>
             <div class="col-md-6">
 
@@ -32,7 +32,7 @@
                         @endif
                     </div>
                 @endif
-                <div class="ibox-content">
+                <div class="ibox-content ">
                     <form class="m-t" role="form" action="{{ route('post_login') }}" method="post">
                         {{ csrf_field() }}
                         <div class="form-group {{ $errors->has('correo') ? ' has-error' : '' }}">

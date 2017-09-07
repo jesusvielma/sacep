@@ -86,9 +86,9 @@
 									<dt>Cantidad de Empleados: </dt><dd>{{ $dep->empleados()->count() }}</dd>
 									<dt>Tipo:</dt> <dd>@lang('enums.departamento.'.$dep->tipo)</dd>
 									@if ($dep->departamento_padre)
-										<dt>Adscrita a la coordinación: </dt><dd>{{$dep->hijo->nombre}}</dd>
+										<dt>Adscrita a la coordinación: </dt><dd>{{$dep->padre->nombre}}</dd>
 									@else
-										<dt>Esta coordinación tiene: </dt><dd>{{$dep->padre()->count()}} unidades</dd>
+										<dt>Esta coordinación tiene: </dt><dd>{{$dep->hijo()->count()}} unidades</dd>
 									@endif
 								</dl>
 							</div>

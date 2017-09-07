@@ -23,18 +23,34 @@ class EvaluacionController extends Controller
      */
     public function index()
     {
+        $dep = Auth::user()->empleado->id_departamento;
+
+        $cedula = Auth::user()->empleado->cedula_empleado;
+
+        if (Auth::user()->nivel == 'gerente' || Auth::user()->nivel == 'coordinador' ) {
+            $dep2 = Departamento::find($dep);
+            if ($dep2->hijo->count()) {
+                $data['cant_hijos'] = $dep2->hijo->count();
+                $data1= [];
+                foreach ($dep2->hijo as $key => $hijo) {
+                    $hijo = Empleado::find($hijo->responsable);
+                    $data1 = $data1 + [$hijo];
+                }
+                $data['hijos'] = $data1;
+            }
+            else {
+                $data['cant_hijos'] = $dep2->hijo->count();
+            }
+        }
         if(Auth::user()->nivel !='gerente'){
-            $dep = Auth::user()->empleado->id_departamento;
-
-            $cedula = Auth::user()->empleado->cedula_empleado;
-
             $data['empleados'] = Empleado::where('estado','activo')
             ->where('id_departamento',$dep)
             ->where('cedula_empleado','!=',$cedula)
             ->get();
+
         }
         else{
-            $data['empleados'] = Empleado::where('empleado.estado','activo')->where('usuario.nivel','coordinador')->orWhere('usuario.nivel','th')
+            $data['empleados'] = Empleado::where('empleado.estado','activo')->where('empleado.id_departamento',$dep)->where('empleado.cedula_empleado','!=',$cedula)->orWhere('usuario.nivel','coordinador')->orWhere('usuario.nivel','th')
             ->leftJoin('usuario','usuario.id_usuario','=','empleado.id_usuario')->get();
         }
 

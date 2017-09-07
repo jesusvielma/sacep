@@ -18,7 +18,7 @@
 
 </head>
 
-<body class="gray-bg">
+<body class="gray-bg ">
 
      @yield('content')
 
