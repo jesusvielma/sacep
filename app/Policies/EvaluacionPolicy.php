@@ -46,7 +46,7 @@ class EvaluacionPolicy
     */
     public function evaluaciones(Usuario $usuario,Evaluacion $evaluacion,Empleado $empleado)
     {
-        return $usuario->empleado->id_departamento === $empleado->id_departamento || $usuario->nivel == 'th' || $usuario->nivel == 'gerente';
+        return $usuario->empleado->id_departamento === $empleado->id_departamento || $usuario->nivel == 'th' || $usuario->nivel == 'gerente' || ($usuario->nivel == 'coordinador' && (isset($empleado->departamento->departamento_padre) && $empleado->departamento->departamento_padre == $usuario->empleado->id_departamento));
     }
 
 

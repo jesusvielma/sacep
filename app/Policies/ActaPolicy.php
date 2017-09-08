@@ -50,6 +50,9 @@ class ActaPolicy
             if ($usuario->empleado->id_departamento == $empleado->id_departamento) {
                 return true;
             }
+            elseif ($usuario->nivel == 'coordinador' && ( isset($empleado->departamento->departamento_padre) && $empleado->departamento->departamento_padre == $usuario->empleado->id_departamento)) {
+                return true;
+            }
         }
     }
 }

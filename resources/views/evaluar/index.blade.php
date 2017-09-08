@@ -108,7 +108,7 @@
 												</td>
 											</tr>
 										@endforeach
-										@if ($cant_hijos>0)
+										@if ($cant_hijos>0 && isset($hijos))
 											@foreach ($hijos as $key => $hijo)
 												<tr>
 													<td>{{ $hijo->cedula_empleado }}</td>
