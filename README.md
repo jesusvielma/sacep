@@ -1,7 +1,7 @@
 SACEP
 ===
 
-Sistema Automatizado para control de evaluaciones y personal de [Mukumbarí Sistema Teleférico de Mérida](http://mukumbari.com)
+Sistema Automatizado para control de evaluaciones y personal de Mukumbarí Sistema Teleférico de Mérida
 
 Actualmente esta en desarrollo :construction:
 
