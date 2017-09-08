@@ -28,7 +28,7 @@ class EvaluacionController extends Controller
         $cedula = Auth::user()->empleado->cedula_empleado;
 
         $dep2 = Departamento::find($dep);
-        
+
         if (Auth::user()->nivel == 'gerente' || Auth::user()->nivel == 'coordinador' ) {
             if ($dep2->hijo->count()) {
                 $data['cant_hijos'] = $dep2->hijo->count();
@@ -71,7 +71,7 @@ class EvaluacionController extends Controller
         $eval = new Evaluacion;
         $this->authorize('evaluar',[$eval,$empleado]);
         $rol_evaluador = Auth::user()->nivel == 'gerente';
-        if ($rol_evaluador === TRUE || $empleado->usuario->nivel == 'supervisor' || $empleado->usuario->nivel == 'jefe') {
+        if ($rol_evaluador === TRUE || (isset($empleado->id_usuario) && ($empleado->usuario->nivel == 'supervisor' || $empleado->usuario->nivel == 'jefe')) ) {
             $data['factores'] = FactorDeEvaluacion::where('estado',1)->with(['items'=> function($query){
                 $query->where('visivilidad','!=','trabajador');
             }])->get();
