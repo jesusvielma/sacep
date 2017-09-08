@@ -110,7 +110,10 @@ class DepartamentoController extends Controller
             'responsable' => 'required',
         ]);
 
-        $departamento->fill($request->only(['nombre','responsable']));
+        if($request->get('tipo') == 'unidad')
+            $departamento->fill($request->only(['nombre','responsable','tipo','departamento_padre']));
+        else
+            $departamento->fill($request->only(['nombre','responsable','tipo']));
 
         $departamento->save();
 
