@@ -33,11 +33,17 @@ class EvaluacionController extends Controller
             if ($dep2->hijo->count()) {
                 $data['cant_hijos'] = $dep2->hijo->count();
                 $data1= [];
+                $data2 = [];
                 foreach ($dep2->hijo as $key => $hijo) {
-                    $hijo = Empleado::find($hijo->responsable);
-                    $data1 = $data1 + [$hijo];
+                    if ($hijo->responsable) {
+                        $hijo = Empleado::find($hijo->responsable);
+                        $data1 = $data1 + [$hijo];
+                    }else{
+                        $data2 = $data2 + [$hijo->empleados];
+                    }
                 }
                 $data['hijos'] = $data1;
+                $data['otros_empls'] = $data2;
             }
             else {
                 $data['cant_hijos'] = $dep2->hijo->count();
@@ -45,6 +51,7 @@ class EvaluacionController extends Controller
         }else{
             $data['cant_hijos'] = $dep2->hijo->count();
         }
+
         if(Auth::user()->nivel !='gerente'){
             $data['empleados'] = Empleado::where('estado','activo')
             ->where('id_departamento',$dep)
@@ -53,8 +60,12 @@ class EvaluacionController extends Controller
 
         }
         else{
-            $data['empleados'] = Empleado::where('empleado.estado','activo')->where('empleado.id_departamento',$dep)->where('empleado.cedula_empleado','!=',$cedula)->orWhere('usuario.nivel','coordinador')->orWhere('usuario.nivel','th')
-            ->leftJoin('usuario','usuario.id_usuario','=','empleado.id_usuario')->get();
+            $data['empleados'] = Empleado::where('empleado.estado','activo')
+                                            ->where('empleado.id_departamento',$dep)
+                                            ->where('empleado.cedula_empleado','!=',$cedula)
+                                            ->orWhere('usuario.nivel','coordinador')
+                                            ->orWhere('usuario.nivel','th')
+                                            ->leftJoin('usuario','usuario.id_usuario','=','empleado.id_usuario')->get();
         }
 
         return view('evaluar.index',$data);

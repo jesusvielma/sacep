@@ -34,7 +34,28 @@ class EvaluacionPolicy
 
     public function evaluar(Usuario $usuario,Evaluacion $evaluacion,Empleado $empleado)
     {
-        return ($usuario->empleado->id_departamento === $empleado->id_departamento ) || ($usuario->nivel == 'gerente' && $empleado->usuario->nivel == 'coordinador' || $empleado->usuario->nivel == 'th') || ($usuario->nivel == 'coordinador' &&  $empleado->usuario->nivel == 'supervisor' || $empleado->usuario->nivel == 'jefe');
+        // return ($usuario->empleado->id_departamento === $empleado->id_departamento ) ||
+        // ($usuario->nivel == 'gerente' && ($empleado->usuario->nivel == 'coordinador' || $empleado->usuario->nivel == 'th')) ||
+        // ($usuario->nivel == 'gerente' && ($empleado->departamento->departamento_padre == $usuario->empleado->id_departamento)) ||
+        // ($usuario->nivel == 'coordinador' &&  $empleado->usuario->nivel == 'supervisor' || $empleado->usuario->nivel == 'jefe');
+        if ($usuario->empleado->id_departamento === $empleado->id_departamento ) {
+            return true;
+        }
+        elseif ($usuario->nivel == 'gerente') {
+            if (isset($empleado->usuario->nivel)) {
+                if ($empleado->usuario->nivel == 'coordinador' || $empleado->usuario->nivel == 'th') {
+                    return true;
+                }
+            }
+            elseif(($empleado->departamento->departamento_padre == $usuario->empleado->id_departamento)){
+                return true;
+            }
+        }
+        elseif ($usuario->nivel == 'coordinador') {
+            if ($empleado->usuario->nivel == 'supervisor' || $empleado->usuario->nivel == 'jefe') {
+                return true;
+            }
+        }
     }
 
     /**

@@ -123,6 +123,23 @@
 												</tr>
 											@endforeach
 										@endif
+										@if ($cant_hijos>0 && isset($otros_empls))
+											@foreach ($otros_empls as $otro_empl)
+												@foreach ($otro_empl as $emp)
+													<tr>
+														<td>{{ $emp->cedula_empleado }}</td>
+														<td>{{ $emp->nombre_completo }}</td>
+														<td>{{ $emp->fecha_ingreso->format('d-m-Y') }}</td>
+														<td>{{ $emp->cargo ? $emp->cargo->nombre : 'Debe darle un cargo a esta empleado' }}</td>
+														<td>{{ $emp->departamento->nombre }}</td>
+														<td class="tooltip-demo">
+															<a href="{{ route('evaluar',['id'=>$emp->cedula_empleado])}}" class="btn btn-xs btn-primary" data-toggle="tooltip" data-placement="top" title="Evaluar a {{ $emp->nombre_completo }}"><i class="fa fa-pie-chart"></i></a>
+															<a href="{{ route('evaluaciones',['id'=>$emp->cedula_empleado])}}" class="btn btn-xs btn-success" data-toggle="tooltip" data-placement="top" title="Evaluaciones de {{ $emp->nombre_completo }}"><i class="fa fa-list"></i></a>
+														</td>
+													</tr>
+												@endforeach
+											@endforeach
+										@endif
 									</tbody>
 								</table>
 							</div>
