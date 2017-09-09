@@ -10,6 +10,14 @@
 		<!-- Toastr style -->
 	    <link href="{{ URL::asset('css/plugins/toastr/toastr.min.css') }}" rel="stylesheet">
 	@endif
+	<style >
+		mark {
+			background-color: #23c6c8;
+			padding: .2em;
+			color: white;
+			border-radius: 5px;
+		}
+	</style>
 @endsection
 
 @section('js')
@@ -17,6 +25,7 @@
     <script src="{{ URL::asset('js/plugins/ladda/spin.min.js')}}"></script>
     <script src="{{ URL::asset('js/plugins/ladda/ladda.min.js')}}"></script>
     <script src="{{ URL::asset('js/plugins/ladda/ladda.jquery.min.js')}}"></script>
+	<script src="{{ URL::asset('js/plugins/markjs/jquery.mark.js')}}"></script>
 	<script>
 		$(document).ready(function () {
 			var l = $('.ladda-button-demo').ladda();
@@ -28,7 +37,34 @@
 			$('#form_submit').click(function (event) {
 				event.preventDefault();
 				$('#form').submit();
-			})
+			});
+			var $search = $('.search > div'), $input = $("input[name='busqueda']");
+			$input.on('input',function (){
+				var term = $(this).val();
+				$search.show().unmark();
+				if (term) {
+					$search.mark(term, {
+						separateWordSearch: false,
+						diacritics: false,
+						done: function (e) {
+							$search.not(':has(mark)').hide();
+							if (e>1) {
+								$('#notMatch').hide().fadeOut();
+							}
+						},
+						noMatch: function () {
+							$('#notMatch').show().fadeIn();
+						}
+					})
+				}
+			});
+			$('.borrar_busqueda').click(function () {
+				$search.show().unmark();
+				$input.val('').focus();
+				setTimeout(function () {
+					$('#notMatch').hide().fadeOut();
+				},500);
+			});
 		});
 	</script>
 	@if (session('notif'))
@@ -58,19 +94,36 @@
 		<div class="col-lg-3">
 			<div class="title-action">
 				<a href="{{ route('departamento.create') }}" class="ladda-button ladda-button-demo btn btn-primary" name="button" data-style="zoom-in"> Nuevo coordinación/unidad</a>
+				<div class="input-group">
+					<span class="input-group-addon"><i class="fa fa-search"></i></span>
+					<input type="text" name="busqueda" placeholder="Buscar coordinación o unidad" class="form-control">
+					<span class="input-group-btn"><button class="btn btn-warning borrar_busqueda"><i class="fa fa-times"></i></button></span>
+				</div>
 			</div>
 		</div>
 	</div>
 
 	<div class="wrapper wrapper-content animated fadeInRightBig">
-		<div class="row">
+		<div class="row animated " id="notMatch" style="display:none">
+			<div class="col-lg-6 col-lg-offset-3">
+				<div class="alert alert-info">
+					<h4>No hay resultados</h4>
+					<p>La búsqueda que ha realizado no presenta resultado, por favor verifíquela y vuela a intentarlo</p>
+					<button class="btn btn-warning btn-block borrar_busqueda"><i class="fa fa-times"></i> Borrar y reiniciar la búsqueda</button>
+				</div>
+			</div>
+		</div>
+		<div class="row search">
 			@if (count($dptos)>0)
 				@foreach ($dptos as $dep)
 					<div class="col-lg-4">
-						<div class="ibox ">
+						<div class="ibox collapsed">
 							<div class="ibox-title">
 								<h5>{{ $dep->nombre }}</h5>
 								<div class="ibox-tools tooltip-demo">
+									<a class="collapse-link" data-toggle="tooltip" data-placement="top" title="" data-original-title="Muestra o esconder la información">
+										<i class="fa fa-chevron-up"></i>
+									</a>
 									<a href="{{ route('departamento.edit',['id'=>$dep->id_departamento]) }}" data-toggle="tooltip" data-placement="top" title="Editar"> <i class="fa fa-pencil"></i></a>
 									{{-- <a href="#" id="form_submit"> <i class="fa fa-remove"></i></a>
 									<form id="form" action="{{ route('departamento.destroy',['id'=>$dep->id_departamento]) }}" method="post">
