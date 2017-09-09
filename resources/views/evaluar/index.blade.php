@@ -40,7 +40,9 @@
 				},
 				lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "Todos"]],
 				@if (isset($empl_consulta))
-					order: [ [4,'desc'] ]
+					order: [ [5,'desc'] ]
+				@else
+					order: [ [4,'desc'], [0,'asc'] ]
 				@endif
             });
 		});
