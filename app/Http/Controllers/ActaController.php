@@ -30,11 +30,14 @@ class ActaController extends Controller
                 if ($dep2->hijo->count()) {
                     $data['cant_hijos'] = $dep2->hijo->count();
                     $data1= [];
-                    foreach ($dep2->hijo as $key => $hijo) {
-                        $hijo = Empleado::find($hijo->responsable);
+                    $empl_consulta = [];
+                    foreach ($dep2->hijo as $key => $hijo1) {
+                        $hijo = Empleado::find($hijo1->responsable);
                         $data1 = $data1 + [$hijo];
+                        $empl_consulta = $empl_consulta + [$hijo1->empleados];
                     }
                     $data['hijos'] = $data1;
+                    $data['empl_consulta'] = $empl_consulta;
                 }
                 else {
                     $data['cant_hijos'] = $dep2->hijo->count();

@@ -34,16 +34,19 @@ class EvaluacionController extends Controller
                 $data['cant_hijos'] = $dep2->hijo->count();
                 $data1= [];
                 $data2 = [];
-                foreach ($dep2->hijo as $key => $hijo) {
-                    if ($hijo->responsable) {
-                        $hijo = Empleado::find($hijo->responsable);
+                $empl_consulta = [];
+                foreach ($dep2->hijo as $key => $hijo1) {
+                    if ($hijo1->responsable) {
+                        $hijo = Empleado::find($hijo1->responsable);
                         $data1 = $data1 + [$hijo];
+                        $empl_consulta = $empl_consulta + [$hijo1->empleados];
                     }else{
-                        $data2 = $data2 + [$hijo->empleados];
+                        $data2 = $data2 + [$hijo1->empleados];
                     }
                 }
                 $data['hijos'] = $data1;
                 $data['otros_empls'] = $data2;
+                $data['empl_consulta'] = $empl_consulta;
             }
             else {
                 $data['cant_hijos'] = $dep2->hijo->count();

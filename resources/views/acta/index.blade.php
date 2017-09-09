@@ -38,7 +38,10 @@
 				language: {
 					url : '{{ URL::asset('js/plugins/dataTables/i18n/es.json') }}',
 				},
-				lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "Todos"]]
+				lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "Todos"]],
+				@if (isset($empl_consulta))
+					order: [ [3,'desc'] ]
+				@endif
             });
 		});
 	</script>
@@ -76,7 +79,7 @@
 	<div class="wrapper wrapper-content animated fadeInRightBig">
 		<div class="row">
 			@if ($empleados->count() || $cant_hijos>0)
-				<div class="{{ Auth::user()->nivel == 'gerente' ? 'col-lg-10 col-lg-offset-1' : 'col-lg-8 col-lg-offset-2' }}">
+				<div class="col-lg-10 col-lg-offset-1">
 					<div class="ibox ">
 						<div class="ibox-title">
 							<h5>Trabajadores</h5>
@@ -90,9 +93,7 @@
 										<tr>
 											<th>Cédula</th>
 											<th>Trabajador</th>
-											@if (Auth::user()->nivel == 'gerente')
-												<th>Coordinación / Unidad</th>
-											@endif
+											<th>Coordinación / Unidad</th>
 											<th style="width:25%">Acciones</th>
 										</tr>
 									</thead>
@@ -101,9 +102,7 @@
 											<tr>
 												<td>{{ $empleado->cedula_empleado }}</td>
 												<td>{{ $empleado->nombre_completo }}</td>
-												@if (Auth::user()->nivel == 'gerente')
-													<td>{{ $empleado->departamento->nombre }}</td>
-												@endif
+												<td>{{ $empleado->departamento->nombre }}</td>
 												<td class="tooltip-demo ">
 													<div class="btn-group">
 														<a href="{{ route('acta_nueva',['id'=>$empleado->cedula_empleado])}}" class="btn btn-sm btn-primary" data-toggle="tooltip" data-placement="top" title="Levantar acta a {{ $empleado->nombre_completo }}"><i class="fa fa-file-text"></i></a>
@@ -121,6 +120,7 @@
 												<tr>
 													<td>{{ $hijo->cedula_empleado }}</td>
 													<td>{{ $hijo->nombre_completo }}</td>
+													<td>{{ $hijo->departamento->nombre }}</td>
 													<td class="tooltip-demo">
 														<div class="btn-group">
 															<a href="{{ route('acta_nueva',['id'=>$hijo->cedula_empleado])}}" class="btn btn-sm btn-primary" data-toggle="tooltip" data-placement="top" title="Levantar acta a {{ $hijo->nombre_completo }}"><i class="fa fa-file-text"></i></a>
@@ -132,6 +132,25 @@
 														</div>
 													</td>
 												</tr>
+											@endforeach
+										@endif
+										@if ($cant_hijos>0 && isset($empl_consulta))
+											@foreach ($empl_consulta as $consulta)
+												@foreach ($consulta as $empl1)
+													<tr>
+														<td>{{ $empl1->cedula_empleado }}</td>
+														<td>{{ $empl1->nombre_completo }}</td>
+														<td>{{ $empl1->departamento->nombre }}</td>
+														<td class="tooltip-demo">
+															<div class="btn-group">
+																<a href="{{ route('ver_actas',['id'=>$empl1->cedula_empleado])}}" class="btn btn-sm btn-success" data-toggle="tooltip" data-placement="top" title="Ver actas de {{ $empl1->nombre_completo }}"><i class="fa fa-files-o"></i></a>
+															</div>
+															<div class="btn-group">
+																<a href="{{ route('ver_llamados',['id'=>$empl1->cedula_empleado])}}" class="btn btn-sm btn-success" data-toggle="tooltip" data-placement="top" title="Ver llamados de atención de {{ $empl1->nombre_completo }}"><i class="fa fa-files-o"></i></a>
+															</div>
+														</td>
+													</tr>
+												@endforeach
 											@endforeach
 										@endif
 									</tbody>

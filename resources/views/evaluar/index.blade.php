@@ -39,7 +39,9 @@
 					url : '{{ URL::asset('js/plugins/dataTables/i18n/es.json') }}',
 				},
 				lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "Todos"]],
-				order: [ [4,'desc'], [0,'asc'] ]
+				@if (isset($empl_consulta))
+					order: [ [4,'desc'] ]
+				@endif
             });
 		});
 	</script>
@@ -135,6 +137,22 @@
 														<td class="tooltip-demo">
 															<a href="{{ route('evaluar',['id'=>$emp->cedula_empleado])}}" class="btn btn-xs btn-primary" data-toggle="tooltip" data-placement="top" title="Evaluar a {{ $emp->nombre_completo }}"><i class="fa fa-pie-chart"></i></a>
 															<a href="{{ route('evaluaciones',['id'=>$emp->cedula_empleado])}}" class="btn btn-xs btn-success" data-toggle="tooltip" data-placement="top" title="Evaluaciones de {{ $emp->nombre_completo }}"><i class="fa fa-list"></i></a>
+														</td>
+													</tr>
+												@endforeach
+											@endforeach
+										@endif
+										@if ($cant_hijos>0 && isset($empl_consulta))
+											@foreach ($empl_consulta as $consulta)
+												@foreach ($consulta as $empl1)
+													<tr>
+														<td>{{ $empl1->cedula_empleado }}</td>
+														<td>{{ $empl1->nombre_completo }}</td>
+														<td>{{ $empl1->fecha_ingreso->format('d-m-Y') }}</td>
+														<td>{{ $empl1->cargo ? $empl1->cargo->nombre : 'Debe darle un cargo a esta empleado' }}</td>
+														<td>{{ $empl1->departamento->nombre }}</td>
+														<td class="tooltip-demo">
+															<a href="{{ route('evaluaciones',['id'=>$empl1->cedula_empleado])}}" class="btn btn-xs btn-success" data-toggle="tooltip" data-placement="top" title="Evaluaciones de {{ $empl1->nombre_completo }}"><i class="fa fa-list"></i></a>
 														</td>
 													</tr>
 												@endforeach
