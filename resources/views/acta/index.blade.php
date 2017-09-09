@@ -117,6 +117,7 @@
 											</tr>
 										@endforeach
 										@if ($cant_hijos>0 && isset($hijos))
+											{{ dd($hijos) }}
 											@foreach ($hijos as $key => $hijo)
 												<tr>
 													<td>{{ $hijo->cedula_empleado }}</td>

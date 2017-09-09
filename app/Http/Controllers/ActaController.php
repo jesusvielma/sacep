@@ -46,6 +46,7 @@ class ActaController extends Controller
         }
         else{
             $data['empleados'] = Empleado::where('estado','activo')->where('cedula_empleado','!=',Auth::user()->empleado->cedula_empleado)->get();
+            $data['cant_hijos'] = 0;
         }
 
         return view('acta.index',$data);
