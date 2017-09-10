@@ -113,6 +113,9 @@
 											</tr>
 										@endforeach
 										@if ($cant_hijos>0 && isset($hijos))
+											@php
+												$sons = [];
+											@endphp
 											@foreach ($hijos as $key => $hijo)
 												<tr>
 													<td>{{ $hijo->cedula_empleado }}</td>
@@ -125,8 +128,13 @@
 														<a href="{{ route('evaluaciones',['id'=>$hijo->cedula_empleado])}}" class="btn btn-xs btn-success" data-toggle="tooltip" data-placement="top" title="Evaluaciones de {{ $hijo->nombre_completo }}"><i class="fa fa-list"></i></a>
 													</td>
 												</tr>
+												@php
+													$sons = $sons + [$key => $hijo->cedula_empleado];
+												@endphp
+
 											@endforeach
 										@endif
+
 										@if ($cant_hijos>0 && isset($otros_empls))
 											@foreach ($otros_empls as $otro_empl)
 												@foreach ($otro_empl as $emp)
@@ -147,20 +155,18 @@
 										@if ($cant_hijos>0 && isset($empl_consulta))
 											@foreach ($empl_consulta as $consulta)
 												@foreach ($consulta as $empl1)
-													@foreach ($hijos as $hijo)
-														@if ($hijo->cedula_empleado != $empl1->cedula_empleado)
-															<tr>
-																<td>{{ $empl1->cedula_empleado }}</td>
-																<td>{{ $empl1->nombre_completo }}</td>
-																<td>{{ $empl1->fecha_ingreso->format('d-m-Y') }}</td>
-																<td>{{ $empl1->cargo ? $empl1->cargo->nombre : 'Debe darle un cargo a esta empleado' }}</td>
-																<td>{{ $empl1->departamento->nombre }}</td>
-																<td class="tooltip-demo">
-																	<a href="{{ route('evaluaciones',['id'=>$empl1->cedula_empleado])}}" class="btn btn-xs btn-success" data-toggle="tooltip" data-placement="top" title="Evaluaciones de {{ $empl1->nombre_completo }}"><i class="fa fa-list"></i></a>
-																</td>
-															</tr>
-														@endif
-													@endforeach
+													@if (!in_array($empl1->cedula_empleado,$sons))
+														<tr>
+															<td>{{ $empl1->cedula_empleado }}</td>
+															<td>{{ $empl1->nombre_completo }}</td>
+															<td>{{ $empl1->fecha_ingreso->format('d-m-Y') }}</td>
+															<td>{{ $empl1->cargo ? $empl1->cargo->nombre : 'Debe darle un cargo a esta empleado' }}</td>
+															<td>{{ $empl1->departamento->nombre }}</td>
+															<td class="tooltip-demo">
+																<a href="{{ route('evaluaciones',['id'=>$empl1->cedula_empleado])}}" class="btn btn-xs btn-success" data-toggle="tooltip" data-placement="top" title="Evaluaciones de {{ $empl1->nombre_completo }}"><i class="fa fa-list"></i></a>
+															</td>
+														</tr>
+													@endif
 												@endforeach
 											@endforeach
 										@endif

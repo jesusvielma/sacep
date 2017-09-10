@@ -39,7 +39,7 @@ class EvaluacionController extends Controller
                     //echo 'dep = '.$hijo1->id_departamento.' responsable'.$hijo1->responsable."<br />";
                     if ($hijo1->responsable) {
                         $hijo = Empleado::find($hijo1->responsable);
-                        $data1 = $data1 + [$hijo];
+                        $data1 = $data1 + [$key => $hijo];
                         $empl_consulta = $empl_consulta + [$key => $hijo1->empleados];
                     }else{
                         $data2 = $data2 + [$key => $hijo1->empleados];
@@ -47,7 +47,7 @@ class EvaluacionController extends Controller
                 }
                 $data['hijos'] = $data1;
                 $data['otros_empls'] = $data2;
-                //dd($data2);
+                //dd($data1);
                 $data['empl_consulta'] = $empl_consulta;
             }
             else {
