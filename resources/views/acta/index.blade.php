@@ -116,7 +116,7 @@
 											</tr>
 										@endforeach
 										@if ($cant_hijos>0 && isset($hijos))
-											@foreach ($hijos as $key => $hijo)
+											@foreach ($hijos as $hijo)
 												<tr>
 													<td>{{ $hijo->cedula_empleado }}</td>
 													<td>{{ $hijo->nombre_completo }}</td>
@@ -148,6 +148,28 @@
 															<div class="btn-group">
 																<a href="{{ route('ver_llamados',['id'=>$empl1->cedula_empleado])}}" class="btn btn-sm btn-success" data-toggle="tooltip" data-placement="top" title="Ver llamados de atención de {{ $empl1->nombre_completo }}"><i class="fa fa-files-o"></i></a>
 															</div>
+														</td>
+													</tr>
+												@endforeach
+											@endforeach
+										@endif
+										@if ($cant_hijos>0 && isset($otros_empls))
+											@foreach ($otros_empls as $otro_empl)
+												@foreach ($otro_empl as $emp)
+													<tr>
+														<td>{{ $emp->cedula_empleado }}</td>
+														<td>{{ $emp->nombre_completo }}</td>
+														<td>{{ $emp->departamento->nombre }}</td>
+														<td class="tooltip-demo">
+															<div class="btn-group">
+																<a href="{{ route('acta_nueva',['id'=>$emp->cedula_empleado])}}" class="btn btn-sm btn-primary" data-toggle="tooltip" data-placement="top" title="Levantar acta a {{ $emp->nombre_completo }}"><i class="fa fa-file-text"></i></a>
+																<a href="{{ route('ver_actas',['id'=>$emp->cedula_empleado])}}" class="btn btn-sm btn-success" data-toggle="tooltip" data-placement="top" title="Ver actas de {{ $emp->nombre_completo }}"><i class="fa fa-files-o"></i></a>
+															</div>
+															<div class="btn-group">
+																<a href="{{ route('llamado_nuevo',['id'=>$emp->cedula_empleado])}}" class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="top" title="Levantar llamado de atención a {{ $emp->nombre_completo }}"><i class="fa fa-bullhorn"></i></a>
+																<a href="{{ route('ver_llamados',['id'=>$emp->cedula_empleado])}}" class="btn btn-sm btn-success" data-toggle="tooltip" data-placement="top" title="Ver llamados de atención de {{ $emp->nombre_completo }}"><i class="fa fa-files-o"></i></a>
+															</div>
+														</td>
 														</td>
 													</tr>
 												@endforeach
