@@ -171,9 +171,9 @@
 		<div class="col-lg-10">
 			<div class="row">
 				<div class="col-lg-12">
-					<div class="form-group">
+					<div class="form-group tooltip-demo">
 						<label>Descripción, Motivo, Situación</label>
-						<textarea name="descripcion" rows="5" class="form-control 255 required" maxlength="255">{{ isset($evaluacion->descripcion) ? $evaluacion->descripcion : NULL}}</textarea>
+						<textarea name="descripcion" rows="5" class="form-control 255 required" maxlength="255" placeholder="Describa y detalle las razones, motivos y situación de los llamados de atención o amonestaciones y actas levantadas al trabajador evaluado. ">{{ isset($evaluacion->descripcion) ? $evaluacion->descripcion : NULL}}</textarea>
 					</div>
 				</div>
 			</div>
@@ -181,7 +181,7 @@
 				<div class="col-lg-12">
 					<div class="form-group">
 						<label>Recomendación para asignación</label>
-						<textarea name="recomendacion" rows="1" class="form-control 100 required" maxlength="80">{{ isset($evaluacion->recomendacion) ? $evaluacion->recomendacion : NULL}}</textarea>
+						<textarea name="recomendacion" rows="2" class="form-control 100 required" maxlength="80" placeholder="Describa si el trabajador muestras habilidades o destresas en otras areas en las cuales el trabajador pudiera ser tomado en cuenta">{{ isset($evaluacion->recomendacion) ? $evaluacion->recomendacion : NULL}}</textarea>
 					</div>
 				</div>
 			</div>
@@ -189,7 +189,7 @@
 				<div class="col-lg-12">
 					<div class="form-group">
 						<label>Comentario General del evaluador</label>
-						<textarea name="comentario" rows="5" class="form-control 255 required" maxlength="255">{{ isset($evaluacion->comentario) ? $evaluacion->comentario : NULL}}</textarea>
+						<textarea name="comentario" rows="5" class="form-control 255 required" maxlength="255" placeholder="Realice un resumen general cualitativo del desempeño del trabajador">{{ isset($evaluacion->comentario) ? $evaluacion->comentario : NULL}}</textarea>
 					</div>
 				</div>
 			</div>
