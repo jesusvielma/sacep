@@ -35,19 +35,19 @@ class EvaluacionController extends Controller
                 $data1= [];
                 $data2 = [];
                 $empl_consulta = [];
-                foreach ($dep2->hijo as $hijo1) {
-                    // echo 'dep = '.$hijo1->id_departamento.' responsable'.$hijo1->responsable."<br />";
+                foreach ($dep2->hijo as $key => $hijo1) {
+                    //echo 'dep = '.$hijo1->id_departamento.' responsable'.$hijo1->responsable."<br />";
                     if ($hijo1->responsable) {
                         $hijo = Empleado::find($hijo1->responsable);
                         $data1 = $data1 + [$hijo];
-                        $empl_consulta = $empl_consulta + [$hijo1->empleados];
+                        $empl_consulta = $empl_consulta + [$key => $hijo1->empleados];
                     }else{
-                        $data2 = $data2 + [$hijo1->empleados];
+                        $data2 = $data2 + [$key => $hijo1->empleados];
                     }
                 }
                 $data['hijos'] = $data1;
                 $data['otros_empls'] = $data2;
-                // dd($data2);
+                //dd($data2);
                 $data['empl_consulta'] = $empl_consulta;
             }
             else {
