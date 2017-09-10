@@ -147,16 +147,20 @@
 										@if ($cant_hijos>0 && isset($empl_consulta))
 											@foreach ($empl_consulta as $consulta)
 												@foreach ($consulta as $empl1)
-													<tr>
-														<td>{{ $empl1->cedula_empleado }}</td>
-														<td>{{ $empl1->nombre_completo }}</td>
-														<td>{{ $empl1->fecha_ingreso->format('d-m-Y') }}</td>
-														<td>{{ $empl1->cargo ? $empl1->cargo->nombre : 'Debe darle un cargo a esta empleado' }}</td>
-														<td>{{ $empl1->departamento->nombre }}</td>
-														<td class="tooltip-demo">
-															<a href="{{ route('evaluaciones',['id'=>$empl1->cedula_empleado])}}" class="btn btn-xs btn-success" data-toggle="tooltip" data-placement="top" title="Evaluaciones de {{ $empl1->nombre_completo }}"><i class="fa fa-list"></i></a>
-														</td>
-													</tr>
+													@foreach ($hijos as $hijo)
+														@if ($hijo->cedula_empleado != $empl1->cedula_empleado)
+															<tr>
+																<td>{{ $empl1->cedula_empleado }}</td>
+																<td>{{ $empl1->nombre_completo }}</td>
+																<td>{{ $empl1->fecha_ingreso->format('d-m-Y') }}</td>
+																<td>{{ $empl1->cargo ? $empl1->cargo->nombre : 'Debe darle un cargo a esta empleado' }}</td>
+																<td>{{ $empl1->departamento->nombre }}</td>
+																<td class="tooltip-demo">
+																	<a href="{{ route('evaluaciones',['id'=>$empl1->cedula_empleado])}}" class="btn btn-xs btn-success" data-toggle="tooltip" data-placement="top" title="Evaluaciones de {{ $empl1->nombre_completo }}"><i class="fa fa-list"></i></a>
+																</td>
+															</tr>
+														@endif
+													@endforeach
 												@endforeach
 											@endforeach
 										@endif
