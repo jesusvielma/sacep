@@ -46,8 +46,11 @@ class EvaluacionPolicy
                 if ($empleado->usuario->nivel == 'coordinador' || $empleado->usuario->nivel == 'th') {
                     return true;
                 }
+                elseif($empleado->departamento->departamento_padre == $usuario->empleado->id_departamento && $empleado->usuario->nivel == 'supervisor'){
+                    return true;
+                }
             }
-            elseif(($empleado->departamento->departamento_padre == $usuario->empleado->id_departamento)){
+            elseif($empleado->departamento->departamento_padre == $usuario->empleado->id_departamento){
                 return true;
             }
         }

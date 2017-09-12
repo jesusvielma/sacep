@@ -224,16 +224,18 @@ class EvaluacionController extends Controller
         //$view =  \View::make('evaluacion_imprimir', compact('data', 'date', 'invoice'))->render();
 		$pdf = App::make('dompdf.wrapper');
         $nombre = $evalu->fecha_evaluacion->format('Y-m-d').'-'.$evaluado->cedula_empleado.'.pdf';
-        $directories = Storage::allDirectories();
-        foreach ($directories as $dir) {
-            if ($dir != 'public/evaluaciones') {
-                Storage::makeDirectory('/public/evaluaciones');
-            }
-            else{
-                Storage::makeDirectory('public/evaluaciones/'.date('Ym'));
-            }
-        }
+        // $directories = Storage::allDirectories();
+        // foreach ($directories as $dir) {
+        //     if ($dir != 'public/evaluaciones') {
+        //         Storage::makeDirectory('/public/evaluaciones');
+        //     }
+        //     else{
+        //         Storage::makeDirectory('public/evaluaciones/'.date('Ym'));
+        //     }
+        // }
 
+        Storage::makeDirectory('public/evaluaciones/'.date('Ym'));
+        
 		$pdf->loadView('evaluacion_imprimir',$data)->save(storage_path().'/app/public/evaluaciones/'.date('Ym').'/'.$nombre);
         //$saved = $pdf->loadView('evaluacion_imprimir',$data);
 
