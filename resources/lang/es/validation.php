@@ -114,6 +114,11 @@ return [
 
 	'attributes' => [
 		'username' => 'usuario',
-		'password' => 'contraseña'
+		'password' => 'contraseña',
+		'evaluacion' => [
+			'descripcion' => 'descripción, Motivo, Situación',
+			'comentario' => 'comentario General del evaluador',
+			'recomendacion' => 'recomendación para asignación'
+		]
 	],
 ];

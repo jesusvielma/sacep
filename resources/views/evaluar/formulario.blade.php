@@ -9,12 +9,12 @@
 					<h4>Nombre del trabajador</h4>
 					<p>{{ ($empleado->nombre_completo) }}</p>
 				</div>
-				<div class="col-lg-4">
+				<div class="col-lg-3">
 					<h4>Cédula de identidad</h4>
 					<p>{{ $empleado->cedula_empleado }}</p>
 					<input type="hidden" name="cedula_empleado" value="{{ $empleado->cedula_empleado }}">
 				</div>
-				<div class="col-lg-3">
+				<div class="col-lg-4">
 					<h4>Cargo / Ocupación actual </h4>
 					<p>{{ $empleado->cargo->nombre }}</p>
 					<input type="hidden" name="cargo_trabajador_evaluado" value="{{ $empleado->cargo->id_cargo }}">
@@ -173,7 +173,7 @@
 				<div class="col-lg-12">
 					<div class="form-group tooltip-demo">
 						<label>Descripción, Motivo, Situación</label>
-						<textarea name="descripcion" rows="5" class="form-control 255 required" maxlength="255" placeholder="Describa y detalle las razones, motivos y situación de los llamados de atención o amonestaciones y actas levantadas al trabajador evaluado. ">{{ isset($evaluacion->descripcion) ? $evaluacion->descripcion : NULL}}</textarea>
+						<textarea name="descripcion" rows="5" class="form-control 255" maxlength="255" placeholder="Describa y detalle las razones, motivos y situación de los llamados de atención o amonestaciones y actas levantadas al trabajador evaluado. ">{{ isset($evaluacion->descripcion) ? $evaluacion->descripcion : NULL}}</textarea>
 					</div>
 				</div>
 			</div>
@@ -181,7 +181,7 @@
 				<div class="col-lg-12">
 					<div class="form-group">
 						<label>Recomendación para asignación</label>
-						<textarea name="recomendacion" rows="2" class="form-control 100 required" maxlength="80" placeholder="Describa si el trabajador muestras habilidades o destresas en otras areas en las cuales el trabajador pudiera ser tomado en cuenta">{{ isset($evaluacion->recomendacion) ? $evaluacion->recomendacion : NULL}}</textarea>
+						<textarea name="recomendacion" rows="2" class="form-control 100" maxlength="80" placeholder="Describa si el trabajador muestras habilidades o destrezas en otras áreas en las cuales el trabajador pudiera ser tomado en cuenta">{{ isset($evaluacion->recomendacion) ? $evaluacion->recomendacion : NULL}}</textarea>
 					</div>
 				</div>
 			</div>

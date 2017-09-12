@@ -132,11 +132,11 @@
                         {
                             element.before(error);
                         },
-                        rules: {
-                            confirm: {
-                                equalTo: "#password"
-                            }
-                        }
+                        // rules: {
+                        //     confirm: {
+                        //         equalTo: "#password"
+                        //     }
+                        // }
                     });
 			var date = moment().format('YYYY-MM-DD');
 			$('#data_5 .input-daterange').datepicker({

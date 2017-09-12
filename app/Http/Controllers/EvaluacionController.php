@@ -4,6 +4,7 @@ namespace sacep\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use sacep\Usuario;
 use sacep\Empleado;
 use sacep\Evaluacion;
@@ -199,11 +200,11 @@ class EvaluacionController extends Controller
      */
     public function imprimir($eval)
     {
-        $data['evaluacion'] = Evaluacion::where('id_evaluacion',$eval)->with(['empleados','item_evaluado'])->first();
+        $data['evaluacion'] = $evalu= Evaluacion::where('id_evaluacion',$eval)->with(['empleados','item_evaluado'])->first();
 
         foreach ($data['evaluacion']->empleados as $empleado) {
             if ($empleado->pivot->tipo == 'evaluado') {
-                $data['empleado'] = $empleado;
+                $data['empleado'] = $evaluado = $empleado;
             }elseif ($empleado->pivot->tipo == 'th') {
                 $data['th'] = $empleado;
             }elseif ($empleado->pivot->tipo == 'gerente') {
@@ -215,14 +216,40 @@ class EvaluacionController extends Controller
             }
         }
 
+        date_default_timezone_set('America/Caracas');
+		setlocale(LC_ALL,'es_VE.UTF-8','es_VE','Windows-1252','esp','es_ES.UTF-8','es_ES');
+
         $data['factores'] = FactorDeEvaluacion::all();
 
         //$view =  \View::make('evaluacion_imprimir', compact('data', 'date', 'invoice'))->render();
 		$pdf = App::make('dompdf.wrapper');
-		$pdf->loadView('evaluacion_imprimir',$data);
-		return $pdf->stream('evaluacion_imprimir');
+        $nombre = $evalu->fecha_evaluacion->format('Y-m-d').'-'.$evaluado->cedula_empleado.'.pdf';
+        $directories = Storage::allDirectories();
+        foreach ($directories as $dir) {
+            if ($dir != 'public/evaluaciones') {
+                Storage::makeDirectory('/public/evaluaciones');
+            }
+            else{
+                Storage::makeDirectory('public/evaluaciones/'.date('Ym'));
+            }
+        }
+
+		$pdf->loadView('evaluacion_imprimir',$data)->save(storage_path().'/app/public/evaluaciones/'.date('Ym').'/'.$nombre);
+        //$saved = $pdf->loadView('evaluacion_imprimir',$data);
+
+        //Storage::move(public_path().'/'.$nombre,storage_path().'/public/evaluaciones/'.date('m').'/'.$nombre);
+
+		//return $pdf->stream('evaluacion_imprimir');
 
         //return view('evaluacion_imprimir',$data);
+        $msg = [
+            'type' => 'success',
+            'msg' => 'Se ha guardado la evaluación de '.$evaluado->nombre_completo.', puede acceder a ella haciendo click sobre esta notificación o haciendo clic en el botón para ver la evaluaciones de '.$evaluado->nombre_completo.' en el listado de trabajadores. (Nota: esta notificación desaparece luego de un minuto)',
+            'title' => 'Evaluación guardada',
+            'url' => date('Ym').'/'.$nombre,
+        ];
+
+        return redirect()->route('index_evaluar')->with('notif', $msg);
     }
 
 

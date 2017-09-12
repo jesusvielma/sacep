@@ -54,7 +54,11 @@
 			toastr.options = {
 			  "progressBar": false,
 			  "positionClass": "toast-top-center",
+			  "timeOut": "10000",
 			}
+			toastr.options.onclick = function () {
+				window.open("{{ asset('storage/evaluaciones').'/'.session('notif.url') }}",'Vista de impresión','width=1024,height=768,titlebar=no,left=100');
+			};
 			toastr.{{ session('notif.type')}}('{{ session('notif.msg') }}','{{ session('notif.title') }}')
 		</script>
 	@endif

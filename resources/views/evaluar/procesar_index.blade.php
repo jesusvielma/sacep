@@ -167,6 +167,9 @@
 															@foreach ($evaluacion->empleados as $empleado)
 																@if ($empleado->pivot->tipo == 'evaluado')
 																	{{ $empleado->nombre_completo }}
+																	@php
+																		$cedula = $empleado->cedula_empleado;
+																	@endphp
 																@endif
 															@endforeach
 														</td>
@@ -178,7 +181,7 @@
 															@endforeach
 														</td>
 														<td class="tooltip-demo form-inline">
-															<a class="btn btn-xs btn-primary ver" href="{{ route('imprimir_evaluacion',['id'=> $evaluacion->id_evaluacion]) }}" data-toggle="tooltip" data-placement="top" title="Ver esta evaluación (abre en una nueva ventana)" target="_blank"><i class="fa fa-eye"></i></a>
+															<a class="btn btn-xs btn-primary ver" href="{{ asset('storage/evaluaciones').'/'.$evaluacion->fecha_evaluacion->format('Ym').'/'.$evaluacion->fecha_evaluacion->format('Y-m-d').'-'.$cedula.'.pdf' }}" data-toggle="tooltip" data-placement="top" title="Ver esta evaluación (abre en una nueva ventana)" target="_blank"><i class="fa fa-eye"></i></a>
 															<a href="{{ route('procesar_una',['id'=>$evaluacion->id_evaluacion]) }}" class="btn btn-xs btn-success" data-toggle="tooltip" data-placement="top" title="Procesar esta evaluación"><i class="fa fa-check"></i></a>
 														</td>
 														<td><div class="checkbox-inline i-checks">
