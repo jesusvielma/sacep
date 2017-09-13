@@ -235,7 +235,7 @@ class EvaluacionController extends Controller
         // }
 
         Storage::makeDirectory('public/evaluaciones/'.date('Ym'));
-        
+
 		$pdf->loadView('evaluacion_imprimir',$data)->save(storage_path().'/app/public/evaluaciones/'.date('Ym').'/'.$nombre);
         //$saved = $pdf->loadView('evaluacion_imprimir',$data);
 
@@ -261,8 +261,9 @@ class EvaluacionController extends Controller
      * @param  Empleado $empleado
      * @return \Illuminate\Http\Response
      */
-    public function evaluaciones(Empleado $empleado)
+    public function evaluaciones($empleado)
     {
+        $empleado = Empleado::findOrFail($empleado);
         $ev = new Evaluacion;
 
         $this->authorize('evaluaciones',[$ev,$empleado]);
