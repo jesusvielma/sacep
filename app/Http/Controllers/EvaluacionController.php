@@ -261,9 +261,9 @@ class EvaluacionController extends Controller
      * @param  Empleado $empleado
      * @return \Illuminate\Http\Response
      */
-    public function evaluaciones($empleado)
+    public function evaluaciones(Empleado $empleado)
     {
-        $empleado = Empleado::findOrFail($empleado);
+        //$empleado = Empleado::findOrFail($empleado);
         $ev = new Evaluacion;
 
         $this->authorize('evaluaciones',[$ev,$empleado]);
