@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @section('title')
-	Listado de empleados
+	Listado de trabajadores
 @endsection
 
 @section('css')
@@ -58,17 +58,17 @@
 @section('content')
 	<div class="row wrapper border-bottom white-bg page-heading">
 		<div class="col-lg-9">
-			<h2>Empleados</h2>
+			<h2>Trabajadores</h2>
 			<ol class="breadcrumb">
 				<li><a href="{{ route('pagina_inicio') }}"> Inicio </a></li>
 				<li class="active">
-					<strong>Empleados</strong>
+					<strong>Trabajadores</strong>
 				</li>
 			</ol>
 		</div>
 		<div class="col-lg-3">
 			<div class="title-action">
-				<a href="{{ route('empleado_nuevo') }}" class="ladda-button ladda-button-demo btn btn-primary" name="button" data-style="zoom-in"> Nuevo empleado</a>
+				<a href="{{ route('empleado_nuevo') }}" class="ladda-button ladda-button-demo btn btn-primary" name="button" data-style="zoom-in"> Nuevo trabajador</a>
 			</div>
 		</div>
 	</div>
@@ -79,7 +79,7 @@
 				<div class="col-lg-12">
 					<div class="ibox ">
 						<div class="ibox-title">
-							<h5>Todos los empleados</h5>
+							<h5>Todos los trabajadores</h5>
 							<div class="ibox-tools">
 							</div>
 						</div>

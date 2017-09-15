@@ -72,7 +72,7 @@
 								<table class="table table-bordered table-striped">
 									<thead>
 										<tr>
-											<th>Empleado</th>
+											<th>Trabajador</th>
 											<th>Nombre</th>
 											<th>Correo</th>
 											<th>Permisos de </th>

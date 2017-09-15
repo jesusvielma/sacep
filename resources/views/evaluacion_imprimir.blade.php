@@ -95,7 +95,7 @@
 				<table class="table borde-tabla table-condensed">
 					<tbody>
 						<tr>
-							<td colspan="6" class="font-bold text-uppercase bg-success text-center">Hoja de evaluación del empleado</td>
+							<td colspan="6" class="font-bold text-uppercase bg-success text-center">Hoja de evaluación del trabajador</td>
 						</tr>
 						<tr>
 							<td colspan="6" class="font-bold text-uppercase bg-muted text-center">Datos generales del evaluado</td>
@@ -125,14 +125,15 @@
 							<td style="padding:2px" colspan="2"><span class="font-bold">Desde:</span> {{ $evaluacion->periodo_desde->format('d-m-Y') }}</td>
 							<td style="padding:2px" colspan="2"><span class="font-bold">Hasta:</span> {{ $evaluacion->periodo_hasta->format('d-m-Y') }}</td>
 						</tr>
+
 						<tr>
-							<td style="padding:2px" colspan="2" class="font-bold">Motivo de evaluacion</td>
+							<td style="padding:2px" colspan="2" class="font-bold">Motivo de evaluación</td>
 							<td style="padding:2px">{{ ucfirst($evaluacion->motivo) }}</td>
-							<td style="padding:2px" colspan="2" class="font-bold">Tipo de evaluacion</td>
+							<td style="padding:2px" colspan="2" class="font-bold">Tipo de evaluación</td>
 							<td style="padding:2px">{{ ucfirst($evaluacion->tipo) }}</td>
 						</tr>
 						<tr>
-							<td colspan="6" class="font-bold text-uppercase bg-muted text-center">Aspectos a evluar</td>
+							<td colspan="6" class="font-bold text-uppercase bg-muted text-center">Aspectos a evaluar</td>
 						</tr>
                         @php
                             $cant_items = $evaluacion->item_evaluado()->count();
@@ -199,7 +200,7 @@
                             @endforeach
                         @endforeach
 						<tr>
-							<td colspan="2">Descripcion, Motivo Y Situación</td>
+							<td colspan="2">Descripción, Motivo y Situación</td>
 							<td colspan="4"><p>{{ $evaluacion->descripcion }}</p></td>
 						</tr>
 						<tr>
@@ -252,7 +253,7 @@
                     </tr>
                     @if (isset($responsable))
                         <tr>
-                            <td colspan="6" class="font-bold text-uppercase bg-muted text-center">Datos de verificacion por el superior inmediato al evaluador</td>
+                            <td colspan="6" class="font-bold text-uppercase bg-muted text-center">Datos de verificación por el superior inmediato al evaluador</td>
                         </tr>
                         <tr>
                             <td  class="font-bold">Apellidos y Nombres</td>
@@ -272,7 +273,7 @@
                         </tr>
                     @endif
                     <tr>
-						<td colspan="6" class="font-bold text-uppercase bg-muted text-center">Datos de verificacion por talento humano</td>
+						<td colspan="6" class="font-bold text-uppercase bg-muted text-center">Datos de verificación por talento humano</td>
 					</tr>
                     <tr>
                         <td  class="font-bold">Apellidos y Nombres</td>
@@ -291,7 +292,7 @@
                         <td style="height:60px;"></td>
                     </tr>
                     <tr>
-						<td colspan="6" class="font-bold text-uppercase bg-muted text-center">Datos de verificacion por gerencia</td>
+						<td colspan="6" class="font-bold text-uppercase bg-muted text-center">Datos de verificación por gerencia</td>
 					</tr>
                     <tr>
                         <td  class="font-bold">Apellidos y Nombres</td>
@@ -310,10 +311,10 @@
                         <td style="height:60px;"></td>
                     </tr>
                     <tr>
-						<td colspan="6" class="font-bold text-uppercase bg-muted text-center">Notificacion al evaluado</td>
+						<td colspan="6" class="font-bold text-uppercase bg-muted text-center">Notificación al evaluado</td>
 					</tr>
                     <tr>
-                        <td class="font-bold">Promedio de calificacion</td>
+                        <td class="font-bold">Promedio de calificación</td>
                         <td>{{ round($prom = $prom/$cant_items1,1) }}</td>
                         <td colspan="4"></td>
                     </tr>
@@ -326,12 +327,12 @@
                         <td>No </td>
                     </tr>
                     <tr class="td-no-border">
-                        <td class="td-no-border-l">Rango de evaluacion</td>
+                        <td class="td-no-border-l">Rango de evaluación</td>
                         <td class="td-no-border">1. Deficiente</td>
                         <td class="td-no-border">2. Regular</td>
                         <td class="td-no-border">3. Bueno</td>
                         <td class="td-no-border">4. Muy bueno</td>
-                        <td class="td-no-border-r">5. Excelenete</td>
+                        <td class="td-no-border-r">5. Excelente</td>
                     </tr>
                     <tr>
                         <td colspan="5" class="text-right td-no-border-l">Fecha entrevista</td>

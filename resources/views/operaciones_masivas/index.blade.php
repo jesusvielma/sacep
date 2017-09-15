@@ -142,7 +142,7 @@
 
 						<form action="{{ route('procesar_om') }}" method="post" enctype="multipart/form-data">
 							{{  csrf_field() }}
-							<label for="">Seleccionar el archivo</label>
+							<label for="archivo">Seleccionar el archivo</label>
 							<div class="fileinput fileinput-new input-group" data-provides="fileinput">
 								<div class="form-control" data-trigger="fileinput">
 									<i class="glyphicon glyphicon-file fileinput-exists"></i>
@@ -151,14 +151,14 @@
 								<span class="input-group-addon btn btn-default btn-file">
 									<span class="fileinput-new"> <i class="fa fa-search"></i> Seleccionar un archivo</span>
 									<span class="fileinput-exists"><i class="fa fa-repeat"></i> Cambiar</span>
-									<input type="file" name="archivo" accept="text/csv, .csv, csv"/>
+									<input type="file" name="archivo" accept="text/csv, .csv, csv" id="archivo"/>
 								</span>
 								<a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Quitar</a>
 							</div>
 							<span class="help-block m-b-none font-bold">Solo se aceptan archivos con la extensión .csv</span>
 							<br>
 							<div class="form-group">
-								<label for="">Tipo de carga</label>
+								<label >Tipo de carga</label>
 								<br>
 								<div class="radio-inline i-checks">
 									<label > <input type="radio" value="coords" name="tipo"> <i></i> Coordinación/Unidad </label>

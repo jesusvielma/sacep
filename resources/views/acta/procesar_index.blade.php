@@ -102,12 +102,12 @@
 @section('content')
 	<div class="row wrapper border-bottom white-bg page-heading">
 		<div class="col-lg-9">
-			<h2>Actas y llamdos de atención por procesar</h2>
+			<h2>Actas y llamados de atención por procesar</h2>
 			<ol class="breadcrumb">
 				<li><a href="{{ route('pagina_inicio') }}"> Inicio </a></li>
 				<li><a href="{{ route('actas') }}"> Trabajadores - Actas y Llamados de atención</a></li>
 				<li class="active">
-					<strong>Docuementos por procesar</strong>
+					<strong>Actas y llamados de atención por procesar</strong>
 				</li>
 			</ol>
 		</div>
@@ -120,7 +120,7 @@
 				<div class="col-lg-12">
 					<div class="ibox ">
 						<div class="ibox-title">
-							<h5>Todos las evaluaciones</h5>
+							<h5>Actas y llamados de atención por procesar</h5>
 							<div class="ibox-tools">
 							</div>
 						</div>
@@ -132,7 +132,7 @@
 										<table class="table table-striped table-bordered table-hover dataTables-example">
 											<thead>
 												<tr>
-													<th>Fecha de emision</th>
+													<th>Fecha de emisión</th>
 													<th>Tipo </th>
 													<th>Sancionado</th>
 													<th>Sancionador</th>

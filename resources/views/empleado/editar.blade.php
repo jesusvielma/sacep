@@ -82,10 +82,10 @@
 @section('content')
 	<div class="row wrapper border-bottom white-bg page-heading">
 		<div class="col-lg-9">
-			<h2>Empleados</h2>
+			<h2>Trabajadores</h2>
 			<ol class="breadcrumb">
 				<li><a href="{{ route('pagina_inicio') }}"> Inicio </a></li>
-				<li><a href="{{ route('empleados') }}"> Empleados </a></li>
+				<li><a href="{{ route('empleados') }}"> Trabajadores </a></li>
 				<li class="active">
 					<strong>Editar</strong>
 				</li>

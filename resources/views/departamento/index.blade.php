@@ -136,7 +136,7 @@
 								<h4>Información</h4>
 								<dl class="dl-horizontal">
 									<dt>Responsable:</dt><dd> {{ isset($dep->encargado->nombre_completo) ? $dep->encargado->nombre_completo : 'Se debe asignar un responsable de esta coordinación o unidad'}} </dd>
-									<dt>Cantidad de Empleados: </dt><dd>{{ $dep->empleados()->count() }}</dd>
+									<dt>Cantidad de trabajadores: </dt><dd>{{ $dep->empleados()->count() }}</dd>
 									<dt>Tipo:</dt> <dd>@lang('enums.departamento.'.$dep->tipo)</dd>
 									@if ($dep->departamento_padre)
 										<dt>Adscrita a la coordinación: </dt><dd>{{$dep->padre->nombre}}</dd>

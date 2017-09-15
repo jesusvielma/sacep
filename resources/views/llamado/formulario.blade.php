@@ -4,7 +4,7 @@
     <div class="col-sm-5">
       <p class="form-control-static">{{ $empleado->nombre_completo }}</p>
     </div>
-	<label class="col-sm-2 control-label">Cédula sancionado</label>
+	<label class="col-sm-2 control-label">Cédula de identidad del sancionado</label>
     <div class="col-sm-3">
       <p class="form-control-static">{{ $empleado->cedula_empleado }}</p>
 	  <input type="hidden" name="sancionado" value="{{ $empleado->cedula_empleado }}" readonly class="form-control">
@@ -15,7 +15,7 @@
     <div class="col-sm-5">
       <p class="form-control-static">{{ Auth::user()->empleado->nombre_completo }}</p>
     </div>
-	<label class="col-sm-2 control-label">Cédula sancionador</label>
+	<label class="col-sm-2 control-label">Cédula de identidad del sancionador</label>
     <div class="col-sm-3">
       <p class="form-control-static">{{ Auth::user()->empleado->cedula_empleado }}</p>
 	  <input type="hidden" name="sancionador" value="{{ Auth::user()->empleado->cedula_empleado }}">

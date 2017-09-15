@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @section('title')
-	Levantar llamado de atención a {{ $empleado->nombre_completo }}
+	Registrar llamado de atención a {{ $empleado->nombre_completo }}
 @endsection
 
 @section('css')
@@ -60,7 +60,7 @@
 				<li><a href="{{ route('pagina_inicio') }}"> Inicio </a></li>
 				<li><a href="{{ route('actas') }}"> Trabajadores - Actas y Llamados de atención </a></li>
 				<li class="active">
-					<strong>Levantar llamado de atención a {{ $empleado->nombre_completo }}</strong>
+					<strong>Registrar llamado de atención a {{ $empleado->nombre_completo }}</strong>
 				</li>
 			</ol>
 		</div>
@@ -74,7 +74,7 @@
 			<div class="col-lg-8 col-lg-offset-2">
 				<div class="ibox">
 					<div class="ibox-title">
-						<h5>Levantar llamado de atención</h5>
+						<h5>Registrar llamado de atención</h5>
 					</div>
 					<div class="ibox-content">
 						<form action="{{ route('guardar_llamado') }}" method="post" id="form" class="form-horizontal">

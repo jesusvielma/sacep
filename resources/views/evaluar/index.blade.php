@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @section('title')
-	Listado de empleados
+	Listado de trabajadores a evaluar
 @endsection
 
 @section('css')
@@ -71,7 +71,7 @@
 			<ol class="breadcrumb">
 				<li><a href="{{ route('pagina_inicio') }}"> Inicio </a></li>
 				<li class="active">
-					<strong>Empleados</strong>
+					<strong>Trabajadores a evaluar</strong>
 				</li>
 			</ol>
 		</div>
@@ -85,7 +85,7 @@
 				<div class="col-lg-12">
 					<div class="ibox ">
 						<div class="ibox-title">
-							<h5>Todos los empleados</h5>
+							<h5>Todos los trabjadores</h5>
 							<div class="ibox-tools">
 							</div>
 						</div>

@@ -1,15 +1,15 @@
 {{ csrf_field() }}
 <div class="form-group {{ $errors->has('cedula_empleado') ? 'has-error' : ''}}">
-	<label for="cedula_empleado">Cédula</label>
+	<label for="cedula_empleado">Cédula de identidad</label>
 	<div class="tooltip-demo">
-		<input id="cedula_empleado" type="text" name="cedula_empleado" value="{{ old('cedula_empleado',isset($empleado->cedula_empleado) ? $empleado->cedula_empleado : NULL) }}" class="form-control" data-toggle="tooltip" data-placement="top" title="" data-original-title="Escriba la cédula sin separadores">
+		<input id="cedula_empleado" type="text" name="cedula_empleado" value="{{ old('cedula_empleado',isset($empleado->cedula_empleado) ? $empleado->cedula_empleado : NULL) }}" class="form-control" data-toggle="tooltip" data-placement="top" title="" data-original-title="Escriba la cédula de identidad sin separadores">
 		@if ($errors->has('cedula_empleado'))
 			<span class="help-block m-b-none">{{ $errors->first('cedula_empleado') }}</span>
 		@endif
 	</div>
 </div>
 <div class="form-group {{ $errors->has('nombre_completo') ? 'has-error' : ''}}">
-	<label for="nombre_completo">Nombre completo del empleado</label>
+	<label for="nombre_completo">Nombre completo del trabajador</label>
 		<input id="nombre_completo" type="text" name="nombre_completo" value="{{ old('nombre_completo',isset($empleado->nombre_completo) ? $empleado->nombre_completo : NULL) }}" class="form-control">
 		@if ($errors->has('nombre_completo'))
 			<span class="help-block m-b-none">{{ $errors->first('nombre_completo') }}</span>

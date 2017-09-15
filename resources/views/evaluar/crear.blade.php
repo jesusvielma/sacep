@@ -251,7 +251,7 @@
 			<h2>Evaluación</h2>
 			<ol class="breadcrumb">
 				<li><a href="{{ route('pagina_inicio') }}"> Inicio </a></li>
-				<li><a href="{{ route('empleados') }}"> Evaluar - Listado de empleados </a></li>
+				<li><a href="{{ route('empleados') }}"> Evaluar - Listado de trabajadores </a></li>
 				<li class="active">
 					<strong>Evaluar</strong>
 				</li>

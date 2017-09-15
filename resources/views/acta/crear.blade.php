@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @section('title')
-	Levantar acta a {{ $empleado->nombre_completo }}
+	Registrar acta a {{ $empleado->nombre_completo }}
 @endsection
 
 @section('css')
@@ -148,7 +148,7 @@
 				<li><a href="{{ route('pagina_inicio') }}"> Inicio </a></li>
 				<li><a href="{{ route('actas') }}"> Actas  </a></li>
 				<li class="active">
-					<strong>Levantar acta a {{ $empleado->nombre_completo }}</strong>
+					<strong>Registrar acta a {{ $empleado->nombre_completo }}</strong>
 				</li>
 			</ol>
 		</div>
@@ -162,7 +162,7 @@
 			<div class="col-lg-8 col-lg-offset-2">
 				<div class="ibox">
 					<div class="ibox-title">
-						<h5>Levantar acta</h5>
+						<h5>Registrar acta</h5>
 					</div>
 					<div class="ibox-content">
 						<form action="{{ route('guardar_acta') }}" method="post" id="form" class="form-horizontal">

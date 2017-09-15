@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @section('title')
-	Ingresar un nuevo empleado
+	Registrar nuevo articulo
 @endsection
 
 @section('css')

@@ -170,7 +170,7 @@
 									<table class="table table-striped table-bordered table-hover table-{{$dep->id_departamento}}">
 										<thead>
 											<tr>
-												<th>Cédula</th>
+												<th>Cédula de identidad</th>
 												<th>Nombre completo</th>
 												<th>Cargo</th>
 												<th style="width:10%">Acciones</th>

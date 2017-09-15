@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @section('title')
-	Listado de evaluaciones del empleado {{$empleado->nombre_completo}}
+	Listado de evaluaciones del trabajador {{$empleado->nombre_completo}}
 @endsection
 
 @section('css')

@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @section('title')
-	Listado de actas del empleado {{$empleado->nombre_completo}}
+	Listado de actas del trabajador {{$empleado->nombre_completo}}
 @endsection
 
 @section('css')
@@ -67,7 +67,7 @@
 			<h2>Actas de {{ $empleado->nombre_completo }}</h2>
 			<ol class="breadcrumb">
 				<li><a href="{{ route('pagina_inicio') }}"> Inicio </a></li>
-				<li><a href="{{ route('index_evaluar') }}"> Actas / Listado de empleados </a></li>
+				<li><a href="{{ route('index_evaluar') }}"> Actas / Listado de trabajadores </a></li>
 				<li class="active">
 					<strong>{{ $empleado->nombre_completo }}</strong>
 				</li>
@@ -75,7 +75,7 @@
 		</div>
 		<div class="col-lg-3">
 			<div class="title-action">
-				<a href="{{ route('acta_nueva',['empleado'=>$empleado->cedula_empleado]) }}" class="ladda-button ladda-button-demo btn btn-primary" name="button" data-style="zoom-in"> Levantar acta</a>
+				<a href="{{ route('acta_nueva',['empleado'=>$empleado->cedula_empleado]) }}" class="ladda-button ladda-button-demo btn btn-primary" name="button" data-style="zoom-in"> Registrar acta</a>
 			</div>
 		</div>
 	</div>

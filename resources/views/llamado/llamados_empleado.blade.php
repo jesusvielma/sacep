@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @section('title')
-	Listado de llamados de atención del empelado {{$empleado->nombre_completo}}
+	Listado de llamados de atención del trabajador {{$empleado->nombre_completo}}
 @endsection
 
 @section('css')
@@ -63,10 +63,10 @@
 @section('content')
 	<div class="row wrapper border-bottom white-bg page-heading">
 		<div class="col-lg-9">
-			<h2>Actas de {{ $empleado->nombre_completo }}</h2>
+			<h2>Llamados de atención de {{ $empleado->nombre_completo }}</h2>
 			<ol class="breadcrumb">
 				<li><a href="{{ route('pagina_inicio') }}"> Inicio </a></li>
-				<li><a href="{{ route('index_evaluar') }}"> Actas / Listado de empleados </a></li>
+				<li><a href="{{ route('index_evaluar') }}"> Actas y Llamados de atención / Listado de trabajadores </a></li>
 				<li class="active">
 					<strong>{{ $empleado->nombre_completo }}</strong>
 				</li>
@@ -74,7 +74,7 @@
 		</div>
 		<div class="col-lg-3">
 			<div class="title-action">
-				<a href="{{ route('llamado_nuevo',['empleado'=>$empleado->cedula_empleado]) }}" class="ladda-button ladda-button-demo btn btn-primary" name="button" data-style="zoom-in"> Levantar acta</a>
+				<a href="{{ route('llamado_nuevo',['empleado'=>$empleado->cedula_empleado]) }}" class="ladda-button ladda-button-demo btn btn-primary" name="button" data-style="zoom-in"> Registrar acta</a>
 			</div>
 		</div>
 	</div>
@@ -84,7 +84,7 @@
 				<div class="col-lg-12">
 					<div class="ibox ">
 						<div class="ibox-title">
-							<h5>Todos las actas</h5>
+							<h5>Todos los llamados de atención</h5>
 							<div class="ibox-tools">
 							</div>
 						</div>
