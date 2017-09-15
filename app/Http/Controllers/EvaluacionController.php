@@ -246,7 +246,7 @@ class EvaluacionController extends Controller
         //return view('evaluacion_imprimir',$data);
         $msg = [
             'type' => 'success',
-            'msg' => 'Se ha guardado la evaluación de '.$evaluado->nombre_completo.', puede acceder a ella haciendo click sobre esta notificación o haciendo clic en el botón para ver la evaluaciones de '.$evaluado->nombre_completo.' en el listado de trabajadores. (Nota: esta notificación desaparece luego de un minuto)',
+            'msg' => 'Se ha guardado la evaluación de '.$evaluado->nombre_completo.', puede acceder a ella haciendo click sobre esta notificación o haciendo clic en el botón para ver la evaluaciones de '.$evaluado->nombre_completo.' en el listado de trabajadores o puede esperar un minuto y la automáticamente se abrirá la evaluación para imprimir. (Nota: esta notificación desaparece luego de un minuto)',
             'title' => 'Evaluación guardada',
             'url' => date('Ym').'/'.$nombre,
         ];

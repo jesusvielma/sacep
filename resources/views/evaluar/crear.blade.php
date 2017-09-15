@@ -122,6 +122,7 @@
                 },
                 onFinished: function (event, currentIndex)
                 {
+					$('.ibox').children('.ibox-content').toggleClass('sk-loading');
                     var form = $(this);
 
                     // Submit form input
@@ -270,6 +271,11 @@
 						<h5>Evaluar a {{ $empleado->nombre_completo }}</h5>
 					</div>
 					<div class="ibox-content">
+						<div class="sk-spinner sk-spinner-three-bounce">
+							<div class="sk-bounce1"></div>
+							<div class="sk-bounce2"></div>
+							<div class="sk-bounce3"></div>
+						</div>
 						<form action="{{ route('guardar_evaluacion') }}" method="post" id="form" class="wizard-big">
 							@include('evaluar.formulario')
 						</form>

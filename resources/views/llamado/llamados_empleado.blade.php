@@ -108,7 +108,7 @@
 														<td>{{ $acta->descripcion }}</td>
 														<td>{{ ucfirst($acta->estado) }}</td>
 														<td class="tooltip-demo">
-															<a class="btn btn-xs btn-primary ver" href="{{ route('imprimir_llamado',['id'=> $acta->id_acta]) }}" data-toggle="tooltip" data-placement="top" title="Ver este llamado de atención"><i class="fa fa-eye"></i></a>
+															<a class="btn btn-xs btn-primary ver" href="{{ asset('storage/llamados').'/'.$acta->fecha->format('Ym').'/'.$acta->fecha->format('Y-m-d').'-'.$acta->tipo.'-de-'.$empleado->cedula_empleado.'.pdf' }}" data-toggle="tooltip" data-placement="top" title="Ver este llamado de atención"><i class="fa fa-eye"></i></a>
 															@if ($acta->estado == 'guardada')
 																<a class="btn btn-xs btn-success" href="{{ route('editar_llamado',['id'=>$acta->id_acta]) }}" data-toggle="tooltip" data-placement="top" title="Editar este llamado de atención"><i class="fa fa-pencil"></i></a>
 															@endif

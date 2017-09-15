@@ -3,6 +3,7 @@
 namespace sacep\Http\Controllers;
 
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
 use sacep\Acta;
 use sacep\Articulo;
 use sacep\Empleado;
@@ -164,8 +165,18 @@ class ActaController extends Controller
             }
         }
         $pdf = App::make('dompdf.wrapper');
-		$pdf->loadView('acta.acta2',$data);
-		return $pdf->stream('SACEP-Acta-de-'.$acta->tipo.'-de-'.str_replace(' ','-',$data['sancionado']->nombre_completo).'.pdf');
+        $nombre = $acta->fecha->format('Y-m-d').'-'.$acta->tipo.'-de-'.$data['sancionado']->cedula_empleado.'.pdf';
+        Storage::makeDirectory('public/actas/'.date('Ym'));
+		$pdf->loadView('acta.acta2',$data)->save(storage_path().'/app/public/actas/'.date('Ym').'/'.$nombre);
+		//return $pdf->stream('SACEP-Acta-de-'.$acta->tipo.'-de-'.str_replace(' ','-',$data['sancionado']->nombre_completo).'.pdf');
+        $msg = [
+            'type' => 'success',
+            'msg' => 'Se ha guardado el acta de '.$data['sancionado']->nombre_completo.', puede acceder a ella haciendo click sobre esta notificación o haciendo clic en el botón para ver la evaluaciones de '.$data['sancionado']->nombre_completo.' en el listado de trabajadores o puede esperar un minuto y automáticamente se abrirá la evaluación para imprimir. (Nota: esta notificación desaparece luego de un minuto)',
+            'title' => 'Acta guardada',
+            'url' => 'actas/'.date('Ym').'/'.$nombre,
+        ];
+
+        return redirect()->route('actas')->with('notif', $msg);
 
     }
 
