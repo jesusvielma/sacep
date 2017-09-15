@@ -93,7 +93,7 @@
                         </ul>
                     </li>
                     <li class="{{ $current_route_name == 'empleados' || $current_route_name == 'empleado_nuevo'? 'active' : NULL }}">
-                        <a href="#"><i class="fa fa-envelope"></i> <span class="nav-label">Empleados </span><span class="fa arrow"></span></a>
+                        <a href="#"><i class="fa fa-envelope"></i> <span class="nav-label">Trabajadores </span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse">
                             <li><a href="{{ route('empleados') }}">Todos</a></li>
                             <li><a href="{{ route('empleado_nuevo') }}">Nuevo</a></li>
