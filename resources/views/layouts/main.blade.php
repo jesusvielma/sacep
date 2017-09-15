@@ -11,6 +11,8 @@
 	<!-- CSS principal -->
     <link href="{{ URL::asset('css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{ URL::asset('font-awesome/css/font-awesome.css')}}" rel="stylesheet">
+    <!-- Sweet Alert -->
+    <link href="{{ asset('css/plugins/sweetalert/sweetalert.css') }}" rel="stylesheet">
 
     <!-- CSS extra -->
 	@yield('css')
@@ -301,8 +303,50 @@
     </script>
     <script src="{{URL::asset('js/plugins/fullcalendar/moment.min.js')}}"></script>
     <script src="{{URL::asset('js/plugins/fullcalendar/locale/es.js')}}"></script>
+    <!-- Sweet alert -->
+    <script src="{{ asset('js/plugins/sweetalert/sweetalert.min.js')}}"></script>
+    <script src="{{URL::asset('js/isPopupBlocked.js')}}"></script>
     <script>
         moment.locale('es');
+        var isPopupBlocked = function() {
+          var isBlocked = false,
+              popup = window.open('about:blank', 'popup_test','width=5, height=5, left=0, top=0');
+
+          // pop under
+          if(popup) popup.blur();
+          window.focus();
+
+          isBlocked = !popup || typeof popup == 'undefined' || typeof popup.closed=='undefined' || popup.closed || popup.innerHeight != 0;
+          if(popup) popup.close();
+
+          return isBlocked;
+        };
+        if (isPopupBlocked()) {
+            var url_support_navegador ='';
+            // Check for Chrome
+              if (/chrome/.test(navigator.userAgent.toLowerCase())) {
+                  url_support_navegador = 'https://support.google.com/chrome/answer/95472?co=GENIE.Platform%3DDesktop&hl=es-419';
+              }
+            // Check for IE
+              else if(/mozilla/.test(navigator.userAgent.toLowerCase())){
+                url_support_navegador = 'https://support.mozilla.org/es/kb/configuracion-excepciones-y-solucion-de-problemas-';
+              }
+            swal({
+                title: "Atención su navegador no esta configurado",
+                text: "Su navegador tiene bloqueadas las ventanas emergentes, esto no le permitira utlizar por completo los modulos de evaluaciones, actas y llamados de atención. <br /> Le recomendamos habilitar las ventanas emergentes en su navegador para tener la experiencia completa.",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#00bb07",
+                confirmButtonText: "Quiero ver la solución",
+                cancelButtonText: "No hacer nada.",
+                html: true
+            }, function (isConfirm) {
+                if (isConfirm) {
+                    window.open(url_support_navegador);
+                }
+
+            });
+        }
         var fechaPie = moment().format('dd DD [de] MMM [de] YYYY');
         $('#fechaPie').text(fechaPie);
         clock();
