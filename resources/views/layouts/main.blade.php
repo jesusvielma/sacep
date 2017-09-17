@@ -316,11 +316,12 @@
           if(popup) popup.blur();
           window.focus();
 
-          isBlocked = !popup || typeof popup == 'undefined' || typeof popup.closed=='undefined' || popup.closed || popup.innerHeight != 0;
+          isBlocked = !popup || typeof popup == 'undefined' || typeof popup.closed=='undefined' || popup.closed ;
           if(popup) popup.close();
 
           return isBlocked;
         };
+        
         if (isPopupBlocked()) {
             var url_support_navegador ='';
             // Check for Chrome
@@ -333,7 +334,7 @@
               }
             swal({
                 title: "Atención su navegador no esta configurado",
-                text: "Su navegador tiene bloqueadas las ventanas emergentes, esto no le permitira utlizar por completo los modulos de evaluaciones, actas y llamados de atención. <br /> Le recomendamos habilitar las ventanas emergentes en su navegador para tener la experiencia completa.",
+                text: "Su navegador tiene bloqueadas las ventanas emergentes, esto no le permitirá utilizar por completo los módulos de evaluaciones, actas y llamados de atención. <br /> Le recomendamos habilitar las ventanas emergentes en su navegador para tener la experiencia completa.",
                 type: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#00bb07",
