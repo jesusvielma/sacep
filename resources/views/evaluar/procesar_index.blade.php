@@ -158,7 +158,7 @@
 														<td>
 															@foreach ($evaluacion->item_evaluado as $item)
 																@php
-																$puntaje = $puntaje + $item->pivot->puntaje;
+																	$puntaje = $puntaje + $item->pivot->puntaje;
 																@endphp
 															@endforeach
 															{{ round($puntaje = $puntaje/$cant_items,1) }}

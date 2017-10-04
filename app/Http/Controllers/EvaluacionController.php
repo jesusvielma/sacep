@@ -145,9 +145,15 @@ class EvaluacionController extends Controller
         $th = Usuario::where('nivel','th')->with('empleado')->first();
         $gerente = Usuario::where('nivel','gerente')->with('empleado')->first();
 
-        if($responsable->responsable != $evaluador && $responsable->responsable != NULL){
+        if($responsable->responsable != $evaluador && $responsable->responsable != NULL && ($nivel_responsable->usuario->nivel == 'supervisor' || $nivel_responsable->usuario->nivel == 'jefe' )){
             $ev->empleados()->attach([$responsable->responsable => ['tipo'=> $nivel_responsable->usuario->nivel]]);
         }
+
+        // echo "Evaluador ".$evaluador."<br />";
+        // echo "Evaluado ".$empleado->cedula_empleado."<br />";
+        // echo "TH ".$th->empleado->cedula_empleado."<br />";
+        // echo $nivel_responsable->usuario->nivel." ".$responsable->responsable."<br />";
+        // echo "Gerente ".$gerente->empleado->cedula_empleado."<br />";
         $ev->empleados()->attach([$evaluador => ['tipo' => 'evaluador']]);
         $ev->empleados()->attach([$empleado->cedula_empleado => ['tipo' => 'evaluado']]);
         $ev->empleados()->attach([$th->empleado->cedula_empleado => ['tipo' => 'th']]);
@@ -160,11 +166,11 @@ class EvaluacionController extends Controller
             //echo "item_evaluado = ".$item['item_evaluado']." Puntaje= ".$this->cambiar_string_puntaje($item['puntaje'])."<br>";
         }
 
-        // $msg = [
-        //     'type' => 'success',
-        //     'msg' => 'Se ha completado la evaluación de '.$empleado->nombre_completo.", para el periodo ".$request->get('periodo_desde')." hasta ".$request->get('periodo_hasta')." con motivo: ".ucfirst($request->get('motivo')).".",
-        //     'title' => 'Evaluación completada',
-        // ];
+        $msg = [
+            'type' => 'success',
+            'msg' => 'Se ha completado la evaluación de '.$empleado->nombre_completo.", para el periodo ".$request->get('periodo_desde')." hasta ".$request->get('periodo_hasta')." con motivo: ".ucfirst($request->get('motivo')).".",
+            'title' => 'Evaluación completada',
+        ];
 
         //return redirect()->route('index_evaluar')->with('notif', $msg);
 
