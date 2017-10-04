@@ -156,12 +156,16 @@
 															{{ $evaluacion->periodo_desde->format('d-m-Y') }} | {{ $evaluacion->periodo_hasta->format('d-m-Y') }}
 														</td>
 														<td>
-															@foreach ($evaluacion->item_evaluado as $item)
-																@php
+															@if ($cant_items>0)
+																@foreach ($evaluacion->item_evaluado as $item)
+																	@php
 																	$puntaje = $puntaje + $item->pivot->puntaje;
-																@endphp
-															@endforeach
-															{{ round($puntaje = $puntaje/$cant_items,1) }}
+																	@endphp
+																@endforeach
+																{{ round($puntaje = $puntaje/$cant_items,1) }}
+															@else
+																<span class="text-danger">Evaluación errónea</span>
+															@endif
 														</td>
 														<td>
 															@foreach ($evaluacion->empleados as $empleado)
@@ -181,16 +185,32 @@
 															@endforeach
 														</td>
 														<td class="tooltip-demo form-inline">
-															<a class="btn btn-xs btn-primary ver" href="{{ asset('storage/evaluaciones').'/'.$evaluacion->fecha_evaluacion->format('Ym').'/'.$evaluacion->fecha_evaluacion->format('Y-m-d').'-'.$cedula.'.pdf' }}" data-toggle="tooltip" data-placement="top" title="Ver esta evaluación (abre en una nueva ventana)" target="_blank"><i class="fa fa-eye"></i></a>
-															<a href="{{ route('procesar_una',['id'=>$evaluacion->id_evaluacion]) }}" class="btn btn-xs btn-success" data-toggle="tooltip" data-placement="top" title="Procesar esta evaluación"><i class="fa fa-check"></i></a>
+															@if ($cant_items>0)
+																<a class="btn btn-xs btn-primary ver" href="{{ asset('storage/evaluaciones').'/'.$evaluacion->fecha_evaluacion->format('Ym').'/'.$evaluacion->fecha_evaluacion->format('Y-m-d').'-'.$cedula.'.pdf' }}" data-toggle="tooltip" data-placement="top" title="Ver esta evaluación (abre en una nueva ventana)" target="_blank"><i class="fa fa-eye"></i></a>
+																<a href="{{ route('procesar_una',['id'=>$evaluacion->id_evaluacion]) }}" class="btn btn-xs btn-success" data-toggle="tooltip" data-placement="top" title="Procesar esta evaluación"><i class="fa fa-check"></i></a>
+															@else
+																--
+															@endif
 														</td>
-														<td><div class="checkbox-inline i-checks">
-															<label > <input type="checkbox" name="id_evaluacion[]" value="{{ $evaluacion->id_evaluacion }}"> </label>
-														</div></td>
+														<td>
+															@if ($cant_items)
+																<div class="checkbox-inline i-checks">
+																	<label > <input type="checkbox" name="id_evaluacion[]" value="{{ $evaluacion->id_evaluacion }}"> </label>
+																</div>
+															@else
+																--
+															@endif
+														</td>
 													</tr>
 												@endforeach
 											</tbody>
 										</table>
+									</div>
+									<div class="row">
+										<div class="col-lg-12">
+											<h3 class="text-danger">Evaluación errónea</h3>
+											<p>Si alguna de las evaluaciones a procesar tiene este mensaje quiere decir que tuvo errores al ser creada por lo que deberá ser eliminado de el sistema y se debe volver a evaluar al trabajador. Lamentamos las molestias causadas.</p>
+										</div>
 									</div>
 									<div class="row">
 										<div class="col-lg-4 col-lg-offset-8 text-right">
