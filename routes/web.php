@@ -105,7 +105,7 @@ Route::group(['middleware'=>'auth'], function (){
         'uses' => 'EvaluacionController@ver_empleados',
         'as'   => 'ver_empleados'
     ]);
-    
+
     Route::get('evaluaciones/{empleado}',[
         'uses' => 'EvaluacionController@evaluaciones',
         'as'   => 'evaluaciones'
@@ -136,6 +136,10 @@ Route::group(['middleware'=>'auth'], function (){
         'as'   => 'procesar_varias'
     ]);
 
+    Route::get('evaluacion/eliminar/{evaluacion}',[
+        'uses' => 'EvaluacionController@eliminar',
+        'as'   => 'eliminar evaluación'
+    ]);
 
 
     Route::resource('evaluar','EvaluacionController',[

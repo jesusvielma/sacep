@@ -418,4 +418,17 @@ class EvaluacionController extends Controller
         return view('evaluar.todo_empleados',$data);
 
     }
+
+    /**
+     * [eliminar description]
+     * @param  Evaluacion $evaluacion [description]
+     * @return [type]                 [description]
+     */
+    public function eliminar(Evaluacion $evaluacion)
+    {
+        if(Auth::user()->nivel == 'th'){
+            $evaluacion->delete();
+        }        
+        return redirect()->route('procesar_index');
+    }
 }

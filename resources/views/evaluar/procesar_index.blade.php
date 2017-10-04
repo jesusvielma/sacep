@@ -189,7 +189,7 @@
 																<a class="btn btn-xs btn-primary ver" href="{{ asset('storage/evaluaciones').'/'.$evaluacion->fecha_evaluacion->format('Ym').'/'.$evaluacion->fecha_evaluacion->format('Y-m-d').'-'.$cedula.'.pdf' }}" data-toggle="tooltip" data-placement="top" title="Ver esta evaluación (abre en una nueva ventana)" target="_blank"><i class="fa fa-eye"></i></a>
 																<a href="{{ route('procesar_una',['id'=>$evaluacion->id_evaluacion]) }}" class="btn btn-xs btn-success" data-toggle="tooltip" data-placement="top" title="Procesar esta evaluación"><i class="fa fa-check"></i></a>
 															@else
-																--
+																<a class="btn btn-xs btn-danger" href="{{ route('eliminar evaluación',['id'=>$evaluacion->id_evaluacion]) }}"><i class="fa fa-times"></i></a>
 															@endif
 														</td>
 														<td>
@@ -209,7 +209,7 @@
 									<div class="row">
 										<div class="col-lg-12">
 											<h3 class="text-danger">Evaluación errónea</h3>
-											<p>Si alguna de las evaluaciones a procesar tiene este mensaje quiere decir que tuvo errores al ser creada por lo que deberá ser eliminado de el sistema y se debe volver a evaluar al trabajador. Lamentamos las molestias causadas.</p>
+											<p>Si alguna de las evaluaciones a procesar tiene este mensaje quiere decir que tuvo errores al ser creada por lo que deberá ser eliminada del sistema y se debe volver a evaluar al trabajador. Lamentamos las molestias causadas.</p>
 										</div>
 									</div>
 									<div class="row">
