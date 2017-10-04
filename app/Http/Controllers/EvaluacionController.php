@@ -135,44 +135,31 @@ class EvaluacionController extends Controller
             'comentario'       => $request->get('comentario')
         ];
 
-        $ev = Evaluacion::create($evaluacion);
-
-
-        $responsable = Departamento::select('responsable')->where('id_departamento',$dep)->first();
-        $nivel_responsable = Empleado::with('usuario')->where('cedula_empleado','=',$responsable->responsable)->first();
         $empleado = Empleado::where('cedula_empleado','=',$request->get('cedula_empleado'))->first();
         $evaluador = Auth::user()->empleado->cedula_empleado;
         $th = Usuario::where('nivel','th')->with('empleado')->first();
         $gerente = Usuario::where('nivel','gerente')->with('empleado')->first();
 
-        if($responsable->responsable != $evaluador && $responsable->responsable != NULL && ($nivel_responsable->usuario->nivel == 'supervisor' || $nivel_responsable->usuario->nivel == 'jefe' )){
-            $ev->empleados()->attach([$responsable->responsable => ['tipo'=> $nivel_responsable->usuario->nivel]]);
+        $ev = Evaluacion::create($evaluacion);
+
+        $departamento = Departamento::find($dep);
+        if ($departamento->departamento_padre) {
+            $ev->empleados()->attach([$departamento->padre->encargado->cedula_empleado => ['tipo'=>'superior']]);
         }
 
-        // echo "Evaluador ".$evaluador."<br />";
-        // echo "Evaluado ".$empleado->cedula_empleado."<br />";
-        // echo "TH ".$th->empleado->cedula_empleado."<br />";
-        // echo $nivel_responsable->usuario->nivel." ".$responsable->responsable."<br />";
-        // echo "Gerente ".$gerente->empleado->cedula_empleado."<br />";
-        $ev->empleados()->attach([$evaluador => ['tipo' => 'evaluador']]);
-        $ev->empleados()->attach([$empleado->cedula_empleado => ['tipo' => 'evaluado']]);
-        $ev->empleados()->attach([$th->empleado->cedula_empleado => ['tipo' => 'th']]);
-        $ev->empleados()->attach([$gerente->empleado->cedula_empleado => ['tipo' => 'gerente']]);
-
+        $ev->empleados()->attach([
+            $evaluador => ['tipo' => 'evaluador'],
+            $empleado->cedula_empleado => ['tipo' => 'evaluado'],
+            $th->empleado->cedula_empleado => ['tipo' => 'th'],
+            $gerente->empleado->cedula_empleado => ['tipo' => 'gerente'],
+        ]);
 
         $items = $request->get('items');
         foreach($items as $item){
-            $ev->item_evaluado()->attach([$item['item_evaluado'] => ['puntaje' => $this->cambiar_string_puntaje($item['puntaje'])]]);
-            //echo "item_evaluado = ".$item['item_evaluado']." Puntaje= ".$this->cambiar_string_puntaje($item['puntaje'])."<br>";
+            $ev->item_evaluado()->attach([
+                $item['item_evaluado'] => ['puntaje' => $this->cambiar_string_puntaje($item['puntaje'])]
+            ]);
         }
-
-        $msg = [
-            'type' => 'success',
-            'msg' => 'Se ha completado la evaluación de '.$empleado->nombre_completo.", para el periodo ".$request->get('periodo_desde')." hasta ".$request->get('periodo_hasta')." con motivo: ".ucfirst($request->get('motivo')).".",
-            'title' => 'Evaluación completada',
-        ];
-
-        //return redirect()->route('index_evaluar')->with('notif', $msg);
 
         return redirect()->route('imprimir_evaluacion',['id'=>$ev->id_evaluacion]);
     }
@@ -217,7 +204,7 @@ class EvaluacionController extends Controller
                 $data['gerente'] = $empleado;
             }elseif ($empleado->pivot->tipo == 'evaluador') {
                 $data['evaluador'] = $empleado;
-            }elseif ($empleado->pivot->tipo == 'coordinador' || $empleado->pivot->tipo == 'supervisor' || $empleado->pivot->tipo == 'jefe') {
+            }elseif ($empleado->pivot->tipo == 'superior') {
                 $data['responsable'] = $empleado;
             }
         }
@@ -242,17 +229,15 @@ class EvaluacionController extends Controller
 
         Storage::makeDirectory('public/evaluaciones/'.date('Ym'));
 
+
 		$pdf->loadView('evaluacion_imprimir',$data)->save(storage_path().'/app/public/evaluaciones/'.date('Ym').'/'.$nombre);
-        //$saved = $pdf->loadView('evaluacion_imprimir',$data);
-
-        //Storage::move(public_path().'/'.$nombre,storage_path().'/public/evaluaciones/'.date('m').'/'.$nombre);
-
+        //$pdf->loadView('evaluacion_imprimir',$data);
 		//return $pdf->stream('evaluacion_imprimir');
 
         //return view('evaluacion_imprimir',$data);
         $msg = [
             'type' => 'success',
-            'msg' => 'Se ha guardado la evaluación de '.$evaluado->nombre_completo.', puede acceder a ella haciendo click sobre esta notificación o haciendo clic en el botón para ver la evaluaciones de '.$evaluado->nombre_completo.' en el listado de trabajadores o puede esperar un minuto y la automáticamente se abrirá la evaluación para imprimir. (Nota: esta notificación desaparece luego de un minuto)',
+            'msg' => 'Se ha guardado la evaluación de '.$evaluado->nombre_completo.', puede acceder a ella haciendo click sobre esta notificación o haciendo clic en el botón para ver la evaluaciones de '.$evaluado->nombre_completo.' en el listado de trabajadores o puede esperar un minuto y automáticamente se abrirá la evaluación para imprimir. (Nota: esta notificación desaparece luego de un minuto)',
             'title' => 'Evaluación guardada',
             'url' => date('Ym').'/'.$nombre,
         ];
@@ -323,7 +308,7 @@ class EvaluacionController extends Controller
                 $data['gerente'] = $empleado;
             }elseif ($empleado->pivot->tipo == 'evaluador') {
                 $data['evaluador'] = $empleado;
-            }elseif ($empleado->pivot->tipo == 'coordinador' || $empleado->pivot->tipo == 'supervisor' || $empleado->pivot->tipo == 'jefe') {
+            }elseif ($empleado->pivot->tipo == 'superior') {
                 $data['responsable'] = $empleado;
             }
         }
@@ -410,6 +395,11 @@ class EvaluacionController extends Controller
         return redirect()->route('procesar_index');
     }
 
+    /**
+     * Ver las evaluaciones de todos los empleados separados por
+     * departamento.
+     * @return \Illuminate\Http\Response
+     */
     public function ver_empleados()
     {
 
@@ -420,15 +410,15 @@ class EvaluacionController extends Controller
     }
 
     /**
-     * [eliminar description]
-     * @param  Evaluacion $evaluacion [description]
-     * @return [type]                 [description]
+     * Eliminar evaluaciones mal creadas
+     * @param  Evaluacion $evaluacion
+     * @return \Illuminate\Http\Response
      */
     public function eliminar(Evaluacion $evaluacion)
     {
         if(Auth::user()->nivel == 'th'){
             $evaluacion->delete();
-        }        
+        }
         return redirect()->route('procesar_index');
     }
 }

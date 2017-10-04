@@ -305,7 +305,7 @@
     <script src="{{URL::asset('js/plugins/fullcalendar/locale/es.js')}}"></script>
     <!-- Sweet alert -->
     <script src="{{ asset('js/plugins/sweetalert/sweetalert.min.js')}}"></script>
-    <script src="{{URL::asset('js/isPopupBlocked.js')}}"></script>
+    {{-- <script src="{{URL::asset('js/isPopupBlocked.js')}}"></script> --}}
     <script>
         moment.locale('es');
         var isPopupBlocked = function() {
@@ -321,7 +321,7 @@
 
           return isBlocked;
         };
-        
+
         if (isPopupBlocked()) {
             var url_support_navegador ='';
             // Check for Chrome

@@ -13,11 +13,12 @@
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
 	<style>
+        @page {margin: 1cm }
         html, body {
             background: #FFF;
         }
 		body {
-			margin: 1cm;
+			margin: 0.5cm;
 			color: black;
             padding: 0
 		}
