@@ -402,6 +402,7 @@ class EvaluacionController extends Controller
     public function ver_empleados()
     {
 
+        $this->authorize('gerente_ve_evaluaciones',\sacep\Evaluacion::class);
         $data['deps'] =  Departamento::all();
 
         return view('evaluar.todo_empleados',$data);
