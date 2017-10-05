@@ -146,6 +146,7 @@
 													<tr>
 														<td>
 															@foreach ($evaluacion->empleados as $empleado)
+																{{ $empleado->pivot->tipo }}
 																@if ($empleado->pivot->tipo == 'evaluador')
 																	{{ $empleado->departamento->nombre }}
 																@endif

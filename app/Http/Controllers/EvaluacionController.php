@@ -88,7 +88,7 @@ class EvaluacionController extends Controller
         $eval = new Evaluacion;
         $this->authorize('evaluar',[$eval,$empleado]);
         $rol_evaluador = Auth::user()->nivel == 'gerente';
-        if ($rol_evaluador === TRUE || (isset($empleado->id_usuario) && ($empleado->usuario->nivel == 'supervisor' || $empleado->usuario->nivel == 'jefe')) ) {
+        if (($rol_evaluador === TRUE && (isset($empleado->id_usuario) && ($empleado->usuario->nivel == 'supervisor' || $empleado->usuario->nivel == 'jefe'))) || (isset($empleado->id_usuario) && ($empleado->usuario->nivel == 'supervisor' || $empleado->usuario->nivel == 'jefe')) ) {
             $data['factores'] = FactorDeEvaluacion::where('estado',1)->with(['items'=> function($query){
                 $query->where('visivilidad','!=','trabajador');
             }])->get();
@@ -147,12 +147,11 @@ class EvaluacionController extends Controller
             $ev->empleados()->attach([$departamento->padre->encargado->cedula_empleado => ['tipo'=>'superior']]);
         }
 
-        $ev->empleados()->attach([
-            $evaluador => ['tipo' => 'evaluador'],
-            $empleado->cedula_empleado => ['tipo' => 'evaluado'],
-            $th->empleado->cedula_empleado => ['tipo' => 'th'],
-            $gerente->empleado->cedula_empleado => ['tipo' => 'gerente'],
-        ]);
+        $ev->empleados()->attach([$evaluador => ['tipo' => 'evaluador'],]);
+        $ev->empleados()->attach([$empleado->cedula_empleado => ['tipo' => 'evaluado']]);
+        $ev->empleados()->attach([$th->empleado->cedula_empleado => ['tipo' => 'th']]);
+        $ev->empleados()->attach([$gerente->empleado->cedula_empleado => ['tipo' => 'gerente']]);
+
 
         $items = $request->get('items');
         foreach($items as $item){
