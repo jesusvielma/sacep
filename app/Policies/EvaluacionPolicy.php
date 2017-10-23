@@ -109,6 +109,6 @@ class EvaluacionPolicy
      */
     public function gerente_ve_evaluaciones(Usuario $usuario)
     {
-        return $usuario->nivel == 'gerente';
+        return $usuario->nivel == 'gerente' || $usuario->nivel == 'th';
     }
 }
