@@ -256,4 +256,20 @@ Route::group(['middleware'=>'auth'], function (){
             'update'=> 'update_llamado',
         ]
     ]);
+    Route::get('backup', [
+        'uses' => 'BackupController@index',
+        'as' => 'backup'
+    ]);
+
+    Route::put('backup/create', [
+        'uses'=> 'BackupController@create',
+        'as'=>'crear_backup'
+    ]);
+
+    Route::get('backup/descargar/{file_name?}', [
+        'uses' => 'BackupController@download',
+        'as'=>'descargar_b'
+    ]);
+    Route::delete('backup/delete/{file_name?}', 'BackupController@delete')->where('file_name', '(.*)');
+    
 });

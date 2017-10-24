@@ -24,8 +24,15 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        date_default_timezone_set('America/Caracas');
+		setlocale(LC_ALL,'es_VE.UTF-8','es_VE','Windows-1252','esp','es_ES.UTF-8','es_ES');
         // $schedule->command('inspire')
         //          ->hourly();
+        $schedule->command('backup:run',[
+            '--filename'=> date('Y-m-d-H-i-s').'.zip',
+            '--only-db',
+            '--disable-notifications'
+        ])->daily();
     }
 
     /**

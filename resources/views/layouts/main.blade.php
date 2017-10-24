@@ -111,13 +111,12 @@
                     <li class="{{ $current_route_name == 'operaciones_masivas' ? 'active' : NULL }}">
                         <a href="{{ route('operaciones_masivas') }}"><i class="fa fa-cubes"></i> <span class="nav-label">Carga de datos</span></a>
                     </li>
-                    {{-- <li >
+                    <li >
                         <a href="#"><i class="fa fa-database"></i> <span class="nav-label">Base de datos</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse">
-                            <li><a href="{{ route('usuarios') }}">Todos</a></li>
-                            <li><a href="{{ route('crear_usuario') }}">Nuevo</a></li>
+                            <li><a href="{{ route('backup') }}">Respaldar</a></li>
                         </ul>
-                    </li> --}}
+                    </li>
                 @endcan
                 @can('ver_ev')
                     <li class="{{ $current_route_name == 'index_evaluar' || $current_route_name == 'procesar_index' || $current_route_name == 'evaluar' || $current_route_name == 'editar_evaluacion' || $current_route_name == 'evaluaciones' || $current_route_name == 'ver_empleados' ? 'active' : NULL }}">

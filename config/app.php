@@ -181,6 +181,8 @@ return [
         //Excel
         Maatwebsite\Excel\ExcelServiceProvider::class,
 
+
+        Spatie\Backup\BackupServiceProvider::class,
     ],
 
     /*
