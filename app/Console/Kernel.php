@@ -31,7 +31,6 @@ class Kernel extends ConsoleKernel
         $schedule->command('backup:run',[
             '--filename'=> date('Y-m-d-H-i-s').'.zip',
             '--only-db',
-            '--disable-notifications'
         ])->daily();
     }
 

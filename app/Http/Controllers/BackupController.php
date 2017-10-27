@@ -2,13 +2,14 @@
 
 namespace sacep\Http\Controllers;
 
-use Artisan;
+// use Artisan;
+use Illuminate\Support\Facades\Artisan;
 use Exception;
 use League\Flysystem\Adapter\Local;
-use Log;
-use Request;
-use Response;
-use Storage;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Storage;
 
 class BackupController extends Controller
 {
@@ -18,6 +19,7 @@ class BackupController extends Controller
         date_default_timezone_set('America/Caracas');
 		setlocale(LC_ALL,'es_VE.UTF-8','es_VE','Windows-1252','esp','es_ES.UTF-8','es_ES');
     }
+
     public function index()
     {
         if (!count(config('laravel-backup.backup.destination.disks'))) {
@@ -58,20 +60,20 @@ class BackupController extends Controller
     public function create()
     {
         try {
-            ini_set('max_execution_time', 300);
+            ini_set('max_execution_time', 500);
             // start the backup process
             //Artisan::call('backup:run --filename=$(date "+%Y-%m-%d-%H-%M-%S").zip --only-db ');
             Artisan::call('backup:run',[
                 '--filename'=> date('Y-m-d-H-i-s').'.zip',
-                '--only-db' => true,
-                '--disable-notifications' => true
+                '--only-db' => true
             ]);
             $output = Artisan::output();
+
 
             // log the results
             Log::info("Backpack\BackupManager -- new backup started from admin interface \r\n".$output);
             // return the results as a response to the ajax call
-            echo $output;
+            //echo $output;
         } catch (Exception $e) {
             Response::make($e->getMessage(), 500);
         }
