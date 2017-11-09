@@ -150,9 +150,11 @@
 														<td>{{ $empl1->departamento->nombre }}</td>
 														<td class="tooltip-demo">
 															<div class="btn-group">
+																<a href="{{ route('acta_nueva',['id'=>$empl1->cedula_empleado])}}" class="btn btn-sm btn-primary" data-toggle="tooltip" data-placement="top" title="Registrar acta a {{ $hijo->nombre_completo }}"><i class="fa fa-file-text"></i></a>
 																<a href="{{ route('ver_actas',['id'=>$empl1->cedula_empleado])}}" class="btn btn-sm btn-success" data-toggle="tooltip" data-placement="top" title="Ver actas de {{ $empl1->nombre_completo }}"><i class="fa fa-files-o"></i></a>
 															</div>
 															<div class="btn-group">
+																<a href="{{ route('llamado_nuevo',['id'=>$empl1->cedula_empleado])}}" class="btn btn-sm btn-warning" data-toggle="tooltip" data-placement="top" title="Registrar llamado de atención a {{ $hijo->nombre_completo }}"><i class="fa fa-bullhorn"></i></a>
 																<a href="{{ route('ver_llamados',['id'=>$empl1->cedula_empleado])}}" class="btn btn-sm btn-success" data-toggle="tooltip" data-placement="top" title="Ver llamados de atención de {{ $empl1->nombre_completo }}"><i class="fa fa-files-o"></i></a>
 															</div>
 														</td>
